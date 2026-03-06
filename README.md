@@ -415,6 +415,6 @@ npm run lint
 ## Geliştirici
 
 **İsmail Danış**
-- GitHub: [@Quillen911](https://github.com/Quillen911)
+- GitHub: [@Quillen911](https://github.com/ismaildanis)
 
 ---
