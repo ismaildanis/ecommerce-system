@@ -1,32 +1,20 @@
-# Git ve IDE dosyaları
 .git
-.gitignore
-.gitattributes
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
+.github
+.vscode
+.idea
 
-# Docker dosyaları
-Dockerfile
-docker-compose.yml
-docker-compose.override.yml
-.dockerignore
+backend/vendor
+backend/node_modules
+backend/public/storage
+backend/storage/logs
+backend/storage/framework/cache
+backend/storage/framework/sessions
+backend/storage/framework/views
+backend/.env
 
-# Log ve temp dosyaları
+frontend/node_modules
+frontend/.next
+
 *.log
-tmp/
-temp/
-
-# OS dosyaları
 .DS_Store
 Thumbs.db
-
-# Documentation
-README.md
-*.md
-
-# Environment files
-.env
-.env.*
