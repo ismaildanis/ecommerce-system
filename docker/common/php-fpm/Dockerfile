@@ -4,10 +4,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git curl zip unzip \
     libpq-dev libzip-dev libpng-dev libonig-dev libxml2-dev \
     libssl-dev libcurl4-openssl-dev libicu-dev \
+    libfcgi-bin procps \
     && docker-php-ext-install -j$(nproc) \
     pdo_mysql pdo_pgsql pgsql mbstring intl bcmath gd zip sockets pcntl exif opcache \
     && pecl install redis \
     && docker-php-ext-enable redis \
+    && curl -o /usr/local/bin/php-fpm-healthcheck \
+        https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
+    && chmod +x /usr/local/bin/php-fpm-healthcheck \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -17,6 +21,7 @@ COPY docker/common/php-fpm/conf.d/20-status-path.conf /usr/local/etc/php-fpm.d/z
 COPY docker/common/php-fpm/conf.d/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 WORKDIR /var/www
+
 
 FROM base AS development
 
@@ -71,6 +76,36 @@ COPY docker/development/php-fpm/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 USER www
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+EXPOSE 9000
+
+CMD ["php-fpm"]
+
+
+FROM base AS production
+
+COPY backend/composer.json backend/composer.lock ./
+
+RUN composer install --no-dev --no-scripts --no-autoloader --no-interaction --prefer-dist
+
+COPY backend /var/www
+
+COPY backend/storage /var/www/storage-init
+
+COPY docker/production/php-fpm/entrypoint.sh /usr/local/bin/entrypoint.sh
+
+RUN chmod +x /usr/local/bin/entrypoint.sh \
+    && mkdir -p storage/app/public bootstrap/cache \
+    && chown -R www-data:www-data /var/www \
+    && chmod -R 775 storage bootstrap/cache
+
+RUN composer dump-autoload --optimize
+
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+USER www-data
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 

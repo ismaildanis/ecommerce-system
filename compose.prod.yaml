@@ -1,0 +1,106 @@
+services:
+  php-fpm:
+    container_name: laravel-api-prod
+    build:
+      context: .
+      dockerfile: ./docker/common/php-fpm/Dockerfile
+      target: production
+    env_file:
+      - ./backend/.env
+    volumes:
+      - laravel_storage:/var/www/storage
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    networks:
+      - laravel-production
+
+  nginx:
+    container_name: nginx-prod
+    build:
+      context: .
+      dockerfile: ./docker/production/nginx/Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - php-fpm
+    networks:
+      - laravel-production
+
+  queue:
+    container_name: laravel-queue-prod
+    build:
+      context: .
+      dockerfile: ./docker/common/php-fpm/Dockerfile
+      target: production
+    env_file:
+      - ./backend/.env
+    volumes:
+      - laravel_storage:/var/www/storage
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    command: php artisan queue:work rabbitmq --queue=notifications --verbose --tries=3 --timeout=90
+    networks:
+      - laravel-production
+
+  postgres:
+    image: postgres:17
+    container_name: postgres-prod
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - pgdata_prod:/var/lib/postgresql/data
+    networks:
+      - laravel-production
+
+  redis:
+    image: redis:alpine
+    container_name: redis-prod
+    restart: unless-stopped
+    volumes:
+      - redis_data_prod:/data
+    networks:
+      - laravel-production
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq-prod
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    volumes:
+      - rabbitmq_data_prod:/var/lib/rabbitmq
+    networks:
+      - laravel-production
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: elasticsearch-prod
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms256m -Xmx512m
+    volumes:
+      - elasticsearch_data_prod:/usr/share/elasticsearch/data
+    networks:
+      - laravel-production
+
+volumes:
+  pgdata_prod:
+  redis_data_prod:
+  rabbitmq_data_prod:
+  elasticsearch_data_prod:
+  laravel_storage:
+
+networks:
+  laravel-production:
+    driver: bridge
