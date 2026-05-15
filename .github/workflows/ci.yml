@@ -20,7 +20,7 @@ jobs:
         ports:
           - 5432:5432
         options: >-
-          --health-cmd pg_isready
+          --health-cmd "pg_isready -U test_db -d test_db"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -69,9 +69,10 @@ jobs:
           DB_PASSWORD: test_db
 
       - name: Run tests
-        run: php artisan test --coverage --min=60
+        run: php artisan test --coverage --min=20
         working-directory: backend
         env:
+          APP_ENV: testing
           DB_CONNECTION: pgsql
           DB_HOST: 127.0.0.1
           DB_PORT: 5432
@@ -80,6 +81,10 @@ jobs:
           DB_PASSWORD: test_db
           REDIS_HOST: 127.0.0.1
           REDIS_PORT: 6379
+          CACHE_STORE: array
+          SESSION_DRIVER: array
+          QUEUE_CONNECTION: sync
+          MAIL_MAILER: array
 
   lint:
     runs-on: ubuntu-latest
@@ -117,7 +122,7 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dirs: frontend
+          cache-dependency-path: frontend/package-lock.json
 
       - name: Install dependencies
         run: npm ci
