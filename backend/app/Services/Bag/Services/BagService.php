@@ -92,7 +92,6 @@ class BagService implements BagInterface
             return [$item->id => $item->unit_price_cents * $item->quantity];
         });
         $perItemPrice =collect($a) ?? [];
-        //dd($perItemPrice, $perItemCargoPrice, $discountItems);
         $itemFinalPrice = $this->bagCalculationService->itemFinalPrice($perItemCargoPrice->toArray(), $perItemPrice->toArray(), $discountItems->toArray());
         $final = max($total + $perItemCargoPrice->sum() - $discount, 0);
 

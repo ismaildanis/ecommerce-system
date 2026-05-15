@@ -25,13 +25,12 @@ class CheckoutSessionService
         private readonly AddressesRepositoryInterface $addressesRepository,
         private readonly PaymentMethodRepositoryInterface $paymentMethods,
         private readonly CheckoutPaymentService $checkoutPaymentService,
-        private readonly OrderPlacementService $orderPlacementService,
         private readonly InventoryRepositoryInterface $inventories
 
     ) {
     }
 
-    public function createSession($user, array $bagData): CheckoutSession
+    public function createSession(User $user, array $bagData): CheckoutSession
     {
         $stock = $this->checkStock($bagData);
         if ($stock === false) {

@@ -15,6 +15,7 @@ use App\Http\Requests\Checkout\CreatePaymentIntentRequest;
 use App\Jobs\OrderPlacementJob;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Checkout\ConfirmOrderRequest;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -92,7 +93,7 @@ class CheckoutController extends Controller
     {
         $user = $this->getUser();
         
-        $session = $this->checkoutSessionService->createPaymentIntent($user ,$request->validated());
+        $session = $this->checkoutSessionService->createPaymentIntent($user, $request->validated());
 
         return response()->json([
             'session_id'    => $session->id,
@@ -101,7 +102,7 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function confirmOrder(Request $request) {
+    public function confirmOrder(ConfirmOrderRequest $request) {
         
         $session = $this->checkoutSessionService->confirmPaymentIntent($request->validated());
         

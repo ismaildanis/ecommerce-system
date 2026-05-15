@@ -3,13 +3,6 @@
 namespace App\Http\Requests\Checkout;
 
 use Illuminate\Foundation\Http\FormRequest;
-//kullanılmıyor
-//kullanılmıyor
-//kullanılmıyor
-//kullanılmıyor
-
-//kullanılmıyor
-//kullanılmıyor
 
 class ConfirmOrderRequest extends FormRequest
 {

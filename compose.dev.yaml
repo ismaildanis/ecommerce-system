@@ -118,6 +118,7 @@ services:
   # RabbitMQ Queue
   rabbitmq:
     image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
     ports:
       - "${RABBITMQ_PORT:-5672}:5672"
       - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
@@ -131,6 +132,7 @@ services:
 
 
   queue:
+    container_name: laravel-queue
     build:
       context: .
       dockerfile: ./docker/common/php-fpm/Dockerfile
@@ -155,6 +157,7 @@ services:
 
   # Elasticsearch
   elasticsearch:
+    container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
     environment:
       - discovery.type=single-node
