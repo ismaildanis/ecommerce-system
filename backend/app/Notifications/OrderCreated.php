@@ -2,19 +2,21 @@
 
 namespace App\Notifications;
 
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\Order;
-use Illuminate\Support\Collection;
-use App\Models\User;
+
 class OrderCreated extends Notification
 {
     use Queueable;
 
     protected $order;
+
     protected $user;
-        /**
+
+    /**
      * Create a new notification instance.
      */
     public function __construct(Order $order, User $user)
@@ -41,12 +43,13 @@ class OrderCreated extends Notification
         $items = $this->order->orderItems->map(function ($item) {
             $product = $item->product;
             $variant = $product?->variants->first();
-            $image   = $variant?->variantImages->first();
+            $image = $variant?->variantImages->first();
+
             return [
-                'title'      => $product?->title ?? 'Ürün',
-                'color'      => $variant?->color_name,
-                'quantity'   => $item->quantity,
-                'image_url'  => $image?->image ? asset($image->image) : null,
+                'title' => $product?->title ?? 'Ürün',
+                'color' => $variant?->color_name,
+                'quantity' => $item->quantity,
+                'image_url' => $image?->image ? asset($image->image) : null,
             ];
         });
 
@@ -55,24 +58,22 @@ class OrderCreated extends Notification
         $shippingAddressCity = $this->order->shippingAddress->city;
         $shippingAddressCountry = $this->order->shippingAddress->country;
         $shippingAddressPostalCode = $this->order->shippingAddress->postal_code;
-        $actionUrl       = rtrim(env('FRONTEND_URL'), '/') . "/account/orders/{$this->order->id}";
-       
+        $actionUrl = rtrim(env('FRONTEND_URL'), '/')."/account/orders/{$this->order->id}";
+
         return (new MailMessage)
             ->subject("Sipariş Onayı - #{$this->order->id} | Quillen")
             ->markdown('mail.orders.created', [
-                'user'            => $this->user,
-                'order'           => $this->order,
-                'items'           => $items,
+                'user' => $this->user,
+                'order' => $this->order,
+                'items' => $items,
                 'shippingAddressLine1' => $shippingAddressLine1,
                 'shippingAddressLine2' => $shippingAddressLine2,
                 'shippingAddressCity' => $shippingAddressCity,
                 'shippingAddressCountry' => $shippingAddressCountry,
                 'shippingAddressPostalCode' => $shippingAddressPostalCode,
-                'actionUrl'       => $actionUrl,
-        ]);
+                'actionUrl' => $actionUrl,
+            ]);
     }
-
-
 
     /**
      * Get the array representation of the notification.
@@ -83,9 +84,9 @@ class OrderCreated extends Notification
     {
         return [
             'order_id' => $this->order->id,
-            'order_total' => number_format(($this->order->grand_total_cents /100), 2),
-            'message' => 'Siparişiniz (#' . $this->order->id . ') başarıyla oluşturuldu.'
+            'order_total' => number_format(($this->order->grand_total_cents / 100), 2),
+            'message' => 'Siparişiniz (#'.$this->order->id.') başarıyla oluşturuldu.',
         ];
-        
+
     }
 }

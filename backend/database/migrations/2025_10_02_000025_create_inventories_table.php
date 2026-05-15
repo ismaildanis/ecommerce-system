@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('inventories', function (Blueprint $table) {
@@ -18,7 +17,7 @@ return new class extends Migration
             $table->integer('available')->default(0);
             $table->integer('min_stock_level')->default(0);
             $table->timestamps();
-            
+
             $table->unique(['variant_size_id', 'warehouse_id']);
             $table->index(['warehouse_id', 'on_hand']);
             $table->index(['variant_size_id', 'available']);

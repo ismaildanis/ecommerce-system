@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Services\Campaigns\CampaignRegistry;
 use App\Services\Campaigns\CampaignManager;
+use App\Services\Campaigns\CampaignRegistry;
+use Illuminate\Support\ServiceProvider;
 
 class CampaignServiceProvider extends ServiceProvider
 {
@@ -13,11 +13,10 @@ class CampaignServiceProvider extends ServiceProvider
         /*$this->app->singleton(CampaignRegistry::class, function ($app) {
             return new CampaignRegistry();
         });
-        
+
         $this->app->bind(CampaignManager::class, function ($app) {
             return new CampaignManager($app->make(CampaignRegistry::class));
         });
         */
     }
 }
-    

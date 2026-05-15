@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\UserAddress;
 
 class User extends Authenticatable
 {
-    use HasFactory, HasApiTokens, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'first_name', 
+        'first_name',
         'last_name',
         'username',
         'email',
@@ -32,7 +31,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_active' => 'boolean',
     ];
-    
+
     public function addresses()
     {
         return $this->hasMany(UserAddress::class, 'user_id');
@@ -42,7 +41,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class, 'user_id');
     }
-    
+
     public function bag()
     {
         return $this->hasOne(Bag::class, 'bag_user_id');
@@ -52,12 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(CheckoutSession::class, 'user_id');
     }
-    
-    
+
     public function paymentMethods()
     {
         return $this->hasMany(PaymentMethod::class, 'user_id');
     }
-    
-    
 }

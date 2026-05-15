@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\ElasticSearch;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ElasticProductResource extends JsonResource
@@ -80,8 +81,8 @@ class ElasticProductResource extends JsonResource
                     })->toArray(),
                 ];
             })->toArray(),
-            'created_at' => isset($this['created_at']) ? \Carbon\Carbon::parse($this['created_at'])->toIso8601String() : null,
-            'updated_at' => isset($this['updated_at']) ? \Carbon\Carbon::parse($this['updated_at'])->toIso8601String() : null,
+            'created_at' => isset($this['created_at']) ? Carbon::parse($this['created_at'])->toIso8601String() : null,
+            'updated_at' => isset($this['updated_at']) ? Carbon::parse($this['updated_at'])->toIso8601String() : null,
 
             'category_title' => $this['category_title'] ?? null,
             'gender' => $this['gender'] ?? null,

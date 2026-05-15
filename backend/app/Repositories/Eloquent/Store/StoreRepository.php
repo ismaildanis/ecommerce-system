@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquent\Store;
 
 use App\Models\Store;
-use App\Repositories\Eloquent\BaseRepository;
 use App\Repositories\Contracts\Store\StoreRepositoryInterface;
+use App\Repositories\Eloquent\BaseRepository;
 
 class StoreRepository extends BaseRepository implements StoreRepositoryInterface
 {

@@ -2,11 +2,10 @@
 
 namespace App\Services\Checkout;
 
+use App\Models\CheckoutSession;
 use App\Models\PaymentMethod;
 use App\Models\PaymentProvider;
 use App\Models\User;
-use App\Models\CheckoutSession;
-
 use App\Repositories\Contracts\Payment\PaymentProviderRepositoryInterface;
 use App\Services\Payments\Contracts\PaymentGatewayInterface;
 
@@ -14,8 +13,8 @@ class CheckoutPaymentService
 {
     public function __construct(
         private readonly PaymentProviderRepositoryInterface $paymentProviders,
-    ) {
-    }
+    ) {}
+
     public function buildTemporaryMethodFromData($user, array $data): PaymentMethod
     {
         $provider = $this->resolveProvider($data['provider'] ?? null);
@@ -26,7 +25,7 @@ class CheckoutPaymentService
 
     public function createPaymentIntent(User $user, $session, $paymentMethod, array $data): array
     {
-        $provider = $this->resolveProvider($paymentMethod->provider);  
+        $provider = $this->resolveProvider($paymentMethod->provider);
 
         $gateway = app(PaymentGatewayInterface::class, ['provider' => $provider]);
 
@@ -48,6 +47,7 @@ class CheckoutPaymentService
         if (! $provider) {
             throw new \RuntimeException('Aktif ödeme sağlayıcısı bulunamadı.');
         }
+
         return $provider;
     }
 }

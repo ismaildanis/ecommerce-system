@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Checkout;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateSessionRequest extends FormRequest
@@ -17,12 +18,12 @@ class CreateSessionRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'bag_id'      => ['nullable', 'exists:bags,id'],
+            'bag_id' => ['nullable', 'exists:bags,id'],
             'coupon_code' => ['nullable', 'string', 'max:50'],
         ];
     }

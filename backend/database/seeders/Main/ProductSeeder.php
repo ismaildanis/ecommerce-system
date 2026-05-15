@@ -2,13 +2,13 @@
 
 namespace Database\Seeders\Main;
 
-use Illuminate\Database\Seeder;
+use App\Models\Inventory;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use App\Models\ProductVariantImage;
 use App\Models\VariantSize;
-use App\Models\Inventory;
-use App\Models\ProductCategory;
+use Illuminate\Database\Seeder;
+
 class ProductSeeder extends Seeder
 {
     public function run(): void
@@ -53,13 +53,13 @@ class ProductSeeder extends Seeder
         $this->createVariantSizes(1, 'ESF-ERK-001-MAV', 34900);
         // Varyant 2 için bedenler (id=2)
         $this->createVariantSizes(2, 'ESF-ERK-001-SYH', 34900);
-        
+
         // Varyant 1 ve 2 için resimler
         $this->createVariantImages(1, [
             ['image' => 'xxllWS3ES9cgshwd6asqwHlqXL1TA9a4FtdFx6rC.png', 'is_primary' => true, 'sort_order' => 1],
             ['image' => 'QAEAY6rHh0RPTh4qo96scasAYhaXELtA3RoBaMeu.png', 'is_primary' => false, 'sort_order' => 2],
         ]);
-        
+
         $this->createVariantImages(2, [
             ['image' => 'esofman.png', 'is_primary' => true, 'sort_order' => 1],
             ['image' => 'esofman1.png', 'is_primary' => false, 'sort_order' => 2],
@@ -118,16 +118,16 @@ class ProductSeeder extends Seeder
         $this->createVariantSizes(4, 'JEAN-KIZ-001-KMAV', 27900);
         // Varyant 5 için bedenler (id=5) - Siyah Jean
         $this->createVariantSizes(5, 'JEAN-KIZ-001-SYH', 27900);
-        
+
         // Varyant 3, 4, 5 için resimler (placeholder)
         $this->createVariantImages(3, [
             ['image' => 'jean-acik-mavi.png', 'is_primary' => true, 'sort_order' => 1],
         ]);
-        
+
         $this->createVariantImages(4, [
             ['image' => 'jean-koyu-mavi.png', 'is_primary' => true, 'sort_order' => 1],
         ]);
-        
+
         $this->createVariantImages(5, [
             ['image' => 'jean-siyah.png', 'is_primary' => true, 'sort_order' => 1],
         ]);
@@ -142,7 +142,7 @@ class ProductSeeder extends Seeder
             $variantSize = VariantSize::create([
                 'product_variant_id' => $variantId,
                 'size_option_id' => $i,
-                'sku' => $skuPrefix . '-' . ($i + 5) . 'YAS',
+                'sku' => $skuPrefix.'-'.($i + 5).'YAS',
                 'price_cents' => $priceCents,
                 'is_active' => true,
             ]);

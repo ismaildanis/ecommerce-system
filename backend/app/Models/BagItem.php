@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-class BagItem extends Model 
+use Illuminate\Database\Eloquent\Model;
+
+class BagItem extends Model
 {
     use HasFactory;
 
@@ -14,7 +16,7 @@ class BagItem extends Model
         'product_title',
         'quantity',
         'unit_price_cents',
-        'store_id'
+        'store_id',
     ];
 
     protected $casts = [
@@ -25,22 +27,24 @@ class BagItem extends Model
     {
         return $this->belongsTo(Store::class, 'store_id');
     }
-    
-    public function bag() {
-        return $this->belongsTo(Bag::class ,'bag_id');
+
+    public function bag()
+    {
+        return $this->belongsTo(Bag::class, 'bag_id');
     }
-    
-    public function variant() {
-        return $this->belongsTo(ProductVariant::class ,'variant_id');
+
+    public function variant()
+    {
+        return $this->belongsTo(ProductVariant::class, 'variant_id');
     }
 
     public function variantSize()
     {
         return $this->belongsTo(VariantSize::class, 'variant_size_id');
     }
-    
+
     public function getPriceAttribute()
     {
-        return number_format($this->unit_price_cents / 100, 2, ',', '.') . ' TL';
+        return number_format($this->unit_price_cents / 100, 2, ',', '.').' TL';
     }
 }

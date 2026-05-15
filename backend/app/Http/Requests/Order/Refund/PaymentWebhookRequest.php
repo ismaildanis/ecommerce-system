@@ -15,11 +15,11 @@ class PaymentWebhookRequest extends FormRequest
     {
         return [
             'reference' => ['required', 'string', 'max:100'],
-            'status'    => ['required', 'string', 'in:SUCCESS,FAILED'],
-            'amount'    => ['required', 'numeric', 'min:0'],
-            'currency'  => ['required', 'string', 'size:3'],
+            'status' => ['required', 'string', 'in:SUCCESS,FAILED'],
+            'amount' => ['required', 'numeric', 'min:0'],
+            'currency' => ['required', 'string', 'size:3'],
             'timestamp' => ['required', 'date'],
-            'meta'      => ['nullable', 'array'],
+            'meta' => ['nullable', 'array'],
         ];
     }
 }

@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\UserAddress;
+
 class Order extends Model
 {
-    use SoftDeletes, HasFactory;
+    use HasFactory, SoftDeletes;
+
     protected $table = 'orders';
-    
+
     protected $fillable = [
         'user_id',
         'bag_id',
@@ -40,8 +41,9 @@ class Order extends Model
         'status' => 'string',
         'currency' => 'string',
     ];
+
     protected $dates = ['refunded_at'];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -71,13 +73,14 @@ class Order extends Model
     {
         return $this->belongsTo(UserAddress::class, 'user_shipping_address_id');
     }
-    
+
     public function billingAddress()
     {
         return $this->belongsTo(UserAddress::class, 'user_billing_address_id');
     }
+
     public function getPriceAttribute()
     {
-        return number_format($this->grand_total_cents / 100, 2, ',', '.') . ' TL';
+        return number_format($this->grand_total_cents / 100, 2, ',', '.').' TL';
     }
 }

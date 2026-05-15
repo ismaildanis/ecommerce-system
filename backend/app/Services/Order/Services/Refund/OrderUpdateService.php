@@ -2,8 +2,9 @@
 
 namespace App\Services\Order\Services\Refund;
 
-use App\Services\Order\Contracts\Refund\OrderUpdateInterface;
 use App\Repositories\Contracts\Product\ProductRepositoryInterface;
+use App\Services\Order\Contracts\Refund\OrderUpdateInterface;
+
 class OrderUpdateService implements OrderUpdateInterface
 {
     protected $productRepository;
@@ -12,6 +13,7 @@ class OrderUpdateService implements OrderUpdateInterface
     {
         $this->productRepository = $productRepository;
     }
+
     public function updateOrderItem($item, int $refundedAmountCents, int $refundedQuantity): void
     {
         $newRefundedCents = ($item->refunded_price_cents ?? 0) + $refundedAmountCents;
@@ -29,7 +31,7 @@ class OrderUpdateService implements OrderUpdateInterface
 
     public function updateProductStock($productId, $refundedQuantity): void
     {
-        if($refundedQuantity > 0){
+        if ($refundedQuantity > 0) {
             $this->productRepository->incrementStockQuantity($productId, $refundedQuantity);
             $this->productRepository->decrementTotalSoldQuantity($productId, $refundedQuantity);
         }
@@ -37,10 +39,11 @@ class OrderUpdateService implements OrderUpdateInterface
 
     public function updateOrderStatus($order, $refundResults): array
     {
-        $successfulRefunds = array_filter($refundResults, fn($r) => $r['success']);
-        
+        $successfulRefunds = array_filter($refundResults, fn ($r) => $r['success']);
+
         if (empty($successfulRefunds)) {
             $errors = array_column($refundResults, 'error');
+
             return ['success' => false, 'error' => implode(' | ', $errors)];
         }
 
@@ -49,23 +52,25 @@ class OrderUpdateService implements OrderUpdateInterface
 
         if ($totalRefunded === $totalItems) {
             $this->handleFullRefund($order);
+
             return ['success' => true, 'message' => 'Siparişin tamamı iade edildi.'];
         } else {
             $order->update([
                 'payment_status' => 'partial_refunded',
                 'status' => 'Kısmi İade',
-                'refunded_at' => now()
+                'refunded_at' => now(),
             ]);
+
             return ['success' => true, 'message' => 'Seçilen ürünler için kısmi iade yapıldı.'];
         }
     }
-    
+
     private function handleFullRefund($order): void
     {
         $order->update([
             'payment_status' => 'refunded',
             'status' => 'İade Edildi',
-            'refunded_at' => now()
+            'refunded_at' => now(),
         ]);
     }
 }

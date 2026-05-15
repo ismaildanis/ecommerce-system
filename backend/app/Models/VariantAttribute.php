@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class VariantAttribute extends Model
 {
@@ -13,23 +13,23 @@ class VariantAttribute extends Model
         'variant_id',
         'attribute_id',
         'option_id',
-        'value'
+        'value',
     ];
 
     protected $casts = [
-        'value' => 'string'
+        'value' => 'string',
     ];
 
     public function variant()
     {
         return $this->belongsTo(ProductVariant::class, 'variant_id');
     }
-    
+
     public function attribute()
     {
         return $this->belongsTo(Attribute::class);
     }
-    
+
     public function option()
     {
         return $this->belongsTo(AttributeOption::class, 'option_id');

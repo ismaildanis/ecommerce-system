@@ -2,16 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Jobs\IndexProductToElasticsearch;
-use App\Jobs\DeleteProductToElasticsearch;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Str;
 
 class Product extends Model
 {
-    use SoftDeletes, HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'products';
 
@@ -20,15 +17,15 @@ class Product extends Model
         'title',
         'slug',
         'brand',
-        'category_id',  
+        'category_id',
         'gender_id',
         'description',
         'meta_title',
         'meta_description',
         'is_published',
-        'total_sold_quantity'
+        'total_sold_quantity',
     ];
-    
+
     protected $casts = [
         'total_sold_quantity' => 'integer',
         'is_published' => 'boolean',
@@ -57,7 +54,7 @@ class Product extends Model
             ->published()
             ->when(
                 $parentId,
-                fn($query) => $query->whereHas('category', fn($q) => $q->where('parent_id', $parentId))
+                fn ($query) => $query->whereHas('category', fn ($q) => $q->where('parent_id', $parentId))
             )
             ->limit(30);
     }
@@ -65,10 +62,10 @@ class Product extends Model
     public function allVariantImages()
     {
         return $this->hasManyThrough(
-            ProductVariantImage::class, 
+            ProductVariantImage::class,
             ProductVariant::class,
             'product_id', // Foreign key on ProductVariant table
-            'product_variant_id', // Foreign key on ProductVariantImage table  
+            'product_variant_id', // Foreign key on ProductVariantImage table
             'id', // Local key on Product table
             'id' // Local key on ProductVariant table
         );
@@ -77,7 +74,7 @@ class Product extends Model
     public function campaigns()
     {
         return $this->belongsToMany(Campaign::class, 'campaign_products', 'product_id', 'campaign_id')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     public function category()
@@ -103,12 +100,12 @@ class Product extends Model
     {
         return $this->belongsTo(Store::class, 'store_id');
     }
-    
+
     public function gender()
     {
         return $this->belongsTo(Gender::class, 'gender_id');
     }
-    
+
     // Accessor: gender bilgisini otomatik al (önce kendi gender_id, sonra category.gender)
     public function getGenderInfoAttribute()
     {
@@ -116,25 +113,24 @@ class Product extends Model
         if ($this->gender_id) {
             return $this->gender;
         }
+
         // Yoksa category.gender'dan al
         return $this->category?->gender;
     }
 
     // Scopes
-    public function scopePublished($query) 
+    public function scopePublished($query)
     {
         return $query->where('is_published', true);
     }
 
-
     public function getTotalStockQuantity()
     {
         return $this->variants->with('variantSizes.inventory')->get()
-            ->sum(function($variant) {
-                return $variant->variantSizes->sum(function($size) {
+            ->sum(function ($variant) {
+                return $variant->variantSizes->sum(function ($size) {
                     return $size->inventory ? $size->inventory->on_hand : 0;
                 });
             });
     }
-
 }

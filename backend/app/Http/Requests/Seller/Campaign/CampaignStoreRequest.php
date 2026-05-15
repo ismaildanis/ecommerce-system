@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Seller\Campaign;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -18,7 +19,7 @@ class CampaignStoreRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
@@ -27,9 +28,9 @@ class CampaignStoreRequest extends FormRequest
             'code' => 'nullable|string|max:255|unique:campaigns,code',
             'description' => 'nullable|string',
             'type' => ['required', Rule::in(['percentage', 'fixed', 'x_buy_y_pay'])],
-            
+
             'discount_value' => 'required_if:type,percentage,fixed|nullable|numeric|min:0',
-            
+
             'buy_quantity' => 'required_if:type,x_buy_y_pay|nullable|integer|min:1',
             'pay_quantity' => 'required_if:type,x_buy_y_pay|nullable|integer|min:0|lt:buy_quantity',
 
@@ -40,10 +41,10 @@ class CampaignStoreRequest extends FormRequest
             'starts_at' => 'nullable|date|after_or_equal:today',
             'ends_at' => 'nullable|date|after:starts_at',
 
-            'product_ids'   => 'nullable|array|required_without:category_ids',
+            'product_ids' => 'nullable|array|required_without:category_ids',
             'product_ids.*' => 'integer|exists:products,id',
 
-            'category_ids'   => 'nullable|array|required_without:product_ids',
+            'category_ids' => 'nullable|array|required_without:product_ids',
             'category_ids.*' => 'integer|exists:categories,id',
 
         ];

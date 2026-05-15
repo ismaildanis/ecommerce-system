@@ -2,24 +2,21 @@
 
 namespace App\Jobs;
 
-use App\Models\User;
 use App\Models\CheckoutSession;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Queue\Queueable;
+use App\Models\User;
 use App\Services\Checkout\Orders\OrderPlacementService;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 
 class OrderPlacementJob implements ShouldQueue
 {
-    use Queueable, Dispatchable, SerializesModels;
+    use Dispatchable, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
      */
-
-    
     public function __construct(
         public readonly User $user,
         public readonly CheckoutSession $session,

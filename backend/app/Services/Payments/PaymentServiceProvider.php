@@ -19,7 +19,7 @@ class PaymentServiceProvider extends ServiceProvider
 
             return match ($provider->code) {
                 'iyzico' => new IyzicoGateway($provider),
-                default  => throw new \RuntimeException("Gateway {$provider->code} desteklenmiyor."),
+                default => throw new \RuntimeException("Gateway {$provider->code} desteklenmiyor."),
             };
         });
     }

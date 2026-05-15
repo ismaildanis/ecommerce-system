@@ -24,6 +24,7 @@ class CreditCardUpdateRequest extends FormRequest
             'is_active' => 'sometimes|boolean',
         ];
     }
+
     public function messages()
     {
         return [

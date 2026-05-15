@@ -4,6 +4,18 @@ namespace Database\Seeders;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\Campaigns\CampaignProductSeeder;
+use Database\Seeders\Campaigns\CampaignSeeder;
+use Database\Seeders\Main\AttributeOptionSeeder;
+use Database\Seeders\Main\AttributeSeeder;
+use Database\Seeders\Main\CategorySeeder;
+use Database\Seeders\Main\GenderSeeder;
+use Database\Seeders\Main\ProductSeeder;
+use Database\Seeders\Main\ProductVariantImageSeeder;
+use Database\Seeders\Main\UserSeeder;
+use Database\Seeders\Main\VariantAttributeSeeder;
+use Database\Seeders\Main\WarehouseSeeder;
+use Database\Seeders\PaymentProviders\Iyzico;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,24 +27,23 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        
         $this->call([
-            \Database\Seeders\Main\GenderSeeder::class,
-            \Database\Seeders\Main\CategorySeeder::class,
-            \Database\Seeders\Main\AttributeSeeder::class,
-            \Database\Seeders\Main\AttributeOptionSeeder::class,
-            \Database\Seeders\Main\WarehouseSeeder::class,
-            \Database\Seeders\SellerSeeder::class,
-            \Database\Seeders\StoreSeeder::class,
-            \Database\Seeders\Main\ProductSeeder::class,
-            \Database\Seeders\Main\ProductVariantImageSeeder::class,
-            \Database\Seeders\Main\VariantAttributeSeeder::class,
-            \Database\Seeders\Main\UserSeeder::class,
+            GenderSeeder::class,
+            CategorySeeder::class,
+            AttributeSeeder::class,
+            AttributeOptionSeeder::class,
+            WarehouseSeeder::class,
+            SellerSeeder::class,
+            StoreSeeder::class,
+            ProductSeeder::class,
+            ProductVariantImageSeeder::class,
+            VariantAttributeSeeder::class,
+            UserSeeder::class,
 
-            \Database\Seeders\PaymentProviders\Iyzico::class,
+            Iyzico::class,
 
-            \Database\Seeders\Campaigns\CampaignSeeder::class,
-            \Database\Seeders\Campaigns\CampaignProductSeeder::class,
+            CampaignSeeder::class,
+            CampaignProductSeeder::class,
         ]);
     }
 }

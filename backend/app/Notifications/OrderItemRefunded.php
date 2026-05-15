@@ -2,23 +2,28 @@
 
 namespace App\Notifications;
 
+use App\Models\OrderItem;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\OrderItem;
+
 class OrderItemRefunded extends Notification implements ShouldQueue
 {
     use Queueable;
 
     protected $orderItem;
+
     protected $price;
+
     protected $payload;
+
     protected $user;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct(OrderItem $orderItem, $payload, $price, $user) 
+    public function __construct(OrderItem $orderItem, $payload, $price, $user)
     {
         $this->orderItem = $orderItem;
         $this->payload = $payload;
@@ -48,20 +53,21 @@ class OrderItemRefunded extends Notification implements ShouldQueue
         $quantity = (int) ($this->payload['quantity'] ?? 0);
         $refundAmount = number_format($this->price / 100, 2, ',', '.');
 
-        $actionUrl = rtrim(env('FRONTEND_URL', ''), '/') . "/account/orders/{$this->orderItem->order_id}";
+        $actionUrl = rtrim(env('FRONTEND_URL', ''), '/')."/account/orders/{$this->orderItem->order_id}";
 
         return (new MailMessage)
             ->subject('Siparişiniz İade Edildi | Quillen')
             ->markdown('mail.orders.refunded', [
-                'user'          => $this->user,
-                'orderItem'     => $this->orderItem,
-                'quantity'      => $quantity ?: $this->orderItem->quantity,
-                'price'         => $refundAmount,
-                'actionUrl'     => $actionUrl,
-                'image'         => $image,
-                'reason'        => $reason,
+                'user' => $this->user,
+                'orderItem' => $this->orderItem,
+                'quantity' => $quantity ?: $this->orderItem->quantity,
+                'price' => $refundAmount,
+                'actionUrl' => $actionUrl,
+                'image' => $image,
+                'reason' => $reason,
             ]);
     }
+
     /**
      * Get the array representation of the notification.
      *
@@ -71,10 +77,10 @@ class OrderItemRefunded extends Notification implements ShouldQueue
     {
         return [
             'refunded_order_item_id' => $this->orderItem->id,
-            'refunded_price'         => $this->price,
-            'quantity'               => (int) ($this->payload['quantity'] ?? 0),
-            'reason'                 => $this->payload['reason'] ?? null,
-            'message'                => 'Siparişiniz (#' . $this->orderItem->id . ') iade edildi.',
+            'refunded_price' => $this->price,
+            'quantity' => (int) ($this->payload['quantity'] ?? 0),
+            'reason' => $this->payload['reason'] ?? null,
+            'message' => 'Siparişiniz (#'.$this->orderItem->id.') iade edildi.',
         ];
     }
 }

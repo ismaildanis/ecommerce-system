@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('order_items', function (Blueprint $table) {
@@ -30,13 +29,12 @@ return new class extends Migration
             $table->integer('tax_rate')->default(1800);
             $table->bigInteger('tax_amount_cents')->default(0);
             $table->string('payment_transaction_id')->nullable();
-            $table->enum('status', ['pending','confirmed','shipped','delivered','refunded', 'partial_refunded', 'Müşteri İade Etti','Satıcı İade Etti','Başarısız Ödeme']);
-            $table->enum('payment_status', ['paid','partial_refunded','refunded','failed','canceled']);
+            $table->enum('status', ['pending', 'confirmed', 'shipped', 'delivered', 'refunded', 'partial_refunded', 'Müşteri İade Etti', 'Satıcı İade Etti', 'Başarısız Ödeme']);
+            $table->enum('payment_status', ['paid', 'partial_refunded', 'refunded', 'failed', 'canceled']);
             $table->timestamp('refunded_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-           
             $table->index('payment_transaction_id');
             $table->index(['order_id']);
             $table->index(['product_id', 'created_at']);
@@ -47,7 +45,6 @@ return new class extends Migration
             $table->foreign('variant_size_id')->references('id')->on('variant_sizes')->onDelete('cascade');
         });
     }
-
 
     public function down(): void
     {

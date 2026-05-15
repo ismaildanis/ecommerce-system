@@ -2,14 +2,14 @@
 
 namespace App\Jobs;
 
+use App\Models\OrderItem;
+use App\Models\User;
+use App\Notifications\OrderItemShipped;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Bus\Queueable;
-use App\Models\OrderItem;
-use App\Models\User;
-use App\Notifications\OrderItemShipped;
 use Illuminate\Support\Facades\Log;
 
 class ShippedOrderItemNotification implements ShouldQueue
@@ -17,6 +17,7 @@ class ShippedOrderItemNotification implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $orderItem;
+
     protected $user;
 
     /**
@@ -37,8 +38,9 @@ class ShippedOrderItemNotification implements ShouldQueue
     {
         $this->user->notify(new OrderItemShipped($this->orderItem, $this->user));
     }
+
     public function failed(\Throwable $exception)
     {
-        Log::error("ShippedOrderItemNotification failed for order: " . $this->orderItem->id . " - " . $exception->getMessage());
+        Log::error('ShippedOrderItemNotification failed for order: '.$this->orderItem->id.' - '.$exception->getMessage());
     }
 }

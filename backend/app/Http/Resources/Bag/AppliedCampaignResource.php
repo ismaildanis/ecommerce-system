@@ -8,7 +8,7 @@ class AppliedCampaignResource extends JsonResource
 {
     public function toArray($request)
     {
-        $campaign      = $this->resource['campaign'] ?? $this->resource;
+        $campaign = $this->resource['campaign'] ?? $this->resource;
         $discountCents = $this->resource['discount_cents'] ?? 0;
         $discountItems = $this->resource['items'] ?? [];
 
@@ -17,13 +17,13 @@ class AppliedCampaignResource extends JsonResource
         }
 
         return [
-            'id'             => $campaign->id,
-            'name'           => $campaign->name,
-            'type'           => $campaign->type,
-            'code'           => $campaign->code,
-            'description'    => $campaign->description,
+            'id' => $campaign->id,
+            'name' => $campaign->name,
+            'type' => $campaign->type,
+            'code' => $campaign->code,
+            'description' => $campaign->description,
             'discount_cents' => $discountCents,
-            'ends_at'        => $campaign->ends_at ? $campaign->ends_at->toIso8601String() : null,
+            'ends_at' => $campaign->ends_at ? $campaign->ends_at->toIso8601String() : null,
             'discount_items' => $discountItems,
         ];
     }

@@ -1,6 +1,7 @@
 <?php
-use App\Models\User;
+
 use App\Models\Seller;
+use App\Models\User;
 
 return [
 
@@ -38,15 +39,15 @@ return [
     */
 
     'guards' => [
-        'user' => [ //api
+        'user' => [ // api
             'driver' => 'sanctum',
             'provider' => 'users',
         ],
-        'seller' => [ //api
+        'seller' => [ // api
             'driver' => 'sanctum',
             'provider' => 'sellers',
         ],
-    ],      
+    ],
 
     /*
     |--------------------------------------------------------------------------

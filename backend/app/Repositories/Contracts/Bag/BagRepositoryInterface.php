@@ -4,9 +4,11 @@ namespace App\Repositories\Contracts\Bag;
 
 use App\Repositories\Contracts\BaseRepositoryInterface;
 
-interface BagRepositoryInterface extends BaseRepositoryInterface    
+interface BagRepositoryInterface extends BaseRepositoryInterface
 {
     public function getBag($user);
+
     public function createBag($user);
+
     public function clearBagItems($bag);
 }

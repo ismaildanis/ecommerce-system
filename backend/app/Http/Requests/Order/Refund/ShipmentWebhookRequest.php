@@ -15,9 +15,9 @@ class ShipmentWebhookRequest extends FormRequest
     {
         return [
             'tracking_number' => ['required', 'string', 'max:100'],
-            'status'          => ['required', 'string', 'in:PICKED_UP,IN_TRANSIT,DELIVERED,FAILED'],
-            'timestamp'       => ['required', 'date'],
-            'meta'            => ['nullable', 'array'],
+            'status' => ['required', 'string', 'in:PICKED_UP,IN_TRANSIT,DELIVERED,FAILED'],
+            'timestamp' => ['required', 'date'],
+            'meta' => ['nullable', 'array'],
         ];
     }
 }

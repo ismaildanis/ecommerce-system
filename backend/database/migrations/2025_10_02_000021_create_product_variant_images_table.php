@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('sort_order')->default(0);
             $table->timestamps();
         });
-        
+
     }
 
     /**

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class PaymentMethod extends Model
 {
@@ -23,11 +23,12 @@ class PaymentMethod extends Model
         'billing_address_id',
         'metadata',
     ];
+
     protected $casts = [
-        'is_default'              => 'boolean',
-        'is_active'               => 'boolean',
-        'metadata'                => 'array',
-        'provider_customer_id'    => 'encrypted',
+        'is_default' => 'boolean',
+        'is_active' => 'boolean',
+        'metadata' => 'array',
+        'provider_customer_id' => 'encrypted',
         'provider_payment_method_id' => 'encrypted',
     ];
 
@@ -35,10 +36,12 @@ class PaymentMethod extends Model
         'provider_customer_id',
         'provider_payment_method_id',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
     public function billingAddress()
     {
         return $this->belongsTo(UserAddress::class, 'billing_address_id');

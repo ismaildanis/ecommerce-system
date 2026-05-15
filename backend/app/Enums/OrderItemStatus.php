@@ -15,7 +15,7 @@ enum OrderItemStatus: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::PENDING => 'Beklemede',
             self::CONFIRMED => 'Onaylandı',
             self::SHIPPED => 'Kargoda',
@@ -29,7 +29,7 @@ enum OrderItemStatus: string
 
     public function badgeClass(): string
     {
-        return match($this) {
+        return match ($this) {
             self::PENDING => 'warning',
             self::CONFIRMED => 'success',
             self::SHIPPED => 'info',

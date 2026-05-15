@@ -2,14 +2,12 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Seller;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class SellerSeeder extends Seeder
 {
-   
     public function run(): void
     {
         Seller::firstOrCreate(

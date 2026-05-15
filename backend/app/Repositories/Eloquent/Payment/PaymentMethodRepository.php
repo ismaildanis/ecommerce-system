@@ -40,7 +40,7 @@ class PaymentMethodRepository extends BaseRepository implements PaymentMethodRep
         if ($attributes instanceof PaymentMethod) {
             return $attributes;
         }
-        
+
         return tap(
             $this->model->updateOrCreate(
                 [
@@ -51,5 +51,4 @@ class PaymentMethodRepository extends BaseRepository implements PaymentMethodRep
             )
         );
     }
-    
 }

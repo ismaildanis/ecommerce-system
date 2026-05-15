@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
 class Campaign extends Model
 {
     use HasFactory;
@@ -69,5 +70,4 @@ class Campaign extends Model
     {
         return $this->hasMany(CampaignUsage::class, 'campaign_id');
     }
-
 }

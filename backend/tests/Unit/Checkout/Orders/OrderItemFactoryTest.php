@@ -2,14 +2,14 @@
 
 namespace Tests\Unit\Checkout\Orders;
 
-use Tests\TestCase;
-use Mockery;
+use App\Models\CheckoutSession;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Models\CheckoutSession;
-use App\Services\Checkout\Orders\OrderItemFactory;
 use App\Repositories\Contracts\OrderItem\OrderItemRepositoryInterface;
 use App\Repositories\Contracts\Product\ProductRepositoryInterface;
+use App\Services\Checkout\Orders\OrderItemFactory;
+use Mockery;
+use Tests\TestCase;
 
 class OrderItemFactoryTest extends TestCase
 {
@@ -21,10 +21,10 @@ class OrderItemFactoryTest extends TestCase
 
     public function test_create_many_creates_order_item_and_increments_total_sold(): void
     {
-        $order = new Order();
+        $order = new Order;
         $order->id = 88;
 
-        $session = new CheckoutSession();
+        $session = new CheckoutSession;
         $session->bag_snapshot = [
             'items' => [
                 [
@@ -59,7 +59,7 @@ class OrderItemFactoryTest extends TestCase
         $orderItems = Mockery::mock(OrderItemRepositoryInterface::class);
         $products = Mockery::mock(ProductRepositoryInterface::class);
 
-        $returnedItem = new OrderItem();
+        $returnedItem = new OrderItem;
         $returnedItem->variant_size_id = 901;
         $returnedItem->quantity = 2;
 

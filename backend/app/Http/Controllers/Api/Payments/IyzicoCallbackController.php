@@ -3,24 +3,24 @@
 namespace App\Http\Controllers\Api\Payments;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\OrderPlacementJob;
+use App\Models\CheckoutSession;
 use App\Models\User;
 use App\Services\Checkout\CheckoutSessionService;
-use App\Jobs\OrderPlacementJob;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
-use App\Models\CheckoutSession;
 
 class IyzicoCallbackController extends Controller
 {
-    
     public function __invoke(Request $request, CheckoutSessionService $checkoutSessions)
     {
         $payload = $request->all();
 
         if (empty($payload['conversationId'])) {
             Log::warning('Iyzico callback: Missing conversationId', $payload);
+
             return response()->json(['error' => 'conversationId missing'], 400);
         }
 
@@ -28,7 +28,7 @@ class IyzicoCallbackController extends Controller
 
         Log::info('Iyzico callback', ['payload' => $payload]);
 
-        if (($payload['mdStatus'] ?? '') === "0" || ($payload['status'] ?? '') === "failure") {
+        if (($payload['mdStatus'] ?? '') === '0' || ($payload['status'] ?? '') === 'failure') {
             Log::info('Iyzico callback: Payment failed', ['payload' => $payload]);
 
             if ($this->isBrowser($request->header('User-Agent'))) {
@@ -44,7 +44,7 @@ class IyzicoCallbackController extends Controller
             $session = $checkoutSessions->confirmPaymentIntent($payload);
             Log::info('Session', ['payload' => $payload, 'session' => $session]);
 
-            if (($payload['mdStatus'] ?? '') === "1") {
+            if (($payload['mdStatus'] ?? '') === '1') {
                 $user = $session['user'] ?? User::find($session['user_id']);
                 if ($user) {
                     OrderPlacementJob::dispatch($user, $session, $payload);
@@ -73,35 +73,41 @@ class IyzicoCallbackController extends Controller
 
             if ($this->isBrowser($request->header('User-Agent'))) {
                 $redirect = $this->buildFailedFrontendUrl($sessionId);
-                return Redirect::away($redirect . (str_contains($redirect, '?') ? '&' : '?') . 'error=' . urlencode($gatewayMessage));
+
+                return Redirect::away($redirect.(str_contains($redirect, '?') ? '&' : '?').'error='.urlencode($gatewayMessage));
             }
 
             return response()->json([
-                'status'  => 'failure',
+                'status' => 'failure',
                 'message' => $gatewayMessage,
             ], 402);
         }
     }
+
     private function extractSessionId(?string $conversationId): ?string
     {
-        if (!$conversationId) {
+        if (! $conversationId) {
             return null;
         }
 
         $matched = Str::match('/^session_([0-9a-f\-]+)/i', $conversationId);
+
         return $matched ?: null;
     }
 
     private function buildFrontendUrl(?string $sessionId): string
     {
         $base = rtrim(config('services.frontend_url'), '/') ?: 'http://localhost:3000';
-        $url = $base . '/checkout/success';
+        $url = $base.'/checkout/success';
+
         return $sessionId ? "{$url}?session={$sessionId}" : $url;
     }
+
     private function buildFailedFrontendUrl(?string $sessionId): string
     {
         $base = rtrim(config('services.frontend_url'), '/') ?: 'http://localhost:3000';
-        $url = $base . '/checkout/payment';
+        $url = $base.'/checkout/payment';
+
         return $sessionId ? "{$url}?session={$sessionId}" : $url;
     }
 

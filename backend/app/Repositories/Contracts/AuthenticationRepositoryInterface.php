@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Contracts;
 
-use App\Models\User;
 use App\Models\Seller;
+use App\Models\User;
 
 interface AuthenticationRepositoryInterface
 {
@@ -26,12 +26,11 @@ interface AuthenticationRepositoryInterface
      * Mevcut kullanıcının ID'sini getir
      */
     public function getUserId(): ?int;
-    
+
     /**
      * Kullanıcının giriş yapıp yapmadığını kontrol et
      */
     public function isUserLoggedIn(): bool;
-
 
     /**
      * Mevcut satıcıyı getir (API veya Web)
@@ -57,5 +56,4 @@ interface AuthenticationRepositoryInterface
      * Satıcının giriş yapıp yapmadığını kontrol et
      */
     public function isSellerLoggedIn(): bool;
-    
 }

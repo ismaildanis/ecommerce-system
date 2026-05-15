@@ -2,11 +2,10 @@
 
 namespace App\Services\Search;
 
-use App\Services\Search\ElasticsearchService;
-
 class ElasticSearchProductService
 {
     protected ElasticsearchService $elasticSearch;
+
     public function __construct(ElasticsearchService $elasticSearch)
     {
         $this->elasticSearch = $elasticSearch;
@@ -61,7 +60,7 @@ class ElasticSearchProductService
 
         return [
             'products' => $products->toArray(),
-            'results'  => $results,
+            'results' => $results,
         ];
     }
 
@@ -91,7 +90,7 @@ class ElasticSearchProductService
                         'meta_title' => $source['meta_title'] ?? null,
                         'meta_description' => $source['meta_description'] ?? null,
                         'is_published' => $source['is_published'] ?? null,
-                    ]
+                    ],
                 ];
             });
         });
@@ -104,26 +103,27 @@ class ElasticSearchProductService
         return [
             'products' => $allVariants->toArray(),
             'total' => $allVariants->count(),
-            'results' => $results
+            'results' => $results,
         ];
     }
 
     public function sortingProducts($sorting, $page = 1, $size = 12)
     {
         $results = $this->elasticSearch->sortProducts($sorting, $page, $size);
+
         return [
             'products' => collect($results['hits'])->pluck('_source')->toArray(),
-            'results' => $results
+            'results' => $results,
         ];
     }
 
     public function autocomplete($query)
     {
         $results = $this->elasticSearch->autocomplete($query);
+
         return [
             'products' => collect($results)->pluck('_source')->toArray(),
-            'results' => $results
+            'results' => $results,
         ];
     }
-
 }

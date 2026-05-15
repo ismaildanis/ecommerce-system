@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquent\Order;
 
 use App\Models\Order;
-use App\Repositories\Eloquent\BaseRepository;
 use App\Repositories\Contracts\Order\OrderRepositoryInterface;
+use App\Repositories\Eloquent\BaseRepository;
 
 class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 {
@@ -22,6 +22,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     {
         return $this->model->create($attributes);
     }
+
     public function getOrdersforUser($userId)
     {
         return $this->model->where('user_id', $userId)->orderByDesc('id')->get();
@@ -31,6 +32,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     {
         return $this->model->where('user_id', $userId)->where('id', $orderId)->first();
     }
+
     public function getOrderDetailforUser($userId, $id)
     {
         return $this->model->with('orderItems.product.variants.variantImages.variantSizes.sizeOption', 'orderItems.product.variants.variantImages.variants.variantSizes.inventory')
@@ -46,5 +48,4 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
             ->latest('id')
             ->first();
     }
-
 }

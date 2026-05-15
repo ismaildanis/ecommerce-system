@@ -2,25 +2,22 @@
 
 namespace App\Services\Order\Services\Refund;
 
-use App\Services\Order\Contracts\Refund\OrderRefundInterface;
-use App\Services\Order\Contracts\Refund\OrderCalculationInterface;
-use App\Services\Order\Contracts\Refund\OrderCheckInterface;
-use App\Services\Order\Contracts\Refund\OrderUpdateInterface;
-use App\Services\Order\Services\Refund\RefundPlacementService;
-use App\Services\Payments\IyzicoPaymentService;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
-use App\Services\Order\Contracts\Refund\ReverseShipmentGatewayInterface;
-
-use App\Traits\GetUser;
-
 use App\Models\Order;
 use App\Models\OrderRefund;
+use App\Repositories\Contracts\AuthenticationRepositoryInterface;
+use App\Services\Order\Contracts\Refund\OrderCalculationInterface;
+use App\Services\Order\Contracts\Refund\OrderCheckInterface;
+use App\Services\Order\Contracts\Refund\OrderRefundInterface;
+use App\Services\Order\Contracts\Refund\OrderUpdateInterface;
+use App\Services\Order\Contracts\Refund\ReverseShipmentGatewayInterface;
+use App\Services\Payments\IyzicoPaymentService;
+use App\Traits\GetUser;
 use Illuminate\Support\Facades\Log;
-
 
 class OrderRefundService implements OrderRefundInterface
 {
     use GetUser;
+
     public function __construct(
         private IyzicoPaymentService $iyzicoService,
         private OrderCalculationInterface $orderCalculationService,
@@ -29,8 +26,7 @@ class OrderRefundService implements OrderRefundInterface
         private RefundPlacementService $refundPlacementService,
         private AuthenticationRepositoryInterface $authenticationRepository,
         private ReverseShipmentGatewayInterface $reverseShipmentGateway
-    ) {
-    }
+    ) {}
 
     public function createRefund($order, array $payload)
     {
@@ -40,8 +36,8 @@ class OrderRefundService implements OrderRefundInterface
             throw new \RuntimeException('Kullanıcı bulunamadı');
         }
 
-        $orderModel   = $this->orderCheckService->checkOrder($order->id, $user->id);
-        $orderItems   = $this->orderCheckService->checkItems($orderModel, $payload['items']);
+        $orderModel = $this->orderCheckService->checkOrder($order->id, $user->id);
+        $orderItems = $this->orderCheckService->checkItems($orderModel, $payload['items']);
         $calculations = $this->orderCalculationService
             ->calculateRefundableItems($orderItems, $payload['items']);
 
@@ -50,7 +46,7 @@ class OrderRefundService implements OrderRefundInterface
         $items = $calculations['items'] ?? array_filter($calculations, 'is_array');
         $refund = $this->refundPlacementService->placeRefund($payload, $items, $orderModel);
 
-        //$this->requestReverseShipment($refund, $orderModel);
+        // $this->requestReverseShipment($refund, $orderModel);
 
         return $refund;
     }
@@ -59,10 +55,10 @@ class OrderRefundService implements OrderRefundInterface
     {
         $refund = $this->resolveRefundByTracking($payload['tracking_number']);
         match ($payload['status']) {
-            'PICKED_UP'  => $this->markPickup($refund, $payload),
+            'PICKED_UP' => $this->markPickup($refund, $payload),
             'IN_TRANSIT' => $this->markInTransit($refund, $payload),
-            'DELIVERED'  => $this->markReceived($refund, $payload),
-            default      => Log::info('Shipment status ignored', $payload),
+            'DELIVERED' => $this->markReceived($refund, $payload),
+            default => Log::info('Shipment status ignored', $payload),
         };
     }
 
@@ -80,7 +76,7 @@ class OrderRefundService implements OrderRefundInterface
     private function markPickup(OrderRefund $refund, array $payload): void
     {
         $refund->update([
-            'status'       => OrderRefund::STATUS_PICKED_UP,
+            'status' => OrderRefund::STATUS_PICKED_UP,
             'picked_up_at' => $payload['timestamp'] ?? now(),
         ]);
     }
@@ -88,7 +84,7 @@ class OrderRefundService implements OrderRefundInterface
     private function markInTransit(OrderRefund $refund, array $payload): void
     {
         $refund->update([
-            'status'        => OrderRefund::STATUS_IN_TRANSIT,
+            'status' => OrderRefund::STATUS_IN_TRANSIT,
             'in_transit_at' => $payload['timestamp'] ?? now(),
         ]);
     }
@@ -96,26 +92,27 @@ class OrderRefundService implements OrderRefundInterface
     private function markReceived(OrderRefund $refund, array $payload)
     {
         $refund->update([
-            'status'          => OrderRefund::STATUS_RECEIVED,
-            'received_at'     => $payload['timestamp'] ?? now(),
+            'status' => OrderRefund::STATUS_RECEIVED,
+            'received_at' => $payload['timestamp'] ?? now(),
         ]);
     }
+
     public function markCompleted(OrderRefund $refund, array $payload)
     {
         $refund->update([
-            'status'       => OrderRefund::STATUS_COMPLETED,
-            'refunded_at'  => $payload['timestamp'] ?? now(),
-            'payment_meta' => $payload,
-        ]);
-    }
-    public function markPaymentFailed(OrderRefund $refund, array $payload)
-    {
-        $refund->update([
-            'status'       => OrderRefund::STATUS_PAYMENT_FAILED,
+            'status' => OrderRefund::STATUS_COMPLETED,
+            'refunded_at' => $payload['timestamp'] ?? now(),
             'payment_meta' => $payload,
         ]);
     }
 
+    public function markPaymentFailed(OrderRefund $refund, array $payload)
+    {
+        $refund->update([
+            'status' => OrderRefund::STATUS_PAYMENT_FAILED,
+            'payment_meta' => $payload,
+        ]);
+    }
 
     private function requestReverseShipment(OrderRefund $refund, Order $order): void
     {
@@ -124,24 +121,24 @@ class OrderRefundService implements OrderRefundInterface
                 'order_number' => $order->order_number,
                 'refund_id' => $refund->id,
                 'customer' => $order->user->only(['first_name', 'last_name', 'phone_number']),
-                'address'      => $order->shippingAddress?->toArray(),
-                'items'        => $refund->items->map(fn ($item) => [
+                'address' => $order->shippingAddress?->toArray(),
+                'items' => $refund->items->map(fn ($item) => [
                     'order_item_id' => $item->order_item_id,
-                    'quantity'      => $item->quantity,
+                    'quantity' => $item->quantity,
                 ])->all(),
             ]);
-            
+
             $refund->update([
-                'status'            => OrderRefund::STATUS_AWAITING_PICKUP,
+                'status' => OrderRefund::STATUS_AWAITING_PICKUP,
                 'shipping_provider' => $response['provider'],
-                'tracking_number'   => $response['tracking_number'],
-                'label_url'         => $response['label_url'] ?? null,
+                'tracking_number' => $response['tracking_number'],
+                'label_url' => $response['label_url'] ?? null,
             ]);
 
         } catch (\Exception $e) {
             Log::error('Reverse shipment create failed', [
                 'refund_id' => $refund->id,
-                'error'     => $e->getMessage(),
+                'error' => $e->getMessage(),
             ]);
 
             $refund->update(['status' => OrderRefund::STATUS_SHIPMENT_FAILED]);
@@ -157,5 +154,4 @@ class OrderRefundService implements OrderRefundInterface
     {
         return OrderRefund::where('payment_reference', $reference)->firstOrFail();
     }
-
 }

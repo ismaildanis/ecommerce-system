@@ -2,15 +2,14 @@
 
 namespace App\Observers;
 
+use App\Jobs\DeleteProductToElasticsearch;
+use App\Jobs\IndexProductToElasticsearch;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductCategory;
-use App\Models\Category;
-use App\Jobs\IndexProductToElasticsearch;
-use App\Jobs\DeleteProductToElasticsearch;
 
 class ProductObserver
 {
-
     public function saved(Product $product): void
     {
         dispatch(new IndexProductToElasticsearch($product->id));
@@ -27,7 +26,7 @@ class ProductObserver
                 'category_id' => $product->category_id,
                 'is_primary' => true,
             ]);
-            
+
             $category = Category::find($product->category_id);
             if ($category && $category->parent_id) {
                 ProductCategory::create([
@@ -46,14 +45,14 @@ class ProductObserver
     {
         if ($product->isDirty('category_id')) {
             ProductCategory::where('product_id', $product->id)->delete();
-            
+
             if ($product->category_id) {
                 ProductCategory::create([
                     'product_id' => $product->id,
                     'category_id' => $product->category_id,
                     'is_primary' => true,
                 ]);
-                
+
                 $category = Category::find($product->category_id);
                 if ($category && $category->parent_id) {
                     ProductCategory::create([
@@ -72,7 +71,7 @@ class ProductObserver
     public function deleted(Product $product): void
     {
         ProductCategory::where('product_id', $product->id)->delete();
-        
+
         dispatch(new DeleteProductToElasticsearch($product->id));
     }
 

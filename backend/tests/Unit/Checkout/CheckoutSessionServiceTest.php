@@ -2,25 +2,25 @@
 
 namespace Tests\Unit\Checkout;
 
-use Tests\TestCase;
-use Mockery;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Bus;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Jobs\OrderPlacementJob;
-use App\Models\User;
 use App\Models\CheckoutSession;
 use App\Models\PaymentMethod;
-use App\Services\Checkout\CheckoutSessionService;
-use App\Services\Checkout\CheckoutPaymentService;
-use App\Repositories\Contracts\User\AddressesRepositoryInterface;
-use App\Repositories\Contracts\Payment\PaymentMethodRepositoryInterface;
+use App\Models\User;
 use App\Repositories\Contracts\Inventory\InventoryRepositoryInterface;
+use App\Repositories\Contracts\Payment\PaymentMethodRepositoryInterface;
+use App\Repositories\Contracts\User\AddressesRepositoryInterface;
+use App\Services\Checkout\CheckoutPaymentService;
+use App\Services\Checkout\CheckoutSessionService;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Mockery;
+use Tests\TestCase;
 
 class CheckoutSessionServiceTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     protected function tearDown(): void
     {
@@ -164,11 +164,11 @@ class CheckoutSessionServiceTest extends TestCase
 
     private function makeUser(): User
     {
-        $user = new User();
+        $user = new User;
         $user->first_name = 'Test';
         $user->last_name = 'User';
-        $user->username = 'u_' . Str::lower(Str::random(8));
-        $user->email = Str::lower(Str::random(8)) . '@example.com';
+        $user->username = 'u_'.Str::lower(Str::random(8));
+        $user->email = Str::lower(Str::random(8)).'@example.com';
         $user->password = Hash::make('secret123');
         $user->phone = '5551112233';
         $user->save();
@@ -178,7 +178,7 @@ class CheckoutSessionServiceTest extends TestCase
 
     private function makeSession(User $user): CheckoutSession
     {
-        $session = new CheckoutSession();
+        $session = new CheckoutSession;
         $session->id = (string) Str::uuid();
         $session->user_id = $user->id;
         $session->status = 'pending';

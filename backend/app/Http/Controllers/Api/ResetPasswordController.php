@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\AuthValidation\ResetPasswordRequest;
-use App\Http\Requests\AuthValidation\ForgotPasswordRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AuthValidation\ForgotPasswordRequest;
+use App\Http\Requests\AuthValidation\ResetPasswordRequest;
 use App\Services\Auth\PasswordResetService;
 use Illuminate\Support\Facades\Response;
 

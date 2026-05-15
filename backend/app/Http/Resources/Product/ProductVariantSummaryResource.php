@@ -11,8 +11,8 @@ class ProductVariantSummaryResource extends JsonResource
         $firstImage = $this->variantImages->first();
 
         return [
-            'id'    => $this->id,
-            'slug'  => $this->slug,
+            'id' => $this->id,
+            'slug' => $this->slug,
             'thumbnail' => $firstImage ? $firstImage->image_url : null,
         ];
     }

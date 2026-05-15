@@ -3,14 +3,18 @@
 namespace Tests\Unit\Checkout;
 
 use App\Models\CheckoutSession;
-use Tests\TestCase;
-use Mockery;
-use App\Models\User;
 use App\Models\PaymentMethod;
 use App\Models\PaymentProvider;
-use App\Services\Checkout\CheckoutPaymentService;
-use App\Services\Payments\Contracts\PaymentGatewayInterface;
+use App\Models\User;
+use App\Repositories\Contracts\Inventory\InventoryRepositoryInterface;
+use App\Repositories\Contracts\Payment\PaymentMethodRepositoryInterface;
 use App\Repositories\Contracts\Payment\PaymentProviderRepositoryInterface;
+use App\Repositories\Contracts\User\AddressesRepositoryInterface;
+use App\Services\Checkout\CheckoutPaymentService;
+use App\Services\Checkout\CheckoutSessionService;
+use App\Services\Payments\Contracts\PaymentGatewayInterface;
+use Mockery;
+use Tests\TestCase;
 
 class CheckoutPaymentServiceTest extends TestCase
 {
@@ -24,12 +28,12 @@ class CheckoutPaymentServiceTest extends TestCase
     {
         $user = User::factory()->make();
         $provider = new PaymentProvider(['code' => 'iyzico']);
-        
+
         $repo = Mockery::mock(PaymentProviderRepositoryInterface::class);
         $repo->shouldReceive('findActiveByCode')->once()->with('iyzico')->andReturn($provider);
 
         $gateway = Mockery::mock(PaymentGatewayInterface::class);
-        $tempMethod = new PaymentMethod();
+        $tempMethod = new PaymentMethod;
 
         $gateway->shouldReceive('buildTemporaryMethod')
             ->once()
@@ -38,6 +42,7 @@ class CheckoutPaymentServiceTest extends TestCase
 
         app()->bind(PaymentGatewayInterface::class, function ($app, $params) use ($gateway, $provider) {
             $this->assertSame($provider, $params['provider']);
+
             return $gateway;
         });
 
@@ -65,10 +70,10 @@ class CheckoutPaymentServiceTest extends TestCase
         $user = User::factory()->make();
         $provider = new PaymentProvider(['code' => 'iyzico']);
 
-        $paymentMethod = new PaymentMethod();
+        $paymentMethod = new PaymentMethod;
         $paymentMethod->provider = 'iyzico';
 
-        $session = new CheckoutSession();
+        $session = new CheckoutSession;
 
         $repo = Mockery::mock(PaymentProviderRepositoryInterface::class);
         $repo->shouldReceive('findActiveByCode')->once()->with('iyzico')->andReturn($provider);
@@ -83,13 +88,14 @@ class CheckoutPaymentServiceTest extends TestCase
 
         app()->bind(PaymentGatewayInterface::class, function ($app, $params) use ($gateway, $provider) {
             $this->assertSame($provider, $params['provider']);
+
             return $gateway;
         });
 
         $service = new CheckoutPaymentService($repo);
 
         $result = $service->createPaymentIntent($user, $session, $paymentMethod, ['installment' => 1]);
-        
+
         $this->assertSame($expected, $result);
     }
 
@@ -97,7 +103,7 @@ class CheckoutPaymentServiceTest extends TestCase
     {
         $provider = new PaymentProvider(['code' => 'iyzico']);
 
-        $session = new CheckoutSession();
+        $session = new CheckoutSession;
         $session->payment_data = ['provider' => 'iyzico'];
 
         $payload = ['conversationId' => 'abc'];
@@ -114,6 +120,7 @@ class CheckoutPaymentServiceTest extends TestCase
 
         app()->bind(PaymentGatewayInterface::class, function ($app, $params) use ($gateway, $provider) {
             $this->assertSame($provider, $params['provider']);
+
             return $gateway;
         });
 
@@ -128,17 +135,17 @@ class CheckoutPaymentServiceTest extends TestCase
     {
         $user = User::factory()->make(['id' => 10]);
 
-        $addressesRepo = Mockery::mock(\App\Repositories\Contracts\User\AddressesRepositoryInterface::class);
-        $paymentMethods = Mockery::mock(\App\Repositories\Contracts\Payment\PaymentMethodRepositoryInterface::class);
-        $checkoutPaymentService = Mockery::mock(\App\Services\Checkout\CheckoutPaymentService::class);
-        $inventories = Mockery::mock(\App\Repositories\Contracts\Inventory\InventoryRepositoryInterface::class);
+        $addressesRepo = Mockery::mock(AddressesRepositoryInterface::class);
+        $paymentMethods = Mockery::mock(PaymentMethodRepositoryInterface::class);
+        $checkoutPaymentService = Mockery::mock(CheckoutPaymentService::class);
+        $inventories = Mockery::mock(InventoryRepositoryInterface::class);
 
         $inventories->shouldReceive('checkStock')
             ->once()
             ->with(101, 2)
             ->andReturn(false);
 
-        $service = new \App\Services\Checkout\CheckoutSessionService(
+        $service = new CheckoutSessionService(
             $addressesRepo,
             $paymentMethods,
             $checkoutPaymentService,

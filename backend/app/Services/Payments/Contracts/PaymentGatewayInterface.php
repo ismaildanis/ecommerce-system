@@ -37,8 +37,8 @@ interface PaymentGatewayInterface
      * Kart kaydetme senaryosu
      */
     public function storePaymentMethod(
-        User $user, 
-        $method, 
+        User $user,
+        $method,
         array $payload,
         array $data
     ): PaymentMethod;

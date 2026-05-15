@@ -10,10 +10,10 @@ class VariantAttributeResource extends JsonResource
     {
         return [
             'attribute_id' => $this->attribute_id,
-            'code'         => $this->attribute->code ?? null,
-            'name'         => $this->attribute->name ?? null,
-            'value'        => $this->option->value ?? $this->value,
-            'slug'         => $this->option->slug ?? null,
+            'code' => $this->attribute->code ?? null,
+            'name' => $this->attribute->name ?? null,
+            'value' => $this->option->value ?? $this->value,
+            'slug' => $this->option->slug ?? null,
         ];
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Order;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class RefundRequest extends FormRequest
@@ -40,5 +40,3 @@ class RefundRequest extends FormRequest
         ];
     }
 }
-
-

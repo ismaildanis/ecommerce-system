@@ -2,14 +2,15 @@
 
 namespace App\Services\Search;
 
-use Elastic\Elasticsearch\ClientBuilder;
-use Elastic\Elasticsearch\Client;
-use Illuminate\Support\Facades\Log;
 use App\Traits\ElasticSearchTrait;
+use Elastic\Elasticsearch\Client;
+use Elastic\Elasticsearch\ClientBuilder;
+use Illuminate\Support\Facades\Log;
 
 class ElasticsearchService
 {
     use ElasticSearchTrait;
+
     private Client $client;
 
     public function __construct()
@@ -19,49 +20,54 @@ class ElasticsearchService
             ->setHosts($hosts)
             ->build();
     }
-    
+
     public function createIndex(string $indexName, array $mapping = []): bool
     {
 
-        try{
+        try {
             $params = [
                 'index' => $indexName,
                 'body' => [
-                    'mappings' => $mapping
-                ]
+                    'mappings' => $mapping,
+                ],
             ];
             $response = $this->client->indices()->create($params);
-            if($response){
+            if ($response) {
                 Log::info("Index created {$indexName}: {$response}");
+
                 return true;
             }
             Log::error("Index creation failed {$indexName}: {$response}");
+
             return false;
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::error("Index creation failed {$indexName}: {$e->getMessage()}");
+
             return false;
         }
 
     }
-    
 
     public function indexDocument(string $indexName, string $id, array $document): bool
     {
-        try{
+        try {
             $params = [
                 'index' => $indexName,
                 'id' => $id,
-                'body' => $document
+                'body' => $document,
             ];
             $response = $this->client->index($params);
             Log::info("Document indexed {$indexName}{$id}: {$response}");
+
             return true;
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::error("Document indexing failed {$indexName}{$id}: {$e->getMessage()}");
+
             return false;
         }
     }
+
     public function deleteDocument(string $indexName, string $id): bool
     {
         try {
@@ -71,10 +77,12 @@ class ElasticsearchService
             ];
             $response = $this->client->delete($params);
             Log::info("Document deleted {$indexName}{$id}: {$response}");
+
             return true;
 
-        } catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::error("Document deletion failed {$indexName}{$id}: {$e->getMessage()}");
+
             return false;
         }
     }
@@ -85,23 +93,23 @@ class ElasticsearchService
             $from = ($page - 1) * $size;
             $searchQuery = [];
 
-            if (!empty($query)) {
+            if (! empty($query)) {
                 $searchQuery['bool']['must'][] = [
                     'bool' => [
                         'should' => [
                             [
                                 'multi_match' => [
-                                    'query'     => $query,
-                                    'fields'    => ['title^3', 'category_title^2', 'gender^2', 'variants.color_name^2'],
+                                    'query' => $query,
+                                    'fields' => ['title^3', 'category_title^2', 'gender^2', 'variants.color_name^2'],
                                     'fuzziness' => 'AUTO',
                                 ],
                             ],
                             [
                                 'nested' => [
-                                    'path'  => 'variants',
+                                    'path' => 'variants',
                                     'query' => [
                                         'multi_match' => [
-                                            'query'  => $query,
+                                            'query' => $query,
                                             'fields' => ['variants.sku', 'variants.color_name^2', 'variants.size_option.value^2'],
                                             'fuzziness' => 'AUTO',
                                         ],
@@ -114,7 +122,7 @@ class ElasticsearchService
             } else {
                 $searchQuery['bool']['filter'][] = [
                     'nested' => [
-                        'path'  => 'variants',
+                        'path' => 'variants',
                         'query' => [
                             'term' => [
                                 'variants.is_popular' => true,
@@ -139,15 +147,15 @@ class ElasticsearchService
                 $sizes = is_array($filters['sizes']) ? $filters['sizes'] : explode(',', $filters['sizes']);
                 $variantMustQueries[] = [
                     'nested' => [
-                        'path'  => 'variants.sizes',
+                        'path' => 'variants.sizes',
                         'query' => [
                             'nested' => [
-                               'path' => 'variants.sizes.size_option' ,
-                               'query' => [
+                                'path' => 'variants.sizes.size_option',
+                                'query' => [
                                     'terms' => [
                                         'variants.sizes.size_option.slug' => $sizes,
                                     ],
-                               ],
+                                ],
                             ],
                         ],
                     ],
@@ -169,7 +177,7 @@ class ElasticsearchService
             }
 
             $variantQuery = empty($variantMustQueries)
-                ? ['match_all' => new \stdClass()]
+                ? ['match_all' => new \stdClass]
                 : ['bool' => ['must' => $variantMustQueries]];
 
             if (isset($variantQuery['bool']['must'])) {
@@ -189,8 +197,8 @@ class ElasticsearchService
             $boolQuery = [
                 'filter' => [[
                     'nested' => [
-                        'path'       => 'variants',
-                        'query'      => $variantQuery,
+                        'path' => 'variants',
+                        'query' => $variantQuery,
                         'inner_hits' => [
                             'size' => 100,
                         ],
@@ -198,19 +206,19 @@ class ElasticsearchService
                 ]],
             ];
 
-            if (!empty($filters['gender'])) {
+            if (! empty($filters['gender'])) {
                 $boolQuery['filter'][] = [
                     'term' => ['gender.keyword' => $filters['gender']],
                 ];
             }
 
-            if (!empty($searchQuery['bool']['must'])) {
+            if (! empty($searchQuery['bool']['must'])) {
                 $boolQuery['must'] = $searchQuery['bool']['must'];
             }
 
             $params = [
                 'index' => 'products',
-                'body'  => [
+                'body' => [
                     'query' => [
                         'bool' => $boolQuery,
                     ],
@@ -223,42 +231,46 @@ class ElasticsearchService
             $response = $this->client->search($params);
 
             return [
-                'hits'  => $response['hits']['hits'],
+                'hits' => $response['hits']['hits'],
                 'total' => $response['hits']['total']['value'],
-                'page'  => $page,
-                'size'  => $size,
+                'page' => $page,
+                'size' => $size,
             ];
         } catch (\Exception $e) {
             Log::error('Product search failed', ['error' => $e->getMessage()]);
 
             return [
-                'hits'  => [],
+                'hits' => [],
                 'total' => 0,
-                'page'  => $page,
-                'size'  => $size,
+                'page' => $page,
+                'size' => $size,
             ];
         }
     }
 
-    public function filterProducts(array $filters = [], string $sorting = '', int $page = 1, int $size = 7 ): array
+    public function filterProducts(array $filters = [], string $sorting = '', int $page = 1, int $size = 7): array
     {
         try {
-            $from = ($page-1) * $size;
-            
+            $from = ($page - 1) * $size;
+
             $categoryFilters = $this->getCategoryFilterTrait($filters);
-            
+
             $variantMustQueries = [];
-            
-            if(isset($filters['min_price']) || isset($filters['max_price'])) {
+
+            if (isset($filters['min_price']) || isset($filters['max_price'])) {
                 $range = [];
-                if (isset($filters['min_price'])) $range['gte'] = (int)($filters['min_price'] * 100);
-                if (isset($filters['max_price'])) $range['lte'] = (int)($filters['max_price'] * 100);
-                
+                if (isset($filters['min_price'])) {
+                    $range['gte'] = (int) ($filters['min_price'] * 100);
+                }
+                if (isset($filters['max_price'])) {
+                    $range['lte'] = (int) ($filters['max_price'] * 100);
+                }
+
                 $variantMustQueries[] = [
-                    'range' => ['variants.price_cents' => $range]
+                    'range' => ['variants.price_cents' => $range],
                 ];
             }
-            
+
             if (isset($filters['sizes'])) {
                 $sizes = is_array($filters['sizes']) ? $filters['sizes'] : explode(',', $filters['sizes']);
                 $variantMustQueries[] = [
@@ -269,28 +281,28 @@ class ElasticsearchService
                                 'path' => 'variants.sizes.size_option',
                                 'query' => [
                                     'terms' => [
-                                        'variants.sizes.size_option.slug' => $sizes
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
+                                        'variants.sizes.size_option.slug' => $sizes,
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ];
             }
-            
+
             if (isset($filters['color'])) {
                 $colors = is_array($filters['color']) ? $filters['color'] : explode(',', $filters['color']);
                 $variantMustQueries[] = [
-                    'terms' => ['variants.color_code' => $colors]
+                    'terms' => ['variants.color_code' => $colors],
                 ];
             }
-            
-            $variantQuery = empty($variantMustQueries) 
-                ? ['match_all' => new \stdClass()]
+
+            $variantQuery = empty($variantMustQueries)
+                ? ['match_all' => new \stdClass]
                 : ['bool' => ['must' => $variantMustQueries]];
-            
+
             $sortArray = $this->getSortTrait($sorting);
-            
+
             $params = [
                 'index' => 'products',
                 'body' => [
@@ -303,46 +315,48 @@ class ElasticsearchService
                                         'path' => 'variants',
                                         'query' => $variantQuery,
                                         'inner_hits' => [
-                                            'size' => 100
-                                        ]
-                                    ]
+                                            'size' => 100,
+                                        ],
+                                    ],
                                 ]]
-                            )
-                        ]
+                            ),
+                        ],
                     ],
                     'size' => $size,
                     'from' => $from,
-                    'sort' => $sortArray              
-                ]
+                    'sort' => $sortArray,
+                ],
             ];
             $response = $this->client->search($params);
+
             return [
                 'hits' => $response['hits']['hits'],
                 'total' => $response['hits']['total']['value'],
                 'page' => $page,
-                'size' => $size
+                'size' => $size,
             ];
-        } catch(\Exception $e){
-            Log::error("Ürün filtreleme başarısız", ['error' => $e->getMessage()]);
+        } catch (\Exception $e) {
+            Log::error('Ürün filtreleme başarısız', ['error' => $e->getMessage()]);
+
             return [
                 'hits' => [],
                 'total' => 0,
                 'page' => $page,
-                'size' => $size
+                'size' => $size,
             ];
         }
     }
 
-    public function sortProducts(string $sorting = '', int $page = 1, int $size = 7 ): array
+    public function sortProducts(string $sorting = '', int $page = 1, int $size = 7): array
     {
-        try{
-            $from = ($page-1) * $size;
+        try {
+            $from = ($page - 1) * $size;
             $searchQuery = [
-                'match_all' => new \stdClass()
+                'match_all' => new \stdClass,
             ];
-            
+
             $sortArray = $this->getSortTrait($sorting);
-            
+
             $params = [
                 'index' => 'products',
                 'body' => [
@@ -350,25 +364,27 @@ class ElasticsearchService
                     'size' => $size,
                     'from' => $from,
                     'sort' => $sortArray,
-                ]
+                ],
             ];
-            
+
             $response = $this->client->search($params);
+
             return [
                 'hits' => $response['hits']['hits'],
                 'total' => $response['hits']['total']['value'],
                 'page' => $page,
-                'size' => $size
+                'size' => $size,
             ];
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::error("Sorting failed: {$e->getMessage()}");
+
             return [];
         }
     }
 
     public function autocomplete(string $query): array
     {
-        try{
+        try {
             $params = [
                 'index' => 'products',
                 'body' => [
@@ -377,45 +393,47 @@ class ElasticsearchService
                             'should' => [
                                 [
                                     'prefix' => [
-                                        'title.keyword' => strtolower($query)
-                                    ]
+                                        'title.keyword' => strtolower($query),
+                                    ],
                                 ],
                                 [
                                     'prefix' => [
-                                        'author.keyword' => strtolower($query)
-                                    ]
+                                        'author.keyword' => strtolower($query),
+                                    ],
                                 ],
                                 [
                                     'match_phrase_prefix' => [
-                                        'author.keyword' => strtolower($query)
-                                    ]
+                                        'author.keyword' => strtolower($query),
+                                    ],
                                 ],
 
                                 [
                                     'match' => [
-                                        'category_title.keyword' => strtolower($query)
-                                    ]
+                                        'category_title.keyword' => strtolower($query),
+                                    ],
                                 ],
                                 [
                                     'multi_match' => [
                                         'query' => $query,
                                         'fields' => ['title^3', 'author^2', 'category_title^2'],
-                                        'fuzziness' => 'AUTO'
-                                    ]
-                                ]
-                            ]
-                        ]
+                                        'fuzziness' => 'AUTO',
+                                    ],
+                                ],
+                            ],
+                        ],
                     ],
                     'size' => 7,
                     '_source' => [
-                        'id', 'title', 'author', 'images', 'list_price', 'store_name', 'category_title'
-                    ]
-                ]
+                        'id', 'title', 'author', 'images', 'list_price', 'store_name', 'category_title',
+                    ],
+                ],
             ];
             $response = $this->client->search($params);
+
             return $response['hits']['hits'];
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             Log::error("Autocomplete failed: {$e->getMessage()}");
+
             return [];
         }
     }
@@ -434,20 +452,20 @@ class ElasticsearchService
                 'body' => [
                     'settings' => config('elasticsearch.settings'),
                     'mappings' => [
-                        'properties' => config('elasticsearch.mappings')['products']['properties']
+                        'properties' => config('elasticsearch.mappings')['products']['properties'],
                     ],
-                ]
+                ],
             ];
 
             $this->client->indices()->create($params);
 
-            Log::info("Elasticsearch mapping updated successfully with autocomplete analyzer");
+            Log::info('Elasticsearch mapping updated successfully with autocomplete analyzer');
+
             return true;
         } catch (\Exception $e) {
-            Log::error("Elasticsearch mapping update failed: " . $e->getMessage());
+            Log::error('Elasticsearch mapping update failed: '.$e->getMessage());
+
             return false;
         }
     }
-
-    
 }

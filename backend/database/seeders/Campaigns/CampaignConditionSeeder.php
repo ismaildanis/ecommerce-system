@@ -2,15 +2,14 @@
 
 namespace Database\Seeders\Campaigns;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\CampaignCondition;
+use Illuminate\Database\Seeder;
 
 class CampaignConditionSeeder extends Seeder
 {
     public function run(): void
     {
-        //Sabahattin Ali Kampanyası
+        // Sabahattin Ali Kampanyası
         CampaignCondition::create([
             'campaign_id' => 1,
             'condition_type' => 'author',
@@ -24,8 +23,7 @@ class CampaignConditionSeeder extends Seeder
             'operator' => '=',
         ]);
 
-
-        //200 TL ve üzeri alışverişlerde sipariş toplamına %5 indirim
+        // 200 TL ve üzeri alışverişlerde sipariş toplamına %5 indirim
         CampaignCondition::create([
             'campaign_id' => 2,
             'condition_type' => 'min_bag',
@@ -33,8 +31,7 @@ class CampaignConditionSeeder extends Seeder
             'operator' => '>=',
         ]);
 
-
-        //Yerli Yazarlarda %5 indirim
+        // Yerli Yazarlarda %5 indirim
         CampaignCondition::create([
             'campaign_id' => 3,
             'condition_type' => 'author',

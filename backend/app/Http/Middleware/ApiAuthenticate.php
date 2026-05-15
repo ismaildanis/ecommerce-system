@@ -17,6 +17,7 @@ class ApiAuthenticate
         foreach ($guards as $guard) {
             if ($this->auth->guard($guard)->check()) {
                 $this->auth->shouldUse($guard);
+
                 return $next($request);
             }
         }

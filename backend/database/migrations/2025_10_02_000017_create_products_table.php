@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
@@ -26,14 +25,14 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('gender_id')
-                  ->references('id')
-                  ->on('genders')
-                  ->onDelete('cascade');
-            
+                ->references('id')
+                ->on('genders')
+                ->onDelete('cascade');
+
             $table->foreign('category_id')
-                  ->references('id')
-                  ->on('categories')
-                  ->onDelete('cascade');
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade');
 
             $table->index(['store_id', 'is_published']);
             $table->index(['slug', 'is_published']);

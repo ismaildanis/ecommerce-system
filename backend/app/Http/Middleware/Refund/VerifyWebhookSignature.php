@@ -37,8 +37,8 @@ class VerifyWebhookSignature
             return false;
         }
 
-        $payload    = $request->getContent();
-        $timestamp  = $request->header('X-Timestamp');
+        $payload = $request->getContent();
+        $timestamp = $request->header('X-Timestamp');
 
         if (blank($timestamp) || ! ctype_digit($timestamp)) {
             return false;

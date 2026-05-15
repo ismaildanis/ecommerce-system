@@ -9,7 +9,7 @@ class OrderDetailResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            
+
         ];
     }
 }

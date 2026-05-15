@@ -2,13 +2,13 @@
 
 namespace Tests\Feature\Checkout;
 
-use Tests\TestCase;
-use Mockery;
-use Illuminate\Support\Facades\Bus;
 use App\Jobs\OrderPlacementJob;
 use App\Models\CheckoutSession;
 use App\Models\User;
 use App\Services\Checkout\CheckoutSessionService;
+use Illuminate\Support\Facades\Bus;
+use Mockery;
+use Tests\TestCase;
 
 class CheckoutConfirmOrderTest extends TestCase
 {
@@ -22,10 +22,10 @@ class CheckoutConfirmOrderTest extends TestCase
     {
         Bus::fake();
 
-        $user = new User();
+        $user = new User;
         $user->id = 10;
 
-        $session = new CheckoutSession();
+        $session = new CheckoutSession;
         $session->id = 'sess_1';
         $session->user_id = 10;
         $session->status = 'confirmed';
@@ -56,7 +56,7 @@ class CheckoutConfirmOrderTest extends TestCase
     {
         Bus::fake();
 
-        $session = new CheckoutSession();
+        $session = new CheckoutSession;
         $session->id = 'sess_1';
         $session->status = 'pending_3ds';
 

@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Checkout\Orders;
 
-use Tests\TestCase;
-use Mockery;
-use App\Models\User;
-use App\Models\Order;
 use App\Models\CheckoutSession;
-use App\Services\Checkout\Orders\OrderFactory;
+use App\Models\Order;
+use App\Models\User;
 use App\Repositories\Contracts\Order\OrderRepositoryInterface;
+use App\Services\Checkout\Orders\OrderFactory;
+use Mockery;
+use Tests\TestCase;
 
 class OrderFactoryTest extends TestCase
 {
@@ -20,10 +20,10 @@ class OrderFactoryTest extends TestCase
 
     public function test_create_builds_order_payload_with_next_order_number(): void
     {
-        $user = new User();
+        $user = new User;
         $user->id = 10;
 
-        $session = new CheckoutSession();
+        $session = new CheckoutSession;
         $session->bag_id = 55;
         $session->shipping_data = ['shipping_address_id' => 1001];
         $session->billing_data = ['billing_address_id' => 1002];
@@ -42,11 +42,11 @@ class OrderFactoryTest extends TestCase
 
         $orders = Mockery::mock(OrderRepositoryInterface::class);
 
-        $lastOrder = new Order();
+        $lastOrder = new Order;
         $lastOrder->order_number = '00000009';
         $orders->shouldReceive('latest')->once()->andReturn($lastOrder);
 
-        $expectedOrder = new Order();
+        $expectedOrder = new Order;
         $expectedOrder->id = 1;
         $expectedOrder->order_number = '00000010';
 

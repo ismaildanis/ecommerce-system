@@ -2,26 +2,24 @@
 
 namespace App\Services\Product;
 
-use App\Models\ProductVariant;
 use App\Models\AttributeOption;
+use App\Models\ProductVariant;
 use App\Repositories\Contracts\Inventory\InventoryRepositoryInterface;
 use App\Repositories\Contracts\Product\ProductVariantRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 class ProductVariantSizeService
 {
-
     public function __construct(
         private readonly InventoryRepositoryInterface $inventoryRepository,
         private readonly ProductVariantRepositoryInterface $productVariantRepository,
-    ) {
-    }
+    ) {}
 
-    public function store($productId,$variantId, $data)
+    public function store($productId, $variantId, $data)
     {
-        return DB::transaction(function () use ($productId,$variantId, $data) {
-            $variant = $this->productVariantRepository->getProductVariant($productId,$variantId);
-            if(!$variant){
+        return DB::transaction(function () use ($productId, $variantId, $data) {
+            $variant = $this->productVariantRepository->getProductVariant($productId, $variantId);
+            if (! $variant) {
                 throw new \Exception('Variant bulunamadı');
             }
 
@@ -38,18 +36,19 @@ class ProductVariantSizeService
                 'reserved' => $data['inventory']['reserved'] ?? 0,
                 'min_stock_level' => $data['inventory']['min_stock_level'] ?? 0,
             ]);
+
             return $variantSize->load('sizeOption', 'inventory');
         });
     }
 
-    public function update($productId,$variantId, $variantSizeId, $data)
+    public function update($productId, $variantId, $variantSizeId, $data)
     {
-        $variant = $this->productVariantRepository->getProductVariant($productId,$variantId);
-        if(!$variant){
+        $variant = $this->productVariantRepository->getProductVariant($productId, $variantId);
+        if (! $variant) {
             throw new \Exception('Variant bulunamadı');
         }
         $variantSize = $variant->variantSizes()->where('id', $variantSizeId)->first();
-        if(!$variantSize){
+        if (! $variantSize) {
             throw new \Exception('Variant size bulunamadı');
         }
 
@@ -58,21 +57,23 @@ class ProductVariantSizeService
             'sku' => $this->skuGenerator($variantId, $variantSize->size_option_id),
         ]);
         $this->inventoryRepository->updateStock($variantSizeId, $data['inventory']);
+
         return $variantSize->load('sizeOption', 'inventory');
     }
 
-    public function destroy($productId,$variantId, $variantSizeId)
+    public function destroy($productId, $variantId, $variantSizeId)
     {
-        $variant = $this->productVariantRepository->getProductVariant($productId,$variantId);
-        if(!$variant){
+        $variant = $this->productVariantRepository->getProductVariant($productId, $variantId);
+        if (! $variant) {
             throw new \Exception('Variant bulunamadı');
         }
         $variantSize = $variant->variantSizes()->where('id', $variantSizeId)->first();
-        if(!$variantSize){
+        if (! $variantSize) {
             throw new \Exception('Variant size bulunamadı');
         }
         $variantSize->delete();
         $variantSize->inventory()->delete();
+
         return true;
     }
 
@@ -80,6 +81,7 @@ class ProductVariantSizeService
     {
         $variant = ProductVariant::findOrFail($variantId);
         $sizeOption = AttributeOption::findOrFail($sizeOptionId);
-        return $variant->sku . '-' . $sizeOption->slug;
+
+        return $variant->sku.'-'.$sizeOption->slug;
     }
 }

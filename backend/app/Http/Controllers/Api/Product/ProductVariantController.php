@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Api\Product;
 
+use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Product\ProductResource;
-use App\Http\Resources\Product\ProductVariantResource;
 use App\Http\Resources\Product\ProductVariantSummaryResource;
 use App\Services\Product\ProductVariantService;
-use App\Helpers\ResponseHelper;
 
 class ProductVariantController extends Controller
 {
@@ -21,7 +20,7 @@ class ProductVariantController extends Controller
     public function variantDetail($variant_slug)
     {
         $variant = $this->productVariantService->getProductVariantBySlug($variant_slug);
-        if (!$variant) {
+        if (! $variant) {
             return ResponseHelper::notFound('Varyant bulunamadı');
         }
         $similarProducts = $variant->product->similarProducts()
@@ -33,17 +32,17 @@ class ProductVariantController extends Controller
             ->with('variants.variantSizes.sizeOption')
             ->with('variants.variantSizes.inventory')
             ->get();
-        
+
         $product = $variant->product->load(
             'category',
             'category.parent',
             'category.gender'
         );
-    
+
         $selectedVariant = $variant->load(
             'variantImages',
             'variantSizes.sizeOption',
-            'variantSizes.inventory'    
+            'variantSizes.inventory'
         );
 
         $allVariants = $product->variants()
@@ -52,7 +51,7 @@ class ProductVariantController extends Controller
             ->with('variantSizes.sizeOption')
             ->with('variantSizes.inventory')
             ->get();
-        
+
         return response()->json([
             'data' => new ProductResource($product->setRelation('variants', collect([$selectedVariant]))),
             'selected_variant_id' => $variant->id,
@@ -60,5 +59,4 @@ class ProductVariantController extends Controller
             'similar_products' => ProductResource::collection($similarProducts) ?? null,
         ]);
     }
-    
 }

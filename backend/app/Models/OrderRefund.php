@@ -4,18 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class OrderRefund extends Model
 {
     use SoftDeletes;
 
-    public const STATUS_REQUESTED        = 'requested';
-    public const STATUS_AWAITING_PICKUP  = 'awaiting_pickup';
-    public const STATUS_PICKED_UP        = 'picked_up';
-    public const STATUS_IN_TRANSIT       = 'in_transit';
-    public const STATUS_RECEIVED         = 'received';
-    public const STATUS_COMPLETED        = 'completed';
-    public const STATUS_PAYMENT_FAILED   = 'payment_failed';
-    public const STATUS_SHIPMENT_FAILED  = 'shipment_failed';
+    public const STATUS_REQUESTED = 'requested';
+
+    public const STATUS_AWAITING_PICKUP = 'awaiting_pickup';
+
+    public const STATUS_PICKED_UP = 'picked_up';
+
+    public const STATUS_IN_TRANSIT = 'in_transit';
+
+    public const STATUS_RECEIVED = 'received';
+
+    public const STATUS_COMPLETED = 'completed';
+
+    public const STATUS_PAYMENT_FAILED = 'payment_failed';
+
+    public const STATUS_SHIPMENT_FAILED = 'shipment_failed';
 
     protected $fillable = [
         'order_id',
@@ -39,9 +47,9 @@ class OrderRefund extends Model
     protected $casts = [
         'payment_meta' => 'array',
         'picked_up_at' => 'datetime',
-        'in_transit_at'=> 'datetime',
-        'received_at'  => 'datetime',
-        'refunded_at'  => 'datetime',
+        'in_transit_at' => 'datetime',
+        'received_at' => 'datetime',
+        'refunded_at' => 'datetime',
     ];
 
     public function order()

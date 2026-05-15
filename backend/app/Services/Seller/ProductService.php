@@ -2,24 +2,30 @@
 
 namespace App\Services\Seller;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use App\Repositories\Contracts\Product\ProductRepositoryInterface;
-use App\Repositories\Contracts\Category\CategoryRepositoryInterface;
-use App\Repositories\Contracts\Store\StoreRepositoryInterface;
 use App\Repositories\Contracts\AuthenticationRepositoryInterface;
-use Illuminate\Support\Facades\Storage;
-use App\Services\Search\ElasticSearchTypeService;
+use App\Repositories\Contracts\Category\CategoryRepositoryInterface;
+use App\Repositories\Contracts\Product\ProductRepositoryInterface;
+use App\Repositories\Contracts\Store\StoreRepositoryInterface;
 use App\Services\Search\ElasticSearchProductService;
+use App\Services\Search\ElasticSearchTypeService;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProductService
 {
     protected $productRepository;
+
     protected $categoryRepository;
+
     protected $storeRepository;
+
     protected $authenticationRepository;
+
     protected $elasticSearchTypeService;
+
     protected $elasticSearchProductService;
+
     public function __construct(
 
         ProductRepositoryInterface $productRepository,
@@ -40,12 +46,12 @@ class ProductService
     public function indexProduct()
     {
         $seller = $this->authenticationRepository->getSeller();
-        if(!$seller){
+        if (! $seller) {
             throw new \Exception('Satıcı bulunamadı');
         }
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
 
-        if (!$store) {
+        if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
         }
 
@@ -55,73 +61,71 @@ class ProductService
     public function createProduct(array $request)
     {
         $seller = $this->authenticationRepository->getSeller();
-        if(!$seller){
+        if (! $seller) {
             throw new \Exception('Satıcı bulunamadı');
         }
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
-        if (!$store) {
+        if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
         }
 
         return DB::transaction(function () use ($request, $store) {
 
             $productData = $request;
-            $productData['store_id']      = $store->id;
-            $productData['slug']           = Str::slug($productData['title'], '-' . Str::random(5));
-            $productData['category_id']    = $productData['category_id'];
-            $productData['is_published']  = true;
-            $productData['meta_title']    = $this->generateMetaTitle($productData, $store);
+            $productData['store_id'] = $store->id;
+            $productData['slug'] = Str::slug($productData['title'], '-'.Str::random(5));
+            $productData['category_id'] = $productData['category_id'];
+            $productData['is_published'] = true;
+            $productData['meta_title'] = $this->generateMetaTitle($productData, $store);
             $productData['meta_description'] = $productData['meta_description'] ?? $this->generateMetaDescription($productData, $store);
 
             $product = $this->productRepository->createProduct($productData);
 
             $product->update([
-                'slug' => Str::slug($product->title . '-' . $product->id)
+                'slug' => Str::slug($product->title.'-'.$product->id),
             ]);
 
             foreach ($request['variants'] as $index => $variantData) {
                 $sku = $this->generateSku($product, $variantData, $index);
 
                 $variant = $product->variants()->create([
-                    'color_name'     => $variantData['color_name'],
-                    'color_code'     => $variantData['color_code'] ?? null,
-                    'sku'            => $sku,
-                    'slug'           => $this->generateVariantSlug($product, $variantData['color_name'], $index),
-                    'price_cents'    => $variantData['price_cents'],
-                    'is_popular'     => $variantData['is_popular'] ?? false,
+                    'color_name' => $variantData['color_name'],
+                    'color_code' => $variantData['color_code'] ?? null,
+                    'sku' => $sku,
+                    'slug' => $this->generateVariantSlug($product, $variantData['color_name'], $index),
+                    'price_cents' => $variantData['price_cents'],
+                    'is_popular' => $variantData['is_popular'] ?? false,
                 ]);
 
                 $variant->update([
-                    'sku'  => $this->generateSkuForVariant($product, $variant),
+                    'sku' => $this->generateSkuForVariant($product, $variant),
                     'slug' => $this->generateSlugForVariant($product, $variant),
                 ]);
 
-                if ($request["variants"][$index]['images']) {
-                    foreach ($request["variants"][$index]['images'] as $file) {
+                if ($request['variants'][$index]['images']) {
+                    foreach ($request['variants'][$index]['images'] as $file) {
                         $variant->variantImages()->create([
                             'image' => $file,
                         ]);
                     }
                 }
 
-                if (!empty($variantData['sizes'])) {
+                if (! empty($variantData['sizes'])) {
                     foreach ($variantData['sizes'] as $size) {
                         $variantSize = $variant->variantSizes()->create([
-                            'size_option_id'    => $size['size_option_id'],
-                            'sku'                => $this->generateSizeSku($sku, $size['size_option_id']),
-                            'price_cents'       => $size['price_cents'] ?? $variantData['price_cents'],
+                            'size_option_id' => $size['size_option_id'],
+                            'sku' => $this->generateSizeSku($sku, $size['size_option_id']),
+                            'price_cents' => $size['price_cents'] ?? $variantData['price_cents'],
                         ]);
-                    
-                
 
-                        if (!empty($size['inventory'])) {
+                        if (! empty($size['inventory'])) {
                             $inventoryData = $size['inventory'];
 
                             $variantSize->inventory()->create([
-                                'on_hand'        => $inventoryData['on_hand'],
-                                'reserved'       => $inventoryData['reserved'] ?? 0,
-                                'warehouse_id'   => $inventoryData['warehouse_id'] ?? ($variantData['warehouse_id'] ?? 1),
-                                'min_stock_level'=> $inventoryData['min_stock_level'] ?? 0,
+                                'on_hand' => $inventoryData['on_hand'],
+                                'reserved' => $inventoryData['reserved'] ?? 0,
+                                'warehouse_id' => $inventoryData['warehouse_id'] ?? ($variantData['warehouse_id'] ?? 1),
+                                'min_stock_level' => $inventoryData['min_stock_level'] ?? 0,
                             ]);
                         }
                     }
@@ -159,18 +163,17 @@ class ProductService
 
             if (! empty($request['variants'])) {
                 foreach ($request['variants'] as $index => $variantData) {
-                    
 
                     $variant = $product->variants()->where('id', $variantData['id'])->first();
                     if ($variant) {
                         $variant->update([
-                            'color_name'  => $variantData['color_name'],
-                            'color_code'  => $variantData['color_code'] ?? null,
+                            'color_name' => $variantData['color_name'],
+                            'color_code' => $variantData['color_code'] ?? null,
                             'price_cents' => $variantData['price_cents'] ?? $variant->price_cents,
-                            'is_popular'  => $variantData['is_popular'] ?? $variant->is_popular,
+                            'is_popular' => $variantData['is_popular'] ?? $variant->is_popular,
                         ]);
                         $variant->update([
-                            'sku'  => $this->generateSkuForVariant($product, $variant),
+                            'sku' => $this->generateSkuForVariant($product, $variant),
                             'slug' => $this->generateSlugForVariant($product, $variant),
                         ]);
                     } else {
@@ -184,7 +187,7 @@ class ProductService
                                     ['size_option_id' => $sizeData['size_option_id']],
                                     [
                                         'price_cents' => $sizeData['price_cents'] ?? $variant->price_cents,
-                                        'sku'         => $this->generateSizeSku($variant->sku, $sizeData['size_option_id']),
+                                        'sku' => $this->generateSizeSku($variant->sku, $sizeData['size_option_id']),
                                     ]
                                 );
 
@@ -194,8 +197,8 @@ class ProductService
                                         ->updateOrCreate(
                                             ['warehouse_id' => $inv['warehouse_id'] ?? 1],
                                             [
-                                                'on_hand'   => $inv['on_hand'],
-                                                'reserved'  => $inv['reserved'] ?? 0,
+                                                'on_hand' => $inv['on_hand'],
+                                                'reserved' => $inv['reserved'] ?? 0,
                                             ]
                                         );
                                 }
@@ -209,12 +212,12 @@ class ProductService
 
             if ($oldTitle !== $product->title) {
                 $product->update([
-                    'slug' => Str::slug($product->title . '-' . $product->id),
+                    'slug' => Str::slug($product->title.'-'.$product->id),
                 ]);
 
                 foreach ($product->variants as $variant) {
                     $variant->update([
-                        'sku'  => $this->generateSkuForVariant($product, $variant),
+                        'sku' => $this->generateSkuForVariant($product, $variant),
                         'slug' => $this->generateSlugForVariant($product, $variant),
                     ]);
                     foreach ($variant->variantSizes as $variantSize) {
@@ -232,43 +235,44 @@ class ProductService
     public function productDetail($id)
     {
         $seller = $this->authenticationRepository->getSeller();
-        if(!$seller){
+        if (! $seller) {
             throw new \Exception('Satıcı bulunamadı');
         }
-    
+
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
-        if (!$store) {
+        if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
         }
         $product = $this->productRepository->getProductByStore($store->id, $id);
-        if (!$product) {
+        if (! $product) {
             throw new \Exception('Ürün bulunamadı');
         }
         if ($product->store_id !== $seller->store->id) {
             throw new \Exception('Bu ürüne erişim yetkiniz yok.');
         }
+
         return $product;
     }
 
     public function deleteProduct($id)
     {
         $seller = $this->authenticationRepository->getSeller();
-        if(!$seller){
+        if (! $seller) {
             throw new \Exception('Satıcı bulunamadı');
         }
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
-        if (!$store) {
+        if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
         }
 
         $product = $this->productRepository->getProductByStore($store->id, $id);
-        if (!$product) {
+        if (! $product) {
             throw new \Exception('Ürün bulunamadı');
         }
 
         foreach ($product->variants as $variant) {
             foreach ($variant->variantImages as $image) {
-                Storage::disk('public')->delete('productImages/' . $image->image);
+                Storage::disk('public')->delete('productImages/'.$image->image);
             }
             $variant->variantImages()->delete();
             $variant->variantAttributes()->delete();
@@ -277,14 +281,15 @@ class ProductService
 
         return $product->delete();
     }
+
     public function searchProduct($request)
     {
         $seller = $this->authenticationRepository->getSeller();
-        if(!$seller){
+        if (! $seller) {
             throw new \Exception('Satıcı bulunamadı');
         }
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
-        if (!$store) {
+        if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
         }
         $query = $request->input('q', '') ?? '';
@@ -292,6 +297,7 @@ class ProductService
         $filters['store_id'] = $store->id;
         $sorting = $this->elasticSearchTypeService->sortingType($request);
         $data = $this->elasticSearchProductService->searchProducts($query, $filters, $sorting, $request->input('page', 1), $request->input('size', 12));
+
         return $data;
     }
 
@@ -311,7 +317,7 @@ class ProductService
             $metaTitle .= " | {$storeName}";
         }
 
-        return strlen($metaTitle) > 60 ? substr($metaTitle, 0, 57) . '...' : $metaTitle;
+        return strlen($metaTitle) > 60 ? substr($metaTitle, 0, 57).'...' : $metaTitle;
     }
 
     private function generateMetaDescription($request, $store)
@@ -324,44 +330,48 @@ class ProductService
         $metaDescription = $title;
 
         if ($description) {
-            $shortDesc = strlen($description) > 100 ? substr($description, 0, 97) . '...' : $description;
+            $shortDesc = strlen($description) > 100 ? substr($description, 0, 97).'...' : $description;
             $metaDescription .= " {$shortDesc}";
         }
 
         if ($price > 0) {
-            $metaDescription .= " En uygun fiyat: " . number_format($price, 2) . " TL.";
+            $metaDescription .= ' En uygun fiyat: '.number_format($price, 2).' TL.';
         }
 
-        $metaDescription .= " Hızlı kargo, güvenli ödeme.";
+        $metaDescription .= ' Hızlı kargo, güvenli ödeme.';
 
-        return strlen($metaDescription) > 160 ? substr($metaDescription, 0, 157) . '...' : $metaDescription;
+        return strlen($metaDescription) > 160 ? substr($metaDescription, 0, 157).'...' : $metaDescription;
     }
 
     private function generateSku($product, array $variantData, int $index): string
     {
         $prefix = strtoupper(Str::slug(substr($product->title, 0, 3)));
-        $color  = Str::upper(Str::slug($variantData['color_name']));
-        return "{$prefix}-{$product->id}-{$color}-" . ($index + 1);
+        $color = Str::upper(Str::slug($variantData['color_name']));
+
+        return "{$prefix}-{$product->id}-{$color}-".($index + 1);
     }
 
     public function generateSkuForVariant($product, $variant): string
     {
         $prefix = strtoupper(Str::slug(substr($product->title, 0, 3)));
-        $color  = Str::upper(Str::slug($variant->color_name, 0, 3));
+        $color = Str::upper(Str::slug($variant->color_name, 0, 3));
+
         return "{$prefix}-{$product->id}-{$color}-{$variant->id}";
     }
 
     public function generateVariantSlug($product, string $colorName, int $index): string
     {
         $productSlug = Str::slug($product->title);
-        $colorSlug   = Str::slug($colorName, 0, 3);
-        return "{$productSlug}-{$colorSlug}-" . ($index + 1);
+        $colorSlug = Str::slug($colorName, 0, 3);
+
+        return "{$productSlug}-{$colorSlug}-".($index + 1);
     }
 
     public function generateSlugForVariant($product, $variant): string
     {
-        $productSlug = Str::slug($product->title );
-        $colorSlug   = Str::slug($variant->color_name, 0, 3);
+        $productSlug = Str::slug($product->title);
+        $colorSlug = Str::slug($variant->color_name, 0, 3);
+
         return "{$productSlug}-{$colorSlug}-{$variant->id}";
     }
 
@@ -369,11 +379,12 @@ class ProductService
     {
         $productSlug = Str::slug($product->title);
         $colorSlug = Str::slug($variantData['color_name']);
-        return "{$colorSlug}-{$productSlug}-" . $variantData['id'];
-    }
-    private function generateSizeSku(string $variantSku, int $sizeOptionId): string
-    {
-        return $variantSku . '-' . Str::upper(Str::slug($sizeOptionId));
+
+        return "{$colorSlug}-{$productSlug}-".$variantData['id'];
     }
 
+    private function generateSizeSku(string $variantSku, int $sizeOptionId): string
+    {
+        return $variantSku.'-'.Str::upper(Str::slug($sizeOptionId));
+    }
 }

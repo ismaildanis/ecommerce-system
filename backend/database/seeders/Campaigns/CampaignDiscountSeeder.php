@@ -2,9 +2,8 @@
 
 namespace Database\Seeders\Campaigns;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\CampaignDiscount;
+use Illuminate\Database\Seeder;
 
 class CampaignDiscountSeeder extends Seeder
 {

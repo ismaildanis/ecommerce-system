@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class CheckoutSession extends Model
 {
@@ -14,11 +14,13 @@ class CheckoutSession extends Model
     protected $table = 'checkout_sessions';
 
     protected $primaryKey = 'id';
+
     protected $keyType = 'string';
+
     public $incrementing = false;
 
     protected $guarded = [];
-    
+
     protected $fillable = [
         'id',
         'user_id',
@@ -33,12 +35,12 @@ class CheckoutSession extends Model
     ];
 
     protected $casts = [
-        'bag_snapshot'  => 'array',
+        'bag_snapshot' => 'array',
         'shipping_data' => 'array',
-        'billing_data'  => 'array',
-        'payment_data'  => 'array',
-        'meta'          => 'array',
-        'expires_at'    => 'datetime',
+        'billing_data' => 'array',
+        'payment_data' => 'array',
+        'meta' => 'array',
+        'expires_at' => 'datetime',
     ];
 
     public function user()

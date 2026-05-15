@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquent\AttributeOptions;
 
 use App\Models\AttributeOption;
-use App\Repositories\Eloquent\BaseRepository;
 use App\Repositories\Contracts\AttributeOptions\AttributeOptionsRepositoryInterface;
+use App\Repositories\Eloquent\BaseRepository;
 use Illuminate\Support\Facades\Cache;
 
 class AttributeOptionsRepository extends BaseRepository implements AttributeOptionsRepositoryInterface

@@ -13,7 +13,7 @@ enum ShippingStatus: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::PENDING => 'Beklemede',
             self::PREPARING => 'Hazırlanıyor',
             self::SHIPPED => 'Kargoya Verildi',
@@ -23,5 +23,3 @@ enum ShippingStatus: string
         };
     }
 }
-
-

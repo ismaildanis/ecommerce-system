@@ -14,19 +14,19 @@ class ConfirmOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status'          => ['nullable', 'string'],
-            'paymentId'       => ['required', 'string'],
-            'conversationId'  => ['required', 'string'],
-            'conversationData'=> ['nullable', 'string'],
-            'mdStatus'        => ['nullable', 'string'],
-            'signature'       => ['nullable', 'string'],
+            'status' => ['nullable', 'string'],
+            'paymentId' => ['required', 'string'],
+            'conversationId' => ['required', 'string'],
+            'conversationData' => ['nullable', 'string'],
+            'mdStatus' => ['nullable', 'string'],
+            'signature' => ['nullable', 'string'],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'paymentId.required'      => 'Ödeme kimliği zorunludur.',
+            'paymentId.required' => 'Ödeme kimliği zorunludur.',
             'conversationId.required' => 'ConversationId bilgisi zorunludur.',
         ];
     }

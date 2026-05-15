@@ -4,7 +4,6 @@ namespace App\Traits;
 
 trait ElasticSearchTrait
 {
-
     public function getCategoryFilterTrait(array $filters): array
     {
         $query = [];
@@ -12,30 +11,31 @@ trait ElasticSearchTrait
         if (isset($filters['category_id'])) {
             $query[] = [
                 'term' => [
-                    'category.id' => (int) $filters['category_id']
-                ]
+                    'category.id' => (int) $filters['category_id'],
+                ],
             ];
         }
 
         if (isset($filters['category_ids']) && is_array($filters['category_ids'])) {
             $query[] = [
                 'terms' => [
-                    'category.id' => array_map('intval', $filters['category_ids'])
-                ]
+                    'category.id' => array_map('intval', $filters['category_ids']),
+                ],
             ];
         }
 
         if (isset($filters['gender'])) {
             $query[] = [
                 'term' => [
-                    'gender.keyword' => $filters['gender']
-                ]
+                    'gender.keyword' => $filters['gender'],
+                ],
             ];
         }
 
         return $query;
     }
-    public function getSortTrait(string $sorting = '', array $variantSortQuery = null): array
+
+    public function getSortTrait(string $sorting = '', ?array $variantSortQuery = null): array
     {
         $nestedClause = [
             'path' => 'variants',
@@ -53,16 +53,16 @@ trait ElasticSearchTrait
             case 'price_asc':
                 return [[
                     'variants.price_cents' => [
-                        'order'  => 'asc',
-                        'mode'   => 'min',
+                        'order' => 'asc',
+                        'mode' => 'min',
                         'nested' => $nestedClause,
                     ],
                 ]];
             case 'price_desc':
                 return [[
                     'variants.price_cents' => [
-                        'order'  => 'desc',
-                        'mode'   => 'max',
+                        'order' => 'desc',
+                        'mode' => 'max',
                         'nested' => $nestedClause,
                     ],
                 ]];

@@ -23,7 +23,7 @@ class PasswordReset extends Model
         'email' => 'string',
         'status' => 'string',
     ];
-    
+
     protected $hidden = [
         'token',
     ];

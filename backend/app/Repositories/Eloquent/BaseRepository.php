@@ -29,7 +29,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function findBy(array $criteria): Collection
     {
         $query = $this->model->query();
-    
+
         foreach ($criteria as $field => $value) {
             if (is_array($value)) {
                 $query->whereIn($field, $value);
@@ -37,7 +37,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
                 $query->where($field, $value);
             }
         }
-    
+
         return $query->get();
     }
 
@@ -68,6 +68,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         if ($model) {
             return $model->update($data);
         }
+
         return false;
     }
 

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('user_id');
             $table->enum('status', [
-                'requested','awaiting_pickup','in_transit','received',
-                'inspection','approved','rejected','refunded'
+                'requested', 'awaiting_pickup', 'in_transit', 'received',
+                'inspection', 'approved', 'rejected', 'refunded',
             ])->default('requested');
             $table->string('reason')->nullable();
             $table->text('customer_note')->nullable();

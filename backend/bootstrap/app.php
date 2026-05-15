@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Middleware\SellerRedirect;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -12,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'seller.auth' => \App\Http\Middleware\SellerRedirect::class,
+            'seller.auth' => SellerRedirect::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
@@ -22,7 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
             if ($request->expectsJson() || $request->is('api/*')) {
                 $status = 500;
 
-                if ($e instanceof \RuntimeException) {
+                if ($e instanceof RuntimeException) {
                     $status = 400;
                 }
 
@@ -35,7 +37,7 @@ return Application::configure(basePath: dirname(__DIR__))
         });
 
         // MethodNotAllowed gibi özel exception'ların override'ı (senin mevcut kodun)
-        $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException $e, $request) {
+        $exceptions->render(function (MethodNotAllowedHttpException $e, $request) {
             if ($request->is('api/*') || $request->expectsJson()) {
                 return null; // varsayılan 405 handling
             }

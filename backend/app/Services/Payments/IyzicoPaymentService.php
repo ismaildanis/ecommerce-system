@@ -2,61 +2,58 @@
 
 namespace App\Services\Payments;
 
-use App\Models\Order;
 use App\Models\CreditCard;
+use App\Models\Order;
 use App\Models\Store;
 use Illuminate\Support\Facades\Log;
-//Iyzipay kütüphanesi
-use Iyzipay\Options;
-use Iyzipay\Model\Locale;
-use Iyzipay\Model\Currency;
-use Iyzipay\Model\Buyer;
+// Iyzipay kütüphanesi
 use Iyzipay\Model\Address;
 use Iyzipay\Model\BasketItem;
-use Iyzipay\Model\PaymentCard;
-use Iyzipay\Model\PaymentGroup;
 use Iyzipay\Model\BasketItemType;
-use Iyzipay\Model\SubMerchant;
-use Iyzipay\Model\Payment;
+use Iyzipay\Model\Buyer;
 use Iyzipay\Model\Cancel;
-use Iyzipay\Model\Refund;
-use Iyzipay\Model\RefundReason;
-
-use Iyzipay\Model\CheckoutForm;
-use Iyzipay\Request\RetrieveCheckoutFormRequest;
-use Iyzipay\Request\CreatePaymentRequest;
-use Iyzipay\Request\CreateCancelRequest;
-use Iyzipay\Request\CreateRefundRequest;
-use Iyzipay\Request\CreateSubMerchantRequest;
-
 use Iyzipay\Model\Card;
 use Iyzipay\Model\CardInformation;
+use Iyzipay\Model\CheckoutForm;
+use Iyzipay\Model\Currency;
+use Iyzipay\Model\Locale;
+use Iyzipay\Model\Payment;
+use Iyzipay\Model\PaymentCard;
+use Iyzipay\Model\PaymentGroup;
+use Iyzipay\Model\Refund;
+use Iyzipay\Model\RefundReason;
+use Iyzipay\Model\SubMerchant;
+use Iyzipay\Options;
+use Iyzipay\Request\CreateCancelRequest;
 use Iyzipay\Request\CreateCardRequest;
+use Iyzipay\Request\CreatePaymentRequest;
+use Iyzipay\Request\CreateRefundRequest;
+use Iyzipay\Request\CreateSubMerchantRequest;
+use Iyzipay\Request\RetrieveCheckoutFormRequest;
 
-//kapalı
+// kapalı
 class IyzicoPaymentService implements PaymentInterface
 {
     private Options $options;
 
     public function __construct()
     {
-        $this->options = new Options();
+        $this->options = new Options;
         $this->options->setApiKey(config('services.iyzico.api_key'));
         $this->options->setSecretKey(config('services.iyzico.secret_key'));
         $this->options->setBaseUrl(config('services.iyzico.base_url'));
     }
 
-
     public function createCardToken(array $cardData, $userId): array
     {
         try {
-            $request = new CreateCardRequest();
+            $request = new CreateCardRequest;
             $request->setLocale(Locale::TR);
-            $request->setConversationId('card_' . $userId . '_' . time());
+            $request->setConversationId('card_'.$userId.'_'.time());
             $request->setEmail($cardData['email'] ?? 'test@test.com');
             $request->setExternalId((string) $userId);
 
-            $cardInformation = new CardInformation();
+            $cardInformation = new CardInformation;
             $cardInformation->setCardAlias($cardData['card_alias'] ?? 'Kredi Kartım');
             $cardInformation->setCardHolderName($cardData['card_holder_name']);
             $cardInformation->setCardNumber($cardData['card_number']);
@@ -71,33 +68,34 @@ class IyzicoPaymentService implements PaymentInterface
                     'success' => true,
                     'card_token' => $card->getCardToken(),
                     'card_user_key' => $card->getCardUserKey(),
-                    'message' => 'Kart başarıyla kaydedildi'
+                    'message' => 'Kart başarıyla kaydedildi',
                 ];
             } else {
                 return [
                     'success' => false,
                     'error' => $card->getErrorMessage(),
-                    'error_code' => $card->getErrorCode()
+                    'error_code' => $card->getErrorCode(),
                 ];
             }
 
         } catch (\Exception $e) {
-            Log::error('İyzico kart token oluşturma hatası: ' . $e->getMessage());
+            Log::error('İyzico kart token oluşturma hatası: '.$e->getMessage());
+
             return [
                 'success' => false,
-                'error' => 'Kart token oluşturulurken hata oluştu: ' . $e->getMessage()
+                'error' => 'Kart token oluşturulurken hata oluştu: '.$e->getMessage(),
             ];
         }
     }
 
-    public function processPayment(Order $order, CreditCard $creditCard, float $amount, array $tempCardData = null): array
+    public function processPayment(Order $order, CreditCard $creditCard, float $amount, ?array $tempCardData = null): array
     {
-        try{
+        try {
 
-            $request = new CreatePaymentRequest();
+            $request = new CreatePaymentRequest;
 
             $request->setLocale(Locale::TR);
-            $request->setConversationId((string) $order->id . '_' . time());
+            $request->setConversationId((string) $order->id.'_'.time());
             $request->setCurrency(Currency::TL);
             $request->setBasketId((string) $order->id);
             $request->setPaymentGroup(PaymentGroup::PRODUCT);
@@ -105,18 +103,18 @@ class IyzicoPaymentService implements PaymentInterface
 
             if ($creditCard->iyzico_card_token && $creditCard->iyzico_card_user_key) {
 
-                $paymentCard = new PaymentCard();
+                $paymentCard = new PaymentCard;
                 $paymentCard->setCardToken($creditCard->iyzico_card_token);
                 $paymentCard->setCardUserKey($creditCard->iyzico_card_user_key);
                 $request->setPaymentCard($paymentCard);
-                
+
             } else {
 
-                if (!$tempCardData || !isset($tempCardData['card_number']) || !isset($tempCardData['cvv'])) {
+                if (! $tempCardData || ! isset($tempCardData['card_number']) || ! isset($tempCardData['cvv'])) {
                     throw new \Exception('İlk ödeme için kart numarası ve CVV gerekli.');
                 }
-                
-                $paymentCard = new PaymentCard();
+
+                $paymentCard = new PaymentCard;
                 $paymentCard->setCardHolderName($creditCard->card_holder_name);
                 $paymentCard->setCardNumber($tempCardData['card_number']);
                 $paymentCard->setExpireMonth($creditCard->expire_month);
@@ -125,7 +123,7 @@ class IyzicoPaymentService implements PaymentInterface
                 $request->setPaymentCard($paymentCard);
             }
 
-            $buyer = new Buyer();
+            $buyer = new Buyer;
 
             $buyer->setId((string) $order->user_id);
             $buyer->setName($order->user->username ?? 'Test User');
@@ -141,7 +139,7 @@ class IyzicoPaymentService implements PaymentInterface
             $buyer->setCountry($order->shippingAddress->country);
             $request->setBuyer($buyer);
 
-            $shippingAddress = new Address();
+            $shippingAddress = new Address;
 
             $shippingAddress->setContactName($order->shippingAddress->first_name);
             $shippingAddress->setCity($order->shippingAddress->city);
@@ -150,8 +148,8 @@ class IyzicoPaymentService implements PaymentInterface
             $shippingAddress->setZipCode($order->shippingAddress->postal_code);
             $request->setShippingAddress($shippingAddress);
 
-            $billingAddress = new Address();
-            
+            $billingAddress = new Address;
+
             $billingAddress->setContactName($order->billingAddress->first_name);
             $billingAddress->setCity($order->billingAddress->city);
             $billingAddress->setCountry($order->billingAddress->country);
@@ -159,7 +157,7 @@ class IyzicoPaymentService implements PaymentInterface
             $billingAddress->setZipCode($order->billingAddress->postal_code);
             $request->setBillingAddress($billingAddress);
 
-            $basketItems = array();
+            $basketItems = [];
             $totalBasketPrice = 0.0;
 
             foreach ($order->orderItems as $item) {
@@ -170,69 +168,68 @@ class IyzicoPaymentService implements PaymentInterface
                     throw new \Exception('Mağaza alt üye iş yeri oluşturulmamış');
                 }*/
 
-                $basketItem = new BasketItem();
-                
+                $basketItem = new BasketItem;
+
                 $basketItem->setId((string) $item->product_id);
                 $basketItem->setName($item->product->title);
                 $basketItem->setCategory1($item->product->category?->category_title ?? 'Genel');
                 $basketItem->setItemType(BasketItemType::PHYSICAL);
-                $linePrice = round((float)($item->paid_price), 4);
-                
+                $linePrice = round((float) ($item->paid_price), 4);
+
                 // Sıfır fiyatlı ürünleri Iyzico'ya gönderme (kampanya ürünleri)
                 if ($linePrice <= 0) {
                     continue; // Bu ürünü atla
                 }
-                
+
                 $basketItem->setPrice(number_format($linePrice, 4, '.', ''));
 
-               // $basketItem->setSubMerchantKey($store->sub_merchant_key);
-                //$basketItem->setSubMerchantPrice(number_format($linePrice, 2, '.', ''));
+                // $basketItem->setSubMerchantKey($store->sub_merchant_key);
+                // $basketItem->setSubMerchantPrice(number_format($linePrice, 2, '.', ''));
 
                 $basketItems[] = $basketItem;
 
                 $totalBasketPrice += $linePrice;
-                
+
             }
 
             $request->setBasketItems($basketItems);
             $request->setPrice(number_format($totalBasketPrice, 2, '.', ''));
             $request->setPaidPrice(number_format($amount, 2, '.', ''));
-            
+
             $payment = Payment::create($request, $this->options);
 
             if ($payment->getStatus() === 'success') {
-                
-                
-                if (!$creditCard->iyzico_card_token && $tempCardData) {
-                    
+
+                if (! $creditCard->iyzico_card_token && $tempCardData) {
+
                     $tokenData = [
                         'card_holder_name' => $creditCard->card_holder_name,
                         'card_number' => $tempCardData['card_number'],
                         'expire_month' => $creditCard->expire_month,
                         'expire_year' => $creditCard->expire_year,
                         'card_alias' => $creditCard->name,
-                        'email' => $order->user->email ?? 'test@test.com'
+                        'email' => $order->user->email ?? 'test@test.com',
                     ];
-                    
+
                     $tokenResult = $this->createCardToken($tokenData, $order->user_id);
-                    
+
                     if ($tokenResult['success']) {
                         $creditCard->update([
                             'iyzico_card_token' => $tokenResult['card_token'],
-                            'iyzico_card_user_key' => $tokenResult['card_user_key']
+                            'iyzico_card_user_key' => $tokenResult['card_user_key'],
                         ]);
                         Log::info('İyzico kart token başarıyla kaydedildi', [
                             'credit_card_id' => $creditCard->id,
-                            'user_id' => $order->user_id
+                            'user_id' => $order->user_id,
                         ]);
                     } else {
                         Log::error('İyzico kart token kaydetme hatası', [
                             'credit_card_id' => $creditCard->id,
-                            'error' => $tokenResult['error']
+                            'error' => $tokenResult['error'],
                         ]);
                     }
                 }
-                
+
                 $itemsTxMap = [];
                 foreach ($payment->getPaymentItems() as $pItem) {
                     $itemsTxMap[$pItem->getItemId()] = $pItem->getPaymentTransactionId();
@@ -244,33 +241,33 @@ class IyzicoPaymentService implements PaymentInterface
                     'paid_price' => (float) $payment->getPaidPrice(),
                     'currency' => $payment->getCurrency(),
                     'payment_status' => $payment->getStatus() === 'success' ? 'paid' : 'failed',
-                    'payment_transaction_id' => $itemsTxMap, 
+                    'payment_transaction_id' => $itemsTxMap,
                     'message' => 'Ödeme başarılı',
                 ];
-                
-                
+
                 if (isset($tokenResult) && $tokenResult['success']) {
                     $response['card_token'] = $tokenResult['card_token'];
                     $response['card_user_key'] = $tokenResult['card_user_key'];
                 }
                 Log::info('Ödeme işlemi başarılı', $response);
+
                 return $response;
             } else {
                 $errorMessage = $this->translateErrorMessage($payment->getErrorMessage(), $payment->getErrorCode());
+
                 return [
                     'success' => false,
                     'error' => $errorMessage,
-                    'error_code' => $payment->getErrorCode()
+                    'error_code' => $payment->getErrorCode(),
                 ];
             }
 
+        } catch (\Exception $e) {
+            Log::error('Ödeme işlemi sırasında bir hata oluştu: '.$e->getMessage());
 
-            
-        }catch(\Exception $e){
-            Log::error('Ödeme işlemi sırasında bir hata oluştu: ' . $e->getMessage());
             return [
                 'success' => false,
-                'error' => 'Ödeme işlemi sırasında bir hata oluştu: ' . $e->getMessage()
+                'error' => 'Ödeme işlemi sırasında bir hata oluştu: '.$e->getMessage(),
             ];
         }
     }
@@ -278,7 +275,7 @@ class IyzicoPaymentService implements PaymentInterface
     public function checkPaymentStatus(string $paymentId): array
     {
         try {
-            $request = new RetrieveCheckoutFormRequest();
+            $request = new RetrieveCheckoutFormRequest;
             $request->setToken($paymentId);
 
             $checkoutForm = CheckoutForm::retrieve($request, $this->options);
@@ -288,20 +285,20 @@ class IyzicoPaymentService implements PaymentInterface
                     'success' => true,
                     'status' => $checkoutForm->getPaymentStatus(),
                     'payment_id' => $checkoutForm->getPaymentId(),
-                    'amount' => $checkoutForm->getPrice()
+                    'amount' => $checkoutForm->getPrice(),
                 ];
             } else {
                 return [
                     'success' => false,
                     'error' => $checkoutForm->getErrorMessage(),
-                    'error_code' => $checkoutForm->getErrorCode()
+                    'error_code' => $checkoutForm->getErrorCode(),
                 ];
             }
 
         } catch (\Exception $e) {
             return [
                 'success' => false,
-                'error' => 'Ödeme durumu kontrol edilirken hata oluştu: ' . $e->getMessage()
+                'error' => 'Ödeme durumu kontrol edilirken hata oluştu: '.$e->getMessage(),
             ];
         }
     }
@@ -309,42 +306,41 @@ class IyzicoPaymentService implements PaymentInterface
     public function refundPayment(string $paymentTransactionId, float $amount): array
     {
         try {
-            $request = new CreateRefundRequest();
+            $request = new CreateRefundRequest;
 
             $ip = request()->ip() ?? '127.0.0.1';
             $request->setIp($ip);
             $request->setLocale(Locale::TR);
-            
+
             $request->setConversationId($paymentTransactionId);
             $request->setPaymentTransactionId($paymentTransactionId);
-            
+
             $request->setPrice(number_format($amount, 2, '.', ''));
             $request->setCurrency(Currency::TL);
-        //  $request->setReason(RefundReason::OTHER);
-        //  $request->setDescription("customer requested for default sample");
+            //  $request->setReason(RefundReason::OTHER);
+            //  $request->setDescription("customer requested for default sample");
 
             $refund = Refund::create($request, $this->options);
 
             if ($refund->getStatus() === 'success') {
                 return [
                     'success' => true,
-                    'message' => 'Ödeme iade edildi'
+                    'message' => 'Ödeme iade edildi',
                 ];
             } else {
                 return [
                     'success' => false,
-                    'error' => $refund->getErrorMessage()
+                    'error' => $refund->getErrorMessage(),
                 ];
             }
         } catch (\Exception $e) {
             return [
                 'success' => false,
-                'error' => 'Ödeme iade edilirken hata oluştu: ' . $e->getMessage()
+                'error' => 'Ödeme iade edilirken hata oluştu: '.$e->getMessage(),
             ];
         }
     }
 
-    
     private function translateErrorMessage(string $errorMessage, string $errorCode): string
     {
         $translations = [
@@ -364,13 +360,11 @@ class IyzicoPaymentService implements PaymentInterface
             '5014' => 'Kart bilgileri formatı hatalı.',
             '5015' => 'Kart bilgileri eksik veya hatalı.',
         ];
-        
-        
+
         if (isset($translations[$errorCode])) {
             return $translations[$errorCode];
         }
-        
-        
+
         $generalTranslations = [
             'Invalid card information' => 'Kart bilgileri hatalı',
             'Card number is invalid' => 'Kart numarası geçersiz',
@@ -382,14 +376,13 @@ class IyzicoPaymentService implements PaymentInterface
             'Payment declined' => 'Ödeme reddedildi',
             '3D Secure verification failed' => '3D Secure doğrulaması başarısız',
         ];
-        
+
         foreach ($generalTranslations as $english => $turkish) {
             if (stripos($errorMessage, $english) !== false) {
                 return $turkish;
             }
         }
-        
-        
+
         return $errorMessage ?: 'Kart bilgileri hatalı. Lütfen bilgilerinizi kontrol ediniz.';
     }
 
@@ -404,7 +397,7 @@ class IyzicoPaymentService implements PaymentInterface
 
         $request->setAddress($store->address ?? "Adres Belirtilmedi");
         $request->setTaxOffice($store->tax_office ?? "Kadıköy");
-        $request->setTaxNumber($store->tax_number ?? "1111111111"); 
+        $request->setTaxNumber($store->tax_number ?? "1111111111");
         $companyTitle = $store->name ?: "Mağaza_" . $store->id;
         if (strlen($companyTitle) < 3) {
             $companyTitle = "Mağaza_" . $store->id;
@@ -430,7 +423,7 @@ class IyzicoPaymentService implements PaymentInterface
                 'sub_merchant_key' => $subMerchant->getSubMerchantKey(),
                 'message' => 'Alt üye iş yeri başarıyla oluşturuldu'
             ];
-        } 
+        }
         return [
             'success' => false,
             'error' => $subMerchant->getErrorMessage(),

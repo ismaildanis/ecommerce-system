@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Inventory extends Model
 {
@@ -27,7 +27,7 @@ class Inventory extends Model
     {
         return $this->belongsTo(VariantSize::class, 'variant_size_id');
     }
-    
+
     public function warehouse()
     {
         return $this->belongsTo(Warehouse::class, 'warehouse_id');
@@ -38,6 +38,3 @@ class Inventory extends Model
         return $this->on_hand - $this->reserved;
     }
 }
-
-
-

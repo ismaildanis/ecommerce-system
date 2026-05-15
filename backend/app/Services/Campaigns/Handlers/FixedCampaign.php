@@ -13,18 +13,18 @@ class FixedCampaign extends BaseCampaign
         if (! $this->isCampaignActive()) {
             return false;
         }
-        
+
         $this->checkPerUserLimit();
         $items = $this->eligibleItems($bagItems);
-    
+
         if ($items->isEmpty()) {
             return false;
         }
-    
+
         if (! $this->eligibleMinBag($items->all())) {
             return false;
         }
-    
+
         return true;
     }
 
@@ -39,6 +39,7 @@ class FixedCampaign extends BaseCampaign
             ]);
         }
     }
+
     public function calculateDiscount(array $bagItems): array
     {
         $items = $this->eligibleItems($bagItems);
@@ -54,13 +55,13 @@ class FixedCampaign extends BaseCampaign
         }
 
         return [
-            'campaign_id'          => $this->campaign->id,
-            'store_id'             => $this->campaign->store_id,
-            'code'                  => $this->campaign->code,
-            'description'          => $this->campaign->description,
-            'discount_cents'       => $discountCents,
+            'campaign_id' => $this->campaign->id,
+            'store_id' => $this->campaign->store_id,
+            'code' => $this->campaign->code,
+            'description' => $this->campaign->description,
+            'discount_cents' => $discountCents,
             'eligible_total_cents' => $subtotalCents,
-            'items'                => $this->splitDiscount($items, $discountCents),
+            'items' => $this->splitDiscount($items, $discountCents),
         ];
     }
 
@@ -79,20 +80,20 @@ class FixedCampaign extends BaseCampaign
         $totalCents = $this->subtotalCents($items);
 
         return $items->map(function ($item) use ($discountCents, $totalCents) {
-            $quantity   = $item->quantity;
-            $lineCents  = $item->unit_price_cents * $quantity;
-            $share      = $totalCents > 0 ? ($lineCents / $totalCents) : 0;
+            $quantity = $item->quantity;
+            $lineCents = $item->unit_price_cents * $quantity;
+            $share = $totalCents > 0 ? ($lineCents / $totalCents) : 0;
             $lineDiscountCents = (int) round($discountCents * $share);
-            
+
             return [
-                'bag_item_id'            => $item->id,
-                'product_id'             => $item->variant->product_id,
-                'quantity'               => $quantity,
-                'unit_price_cents'       => $item->unit_price_cents,
-                'line_total_cents'       => $lineCents,
-                'discount_cents'         => $lineDiscountCents,
+                'bag_item_id' => $item->id,
+                'product_id' => $item->variant->product_id,
+                'quantity' => $quantity,
+                'unit_price_cents' => $item->unit_price_cents,
+                'line_total_cents' => $lineCents,
+                'discount_cents' => $lineDiscountCents,
                 'discounted_total_cents' => max($lineCents - $lineDiscountCents, 0),
-                'per_item_discounted_price_cents' => (int) round(($lineCents - $lineDiscountCents) / $quantity)
+                'per_item_discounted_price_cents' => (int) round(($lineCents - $lineDiscountCents) / $quantity),
             ];
         });
     }
@@ -100,14 +101,14 @@ class FixedCampaign extends BaseCampaign
     protected function emptyResult(int $subtotalCents = 0): array
     {
         return [
-            'campaign_id'          => $this->campaign->id,
-            'store_id'             => $this->campaign->store_id,
-            'description'          => $this->campaign->description,
-            'discount_cents'       => 0,
-            'discount'             => 0,
+            'campaign_id' => $this->campaign->id,
+            'store_id' => $this->campaign->store_id,
+            'description' => $this->campaign->description,
+            'discount_cents' => 0,
+            'discount' => 0,
             'eligible_total_cents' => $subtotalCents,
-            'eligible_total'       => $subtotalCents / 100,
-            'items'                => collect(),
+            'eligible_total' => $subtotalCents / 100,
+            'items' => collect(),
         ];
     }
 }

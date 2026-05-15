@@ -16,19 +16,18 @@ class OrderRefundItemFactory
             if (! is_array($item) || empty($item['itemId'])) {
                 continue;
             }
-            if (!$item['canRefund']) {
+            if (! $item['canRefund']) {
                 continue;
             }
 
             $this->orderRefundItemRepository->create([
-                'order_refund_id'     => $orderRefundId,
-                'order_item_id'       => $item['itemId'],
-                'quantity'            => $item['requestedQty'] ?? 0,
+                'order_refund_id' => $orderRefundId,
+                'order_item_id' => $item['itemId'],
+                'quantity' => $item['requestedQty'] ?? 0,
                 'refund_amount_cents' => $item['priceToRefundCents'] ?? 0,
-                'inspection_status'   => 'pending',
-                'inspection_note'     => null,
+                'inspection_status' => 'pending',
+                'inspection_note' => null,
             ]);
         }
     }
 }
-

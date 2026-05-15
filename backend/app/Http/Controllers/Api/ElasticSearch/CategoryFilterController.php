@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers\Api\ElasticSearch;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Collection;
 use App\Helpers\ResponseHelper;
-use App\Models\Category;
-use App\Services\Search\ElasticSearchTypeService;
-use App\Services\Search\ElasticSearchProductService;
-use App\Services\MainService;
-use App\Http\Resources\Product\ProductResource;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Category\CategoryResource;
+use App\Services\MainService;
+use App\Services\Search\ElasticSearchProductService;
+use App\Services\Search\ElasticSearchTypeService;
+use Illuminate\Http\Request;
 
 class CategoryFilterController extends Controller
 {
     protected $elasticSearchTypeService;
+
     protected $elasticSearchProductService;
+
     protected $mainService;
 
     public function __construct(
@@ -28,11 +27,12 @@ class CategoryFilterController extends Controller
         $this->elasticSearchProductService = $elasticSearchProductService;
         $this->mainService = $mainService;
     }
+
     public function categoryFilter(Request $request, $category_slug)
     {
         $categories = $this->mainService->getCategory($category_slug);
 
-        if (!$categories) {
+        if (! $categories) {
             return ResponseHelper::notFound('Kategori bulunamadı.');
         }
         $request->merge([
@@ -48,14 +48,14 @@ class CategoryFilterController extends Controller
         );
 
         return response()->json([
-            'products'   => $data['products'],
-            'filters'    => $filters,
-            'categories'   =>CategoryResource::collection($categories),
+            'products' => $data['products'],
+            'filters' => $filters,
+            'categories' => CategoryResource::collection($categories),
             'total' => $data['results']['total'],
             'pagination' => [
                 'page' => $request->input('page', 1),
-                'size' => $request->input('size', 1000)
-            ]
+                'size' => $request->input('size', 1000),
+            ],
         ]);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Observers;
 
-use App\Models\ProductVariantImage;
-use App\Models\ProductVariant;
-use App\Jobs\IndexProductToElasticsearch;
 use App\Jobs\DeleteProductToElasticsearch;
+use App\Jobs\IndexProductToElasticsearch;
+use App\Models\ProductVariant;
+use App\Models\ProductVariantImage;
 use Illuminate\Support\Facades\Log;
 
 class ProductVariantImageObserver
@@ -14,14 +14,15 @@ class ProductVariantImageObserver
     {
         try {
             $productVariantImage->load('productVariant.product');
-            
+
             if ($productVariantImage->productVariant && $productVariantImage->productVariant->product) {
                 dispatch(new IndexProductToElasticsearch($productVariantImage->productVariant->product->id));
             }
         } catch (\Exception $e) {
-            Log::error('ProductVariantImageObserver error: ' . $e->getMessage());
+            Log::error('ProductVariantImageObserver error: '.$e->getMessage());
         }
     }
+
     /**
      * Handle the ProductVariantImage "created" event.
      */
@@ -50,6 +51,7 @@ class ProductVariantImageObserver
             dispatch(new DeleteProductToElasticsearch($productId));
         }
     }
+
     /**
      * Handle the ProductVariantImage "restored" event.
      */

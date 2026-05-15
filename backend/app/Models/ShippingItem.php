@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ShippingItem extends Model
 {
     use SoftDeletes;
+
     protected $table = 'shipping_items';
-    
+
     protected $fillable = [
         'order_item_id',
         'tracking_number',

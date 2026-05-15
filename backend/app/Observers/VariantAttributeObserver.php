@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use App\Models\VariantAttribute;
-use App\Jobs\IndexProductToElasticsearch;
 use App\Jobs\DeleteProductToElasticsearch;
+use App\Jobs\IndexProductToElasticsearch;
+use App\Models\VariantAttribute;
 
 class VariantAttributeObserver
 {
@@ -12,6 +12,7 @@ class VariantAttributeObserver
     {
         dispatch(new IndexProductToElasticsearch($variantAttribute->variant->product_id));
     }
+
     /**
      * Handle the VariantAttribute "created" event.
      */

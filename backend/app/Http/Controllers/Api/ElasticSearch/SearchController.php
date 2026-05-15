@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Api\ElasticSearch;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Services\Search\ElasticSearchTypeService;
-use App\Services\Search\ElasticSearchProductService;
 use App\Helpers\ResponseHelper;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\ElasticSearch\ElasticProductResource;
+use App\Services\Search\ElasticSearchProductService;
+use App\Services\Search\ElasticSearchTypeService;
+use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
     protected $elasticSearchTypeService;
+
     protected $elasticSearchProductService;
 
     public function __construct(ElasticSearchTypeService $elasticSearchTypeService, ElasticSearchProductService $elasticSearchProductService)
@@ -22,7 +23,7 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
-        $query   = $request->input('q', '');
+        $query = $request->input('q', '');
         $filters = $this->elasticSearchTypeService->filterType($request);
         $sorting = $this->elasticSearchTypeService->sortingType($request);
 
@@ -34,22 +35,22 @@ class SearchController extends Controller
             $request->input('size', 12)
         );
 
-        if (!empty($data['products'])) {
+        if (! empty($data['products'])) {
             return response()->json([
-                'total'    => $data['results']['total'],
-                'page'     => $request->input('page', 1),
-                'size'     => $request->input('size', 12),
-                'query'    => $query ?? null,
+                'total' => $data['results']['total'],
+                'page' => $request->input('page', 1),
+                'size' => $request->input('size', 12),
+                'query' => $query ?? null,
                 'products' => ElasticProductResource::collection($data['products']),
             ]);
         }
 
         return ResponseHelper::notFound('Ürün bulunamadı.', [
-            'total'    => 0,
-            'page'     => $request->input('page', 1),
-            'size'     => $request->input('size', 12),
-            'query'    => $query ?? null,
-            'products' => []
+            'total' => 0,
+            'page' => $request->input('page', 1),
+            'size' => $request->input('size', 12),
+            'query' => $query ?? null,
+            'products' => [],
         ]);
     }
 }

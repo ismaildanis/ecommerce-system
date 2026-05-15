@@ -2,11 +2,11 @@
 
 namespace App\Jobs;
 
+use App\Models\Product;
+use App\Services\Search\ElasticsearchService;
+use App\Services\Search\ProductIndexerService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use App\Services\Search\ElasticsearchService;
-use App\Models\Product;
-use App\Services\Search\ProductIndexerService;
 use Illuminate\Support\Facades\Log;
 
 class IndexProductToElasticsearch implements ShouldQueue
@@ -14,6 +14,7 @@ class IndexProductToElasticsearch implements ShouldQueue
     use Queueable;
 
     public $tries = 3;
+
     public $backoff = [10, 30, 60];
 
     protected $productId;
@@ -26,13 +27,13 @@ class IndexProductToElasticsearch implements ShouldQueue
     public function handle(): void
     {
         $product = Product::with([
-            'category.parent', 
-            'variants.variantImages', 
-            'variants.variantSizes.sizeOption', 
-            'variants.variantSizes.inventory'
+            'category.parent',
+            'variants.variantImages',
+            'variants.variantSizes.sizeOption',
+            'variants.variantSizes.inventory',
         ])->find($this->productId);
 
-        if (!$product) {
+        if (! $product) {
             return;
         }
         $indexerService = app(ProductIndexerService::class);
@@ -41,12 +42,12 @@ class IndexProductToElasticsearch implements ShouldQueue
         $elasticsearchService = app(ElasticsearchService::class);
         $elasticsearchService->indexDocument('products', $product->id, $data);
     }
-    
+
     public function failed(\Throwable $exception): void
     {
-        Log::error('Elasticsearch indexing failed for product ID: ' . $this->productId, [
+        Log::error('Elasticsearch indexing failed for product ID: '.$this->productId, [
             'error' => $exception->getMessage(),
-            'trace' => $exception->getTraceAsString()
+            'trace' => $exception->getTraceAsString(),
         ]);
     }
 }

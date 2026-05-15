@@ -2,15 +2,15 @@
 
 namespace Database\Seeders\Main;
 
-use Illuminate\Database\Seeder;
 use App\Models\VariantAttribute;
+use Illuminate\Database\Seeder;
 
 class VariantAttributeSeeder extends Seeder
 {
     public function run(): void
     {
         $common = [
-            'attribute_id'      => 1,          // Yaş Aralığı
+            'attribute_id' => 1,          // Yaş Aralığı
         ];
 
         $pairs = [
@@ -43,5 +43,4 @@ class VariantAttributeSeeder extends Seeder
             VariantAttribute::create(array_merge($common, $pair));
         }
     }
-
 }

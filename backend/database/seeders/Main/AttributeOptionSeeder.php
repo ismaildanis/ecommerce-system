@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Main;
 
-use Illuminate\Database\Seeder;
 use App\Models\AttributeOption;
+use Illuminate\Database\Seeder;
 
 class AttributeOptionSeeder extends Seeder
 {
@@ -28,7 +28,7 @@ class AttributeOptionSeeder extends Seeder
             AttributeOption::create([
                 'attribute_id' => 1, // Yaş Aralığı
                 'value' => $age[0],
-                'slug'  => $age[1],
+                'slug' => $age[1],
             ]);
         }
     }

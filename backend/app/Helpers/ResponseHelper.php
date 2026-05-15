@@ -18,7 +18,7 @@ class ResponseHelper
     {
         return response()->json(['message' => $message, 'data' => $data], $code);
     }
-    
+
     public static function notFound($message, $data = [], $code = 404)
     {
         return response()->json(['message' => $message, 'data' => $data], $code);

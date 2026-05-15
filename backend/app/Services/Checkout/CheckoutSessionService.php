@@ -2,22 +2,14 @@
 
 namespace App\Services\Checkout;
 
-use App\Repositories\Contracts\User\AddressesRepositoryInterface;
-use App\Repositories\Contracts\Payment\PaymentMethodRepositoryInterface;
-use App\Services\Checkout\CheckoutPaymentService;
-use App\Services\Checkout\Orders\OrderPlacementService;
-use App\Repositories\Contracts\Inventory\InventoryRepositoryInterface;
-
 use App\Jobs\OrderPlacementJob;
-
-use App\Models\User;
 use App\Models\CheckoutSession;
-
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
-
+use App\Models\User;
+use App\Repositories\Contracts\Inventory\InventoryRepositoryInterface;
+use App\Repositories\Contracts\Payment\PaymentMethodRepositoryInterface;
+use App\Repositories\Contracts\User\AddressesRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Support\Str;
 
 class CheckoutSessionService
 {
@@ -27,8 +19,7 @@ class CheckoutSessionService
         private readonly CheckoutPaymentService $checkoutPaymentService,
         private readonly InventoryRepositoryInterface $inventories
 
-    ) {
-    }
+    ) {}
 
     public function createSession(User $user, array $bagData): CheckoutSession
     {
@@ -39,7 +30,7 @@ class CheckoutSessionService
         $session = CheckoutSession::create([
             'id' => (string) Str::uuid(),
             'user_id' => $user->id,
-            'bag_id'         => optional($bagData['products']->first())->bag_id,
+            'bag_id' => optional($bagData['products']->first())->bag_id,
             'bag_snapshot' => $this->prepareBagSnapshot($bagData),
             'status' => 'pending',
             'is_active' => true,
@@ -53,7 +44,7 @@ class CheckoutSessionService
     {
         return $this->findSessionForUser($sessionId, $user->id);
     }
-    
+
     public function updateShipping($user, array $data): CheckoutSession
     {
 
@@ -62,14 +53,14 @@ class CheckoutSessionService
             throw new \RuntimeException('Checkout oturumu zaten onaylandı.');
         }
         $shippingAddress = $this->addressesRepository->getAddressById($data['shipping_address_id'], $user->id);
-        if (!$shippingAddress) {
+        if (! $shippingAddress) {
             throw new ModelNotFoundException('Teslimat adresi size ait değil.');
         }
         $billingAddress = null;
-        if (!empty($data['billing_address_id'])) {
+        if (! empty($data['billing_address_id'])) {
             $billingAddress = $this->addressesRepository->getAddressById($data['billing_address_id'], $user->id);
 
-            if (!$billingAddress) {
+            if (! $billingAddress) {
                 throw new ModelNotFoundException('Fatura adresi size ait değil.');
             }
         }
@@ -104,14 +95,12 @@ class CheckoutSessionService
 
             if (! $paymentMethod) {
                 throw new ModelNotFoundException('Geçerli bir ödeme yöntemi bulunamadı.');
-
             }
 
         } elseif ($data['payment_method'] === 'new_card') {
             $paymentMethod = $this->checkoutPaymentService->buildTemporaryMethodFromData($user, $data);
         } else {
             throw new \InvalidArgumentException('Desteklenmeyen ödeme yöntemi.');
-
         }
 
         $intent = $this->checkoutPaymentService->createPaymentIntent(
@@ -121,24 +110,23 @@ class CheckoutSessionService
             $data
         );
 
-
         $paymentData = $session->payment_data ?? [];
-        $paymentData['provider']            = $intent['provider'];
-        $paymentData['method']              = $data['payment_method'];
-        $paymentData['payment_method_id']   = $paymentMethod->id ?? null;
-        $paymentData['installment']         = $data['installment'] ?? 1;
-        $paymentData['intent']              = $intent;
-        $paymentData['status']              = $intent['status'] ?? 'payment_pending';
-        $paymentData['save_card']           = (bool) ($data['save_card'] ?? false);
+        $paymentData['provider'] = $intent['provider'];
+        $paymentData['method'] = $data['payment_method'];
+        $paymentData['payment_method_id'] = $paymentMethod->id ?? null;
+        $paymentData['installment'] = $data['installment'] ?? 1;
+        $paymentData['intent'] = $intent;
+        $paymentData['status'] = $intent['status'] ?? 'payment_pending';
+        $paymentData['save_card'] = (bool) ($data['save_card'] ?? false);
         $paymentData['new_card_payload'] = ($paymentData['save_card'] && ! $paymentMethod->exists)
             ? [
                 'card_alias' => $data['card_alias'] ?? 'Kredi Kartım',
-                'last4'      => substr($data['card_number'] ?? '', -4),
+                'last4' => substr($data['card_number'] ?? '', -4),
             ]
             : null;
 
         $session->payment_data = $paymentData;
-        if (!empty($intent['requires_3ds'])) {
+        if (! empty($intent['requires_3ds'])) {
             $session->status = 'pending_3ds';
         } else {
             $session->status = 'confirmed';
@@ -152,7 +140,7 @@ class CheckoutSessionService
     public function confirmPaymentIntent(array $data): CheckoutSession
     {
         $conversationId = $data['conversationId'] ?? null;
-        $paymentId      = $data['paymentId'] ?? null;
+        $paymentId = $data['paymentId'] ?? null;
 
         $session = null;
 
@@ -161,18 +149,18 @@ class CheckoutSessionService
                 'payment_data->intent->conversation_id',
                 $conversationId
             )
-            ->first();
+                ->first();
         }
 
-        if (!$session && $paymentId) {
+        if (! $session && $paymentId) {
             $session = CheckoutSession::where(
                 'payment_data->intent->payment_id',
                 $paymentId
             )
-            ->first();
+                ->first();
         }
 
-        if (!$session && config('app.env') !== 'production') {
+        if (! $session && config('app.env') !== 'production') {
             $session = CheckoutSession::where('status', 'confirmed')
                 ->where('payment_data->provider', 'iyzico')
                 ->latest()
@@ -180,17 +168,17 @@ class CheckoutSessionService
 
         }
 
-        if (!$session) {
+        if (! $session) {
             throw new \RuntimeException('Checkout oturumu bulunamadı.');
         }
 
         $session->loadMissing('user');
 
-        if (!$session->user && $session->user_id) {
+        if (! $session->user && $session->user_id) {
             $session->setRelation('user', User::find($session->user_id));
         }
 
-        if (!$session->user) {
+        if (! $session->user) {
             throw new \RuntimeException('Kullanıcı bulunamadı.');
         }
 
@@ -198,19 +186,19 @@ class CheckoutSessionService
 
         $paymentData = $session->payment_data ?? [];
         $paymentData['intent_result'] = $result;
-        $paymentData['status']        = $result['status'];
-        
-        if (!empty($result['payment_transaction_id'])) {
+        $paymentData['status'] = $result['status'];
+
+        if (! empty($result['payment_transaction_id'])) {
             $paymentData['intent']['payment_transaction_id'] = $result['payment_transaction_id'];
         }
         if (($paymentData['save_card'] ?? false) && ($paymentData['new_card_payload'] ?? null)) {
-            $payload                     = $paymentData['new_card_payload'];
-            $payload['result']           = $result;
+            $payload = $paymentData['new_card_payload'];
+            $payload['result'] = $result;
             $paymentData['new_card_payload'] = $payload;
         }
 
         $session->payment_data = $paymentData;
-        $session->status       = 'confirmed';
+        $session->status = 'confirmed';
         $session->save();
 
         return $session->fresh();
@@ -222,7 +210,7 @@ class CheckoutSessionService
             ->where('user_id', $user)
             ->first();
 
-        if (!$session) {
+        if (! $session) {
             throw new ModelNotFoundException('Checkout oturumu bulunamadı.');
         }
 
@@ -239,48 +227,48 @@ class CheckoutSessionService
     {
         $items = $bagData['products']->map(function ($item) {
             return [
-                'bag_item_id'        => $item->id,
-                'store_id'           => $item->store_id,
-                'variant_size_id'    => $item->variant_size_id,
-                'product_id'         => $item->variantSize->productVariant->product_id,
-                'product_title'      => $item->variantSize->productVariant->color_name . ' ' . $item->variantSize->productVariant->product->title,
+                'bag_item_id' => $item->id,
+                'store_id' => $item->store_id,
+                'variant_size_id' => $item->variant_size_id,
+                'product_id' => $item->variantSize->productVariant->product_id,
+                'product_title' => $item->variantSize->productVariant->color_name.' '.$item->variantSize->productVariant->product->title,
                 'product_category_title' => $item->variantSize->productVariant->product->category->title,
-                'size_name'          => $item->variantSize->sizeOption->value,
-                'color_name'         => $item->variantSize->productVariant->color_name,
-                'quantity'           => $item->quantity,
-                'unit_price_cents'   => $item->unit_price_cents,
-                'total_price_cents'  => $item->unit_price_cents * $item->quantity,
+                'size_name' => $item->variantSize->sizeOption->value,
+                'color_name' => $item->variantSize->productVariant->color_name,
+                'quantity' => $item->quantity,
+                'unit_price_cents' => $item->unit_price_cents,
+                'total_price_cents' => $item->unit_price_cents * $item->quantity,
             ];
         })->toArray();
 
         return [
-            'items'             => $items,
+            'items' => $items,
             'totals' => [
-                'total_cents'       => $bagData['total_cents'],
+                'total_cents' => $bagData['total_cents'],
                 'per_item_price_cents' => $bagData['per_item_price_cents'],
-                'cargo_cents'       => $bagData['cargo_price_cents'],
+                'cargo_cents' => $bagData['cargo_price_cents'],
                 'per_item_cargo_price_cents' => $bagData['per_item_cargo_price_cents'],
-                'discount_cents'    => $bagData['discount_cents'] ?? 0, 
-                'final_cents'       => $bagData['final_price_cents'],
+                'discount_cents' => $bagData['discount_cents'] ?? 0,
+                'final_cents' => $bagData['final_price_cents'],
                 'item_final_price_cents' => $bagData['item_final_price_cents'],
             ],
-            'applied_campaign'  => [
-                'id'          => $bagData['applied_campaign']['id'] ?? null,
-                'name'         => $bagData['applied_campaign']['name'] ?? null,
+            'applied_campaign' => [
+                'id' => $bagData['applied_campaign']['id'] ?? null,
+                'name' => $bagData['applied_campaign']['name'] ?? null,
                 'discount_items' => $bagData['discount_items'] ?? [],
-            ] ?? null
+            ] ?? null,
         ];
     }
 
     private function checkStock(array $bagData): bool
     {
-       $items = $bagData['products']->map(function ($item) {
+        $items = $bagData['products']->map(function ($item) {
             return [
-                'variant_size_id'    => $item->variant_size_id,
-                'quantity'           => $item->quantity,
+                'variant_size_id' => $item->variant_size_id,
+                'quantity' => $item->quantity,
 
             ];
-        })->toArray(); 
+        })->toArray();
 
         foreach ($items as $item) {
             if ($this->inventories->checkStock($item['variant_size_id'], $item['quantity']) === false) {
@@ -290,5 +278,4 @@ class CheckoutSessionService
 
         return true;
     }
-
 }

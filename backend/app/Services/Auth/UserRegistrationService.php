@@ -3,10 +3,8 @@
 namespace App\Services\Auth;
 
 use App\Repositories\Contracts\UserRepositoryInterface;
-use App\Helpers\ResponseHelper;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class UserRegistrationService
 {
@@ -38,19 +36,18 @@ class UserRegistrationService
                 'message' => 'Kullanıcı başarıyla kaydedildi',
                 'data' => [
                     'user' => $user,
-                    'token' => $token
-                ]
+                    'token' => $token,
+                ],
             ];
 
         } catch (Exception $e) {
             DB::rollBack();
-            
+
             return [
                 'success' => false,
-                'message' => 'Kullanıcı kaydı sırasında bir hata oluştu: ' . $e->getMessage(),
-                'errors' => ['error' => $e->getMessage()]
+                'message' => 'Kullanıcı kaydı sırasında bir hata oluştu: '.$e->getMessage(),
+                'errors' => ['error' => $e->getMessage()],
             ];
         }
     }
-
 }

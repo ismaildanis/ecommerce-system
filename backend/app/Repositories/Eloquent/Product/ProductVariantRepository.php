@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Eloquent\Product;
 
-use App\Repositories\Eloquent\BaseRepository;
-use App\Repositories\Contracts\Product\ProductVariantRepositoryInterface;
 use App\Models\ProductVariant;
+use App\Repositories\Contracts\Product\ProductVariantRepositoryInterface;
+use App\Repositories\Eloquent\BaseRepository;
 
 class ProductVariantRepository extends BaseRepository implements ProductVariantRepositoryInterface
 {
@@ -15,15 +15,17 @@ class ProductVariantRepository extends BaseRepository implements ProductVariantR
 
     public function getProductVariants($productId)
     {
-        return $this->model->where('product_id', $productId)->with('variantImages','variantSizes.inventory', 'variantSizes.sizeOption')->get();
+        return $this->model->where('product_id', $productId)->with('variantImages', 'variantSizes.inventory', 'variantSizes.sizeOption')->get();
     }
+
     public function getProductVariantById($variantId)
     {
-        return $this->model->where('id', $variantId)->with('variantImages','variantSizes.inventory', 'variantSizes.sizeOption')->first();
+        return $this->model->where('id', $variantId)->with('variantImages', 'variantSizes.inventory', 'variantSizes.sizeOption')->first();
     }
+
     public function getProductVariant($productId, $variantId)
     {
-        return $this->model->where('product_id', $productId)->where('id', $variantId)->with('variantImages','variantSizes.inventory', 'variantSizes.sizeOption')->first();
+        return $this->model->where('product_id', $productId)->where('id', $variantId)->with('variantImages', 'variantSizes.inventory', 'variantSizes.sizeOption')->first();
     }
 
     public function getProductVariantBySlug($slug)
@@ -40,7 +42,7 @@ class ProductVariantRepository extends BaseRepository implements ProductVariantR
             'variantSizes.sizeOption',
         )->where('is_popular', true)->get();
     }
-    
+
     public function createVariant($data, $productId)
     {
         return $this->model->where('product_id', $productId)->create($data);
@@ -52,7 +54,7 @@ class ProductVariantRepository extends BaseRepository implements ProductVariantR
         if ($variant) {
             $variant->update($data);
         }
-        
+
         return $variant;
     }
 

@@ -3,9 +3,9 @@
 namespace App\Repositories\Eloquent\OrderItem;
 
 use App\Models\OrderItem;
-use Illuminate\Support\Collection;
-use App\Repositories\Eloquent\BaseRepository;
 use App\Repositories\Contracts\OrderItem\OrderItemRepositoryInterface;
+use App\Repositories\Eloquent\BaseRepository;
+use Illuminate\Support\Collection;
 
 class OrderItemRepository extends BaseRepository implements OrderItemRepositoryInterface
 {
@@ -40,21 +40,23 @@ class OrderItemRepository extends BaseRepository implements OrderItemRepositoryI
             'product.variants.variantSizes.sizeOption',
         ])->where('store_id', $storeId)->where('id', $id)->first();
     }
+
     public function getOrderDetailforUser($userId, $orderId)
     {
         return $this->model
-                        ->with([
-                            'order',
-                            'product',
-                            'product.variants.variantImages',
-                            'product.variants.variantSizes.sizeOption',
-                        ])
-                        ->where('order_id', $orderId)
-                        ->whereHas('order', function($query) use ($userId) {
-                            $query->where('user_id', $userId);
-                        })
-                        ->get();
+            ->with([
+                'order',
+                'product',
+                'product.variants.variantImages',
+                'product.variants.variantSizes.sizeOption',
+            ])
+            ->where('order_id', $orderId)
+            ->whereHas('order', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
+            ->get();
     }
+
     public function create(array $attributes): OrderItem
     {
         return $this->model->newQuery()->create($attributes);
@@ -70,5 +72,4 @@ class OrderItemRepository extends BaseRepository implements OrderItemRepositoryI
 
         return $created;
     }
-
 }

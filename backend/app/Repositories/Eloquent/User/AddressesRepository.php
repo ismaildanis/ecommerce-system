@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Eloquent\User;
 
-use App\Repositories\Eloquent\BaseRepository;
-use App\Repositories\Contracts\User\AddressesRepositoryInterface;
 use App\Models\UserAddress;
+use App\Repositories\Contracts\User\AddressesRepositoryInterface;
+use App\Repositories\Eloquent\BaseRepository;
 
 class AddressesRepository extends BaseRepository implements AddressesRepositoryInterface
 {
@@ -12,37 +12,45 @@ class AddressesRepository extends BaseRepository implements AddressesRepositoryI
     {
         $this->model = $model;
     }
+
     public function getAddressesByUserId($userId)
     {
         return $this->findBy(['user_id' => $userId]);
     }
+
     public function getAddressById($id, $userId)
     {
         return $this->model->where('user_id', $userId)
-                        ->where('id', $id)
-                        ->first();
+            ->where('id', $id)
+            ->first();
     }
+
     public function createAddress(array $data, $userId)
     {
         $data['user_id'] = $userId;
+
         return $this->create($data);
     }
+
     public function updateAddress(array $data, $id, $userId)
     {
         $address = $this->getAddressById($id, $userId);
-        if(!$address){
+        if (! $address) {
             return null;
         }
         $address->update($data);
+
         return $address;
     }
+
     public function deleteAddress($id, $userId)
     {
         $address = $this->getAddressById($id, $userId);
-        if(!$address){  
+        if (! $address) {
             return null;
         }
         $address->delete();
+
         return true;
     }
 }

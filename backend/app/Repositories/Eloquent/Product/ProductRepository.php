@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquent\Product;
 
 use App\Models\Product;
-use App\Repositories\Eloquent\BaseRepository;
 use App\Repositories\Contracts\Product\ProductRepositoryInterface;
+use App\Repositories\Eloquent\BaseRepository;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
@@ -93,16 +93,15 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function updateProduct(array $productData, $storeId, $id)
     {
         $product = $this->model->where('store_id', $storeId)->where('id', $id)->first();
-        
-        if (!$product) {
+
+        if (! $product) {
             return false;
         }
 
         $product->update($productData);
 
-        return $product->fresh(); 
+        return $product->fresh();
     }
-
 
     /**
      * Toplu ürün oluştur.
@@ -126,7 +125,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         $product = $this->model->with('variants')->where('store_id', $storeId)->where('id', $id)->first();
 
-        if (!$product) {
+        if (! $product) {
             return false;
         }
 
@@ -134,10 +133,10 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             foreach ($product->variants as $variant) {
                 if (is_array($variant->variantImages)) {
                     foreach ($variant->variantImages as $img) {
-                        Storage::disk('public')->delete('productImages/' . $img);
+                        Storage::disk('public')->delete('productImages/'.$img);
                     }
                 } else {
-                    Storage::disk('public')->delete('productImages/' . $variant->variantImages);
+                    Storage::disk('public')->delete('productImages/'.$variant->variantImages);
                 }
             }
         }
@@ -173,11 +172,12 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         return $this->model->whereKey($productId)->decrement('stock_quantity', $quantity);
     }
-    
+
     public function incrementTotalSoldQuantity($productId, $quantity)
     {
         return $this->model->whereKey($productId)->increment('total_sold_quantity', $quantity);
     }
+
     public function decrementTotalSoldQuantity($productId, $quantity)
     {
         return $this->model->whereKey($productId)->decrement('total_sold_quantity', $quantity);

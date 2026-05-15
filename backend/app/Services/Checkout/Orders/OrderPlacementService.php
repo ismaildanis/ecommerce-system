@@ -2,20 +2,17 @@
 
 namespace App\Services\Checkout\Orders;
 
+use App\Jobs\SellerOrderNotification;
+use App\Jobs\SendOrderNotification;
 use App\Models\CheckoutSession;
-use App\Models\User;
 use App\Models\Order;
-use App\Services\Checkout\Orders\OrderFactory;
-use App\Services\Checkout\Orders\OrderItemFactory;
-use App\Services\Inventory\InventoryService;
-use App\Services\Payments\PaymentRecorder;
-use App\Services\Payments\PaymentMethodRecorder;
+use App\Models\User;
 use App\Repositories\Contracts\Bag\BagRepositoryInterface;
 use App\Services\Campaigns\CampaignManager;
+use App\Services\Inventory\InventoryService;
+use App\Services\Payments\PaymentMethodRecorder;
+use App\Services\Payments\PaymentRecorder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use App\Jobs\SendOrderNotification;
-use App\Jobs\SellerOrderNotification;
 
 class OrderPlacementService
 {
@@ -38,9 +35,9 @@ class OrderPlacementService
             $this->inventoryService->decrementForOrderItems($items);
             $this->paymentRecorder->record($order, $session->payment_data);
             $this->PaymentMethodRecorder->store($user, $session->payment_data, $data);
-            
-            $bagPayload    = $session->bag_snapshot;
-            $campaignId    = data_get($bagPayload, 'applied_campaign.id');
+
+            $bagPayload = $session->bag_snapshot;
+            $campaignId = data_get($bagPayload, 'applied_campaign.id');
             $discountCents = (int) data_get($bagPayload, 'totals.discount_cents', 0);
 
             if ($campaignId) {
@@ -56,15 +53,16 @@ class OrderPlacementService
             $this->bagRepository->clearBagItems($bag);
 
             $session->update([
-                'status'         => 'confirmed',
+                'status' => 'confirmed',
                 'meta->order_id' => $order->id,
             ]);
-            
+
             foreach ($items as $item) {
                 $seller = $item->product->store->seller;
                 SellerOrderNotification::dispatch($order, $seller);
             }
             SendOrderNotification::dispatch($order, $user);
+
             return $order;
         });
     }

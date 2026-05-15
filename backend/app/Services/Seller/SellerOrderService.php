@@ -2,70 +2,69 @@
 
 namespace App\Services\Seller;
 
-use App\Repositories\Contracts\OrderItem\OrderItemRepositoryInterface;
-use App\Repositories\Contracts\Store\StoreRepositoryInterface;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
-use App\Services\Shipping\Contracts\ShippingServiceInterface;
-use App\Jobs\ShippedOrderItemNotification;
 use App\Jobs\RefundOrderItemNotification;
 use App\Jobs\SellerRefundJob;
+use App\Jobs\ShippedOrderItemNotification;
 use App\Models\Payment;
 use App\Models\PaymentProvider;
+use App\Repositories\Contracts\AuthenticationRepositoryInterface;
+use App\Repositories\Contracts\OrderItem\OrderItemRepositoryInterface;
+use App\Repositories\Contracts\Store\StoreRepositoryInterface;
 use App\Services\Payments\Contracts\PaymentGatewayInterface;
+use App\Services\Shipping\Contracts\ShippingServiceInterface;
 
 class SellerOrderService
 {
-    
     public function __construct(
-       private readonly OrderItemRepositoryInterface $orderItemRepository,
-       private readonly StoreRepositoryInterface $storeRepository,
-       private readonly ShippingServiceInterface $shippingService,
-       private readonly AuthenticationRepositoryInterface $authenticationRepository,
-    ) {
-    
-    }
+        private readonly OrderItemRepositoryInterface $orderItemRepository,
+        private readonly StoreRepositoryInterface $storeRepository,
+        private readonly ShippingServiceInterface $shippingService,
+        private readonly AuthenticationRepositoryInterface $authenticationRepository,
+    ) {}
 
     public function getSellerOrders()
     {
         $seller = $this->authenticationRepository->getSeller();
-        if(!$seller){
+        if (! $seller) {
             throw new \Exception('Satıcı bulunamadı');
         }
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
-        if(!$store){
+        if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
         }
+
         return $this->orderItemRepository->getOrderItemsBySeller($store->id);
     }
 
     public function getSellerOneOrder($id)
     {
         $seller = $this->authenticationRepository->getSeller();
-        if(!$seller){
+        if (! $seller) {
             throw new \Exception('Satıcı bulunamadı');
         }
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
-        if(!$store){
+        if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
         }
+
         return $this->orderItemRepository->getOrderItemBySeller($store->id, $id);
     }
 
     public function confirmItem($id)
     {
         $seller = $this->authenticationRepository->getSeller();
-        if(!$seller){
+        if (! $seller) {
             throw new \Exception('Satıcı bulunamadı');
         }
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
-        if(!$store){
+        if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
         }
         $orderItem = $this->orderItemRepository->getOrderItemById($store->id, $id);
-        if (!$orderItem) {
+        if (! $orderItem) {
             throw new \Exception('Sipariş bulunamadı');
         }
-        if($orderItem->status === 'refunded'){
+        if ($orderItem->status === 'refunded') {
             throw new \Exception('Sipariş iade edildi');
         }
         if ($orderItem->shippingItem) {
@@ -105,27 +104,28 @@ class SellerOrderService
     public function refundSelectedItems($id, array $payload)
     {
         $seller = $this->authenticationRepository->getSeller();
-        if(!$seller){
+        if (! $seller) {
             throw new \Exception('Satıcı bulunamadı');
         }
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
-        if(!$store){
+        if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
         }
         $orderItem = $this->orderItemRepository->getOrderItemById($store->id, $id);
-        if (!$orderItem) {
+        if (! $orderItem) {
             throw new \Exception('Sipariş bulunamadı');
         }
         $blockedStatuses = ['refunded', 'canceled'];
         $allowedStatuses = ['confirmed', 'partial_refunded'];
 
         if (in_array($orderItem->status, $blockedStatuses, true)
-            || !in_array($orderItem->status, $allowedStatuses, true)) {
+            || ! in_array($orderItem->status, $allowedStatuses, true)) {
             throw new \Exception('Bu ürün iade edilemez veya iade edilmiş.');
         }
         $result = $this->processRefund($orderItem, $payload);
+
         return $result;
-        
+
     }
 
     private function processRefund($orderItem, array $payload)
@@ -136,7 +136,7 @@ class SellerOrderService
         $refundAmount = $this->calculateRefundPrice($orderItem, $payload);
 
         $gateway = app(PaymentGatewayInterface::class, ['provider' => $provider]);
- 
+
         $gatewayResponse = $gateway->refundPayment(
             $orderItem->payment_transaction_id,
             $refundAmount,
@@ -144,17 +144,18 @@ class SellerOrderService
         );
         $newRefundedQuantity = ($orderItem->refunded_quantity ?? 0) + (int) $payload['quantity'];
         $newRefundedPrice = ($orderItem->refunded_price_cents ?? 0) + $refundAmount;
-        
+
         $orderItem->update([
-            'refunded_quantity'    => $newRefundedQuantity,
+            'refunded_quantity' => $newRefundedQuantity,
             'refunded_price_cents' => $newRefundedPrice,
-            'status'               => $newRefundedQuantity >= $orderItem->quantity ? 'refunded' : 'partial_refunded',
-            'payment_status'       => $newRefundedQuantity >= $orderItem->quantity ? 'refunded' : 'partial_refunded',
-            'refunded_at'          => now(),
+            'status' => $newRefundedQuantity >= $orderItem->quantity ? 'refunded' : 'partial_refunded',
+            'payment_status' => $newRefundedQuantity >= $orderItem->quantity ? 'refunded' : 'partial_refunded',
+            'refunded_at' => now(),
         ]);
 
         SellerRefundJob::dispatch($orderItem, $payload, $refundAmount);
         RefundOrderItemNotification::dispatch($orderItem, $orderItem->order->user, $payload, $refundAmount);
+
         return $gatewayResponse;
     }
 
@@ -166,10 +167,10 @@ class SellerOrderService
         $refundPrice = $perItemPrice * $payload['quantity'];
         $refundPrice = round($refundPrice);
 
-        if($availableQuantity == 1){
+        if ($availableQuantity == 1) {
             $refundPrice = $remainingCents;
         }
+
         return $refundPrice;
     }
-
 }

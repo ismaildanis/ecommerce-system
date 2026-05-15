@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Main;
 
-use Illuminate\Database\Seeder;
 use App\Models\ProductVariantImage;
+use Illuminate\Database\Seeder;
 
 class ProductVariantImageSeeder extends Seeder
 {

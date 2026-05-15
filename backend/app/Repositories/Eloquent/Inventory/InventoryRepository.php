@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquent\Inventory;
 
 use App\Models\Inventory;
-use App\Repositories\Eloquent\BaseRepository;
 use App\Repositories\Contracts\Inventory\InventoryRepositoryInterface;
+use App\Repositories\Eloquent\BaseRepository;
 
 class InventoryRepository extends BaseRepository implements InventoryRepositoryInterface
 {
@@ -42,7 +42,7 @@ class InventoryRepository extends BaseRepository implements InventoryRepositoryI
             return false;
         }
 
-        return true;    
+        return true;
     }
 
     public function updateStock(int $variantSizeId, array $data): void

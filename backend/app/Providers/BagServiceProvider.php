@@ -2,14 +2,13 @@
 
 namespace App\Providers;
 
-use App\Services\Bag\Contracts\BagInterface;
 use App\Services\Bag\Contracts\BagCalculationInterface;
+use App\Services\Bag\Contracts\BagInterface;
 use App\Services\Bag\Contracts\StockInterface;
-use App\Services\Bag\Services\BagService;
 use App\Services\Bag\Services\BagCalculationService;
+use App\Services\Bag\Services\BagService;
 use App\Services\Bag\Services\StockService;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\Eloquent\Bag\BagRepository;
 
 class BagServiceProvider extends ServiceProvider
 {

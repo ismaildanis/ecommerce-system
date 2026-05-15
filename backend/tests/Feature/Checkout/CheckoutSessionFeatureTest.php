@@ -2,14 +2,14 @@
 
 namespace Tests\Feature\Checkout;
 
-use Tests\TestCase;
-use Mockery;
-use App\Models\User;
 use App\Models\CheckoutSession;
+use App\Models\User;
+use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 use App\Services\Bag\Contracts\BagInterface;
 use App\Services\Checkout\CheckoutSessionService;
 use App\Services\Checkout\Orders\OrderPlacementService;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
+use Mockery;
+use Tests\TestCase;
 
 class CheckoutSessionFeatureTest extends TestCase
 {
@@ -23,7 +23,7 @@ class CheckoutSessionFeatureTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = new User();
+        $user = new User;
         $user->id = 10;
 
         $auth = Mockery::mock(AuthenticationRepositoryInterface::class);
@@ -54,14 +54,14 @@ class CheckoutSessionFeatureTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = new User();
+        $user = new User;
         $user->id = 10;
 
         $bagData = [
             'products' => collect([(object) ['bag_id' => 22]]),
         ];
 
-        $session = new CheckoutSession();
+        $session = new CheckoutSession;
         $session->id = '11111111-1111-1111-1111-111111111111';
         $session->expires_at = now()->addHour();
         $session->bag_snapshot = ['items' => [], 'totals' => ['final_cents' => 1000]];

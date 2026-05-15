@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserAddress extends Model
 {
-    use SoftDeletes, HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'user_addresses';
 
@@ -28,14 +28,17 @@ class UserAddress extends Model
         'is_active',
         'notes',
     ];
+
     protected $casts = [
         'is_default' => 'boolean',
         'is_active' => 'boolean',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
     public function orders()
     {
         return $this->hasMany(Order::class);

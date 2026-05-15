@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('bag_items', function (Blueprint $table) {
@@ -19,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('unit_price_cents')->default(0);
             $table->unsignedBigInteger('store_id');
             $table->timestamps();
-        
+
             $table->foreign('bag_id')->references('id')->on('bags')->onDelete('cascade');
             $table->foreign('variant_id')->references('id')->on('product_variants')->onDelete('cascade');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
@@ -29,7 +28,6 @@ return new class extends Migration
             $table->index(['variant_size_id']);
         });
     }
-
 
     public function down(): void
     {

@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CreditCardStoreRequest extends FormRequest
 {
-
     public function authorize()
     {
         return true;
@@ -23,6 +22,7 @@ class CreditCardStoreRequest extends FormRequest
             'card_holder_name' => 'required|string|max:255',
         ];
     }
+
     public function messages()
     {
         return [

@@ -16,18 +16,18 @@ return [
                 'synonym_filter' => [
                     'type' => 'synonym',
                     'synonyms' => [
-                        'lol, league of legends'
-                    ]
-                ]
+                        'lol, league of legends',
+                    ],
+                ],
             ],
             'analyzer' => [
                 'autocomplete_analyzer' => [
                     'tokenizer' => 'autocomplete_tokenizer',
-                    'filter' => ['lowercase', 'synonym_filter']
+                    'filter' => ['lowercase', 'synonym_filter'],
                 ],
                 'autocomplete_search_analyzer' => [
                     'tokenizer' => 'standard',
-                    'filter' => ['lowercase', 'synonym_filter']
+                    'filter' => ['lowercase', 'synonym_filter'],
                 ],
             ],
             'tokenizer' => [
@@ -35,10 +35,10 @@ return [
                     'type' => 'edge_ngram',
                     'min_gram' => 2,
                     'max_gram' => 20,
-                    'token_chars' => ['letter', 'digit']
-                ]
-            ]
-        ]
+                    'token_chars' => ['letter', 'digit'],
+                ],
+            ],
+        ],
     ],
 
     'mappings' => [
@@ -51,8 +51,8 @@ return [
                     'analyzer' => 'autocomplete_analyzer',
                     'search_analyzer' => 'autocomplete_search_analyzer',
                     'fields' => [
-                        'keyword' => ['type' => 'keyword']
-                    ]
+                        'keyword' => ['type' => 'keyword'],
+                    ],
                 ],
                 'slug' => ['type' => 'keyword'],
                 'description' => ['type' => 'text'],
@@ -72,7 +72,7 @@ return [
                                 'id' => ['type' => 'integer'],
                                 'title' => ['type' => 'text'],
                                 'slug' => ['type' => 'keyword'],
-                            ]
+                            ],
                         ],
                         'parent' => [
                             'type' => 'object',
@@ -80,17 +80,17 @@ return [
                                 'id' => ['type' => 'integer'],
                                 'title' => ['type' => 'text'],
                                 'slug' => ['type' => 'keyword'],
-                            ]
-                        ]
-                    ]
+                            ],
+                        ],
+                    ],
                 ],
                 'category_title' => [
                     'type' => 'text',
                     'analyzer' => 'autocomplete_analyzer',
                     'search_analyzer' => 'autocomplete_search_analyzer',
                     'fields' => [
-                        'keyword' => ['type' => 'keyword']
-                    ]
+                        'keyword' => ['type' => 'keyword'],
+                    ],
                 ],
                 'variants' => [
                     'type' => 'nested',
@@ -104,8 +104,8 @@ return [
                             'analyzer' => 'autocomplete_analyzer',
                             'search_analyzer' => 'autocomplete_search_analyzer',
                             'fields' => [
-                                'keyword' => ['type' => 'keyword']
-                            ]
+                                'keyword' => ['type' => 'keyword'],
+                            ],
                         ],
                         'color_code' => ['type' => 'keyword'],
                         'price_cents' => ['type' => 'integer'],
@@ -119,7 +119,7 @@ return [
                                 'image' => ['type' => 'keyword'],
                                 'is_primary' => ['type' => 'boolean'],
                                 'sort_order' => ['type' => 'integer'],
-                            ]
+                            ],
                         ],
                         'sizes' => [
                             'type' => 'nested',
@@ -133,7 +133,7 @@ return [
                                         'attribute_id' => ['type' => 'integer'],
                                         'value' => ['type' => 'text'],
                                         'slug' => ['type' => 'keyword'],
-                                    ]
+                                    ],
                                 ],
                                 'sku' => ['type' => 'keyword'],
                                 'price_cents' => ['type' => 'integer'],
@@ -148,24 +148,24 @@ return [
                                         'reserved' => ['type' => 'integer'],
                                         'available' => ['type' => 'integer'],
                                         'min_stock_level' => ['type' => 'integer'],
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
                 'gender' => [
                     'type' => 'text',
                     'analyzer' => 'autocomplete_analyzer',
                     'search_analyzer' => 'autocomplete_search_analyzer',
                     'fields' => [
-                        'keyword' => ['type' => 'keyword']
-                    ]
+                        'keyword' => ['type' => 'keyword'],
+                    ],
                 ],
 
                 'created_at' => ['type' => 'date'],
                 'updated_at' => ['type' => 'date'],
-            ]
+            ],
         ],
-    ]
+    ],
 ];

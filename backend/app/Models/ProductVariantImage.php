@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductVariantImage extends Model
 {
@@ -30,7 +30,7 @@ class ProductVariantImage extends Model
     public function getImageUrlAttribute()
     {
         return $this->image
-            ? asset('storage/productImages/' . $this->image)
+            ? asset('storage/productImages/'.$this->image)
             : asset('images/no-image.png');
     }
 

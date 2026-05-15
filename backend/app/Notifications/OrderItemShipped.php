@@ -13,6 +13,7 @@ class OrderItemShipped extends Notification
     use Queueable;
 
     protected OrderItem $orderItem;
+
     protected User $user;
 
     public function __construct(OrderItem $orderItem, User $user)
@@ -34,7 +35,7 @@ class OrderItemShipped extends Notification
         $quantity = $this->orderItem->quantity;
         $refundedQuantity = $this->orderItem->refunded_quantity;
         $shippedQuantity = $quantity - $refundedQuantity;
-        $actionUrl = rtrim(env('FRONTEND_URL', ''), '/') . "/account/orders/{$this->orderItem->order_id}";
+        $actionUrl = rtrim(env('FRONTEND_URL', ''), '/')."/account/orders/{$this->orderItem->order_id}";
 
         return (new MailMessage)
             ->subject('Siparişiniz Kargoya Teslim Edildi | Quillen')

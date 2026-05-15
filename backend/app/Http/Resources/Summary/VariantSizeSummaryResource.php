@@ -3,7 +3,6 @@
 namespace App\Http\Resources\Summary;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Summary\AttributeOptionSummaryResource;
 
 class VariantSizeSummaryResource extends JsonResource
 {

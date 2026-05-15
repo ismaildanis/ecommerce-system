@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Services\Search\ElasticsearchService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-use App\Services\Search\ElasticsearchService;
 
 class DeleteProductToElasticsearch implements ShouldQueue
 {

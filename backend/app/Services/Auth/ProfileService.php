@@ -2,11 +2,10 @@
 
 namespace App\Services\Auth;
 
-use App\Repositories\Contracts\UserRepositoryInterface;
-use App\Helpers\ResponseHelper;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class ProfileService
 {
@@ -25,11 +24,11 @@ class ProfileService
         try {
             $user = $this->userRepository->getUserById($userId);
 
-            if (!$user) {
+            if (! $user) {
                 return [
                     'success' => false,
                     'message' => 'Kullanıcı bulunamadı.',
-                    'errors' => ['error' => 'Kullanıcı bulunamadı.']
+                    'errors' => ['error' => 'Kullanıcı bulunamadı.'],
                 ];
             }
 
@@ -37,15 +36,15 @@ class ProfileService
                 'success' => true,
                 'message' => 'Profil bilgileri getirildi',
                 'data' => [
-                    'user' => $user
-                ]
+                    'user' => $user,
+                ],
             ];
 
         } catch (Exception $e) {
             return [
                 'success' => false,
-                'message' => 'Profil bilgileri getirilirken bir hata oluştu: ' . $e->getMessage(),
-                'errors' => ['error' => $e->getMessage()]
+                'message' => 'Profil bilgileri getirilirken bir hata oluştu: '.$e->getMessage(),
+                'errors' => ['error' => $e->getMessage()],
             ];
         }
     }
@@ -59,7 +58,7 @@ class ProfileService
             DB::beginTransaction();
 
             // Sadece gelen alanları güncelle
-            $updateData = array_filter($data, function($value) {
+            $updateData = array_filter($data, function ($value) {
                 return $value !== null && $value !== '';
             });
 
@@ -67,17 +66,17 @@ class ProfileService
                 return [
                     'success' => false,
                     'message' => 'Güncellenecek veri bulunamadı.',
-                    'errors' => ['error' => 'Güncellenecek veri bulunamadı.']
+                    'errors' => ['error' => 'Güncellenecek veri bulunamadı.'],
                 ];
             }
 
             $success = $this->userRepository->updateProfile($userId, $updateData);
 
-            if (!$success) {
+            if (! $success) {
                 return [
                     'success' => false,
                     'message' => 'Profil güncellenirken bir hata oluştu.',
-                    'errors' => ['error' => 'Profil güncellenirken bir hata oluştu.']
+                    'errors' => ['error' => 'Profil güncellenirken bir hata oluştu.'],
                 ];
             }
 
@@ -89,17 +88,17 @@ class ProfileService
                 'success' => true,
                 'message' => 'Profil başarıyla güncellendi',
                 'data' => [
-                    'user' => $updatedUser
-                ]
+                    'user' => $updatedUser,
+                ],
             ];
 
         } catch (Exception $e) {
             DB::rollBack();
-            
+
             return [
                 'success' => false,
-                'message' => 'Profil güncellenirken bir hata oluştu: ' . $e->getMessage(),
-                'errors' => ['error' => $e->getMessage()]
+                'message' => 'Profil güncellenirken bir hata oluştu: '.$e->getMessage(),
+                'errors' => ['error' => $e->getMessage()],
             ];
         }
     }
@@ -112,26 +111,25 @@ class ProfileService
         try {
             $user = $this->userRepository->getUserById($userId);
 
-            if (!$user) {
+            if (! $user) {
                 return [
                     'success' => false,
                     'message' => 'Kullanıcı bulunamadı.',
-                    'errors' => ['error' => 'Kullanıcı bulunamadı.']
+                    'errors' => ['error' => 'Kullanıcı bulunamadı.'],
                 ];
             }
 
             $requiredFields = ['username', 'email'];
             $optionalFields = ['phone', 'address', 'city', 'district', 'postal_code'];
-            
+
             $totalFields = count($requiredFields) + count($optionalFields);
             $filledFields = 0;
 
             // Zorunlu alanlar her zaman dol
             $filledFields += count($requiredFields);
 
-            
             foreach ($optionalFields as $field) {
-                if (!empty($user->$field)) {
+                if (! empty($user->$field)) {
                     $filledFields++;
                 }
             }
@@ -145,15 +143,15 @@ class ProfileService
                     'completion_rate' => $completionRate,
                     'filled_fields' => $filledFields,
                     'total_fields' => $totalFields,
-                    'missing_fields' => $this->getMissingFields($user, $optionalFields)
-                ]
+                    'missing_fields' => $this->getMissingFields($user, $optionalFields),
+                ],
             ];
 
         } catch (Exception $e) {
             return [
                 'success' => false,
-                'message' => 'Profil tamamlanma oranı hesaplanırken bir hata oluştu: ' . $e->getMessage(),
-                'errors' => ['error' => $e->getMessage()]
+                'message' => 'Profil tamamlanma oranı hesaplanırken bir hata oluştu: '.$e->getMessage(),
+                'errors' => ['error' => $e->getMessage()],
             ];
         }
     }
@@ -164,7 +162,7 @@ class ProfileService
     private function getMissingFields(User $user, array $optionalFields): array
     {
         $missingFields = [];
-        
+
         foreach ($optionalFields as $field) {
             if (empty($user->$field)) {
                 $missingFields[] = $field;

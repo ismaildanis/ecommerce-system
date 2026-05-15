@@ -24,7 +24,7 @@ class UpdateVariantSizeRequest extends FormRequest
     public function rules(): array
     {
         $variant = $this->route('variant');
-        $size    = $this->route('size');
+        $size = $this->route('size');
 
         return [
             'size_option_id' => [
@@ -32,15 +32,15 @@ class UpdateVariantSizeRequest extends FormRequest
                 'integer',
                 Rule::unique('variant_sizes', 'size_option_id')
                     ->where(fn ($query) => $query->where('product_variant_id', $variant?->id))
-                    ->ignore($size?->id)
+                    ->ignore($size?->id),
             ],
             'price_cents' => ['sometimes', 'integer', 'min:0'],
-            'is_active'   => ['sometimes', 'boolean'],
+            'is_active' => ['sometimes', 'boolean'],
 
-            'inventory.on_hand'         => ['sometimes', 'integer', 'min:0'],
-            'inventory.reserved'        => ['sometimes', 'integer', 'min:0'],
+            'inventory.on_hand' => ['sometimes', 'integer', 'min:0'],
+            'inventory.reserved' => ['sometimes', 'integer', 'min:0'],
             'inventory.min_stock_level' => ['sometimes', 'integer', 'min:0'],
-            'inventory.warehouse_id'    => ['sometimes', 'integer', 'exists:warehouses,id'],
+            'inventory.warehouse_id' => ['sometimes', 'integer', 'exists:warehouses,id'],
         ];
     }
 
@@ -48,17 +48,17 @@ class UpdateVariantSizeRequest extends FormRequest
     {
         return [
             'size_option_id.integer' => 'Beden ID sayı olmalıdır.',
-            'size_option_id.unique'  => 'Bu beden ID zaten kullanılıyor.',
-            'price_cents.integer'    => 'Fiyat sayı olmalıdır.',
-            'price_cents.min'        => 'Fiyat en az 0 olmalıdır.',
-            'is_active.boolean'      => 'Boolean olmalıdır.',
+            'size_option_id.unique' => 'Bu beden ID zaten kullanılıyor.',
+            'price_cents.integer' => 'Fiyat sayı olmalıdır.',
+            'price_cents.min' => 'Fiyat en az 0 olmalıdır.',
+            'is_active.boolean' => 'Boolean olmalıdır.',
 
-            'inventory.on_hand.integer'         => 'Stokta bulunan miktar sayı olmalıdır.',
-            'inventory.on_hand.min'             => 'Stokta bulunan miktar en az 0 olmalıdır.',
-            'inventory.reserved.integer'        => 'Rezerve miktarı sayı olmalıdır.',
+            'inventory.on_hand.integer' => 'Stokta bulunan miktar sayı olmalıdır.',
+            'inventory.on_hand.min' => 'Stokta bulunan miktar en az 0 olmalıdır.',
+            'inventory.reserved.integer' => 'Rezerve miktarı sayı olmalıdır.',
             'inventory.min_stock_level.integer' => 'Minimum stok seviyesi sayı olmalıdır.',
-            'inventory.warehouse_id.integer'    => 'Depo ID sayı olmalıdır.',
-            'inventory.warehouse_id.exists'     => 'Depo bulunamadı.',
+            'inventory.warehouse_id.integer' => 'Depo ID sayı olmalıdır.',
+            'inventory.warehouse_id.exists' => 'Depo bulunamadı.',
         ];
     }
 
@@ -76,7 +76,7 @@ class UpdateVariantSizeRequest extends FormRequest
             'is_active' => $this->has('is_active')
                 ? $this->input('is_active')
                 : $size?->is_active,
-        ])->filter(fn ($value) => !is_null($value))->all();
+        ])->filter(fn ($value) => ! is_null($value))->all();
     }
 
     public function inventoryPayload(): array
@@ -96,6 +96,6 @@ class UpdateVariantSizeRequest extends FormRequest
             'min_stock_level' => $this->has('inventory.min_stock_level')
                 ? $this->input('inventory.min_stock_level')
                 : $size?->inventory?->min_stock_level,
-        ])->filter(fn ($value) => !is_null($value))->all();
+        ])->filter(fn ($value) => ! is_null($value))->all();
     }
 }

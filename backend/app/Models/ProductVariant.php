@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
-use App\Jobs\IndexProductToElasticsearch;
-use App\Jobs\DeleteProductToElasticsearch;
 
 class ProductVariant extends Model
 {
     use HasFactory, SoftDeletes;
+
     protected $guarded = ['id'];
+
     protected $fillable = [
         'product_id',
         'sku',
@@ -54,7 +53,7 @@ class ProductVariant extends Model
 
     public function getPriceAttribute()
     {
-        return number_format($this->price_cents / 100, 2, ',', '.') . ' TL';
+        return number_format($this->price_cents / 100, 2, ',', '.').' TL';
     }
 
     public function inventories()
@@ -68,5 +67,4 @@ class ProductVariant extends Model
             'id' // Local key on VariantSize table
         );
     }
-
 }

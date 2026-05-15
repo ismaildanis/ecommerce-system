@@ -19,8 +19,7 @@ class SellerRefundJob implements ShouldQueue
         private readonly OrderItem $orderItem,
         private readonly array $payload,
         private readonly int $refundAmount,
-    ) 
-    {
+    ) {
         $this->onQueue('notifications');
     }
 
@@ -32,8 +31,9 @@ class SellerRefundJob implements ShouldQueue
             $this->refundAmount
         );
     }
+
     public function failed($exception)
     {
-        Log::error('SellerRefundJob failed: ' . $exception->getMessage());
+        Log::error('SellerRefundJob failed: '.$exception->getMessage());
     }
 }

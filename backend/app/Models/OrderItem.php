@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Order;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrderItem extends Model
 {
     protected $table = 'order_items';
+
     use SoftDeletes;
-    
+
     protected $fillable = [
         'order_id',
         'product_id',
@@ -53,26 +52,31 @@ class OrderItem extends Model
 
     public function order()
     {
-        return $this->belongsTo(Order::class ,'order_id');
+        return $this->belongsTo(Order::class, 'order_id');
     }
+
     public function product()
     {
-        return $this->belongsTo(Product::class ,'product_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
+
     public function variantSize()
     {
         return $this->belongsTo(VariantSize::class, 'variant_size_id');
     }
+
     public function shippingItem()
     {
         return $this->hasOne(ShippingItem::class, 'order_item_id');
     }
+
     public function store()
     {
         return $this->belongsTo(Store::class, 'store_id');
     }
+
     public function getPriceAttribute()
     {
-        return number_format($this->price_cents / 100, 2, ',', '.') . ' TL';
+        return number_format($this->price_cents / 100, 2, ',', '.').' TL';
     }
 }

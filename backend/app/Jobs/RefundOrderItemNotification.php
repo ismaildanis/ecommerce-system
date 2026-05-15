@@ -2,22 +2,28 @@
 
 namespace App\Jobs;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 use App\Models\OrderItem;
 use App\Models\User;
 use App\Notifications\OrderItemRefunded;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+
 class RefundOrderItemNotification implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     protected $orderItem;
+
     protected $user;
+
     protected $payload;
+
     protected $price;
+
     /**
      * Create a new job instance.
      */
@@ -27,7 +33,7 @@ class RefundOrderItemNotification implements ShouldQueue
         $this->user = $user;
         $this->payload = $payload;
         $this->price = $price;
-        
+
         $this->onQueue('notifications');
     }
 
@@ -38,8 +44,9 @@ class RefundOrderItemNotification implements ShouldQueue
     {
         $this->user->notify(new OrderItemRefunded($this->orderItem, $this->payload, $this->price, $this->user));
     }
+
     public function failed($exception)
     {
-        Log::error('RefundOrderItemNotification failed: ' . $exception->getMessage());
+        Log::error('RefundOrderItemNotification failed: '.$exception->getMessage());
     }
 }

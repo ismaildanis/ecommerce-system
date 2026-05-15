@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('byWho', 10)->default('user');
             $table->bigInteger('refund_amount_cents')->default(0);
             $table->text('reason')->nullable();
-            $table->enum('inspection_status', ['pending','approved','rejected'])->default('pending');
+            $table->enum('inspection_status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('inspection_note')->nullable();
             $table->timestamps();
 

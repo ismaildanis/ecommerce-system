@@ -56,9 +56,9 @@ class XBuyYPayCampaign extends BaseCampaign
             return $this->emptyResult();
         }
 
-        $totalQty   = $items->sum('quantity');
+        $totalQty = $items->sum('quantity');
         $groupCount = intdiv($totalQty, $x);
-        $freeCount  = $groupCount * ($x - $y);
+        $freeCount = $groupCount * ($x - $y);
 
         if ($freeCount <= 0) {
             return $this->emptyResult();
@@ -73,12 +73,12 @@ class XBuyYPayCampaign extends BaseCampaign
         $discountCents = (int) $freeUnits->sum('unit_price_cents');
 
         return [
-            'campaign_id'          => $this->campaign->id,
-            'store_id'             => $this->campaign->store_id,
-            'description'          => $this->campaign->description,
-            'discount_cents'       => $discountCents,
+            'campaign_id' => $this->campaign->id,
+            'store_id' => $this->campaign->store_id,
+            'description' => $this->campaign->description,
+            'discount_cents' => $discountCents,
             'eligible_total_cents' => $this->subtotalCents($items),
-            'items'                => $this->groupFreeUnits($freeUnits),
+            'items' => $this->groupFreeUnits($freeUnits),
         ];
     }
 
@@ -105,9 +105,9 @@ class XBuyYPayCampaign extends BaseCampaign
 
             for ($i = 0; $i < $item->quantity; $i++) {
                 $unitLines->push([
-                    'bag_item_id'       => $item->id,
-                    'product_id'        => $productId,
-                    'unit_price_cents'  => (int) $item->unit_price_cents,
+                    'bag_item_id' => $item->id,
+                    'product_id' => $productId,
+                    'unit_price_cents' => (int) $item->unit_price_cents,
                 ]);
             }
         }
@@ -126,16 +126,16 @@ class XBuyYPayCampaign extends BaseCampaign
         return $freeUnits
             ->groupBy('bag_item_id')
             ->mapWithKeys(function ($group, $bagItemId) {
-                $quantity   = $group->count();
-                $discount   = (int) $group->sum('unit_price_cents');
+                $quantity = $group->count();
+                $discount = (int) $group->sum('unit_price_cents');
 
                 return [
                     (int) $bagItemId => [
-                        'bag_item_id'                     => (int) $bagItemId,
-                        'product_id'                      => $group->first()['product_id'],
-                        'quantity'                        => $quantity,
-                        'discount_cents'                  => $discount,
-                        'discounted_total_cents'          => 0, // bu kampanyada ücretsiz ürünler 0’a düşer
+                        'bag_item_id' => (int) $bagItemId,
+                        'product_id' => $group->first()['product_id'],
+                        'quantity' => $quantity,
+                        'discount_cents' => $discount,
+                        'discounted_total_cents' => 0, // bu kampanyada ücretsiz ürünler 0’a düşer
                         'per_item_discounted_price_cents' => 0,
                     ],
                 ];
@@ -145,14 +145,14 @@ class XBuyYPayCampaign extends BaseCampaign
     protected function emptyResult(): array
     {
         return [
-            'campaign_id'          => $this->campaign->id,
-            'store_id'             => $this->campaign->store_id,
-            'description'          => $this->campaign->description,
-            'discount_cents'       => 0,
-            'discount'             => 0.0,
+            'campaign_id' => $this->campaign->id,
+            'store_id' => $this->campaign->store_id,
+            'description' => $this->campaign->description,
+            'discount_cents' => 0,
+            'discount' => 0.0,
             'eligible_total_cents' => 0,
-            'eligible_total'       => 0.0,
-            'items'                => collect(),
+            'eligible_total' => 0.0,
+            'items' => collect(),
         ];
     }
 }

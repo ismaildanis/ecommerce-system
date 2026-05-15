@@ -5,10 +5,10 @@ namespace App\Exceptions;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Throwable;
-use Illuminate\Support\Arr;
 
 class Handler extends ExceptionHandler
 {
@@ -22,7 +22,7 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         $this->renderable(function (Throwable $e, $request): ?JsonResponse {
-            if (!($request->expectsJson() || $request->is('api/*'))) {
+            if (! ($request->expectsJson() || $request->is('api/*'))) {
                 return null; // web istekleri için Laravel’in varsayılan davranışı
             }
 
@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
             // Diğer tüm hatalar için 500
             return response()->json([
                 'success' => false,
-                'error'   => class_basename($e),
+                'error' => class_basename($e),
                 'message' => $e->getMessage(),
             ], 500);
         });

@@ -2,17 +2,19 @@
 
 namespace App\Services\User;
 
-use App\Repositories\Contracts\User\AddressesRepositoryInterface;
 use App\Repositories\Contracts\AuthenticationRepositoryInterface;
+use App\Repositories\Contracts\User\AddressesRepositoryInterface;
 use App\Traits\GetUser;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AddressesService
 {
     protected $addressesRepository;
+
     protected $authenticationRepository;
+
     use GetUser;
-    
+
     public function __construct(AddressesRepositoryInterface $addressesRepository, AuthenticationRepositoryInterface $authenticationRepository)
     {
         $this->addressesRepository = $addressesRepository;
@@ -23,12 +25,14 @@ class AddressesService
     {
         $user = $this->getUser();
         $addresses = $this->addressesRepository->getAddressesByUserId($user->id);
+
         return $addresses;
     }
 
     public function storeAddresses(array $data)
     {
         $user = $this->getUser();
+
         return $this->addressesRepository->createAddress($data, $user->id);
     }
 
@@ -36,9 +40,10 @@ class AddressesService
     {
         $user = $this->getUser();
         $address = $this->addressesRepository->getAddressById($id, $user->id);
-        if(!$address){
+        if (! $address) {
             throw new ModelNotFoundException('Adres bulunamadı.');
         }
+
         return $address;
     }
 
@@ -46,20 +51,21 @@ class AddressesService
     {
         $user = $this->getUser();
         $address = $this->addressesRepository->updateAddress($data, $id, $user->id);
-        if(!$address){
+        if (! $address) {
             throw new ModelNotFoundException('Adres bulunamadı.');
         }
+
         return $address;
     }
+
     public function destroyAddresses($id)
     {
         $user = $this->getUser();
         $address = $this->addressesRepository->deleteAddress($id, $user->id);
-        if(!$address){
+        if (! $address) {
             throw new ModelNotFoundException('Adres bulunamadı.');
         }
+
         return true;
     }
 }
-
-

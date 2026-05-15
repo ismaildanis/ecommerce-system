@@ -22,13 +22,13 @@ return new class extends Migration
             $table->json('payment_data')->nullable();      // seçilen payment_method, intent id, taksit
             $table->json('meta')->nullable();              // kupon, notlar, KVKK onayı vb.
 
-            $table->enum('status', ['pending','shipping_selected','payment_pending','pending_3ds','confirmed','cancelled','expired'])
+            $table->enum('status', ['pending', 'shipping_selected', 'payment_pending', 'pending_3ds', 'confirmed', 'cancelled', 'expired'])
                 ->default('pending');
 
             $table->timestamp('expires_at')->nullable();   // 15-30 dk gibi TTL
             $table->timestamps();
 
-            $table->index(['user_id','status']);
+            $table->index(['user_id', 'status']);
             $table->index(['expires_at']);
         });
 

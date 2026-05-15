@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
-use App\Models\User;
 use App\Models\Seller;
+use App\Models\User;
+use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticationRepository implements AuthenticationRepositoryInterface
@@ -14,9 +14,10 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
      */
     public function getUser(): ?User
     {
-        if($this->isApiRequest()){
+        if ($this->isApiRequest()) {
             return $this->getApiUser();
         }
+
         return $this->getWebUser();
     }
 
@@ -40,6 +41,7 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
         if ($this->isApiRequest()) {
             return Auth::guard('user')->check();
         }
+
         return Auth::guard('user_web')->check();
     }
 
@@ -48,9 +50,10 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
      */
     public function getSeller(): ?Seller
     {
-        if($this->isApiRequest()){
+        if ($this->isApiRequest()) {
             return $this->getApiSeller();
         }
+
         return $this->getWebSeller();
     }
 
@@ -74,7 +77,8 @@ class AuthenticationRepository implements AuthenticationRepositoryInterface
         if ($this->isApiRequest()) {
             return Auth::guard('seller')->check();
         }
-        return Auth::guard('seller_web')->check();;
+
+        return Auth::guard('seller_web')->check();
     }
 
     /**

@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Main;
 
-use Illuminate\Database\Seeder;
 use App\Models\Gender;
+use Illuminate\Database\Seeder;
 
 class GenderSeeder extends Seeder
 {

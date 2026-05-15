@@ -22,7 +22,7 @@ class GetSessionRequest extends FormRequest
     {
         return [
             'session_id.required' => 'Checkout oturumu belirtilmelidir.',
-            'session_id.uuid'     => 'Geçersiz session id formatı.',
+            'session_id.uuid' => 'Geçersiz session id formatı.',
         ];
     }
 }

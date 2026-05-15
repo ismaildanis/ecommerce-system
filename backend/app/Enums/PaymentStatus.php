@@ -12,7 +12,7 @@ enum PaymentStatus: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::PAID => 'Ödendi',
             self::PARTIAL_REFUNDED => 'Kısmi İade',
             self::REFUNDED => 'İade Edildi',
@@ -23,7 +23,7 @@ enum PaymentStatus: string
 
     public function badgeClass(): string
     {
-        return match($this) {
+        return match ($this) {
             self::PAID => 'success',
             self::PARTIAL_REFUNDED => 'warning',
             self::REFUNDED => 'danger',

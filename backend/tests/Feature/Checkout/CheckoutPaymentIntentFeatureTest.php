@@ -2,14 +2,14 @@
 
 namespace Tests\Feature\Checkout;
 
-use Tests\TestCase;
-use Mockery;
-use App\Models\User;
 use App\Models\CheckoutSession;
+use App\Models\User;
+use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 use App\Services\Bag\Contracts\BagInterface;
 use App\Services\Checkout\CheckoutSessionService;
 use App\Services\Checkout\Orders\OrderPlacementService;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
+use Mockery;
+use Tests\TestCase;
 
 class CheckoutPaymentIntentFeatureTest extends TestCase
 {
@@ -23,18 +23,18 @@ class CheckoutPaymentIntentFeatureTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $auth = Mockery::mock(\App\Repositories\Contracts\AuthenticationRepositoryInterface::class);
-        $bag = Mockery::mock(\App\Services\Bag\Contracts\BagInterface::class);
-        $checkout = Mockery::mock(\App\Services\Checkout\CheckoutSessionService::class);
-        $orderPlacement = Mockery::mock(\App\Services\Checkout\Orders\OrderPlacementService::class);
+        $auth = Mockery::mock(AuthenticationRepositoryInterface::class);
+        $bag = Mockery::mock(BagInterface::class);
+        $checkout = Mockery::mock(CheckoutSessionService::class);
+        $orderPlacement = Mockery::mock(OrderPlacementService::class);
 
         $auth->shouldNotReceive('getUser');
         $checkout->shouldNotReceive('createPaymentIntent');
 
-        $this->app->instance(\App\Repositories\Contracts\AuthenticationRepositoryInterface::class, $auth);
-        $this->app->instance(\App\Services\Bag\Contracts\BagInterface::class, $bag);
-        $this->app->instance(\App\Services\Checkout\CheckoutSessionService::class, $checkout);
-        $this->app->instance(\App\Services\Checkout\Orders\OrderPlacementService::class, $orderPlacement);
+        $this->app->instance(AuthenticationRepositoryInterface::class, $auth);
+        $this->app->instance(BagInterface::class, $bag);
+        $this->app->instance(CheckoutSessionService::class, $checkout);
+        $this->app->instance(OrderPlacementService::class, $orderPlacement);
 
         $response = $this->postJson('/api/checkout/payment-intent', []);
 
@@ -46,10 +46,10 @@ class CheckoutPaymentIntentFeatureTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = new User();
+        $user = new User;
         $user->id = 99;
 
-        $session = new CheckoutSession();
+        $session = new CheckoutSession;
         $session->id = '22222222-2222-2222-2222-222222222222';
         $session->status = 'pending_3ds';
         $session->payment_data = [

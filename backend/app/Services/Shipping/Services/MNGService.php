@@ -9,8 +9,11 @@ use Illuminate\Support\Facades\Log;
 class MNGService implements ShippingServiceInterface
 {
     protected $secret_key;
+
     protected $api_key;
+
     protected $base_url;
+
     protected $testMode;
 
     public function __construct()
@@ -24,28 +27,29 @@ class MNGService implements ShippingServiceInterface
     public function createShipment(array $data): array
     {
         try {
-            //entegrasyon yarım kaldığı için mock 
+            // entegrasyon yarım kaldığı için mock
             if ($this->testMode) {
                 return $this->createMockShipment($data);
             }
 
             $token = $this->getToken();
-            if (!$token) {
+            if (! $token) {
                 Log::warning('MNG Token alınamadı');
+
                 return [
                     'success' => false,
-                    'error' => 'Token alınamadı'
+                    'error' => 'Token alınamadı',
                 ];
             }
 
             return $this->createRealShipment($data, $token);
 
         } catch (\Exception $e) {
-            Log::error('MNG Kargo API Hatası: ' . $e->getMessage());
-            
+            Log::error('MNG Kargo API Hatası: '.$e->getMessage());
+
             return [
                 'success' => false,
-                'error' => 'Exception: ' . $e->getMessage()
+                'error' => 'Exception: '.$e->getMessage(),
             ];
         }
     }
@@ -54,7 +58,9 @@ class MNGService implements ShippingServiceInterface
     {
         try {
             $jwt = cache('mng_jwt');
-            if ($jwt) return $jwt;
+            if ($jwt) {
+                return $jwt;
+            }
 
             $payload = [
                 'userName' => '312947702',
@@ -67,26 +73,28 @@ class MNGService implements ShippingServiceInterface
                 'Content-Type' => 'application/json',
                 'X-IBM-Client-Id' => $this->api_key,
                 'X-IBM-Client-Secret' => $this->secret_key,
-            ])->post($this->base_url . '/token', $payload);
+            ])->post($this->base_url.'/token', $payload);
 
             Log::info('MNG Token Response', [
                 'status' => $response->status(),
-                'body' => $response->body()
+                'body' => $response->body(),
             ]);
 
             if ($response->successful()) {
                 $data = $response->json();
                 $jwt = $data['jwt'] ?? null;
-                
+
                 if ($jwt) {
                     cache()->put('mng_jwt', $jwt, now()->addMinutes(50));
+
                     return $jwt;
                 }
             }
 
             return null;
         } catch (\Exception $e) {
-            Log::error('MNG Token Exception: ' . $e->getMessage());
+            Log::error('MNG Token Exception: '.$e->getMessage());
+
             return null;
         }
     }
@@ -95,9 +103,9 @@ class MNGService implements ShippingServiceInterface
     {
         $payload = [
             'order' => [
-                'referenceId' => (string)$data['order_item_id'],
-                'barcode' => (string)$data['order_item_id'],
-                'billOfLandingId' => 'INV-' . $data['order_item_id'],
+                'referenceId' => (string) $data['order_item_id'],
+                'barcode' => (string) $data['order_item_id'],
+                'billOfLandingId' => 'INV-'.$data['order_item_id'],
                 'isCOD' => 0,
                 'codAmount' => 0,
                 'shipmentServiceType' => 1,
@@ -108,13 +116,13 @@ class MNGService implements ShippingServiceInterface
                 'smsPreference3' => 0,
                 'paymentType' => 1,
                 'deliveryType' => 1,
-                'description' => 'E-ticaret siparişi'
+                'description' => 'E-ticaret siparişi',
             ],
             'orderPieceList' => [[
-                'barcode' => (string)$data['order_item_id'] . '_P1',
+                'barcode' => (string) $data['order_item_id'].'_P1',
                 'desi' => 2,
                 'kg' => 1,
-                'content' => $data['product_title'] ?? 'Ürün'
+                'content' => $data['product_title'] ?? 'Ürün',
             ]],
             'recipient' => [
                 'customerId' => 0,
@@ -130,8 +138,8 @@ class MNGService implements ShippingServiceInterface
                 'taxNumber' => '11111111111',
                 'fullName' => $data['username'] ?? 'Test Kullanıcı',
                 'homePhoneNumber' => '',
-                'mobilePhoneNumber' => $data['phone'] ?? '5555555555'
-            ]
+                'mobilePhoneNumber' => $data['phone'] ?? '5555555555',
+            ],
         ];
 
         $response = Http::timeout(30)->withHeaders([
@@ -140,16 +148,17 @@ class MNGService implements ShippingServiceInterface
             'x-api-version' => '1.0',
             'X-IBM-Client-Id' => $this->api_key,
             'X-IBM-Client-Secret' => $this->secret_key,
-            'Authorization' => 'Bearer ' . $token
-        ])->post($this->base_url . '/standardcmdapi/createOrder', $payload);
+            'Authorization' => 'Bearer '.$token,
+        ])->post($this->base_url.'/standardcmdapi/createOrder', $payload);
 
         Log::info('MNG CreateOrder Response', [
             'status' => $response->status(),
-            'body' => $response->body()
+            'body' => $response->body(),
         ]);
 
         if ($response->successful()) {
             $responseData = $response->json();
+
             return [
                 'success' => true,
                 'tracking_number' => $responseData['trackingNumber'] ?? uniqid('MNG'),
@@ -159,18 +168,19 @@ class MNGService implements ShippingServiceInterface
                 'shipping_notes' => 'MNG Kargo ile oluşturuldu',
             ];
         }
+
         return [
             'success' => false,
-            'error' => 'API Error: ' . $response->status()
+            'error' => 'API Error: '.$response->status(),
         ];
     }
 
     private function createMockShipment(array $data): array
     {
         Log::info('MNG Mock Kargo Oluşturuluyor', $data);
-        
-        $trackingNumber = 'MNG' . time() . rand(1000, 9999);
-        
+
+        $trackingNumber = 'MNG'.time().rand(1000, 9999);
+
         return [
             'success' => true,
             'tracking_number' => $trackingNumber,
@@ -182,9 +192,8 @@ class MNGService implements ShippingServiceInterface
                 'order_id' => $data['order_item_id'] ?? 'N/A',
                 'recipient' => $data['username'] ?? 'Test Kullanıcı',
                 'city' => $data['city'] ?? 'İstanbul',
-                'created_at' => now()->format('Y-m-d H:i:s')
-            ]
+                'created_at' => now()->format('Y-m-d H:i:s'),
+            ],
         ];
     }
-
 }

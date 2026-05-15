@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('campaign_products', function (Blueprint $table) {
@@ -14,7 +13,7 @@ return new class extends Migration
             $table->foreignId('campaign_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-            
+
             $table->unique(['campaign_id', 'product_id']);
         });
     }

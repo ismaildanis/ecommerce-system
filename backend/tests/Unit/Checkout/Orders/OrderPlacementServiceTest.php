@@ -2,24 +2,24 @@
 
 namespace Tests\Unit\Checkout\Orders;
 
-use Tests\TestCase;
-use Mockery;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Bus;
-use Illuminate\Support\Facades\DB;
-use App\Models\User;
-use App\Models\Order;
-use App\Models\CheckoutSession;
-use App\Jobs\SendOrderNotification;
 use App\Jobs\SellerOrderNotification;
+use App\Jobs\SendOrderNotification;
+use App\Models\CheckoutSession;
+use App\Models\Order;
+use App\Models\User;
+use App\Repositories\Contracts\Bag\BagRepositoryInterface;
+use App\Services\Campaigns\CampaignManager;
 use App\Services\Checkout\Orders\OrderFactory;
 use App\Services\Checkout\Orders\OrderItemFactory;
 use App\Services\Checkout\Orders\OrderPlacementService;
 use App\Services\Inventory\InventoryService;
-use App\Services\Payments\PaymentRecorder;
 use App\Services\Payments\PaymentMethodRecorder;
-use App\Repositories\Contracts\Bag\BagRepositoryInterface;
-use App\Services\Campaigns\CampaignManager;
+use App\Services\Payments\PaymentRecorder;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\DB;
+use Mockery;
+use Tests\TestCase;
 
 class OrderPlacementServiceTest extends TestCase
 {
@@ -37,18 +37,18 @@ class OrderPlacementServiceTest extends TestCase
             ->once()
             ->andReturnUsing(fn ($callback) => $callback());
 
-        $user = new User();
+        $user = new User;
         $user->id = 10;
 
-        $seller = new User();
+        $seller = new User;
         $seller->id = 99;
 
-        $order = new Order();
+        $order = new Order;
         $order->id = 777;
 
         $session = Mockery::mock(CheckoutSession::class)->makePartial();
         assert($session instanceof CheckoutSession);
-        
+
         $session->bag_snapshot = [
             'applied_campaign' => ['id' => 44],
             'totals' => ['discount_cents' => 1200],
@@ -64,9 +64,12 @@ class OrderPlacementServiceTest extends TestCase
                 'meta->order_id' => 777,
             ]);
 
-        $item = new class($seller) {
+        $item = new class($seller)
+        {
             public int $variant_size_id = 301;
+
             public int $quantity = 2;
+
             public object $product;
 
             public function __construct($seller)

@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Models\User;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
@@ -20,7 +20,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function createUser(array $data): User
     {
-        
+
         if (isset($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         }
@@ -58,8 +58,8 @@ class UserRepository implements UserRepositoryInterface
     public function updateProfile(int $id, array $data): bool
     {
         $user = $this->getUserById($id);
-        
-        if (!$user) {
+
+        if (! $user) {
             return false;
         }
 
@@ -72,8 +72,8 @@ class UserRepository implements UserRepositoryInterface
     public function deleteUser(int $id): bool
     {
         $user = $this->getUserById($id);
-        
-        if (!$user) {
+
+        if (! $user) {
             return false;
         }
 

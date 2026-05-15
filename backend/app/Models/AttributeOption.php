@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class AttributeOption extends Model
 {
@@ -13,11 +13,11 @@ class AttributeOption extends Model
         'attribute_id',
         'value',
         'slug',
-        'sort_order'
+        'sort_order',
     ];
 
     protected $casts = [
-        'sort_order' => 'integer'
+        'sort_order' => 'integer',
     ];
 
     public function attribute()

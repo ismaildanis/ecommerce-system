@@ -22,7 +22,7 @@ class SelectBagCampaignRequest extends FormRequest
     {
         return [
             'campaign_id.required' => 'Bir kampanya seçmelisiniz.',
-            'campaign_id.exists'   => 'Seçtiğiniz kampanya bulunamadı.',
+            'campaign_id.exists' => 'Seçtiğiniz kampanya bulunamadı.',
         ];
     }
 }

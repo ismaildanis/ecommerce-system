@@ -20,7 +20,7 @@ class VariantImageReorderRequest extends FormRequest
             'images.*.id' => [
                 'required',
                 'integer',
-                Rule::exists('product_variant_images', 'id')
+                Rule::exists('product_variant_images', 'id'),
             ],
             'images.*.sort_order' => ['required', 'integer', 'min:1'],
         ];

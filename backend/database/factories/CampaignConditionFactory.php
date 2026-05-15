@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Campaign;
+use App\Models\CampaignCondition;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CampaignCondition>
+ * @extends Factory<CampaignCondition>
  */
 class CampaignConditionFactory extends Factory
 {

@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\Main;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -29,4 +29,4 @@ class UserSeeder extends Seeder
             'phone' => '5555555556',
         ]);
     }
-} 
+}

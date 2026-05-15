@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
+ * @extends Factory<Category>
  */
 class CategoryFactory extends Factory
 {
@@ -17,7 +18,7 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_title' => fake()->words(3, true), 
+            'category_title' => fake()->words(3, true),
         ];
     }
 }

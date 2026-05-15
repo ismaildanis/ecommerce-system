@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('campaign_usages', function (Blueprint $table) {
@@ -17,11 +16,10 @@ return new class extends Migration
             $table->decimal('discount_amount', 10, 2);
             $table->integer('total_usage_count')->default(0);
             $table->timestamps();
-            
+
             $table->index(['campaign_id', 'user_id']);
         });
     }
-
 
     public function down(): void
     {

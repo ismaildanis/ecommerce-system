@@ -1,14 +1,13 @@
 <?php
 
+use App\Models\ProductVariant;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
-use App\Models\ProductVariant;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
-
 
 Artisan::command('variants:fix-slugs', function () {
     $variants = ProductVariant::with(['product', 'attributes.attribute', 'attributes.option'])->get();
@@ -29,4 +28,3 @@ Artisan::command('variants:fix-slugs', function () {
 
     $this->info('Variant slugs generated successfully!');
 });
-

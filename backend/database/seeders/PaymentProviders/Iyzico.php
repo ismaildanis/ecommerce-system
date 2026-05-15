@@ -2,9 +2,8 @@
 
 namespace Database\Seeders\PaymentProviders;
 
-use Illuminate\Database\Seeder;
-
 use App\Models\PaymentProvider;
+use Illuminate\Database\Seeder;
 
 class Iyzico extends Seeder
 {

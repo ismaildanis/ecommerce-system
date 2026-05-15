@@ -1,20 +1,21 @@
-<?php 
+<?php
 
 namespace App\Services\Campaigns;
 
 use App\Models\Campaign;
-
 use App\Repositories\Contracts\AuthenticationRepositoryInterface;
-use App\Services\Campaigns\Handlers\PercentageCampaign;
 use App\Services\Campaigns\Handlers\FixedCampaign;
+use App\Services\Campaigns\Handlers\PercentageCampaign;
 use App\Services\Campaigns\Handlers\XBuyYPayCampaign;
 use App\Traits\GetUser;
 use Illuminate\Support\Facades\Log;
 
-class CampaignManager 
+class CampaignManager
 {
     private $authenticationRepository;
+
     use GetUser;
+
     public function __construct(AuthenticationRepositoryInterface $authenticationRepository)
     {
         $this->authenticationRepository = $authenticationRepository;
@@ -26,14 +27,14 @@ class CampaignManager
             return null;
         }
         $user = $this->getUser();
+
         return match ($campaign->type) {
-            'percentage'   => new PercentageCampaign($campaign, $user),
-            'fixed'        => new FixedCampaign($campaign, $user),
-            'x_buy_y_pay'  => new XBuyYPayCampaign($campaign, $user),
-            default        => null,
+            'percentage' => new PercentageCampaign($campaign, $user),
+            'fixed' => new FixedCampaign($campaign, $user),
+            'x_buy_y_pay' => new XBuyYPayCampaign($campaign, $user),
+            default => null,
         };
     }
-
 
     public function touchUsage(Campaign $campaign): void
     {
@@ -55,8 +56,8 @@ class CampaignManager
         if (! $campaign) {
             Log::warning('Kampanya kaydı bulunamadığı için usage loglanamadı.', [
                 'campaign_id' => $campaignId,
-                'user_id'     => $userId,
-                'order_id'    => $orderId,
+                'user_id' => $userId,
+                'order_id' => $orderId,
             ]);
 
             return;
@@ -65,11 +66,10 @@ class CampaignManager
         $this->touchUsage($campaign);
 
         $campaign->campaign_usages()->create([
-            'user_id'         => $userId,
-            'order_id'        => $orderId,
+            'user_id' => $userId,
+            'order_id' => $orderId,
             'discount_amount' => $discountAmount,
             'total_usage_count' => $campaign->campaign_usages()->where('user_id', $userId)->count(),
         ]);
     }
 }
-

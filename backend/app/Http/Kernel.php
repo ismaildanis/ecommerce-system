@@ -2,7 +2,23 @@
 
 namespace App\Http;
 
+use App\Console\Commands\ReindexProducts;
+use App\Http\Middleware\ApiAuthenticate;
+use App\Http\Middleware\AuthenticateFromCookie;
+use App\Http\Middleware\AuthenticateSellerFromCookie;
+use App\Http\Middleware\DevelopmentOnly;
+use App\Http\Middleware\LoginRateLimit;
+use App\Http\Middleware\Refund\VerifyWebhookSignature;
+use App\Http\Middleware\RegisterRateLimit;
+use App\Http\Middleware\SellerRedirect;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Http\Middleware\HandleCors;
+use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Session\Middleware\StartSession;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 class Kernel extends HttpKernel
 {
@@ -12,43 +28,43 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Http\Middleware\HandleCors::class,
-        
+        HandleCors::class,
+
     ];
-    
+
     protected $middlewareGroups = [
         'web' => [
-            \App\Http\Middleware\SellerRedirect::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
-            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            SellerRedirect::class,
+            AddQueuedCookiesToResponse::class,
+            StartSession::class,
+            ShareErrorsFromSession::class,
+            VerifyCsrfToken::class,
+            SubstituteBindings::class,
         ],
 
         'api' => [
-            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \App\Http\Middleware\AuthenticateFromCookie::class,
-            \App\Http\Middleware\AuthenticateSellerFromCookie::class,
-            \App\Http\Middleware\ApiAuthenticate::class,
+            EnsureFrontendRequestsAreStateful::class,
+            AuthenticateFromCookie::class,
+            AuthenticateSellerFromCookie::class,
+            ApiAuthenticate::class,
             'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            SubstituteBindings::class,
         ],
 
         'dev' => [
-            \App\Http\Middleware\DevelopmentOnly::class,
+            DevelopmentOnly::class,
         ],
     ];
 
     protected $middlewareAliases = [
-        'DevelopmentOnly' => \App\Http\Middleware\DevelopmentOnly::class, 
-        'register.limit' => \App\Http\Middleware\RegisterRateLimit::class,
-        'login.limit' => \App\Http\Middleware\LoginRateLimit::class,
-        'verify.refund-webhook' => \App\Http\Middleware\Refund\VerifyWebhookSignature::class,
+        'DevelopmentOnly' => DevelopmentOnly::class,
+        'register.limit' => RegisterRateLimit::class,
+        'login.limit' => LoginRateLimit::class,
+        'verify.refund-webhook' => VerifyWebhookSignature::class,
 
     ];
 
     protected $commands = [
-        \App\Console\Commands\ReindexProducts::class,
+        ReindexProducts::class,
     ];
 }

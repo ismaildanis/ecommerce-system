@@ -2,17 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-
 use App\Repositories\Contracts\Payment\PaymentMethodRepositoryInterface;
-use App\Repositories\Eloquent\Payment\PaymentMethodRepository;
-
 use App\Repositories\Contracts\Payment\PaymentProviderRepositoryInterface;
-use App\Repositories\Eloquent\Payment\PaymentProviderRepository;
-
 use App\Repositories\Contracts\Payment\PaymentRepositoryInterface;
+use App\Repositories\Eloquent\Payment\PaymentMethodRepository;
+use App\Repositories\Eloquent\Payment\PaymentProviderRepository;
 use App\Repositories\Eloquent\Payment\PaymentRepository;
-
+use Illuminate\Support\ServiceProvider;
 
 class CheckoutServiceProvider extends ServiceProvider
 {
@@ -49,4 +45,3 @@ class CheckoutServiceProvider extends ServiceProvider
         //
     }
 }
-

@@ -6,11 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('bags', function (Blueprint $table) {
-            $table->id();   
+            $table->id();
             $table->unsignedBigInteger('bag_user_id')->nullable();
             $table->foreignId('campaign_id')->nullable()->constrained()->nullOnDelete();
             $table->integer('campaign_discount_cents')->default(0);
@@ -18,8 +17,6 @@ return new class extends Migration
 
             $table->foreign('bag_user_id')->references('id')->on('users')->onDelete('cascade');
         });
-
-       
 
     }
 

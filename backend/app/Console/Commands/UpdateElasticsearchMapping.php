@@ -2,9 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Services\Search\ElasticsearchService;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Console\Command;
 
 class UpdateElasticsearchMapping extends Command
 {
@@ -29,9 +28,9 @@ class UpdateElasticsearchMapping extends Command
     {
         $this->info('Updating Elasticsearch mapping...');
 
-        if($elasticsearchService->updateMapping()){
+        if ($elasticsearchService->updateMapping()) {
             $this->info('Elasticsearch mapping updated successfully');
-        }else{
+        } else {
             $this->error('Elasticsearch mapping update failed');
         }
     }

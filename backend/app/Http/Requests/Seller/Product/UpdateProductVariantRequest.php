@@ -29,18 +29,18 @@ class UpdateProductVariantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'color_name'  => ['sometimes', 'string', 'max:120'],
-            'color_code'  => ['sometimes', 'nullable', 'regex:/^#([A-Fa-f0-9]{6})$/'],
+            'color_name' => ['sometimes', 'string', 'max:120'],
+            'color_code' => ['sometimes', 'nullable', 'regex:/^#([A-Fa-f0-9]{6})$/'],
             'price_cents' => ['sometimes', 'integer', 'min:0'],
-            'is_popular'  => ['sometimes', 'boolean'],
-            'is_active'   => ['sometimes', 'boolean'],
+            'is_popular' => ['sometimes', 'boolean'],
+            'is_active' => ['sometimes', 'boolean'],
         ];
     }
 
     public function payload(): array
     {
         return collect($this->except(['sku', 'slug']))
-            ->filter(fn ($value) => !is_null($value))
+            ->filter(fn ($value) => ! is_null($value))
             ->all();
     }
 }

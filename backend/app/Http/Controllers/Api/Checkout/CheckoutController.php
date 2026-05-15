@@ -2,48 +2,48 @@
 
 namespace App\Http\Controllers\Api\Checkout;
 
-use App\Traits\GetUser;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Checkout\ConfirmOrderRequest;
+use App\Http\Requests\Checkout\CreatePaymentIntentRequest;
+use App\Http\Requests\Checkout\UpdateShippingRequest;
+use App\Jobs\OrderPlacementJob;
 use App\Models\User;
-
 use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 use App\Services\Bag\Contracts\BagInterface;
 use App\Services\Checkout\CheckoutSessionService;
 use App\Services\Checkout\Orders\OrderPlacementService;
-
-use App\Http\Requests\Checkout\UpdateShippingRequest;
-use App\Http\Requests\Checkout\CreatePaymentIntentRequest;
-use App\Jobs\OrderPlacementJob;
-
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Checkout\ConfirmOrderRequest;
-use Illuminate\Http\Request;
+use App\Traits\GetUser;
 
 class CheckoutController extends Controller
 {
     use GetUser;
+
     protected $bagService;
+
     protected $authenticationRepository;
+
     protected $checkoutSessionService;
+
     protected $orderPlacementService;
 
     public function __construct(
-        BagInterface $bagService, 
+        BagInterface $bagService,
         AuthenticationRepositoryInterface $authenticationRepository,
         CheckoutSessionService $checkoutSessionService,
         OrderPlacementService $orderPlacementService,
-    )
-    {
+    ) {
         $this->bagService = $bagService;
         $this->authenticationRepository = $authenticationRepository;
         $this->checkoutSessionService = $checkoutSessionService;
         $this->orderPlacementService = $orderPlacementService;
     }
-    
-    public function createSession() {
+
+    public function createSession()
+    {
         $user = $this->getUser();
 
         $bagData = $this->bagService->getBag();
-  
+
         if (empty($bagData['products'])) {
             return response()->json(['message' => 'Sepet boş'], 422);
         }
@@ -57,67 +57,69 @@ class CheckoutController extends Controller
         ], 201);
     }
 
-    public function getSession($sessionId) {
+    public function getSession($sessionId)
+    {
         $user = $this->getUser();
-        
+
         $session = $this->checkoutSessionService->getSession($user, $sessionId);
 
         return response()->json([
-            'session_id'    => $session->id,
-            'expires_at'    => $session->expires_at,
-            'status'        => $session->status,
-            'bag'           => $session->bag_snapshot,
+            'session_id' => $session->id,
+            'expires_at' => $session->expires_at,
+            'status' => $session->status,
+            'bag' => $session->bag_snapshot,
             'shipping_data' => $session->shipping_data,
-            'billing_data'  => $session->billing_data,
-            'payment_data'  => $session->payment_data,
-            'meta'          => $session->meta,
+            'billing_data' => $session->billing_data,
+            'payment_data' => $session->payment_data,
+            'meta' => $session->meta,
         ]);
-        
-        
+
     }
 
-    public function updateShipping(UpdateShippingRequest $request) {
-        $user = $this->getUser();
-        $session = $this->checkoutSessionService->updateShipping($user, $request->validated());
-        
-        return response()->json([
-            'session_id'    => $session->id,
-            'status'        => $session->status,
-            'shipping_data' => $session->shipping_data,
-            'billing_data'  => $session->billing_data,
-            'bag'           => $session->bag_snapshot,
-        ]);
-    }
-
-    public function createPaymentIntent(CreatePaymentIntentRequest $request) 
+    public function updateShipping(UpdateShippingRequest $request)
     {
         $user = $this->getUser();
-        
+        $session = $this->checkoutSessionService->updateShipping($user, $request->validated());
+
+        return response()->json([
+            'session_id' => $session->id,
+            'status' => $session->status,
+            'shipping_data' => $session->shipping_data,
+            'billing_data' => $session->billing_data,
+            'bag' => $session->bag_snapshot,
+        ]);
+    }
+
+    public function createPaymentIntent(CreatePaymentIntentRequest $request)
+    {
+        $user = $this->getUser();
+
         $session = $this->checkoutSessionService->createPaymentIntent($user, $request->validated());
 
         return response()->json([
-            'session_id'    => $session->id,
-            'status'        => $session->status,
-            'payment_data'  => $session->payment_data,
+            'session_id' => $session->id,
+            'status' => $session->status,
+            'payment_data' => $session->payment_data,
         ]);
     }
 
-    public function confirmOrder(ConfirmOrderRequest $request) {
-        
+    public function confirmOrder(ConfirmOrderRequest $request)
+    {
+
         $session = $this->checkoutSessionService->confirmPaymentIntent($request->validated());
-        
+
         if ($session->status !== 'confirmed') {
             return response()->json([
-                'status'  => 'error',
-                'message' => 'Ödeme doğrulanamadı veya 3D işlemi başarısız.'
+                'status' => 'error',
+                'message' => 'Ödeme doğrulanamadı veya 3D işlemi başarısız.',
             ], 422);
         }
         $user = $session->user ?: User::find($session->user_id);
         OrderPlacementJob::dispatch($user, $session, $request->validated());
+
         return response()->json([
-            'session'    => $session,
-            'status'      => 'success',
+            'session' => $session,
+            'status' => 'success',
         ]);
     }
-
 }

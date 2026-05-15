@@ -3,11 +3,9 @@
 namespace App\Services\Order\Services\Refund;
 
 use App\Services\Order\Contracts\Refund\OrderCalculationInterface;
-use Illuminate\Support\Facades\Log;
 
 class OrderCalculationService implements OrderCalculationInterface
 {
-    
     public function calculateRefundableItems($items, array $payloadItems): array
     {
         $calculations = [];
@@ -33,16 +31,16 @@ class OrderCalculationService implements OrderCalculationInterface
 
         return $calculations;
     }
-    
+
     public function calculateRefundAmount($orderItem, $requestedQuantity): array
     {
         $paidCents = $orderItem->paid_price_cents;
         $refundedCents = $orderItem->refunded_price_cents;
         $remainingCents = max(0, $paidCents - $refundedCents);
-        
+
         $availableQuantity = $orderItem->quantity - ($orderItem->refunded_quantity ?? 0);
         $refundQuantity = min($requestedQuantity, $availableQuantity);
-        
+
         $unitPaidCents = $orderItem->price_cents;
         $priceToRefundCents = min($refundQuantity * $unitPaidCents, $remainingCents);
         $priceToRefundCents = $availableQuantity == 1 ? $remainingCents : $priceToRefundCents;
@@ -50,7 +48,7 @@ class OrderCalculationService implements OrderCalculationInterface
         return [
             'itemsToRefund' => $refundQuantity,
             'priceToRefundCents' => $priceToRefundCents,
-            'canRefund' => $refundQuantity > 0 && $priceToRefundCents > 0
+            'canRefund' => $refundQuantity > 0 && $priceToRefundCents > 0,
         ];
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\Campaigns;
 
-use Illuminate\Database\Seeder;
 use App\Models\Campaign;
 use App\Models\Product;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -15,20 +15,20 @@ class CampaignProductSeeder extends Seeder
         $now = Carbon::now();
 
         $campaignIds = Campaign::pluck('id', 'name');
-        $productIds  = Product::pluck('id', 'slug');
+        $productIds = Product::pluck('id', 'slug');
 
         $rows = [
             [
                 'campaign_id' => $campaignIds['Kışa Özel %20'] ?? 1,
-                'product_id'  => $productIds['erkek-cocuk-esofman-takimi'] ?? 1,
+                'product_id' => $productIds['erkek-cocuk-esofman-takimi'] ?? 1,
             ],
             [
                 'campaign_id' => $campaignIds['Kışa Özel %20'] ?? 1,
-                'product_id'  => $productIds['kiz-cocuk-jean-pantolon'] ?? 2,
+                'product_id' => $productIds['kiz-cocuk-jean-pantolon'] ?? 2,
             ],
             [
                 'campaign_id' => $campaignIds['3 Al 2 Öde Kids'] ?? 3,
-                'product_id'  => $productIds['kaliteli-esofman-4'] ?? 1,
+                'product_id' => $productIds['kaliteli-esofman-4'] ?? 1,
             ],
         ];
 

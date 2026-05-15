@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up(): void
     {
         Schema::create('stock_movements', function (Blueprint $table) {
@@ -20,14 +19,13 @@ return new class extends Migration
             $table->unsignedBigInteger('reference_id')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
-            
+
             $table->index(['variant_size_id', 'created_at']);
             $table->index(['warehouse_id', 'created_at']);
             $table->index(['type', 'created_at']);
             $table->index(['inventory_id', 'type']);
         });
     }
-
 
     public function down(): void
     {

@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -14,10 +13,7 @@ class PasswordResetNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly string $token)
-    {
-        
-    }
+    public function __construct(private readonly string $token) {}
 
     /**
      * Get the notification's delivery channels.
@@ -40,7 +36,7 @@ class PasswordResetNotification extends Notification
         return (new MailMessage)
             ->subject('Şifre Sıfırlama Talebi')
             ->markdown('mail.passwordReset', [
-                'name' => $notifiable->username ?? $notifiable->first_name . ' ' . $notifiable->last_name,
+                'name' => $notifiable->username ?? $notifiable->first_name.' '.$notifiable->last_name,
                 'url' => $resetUrl,
             ]);
     }

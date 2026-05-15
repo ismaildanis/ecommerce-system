@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class VariantSize extends Model
 {
@@ -21,12 +21,12 @@ class VariantSize extends Model
         'price_cents' => 'integer',
         'is_active' => 'boolean',
     ];
-    
+
     public function productVariant()
     {
         return $this->belongsTo(ProductVariant::class, 'product_variant_id');
     }
-    
+
     public function sizeOption()
     {
         return $this->belongsTo(AttributeOption::class, 'size_option_id');
@@ -36,9 +36,9 @@ class VariantSize extends Model
     {
         return $this->hasOne(Inventory::class, 'variant_size_id');
     }
-     
+
     public function getPriceAttribute()
     {
-        return number_format($this->price_cents / 100, 2, ',', '.') . ' TL';
+        return number_format($this->price_cents / 100, 2, ',', '.').' TL';
     }
 }

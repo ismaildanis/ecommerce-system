@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Main;
 
-use Illuminate\Database\Seeder;
 use App\Models\Attribute;
+use Illuminate\Database\Seeder;
 
 class AttributeSeeder extends Seeder
 {
@@ -19,5 +19,3 @@ class AttributeSeeder extends Seeder
         ]);
     }
 }
-
-

@@ -4,21 +4,21 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\PersonalAccessToken;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth;
 
 class AuthenticateSellerFromCookie
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
         $cookie = $request->cookie('seller_token');
-        if ($cookie){
+        if ($cookie) {
             $cookie = urldecode($cookie);
 
             if (strpos($cookie, '|') !== false) {
@@ -28,13 +28,13 @@ class AuthenticateSellerFromCookie
 
             if ($accessToken && hash_equals($accessToken->token, hash('sha256', $plainToken))) {
                 $seller = $accessToken->tokenable;
-                
+
                 $request->setUserResolver(fn () => $seller);
                 Auth::guard('seller')->setUser($seller);
             }
-            
 
         }
+
         return $next($request);
     }
 }

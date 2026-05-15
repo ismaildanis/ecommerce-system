@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class BulkProductStoreRequest extends FormRequest
 {
-    
     public function authorize(): bool
     {
         return true;
@@ -14,9 +13,9 @@ class BulkProductStoreRequest extends FormRequest
 
     public function rules(): array
     {
-        return [    
+        return [
             'products' => 'required|array|min:1',
-            'products.*.title' => 'required|string|max:255', 
+            'products.*.title' => 'required|string|max:255',
             'products.*.category_id' => 'nullable|exists:categories,id',
             'products.*.list_price' => 'required|numeric|min:0',
             'products.*.stock_quantity' => 'required|integer|min:0',
@@ -24,7 +23,7 @@ class BulkProductStoreRequest extends FormRequest
             'products.*.images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
-    
+
     public function messages(): array
     {
         return [

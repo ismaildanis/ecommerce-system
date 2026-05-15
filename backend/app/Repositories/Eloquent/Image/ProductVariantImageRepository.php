@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquent\Image;
 
 use App\Models\ProductVariantImage;
-use App\Repositories\Eloquent\BaseRepository;
 use App\Repositories\Contracts\Image\ProductVariantImageRepositoryInterface;
+use App\Repositories\Eloquent\BaseRepository;
 use Illuminate\Support\Facades\DB;
 
 class ProductVariantImageRepository extends BaseRepository implements ProductVariantImageRepositoryInterface
@@ -17,6 +17,7 @@ class ProductVariantImageRepository extends BaseRepository implements ProductVar
     public function store(array $data, $productVariantId)
     {
         $data['product_variant_id'] = $productVariantId;
+
         return $this->create($data);
     }
 
@@ -31,14 +32,14 @@ class ProductVariantImageRepository extends BaseRepository implements ProductVar
             $this->model->where('product_variant_id', $productVariantId)->update(['is_primary' => false]);
             foreach ($data as $d) {
                 $this->model->where('product_variant_id', $productVariantId)
-                ->where('id', $d['id'])
-                ->update([
-                    'sort_order' => $d['sort_order'], 
-                    'is_primary' => $d['sort_order'] === 1
-                ]);
+                    ->where('id', $d['id'])
+                    ->update([
+                        'sort_order' => $d['sort_order'],
+                        'is_primary' => $d['sort_order'] === 1,
+                    ]);
             }
         });
-        
+
         return $this->model
             ->where('product_variant_id', $productVariantId)
             ->orderBy('sort_order')
