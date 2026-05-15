@@ -1,92 +1,92 @@
 name: CI
 
-on: 
+on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
 
-  jobs:
-    test: 
-      runs-on: ubuntu-latest
-  
-      services:
-        postgres: 
-          image: postgres:17
-          env:
-            POSTGRES_USER: test_db
-            POSTGRES_PASSWORD: test_db
-            POSTGRES_DB: test_db
-          ports:
-            - 5432:5432
-          options: >-
-            --health-cmd pg_isready
-            --health-interval 10s
-            --health-timeout 5s
-            --health-retries 5
+jobs:
+  test:
+    runs-on: ubuntu-latest
 
-        redis:
-          image: redis:alpine
-          ports:
-            - 6379:6379
-          options: >-
-            --health-cmd "redis-cli ping"
-            --health-interval 10s
-            --health-timeout 5s
-            --health-retries 5
-      
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: test_db
+          POSTGRES_PASSWORD: test_db
+          POSTGRES_DB: test_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
-        - name: Setup PHP 
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: '8.2'
-            extensions: pdo, pdo_pgsql, pgsql, redis, zip, bcmath, intl, mbstring
-            coverage: xdebug
+      redis:
+        image: redis:alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
-        - name: Copy .env
-          run: cp backend/.env.example backend/.env
-          working-directory: .
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-        - name: Install dependencies
-          run: composer install --no-interaction --prefer-dist --optimize-autoloader
-          working-directory: backend
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: pdo, pdo_pgsql, pgsql, redis, zip, bcmath, intl, mbstring
+          coverage: xdebug
 
-        - name: Generate app key
-          run: php artisan key:generate
-          working-directory: backend
+      - name: Copy .env
+        run: cp backend/.env.example backend/.env
 
-        - name: Run migrations
-          run: php artisan migrate --force
-          working-directory: backend
-          env:
-            DB_CONNECTION: pgsql
-            DB_HOST: 127.0.0.1
-            DB_PORT: 5432
-            DB_DATABASE: test_db
-            DB_USERNAME: test_user
-            DB_PASSWORD: test_password
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+        working-directory: backend
 
-        - name: Run tests
-          run: php artisan test --coverage --min=60
-          working-directory: backend
-          env:
-            DB_CONNECTION: pgsql
-            DB_HOST: 127.0.0.1
-            DB_PORT: 5432
-            DB_DATABASE: test_db
-            DB_USERNAME: test_user
-            DB_PASSWORD: test_password
-            REDIS_HOST: 127.0.0.1
-            REDIS_PORT: 6379
+      - name: Generate app key
+        run: php artisan key:generate
+        working-directory: backend
+
+      - name: Run migrations
+        run: php artisan migrate --force
+        working-directory: backend
+        env:
+          DB_CONNECTION: pgsql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+          DB_DATABASE: test_db
+          DB_USERNAME: test_db
+          DB_PASSWORD: test_db
+
+      - name: Run tests
+        run: php artisan test --coverage --min=60
+        working-directory: backend
+        env:
+          DB_CONNECTION: pgsql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+          DB_DATABASE: test_db
+          DB_USERNAME: test_db
+          DB_PASSWORD: test_db
+          REDIS_HOST: 127.0.0.1
+          REDIS_PORT: 6379
 
   lint:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: backend
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -101,3 +101,26 @@ on:
 
       - name: Run Pint
         run: ./vendor/bin/pint --test
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dirs: frontend
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
