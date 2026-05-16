@@ -21,6 +21,8 @@ class SearchController extends Controller
         $this->elasticSearchProductService = $elasticSearchProductService;
     }
 
+    /** @unauthenticated */
+
     public function search(Request $request)
     {
         $query = $request->input('q', '');

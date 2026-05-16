@@ -28,6 +28,7 @@ class CategoryFilterController extends Controller
         $this->mainService = $mainService;
     }
 
+    /** @unauthenticated */
     public function categoryFilter(Request $request, $category_slug)
     {
         $categories = $this->mainService->getCategory($category_slug);

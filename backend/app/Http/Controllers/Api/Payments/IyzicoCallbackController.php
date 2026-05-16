@@ -14,6 +14,8 @@ use Illuminate\Support\Str;
 
 class IyzicoCallbackController extends Controller
 {
+    
+    /** @unauthenticated */
     public function __invoke(Request $request, CheckoutSessionService $checkoutSessions)
     {
         $payload = $request->all();

@@ -32,10 +32,7 @@ return [
     'routes' => [
         [
             'match' => [
-                // Match only routes whose paths match this pattern (use * as a wildcard to match any characters). Example: 'users/*'.
-                'prefixes' => ['api/*'],
-
-                // Match only routes whose domains match this pattern (use * as a wildcard to match any characters). Example: 'api.*'.
+                'prefixes' => ['api', 'api/*'],
                 'domains' => ['*'],
             ],
 
@@ -105,7 +102,7 @@ return [
     // How is your API authenticated? This information will be used in the displayed docs, generated examples and response calls.
     'auth' => [
         'enabled' => true,
-        'default' => true,
+        'default' => false,
         'in' => 'bearer',
         'name' => 'Authorization',
         'use_value' => env('SCRIBE_AUTH_KEY', ''),

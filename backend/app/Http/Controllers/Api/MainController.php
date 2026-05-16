@@ -33,7 +33,7 @@ class MainController extends Controller
         $this->elasticSearchProductService = $elasticSearchProductService;
         $this->mainService = $mainService;
     }
-
+    /** @unauthenticated */
     public function main()
     {
         $products = $this->mainService->getProductsPopularVariants();
@@ -48,7 +48,7 @@ class MainController extends Controller
             'campaigns' => $campaigns,
         ]);
     }
-
+    /** @unauthenticated */
     public function filter(Request $request)
     {
         $filters = $this->elasticSearchTypeService->filterType($request);
@@ -67,7 +67,7 @@ class MainController extends Controller
             'products' => ProductResource::collection($data['products']),
         ]);
     }
-
+    /** @unauthenticated */
     public function sorting(Request $request)
     {
         $sorting = $this->elasticSearchTypeService->sortingType($request);
@@ -86,7 +86,7 @@ class MainController extends Controller
             'products' => ProductResource::collection($data['products']),
         ]);
     }
-
+    /** @unauthenticated */
     public function autocomplete(Request $request)
     {
         $query = $request->input('q', '');

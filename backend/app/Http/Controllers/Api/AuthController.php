@@ -37,6 +37,7 @@ class AuthController extends Controller
 
     /**
      * Kullanıcı kayıt işlemi
+     * @unauthenticated
      */
     public function register(RegisterRequest $request)
     {
@@ -45,6 +46,7 @@ class AuthController extends Controller
 
     /**
      * Kullanıcı giriş işlemi
+     * @unauthenticated
      */
     public function login(LoginRequest $request)
     {
@@ -158,7 +160,7 @@ class AuthController extends Controller
     }
 
     // seller login
-
+    /** @unauthenticated */
     public function sellerLogin(LoginRequest $request)
     {
         $seller = Seller::where('email', $request->email)->first();
