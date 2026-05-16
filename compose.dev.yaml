@@ -28,6 +28,7 @@ services:
 
   # Workspace
   workspace:
+    container_name: workspace
     build:
       context: .
       dockerfile: ./docker/development/workspace/Dockerfile
