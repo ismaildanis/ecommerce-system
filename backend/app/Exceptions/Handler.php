@@ -12,55 +12,36 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    protected $dontReport = [];
-
-    protected $dontFlash = [
-        'password',
-        'password_confirmation',
-    ];
-
     public function register(): void
     {
         $this->renderable(function (Throwable $e, $request): ?JsonResponse {
             if (! ($request->expectsJson() || $request->is('api/*'))) {
-                return null; // web istekleri için Laravel’in varsayılan davranışı
+                return null;
             }
 
             if ($e instanceof ValidationException) {
-                $firstMessage = Arr::first(Arr::flatten($e->errors())) ?? __('validation.failed');
-                $firstMessage = preg_replace('/\s*\(and\s+\d+\s+more\s+errors?\)\s*$/i', '', $firstMessage);
-
                 return response()->json([
-                    'message' => $firstMessage,
+                    'message' => 'Geçersiz istek.',
+                    'errors' => $e->errors(),
                 ], 422);
             }
 
             if ($e instanceof AuthenticationException) {
                 return response()->json([
-                    'success' => false,
-                    'message' => $e->getMessage() ?: 'Kimlik doğrulaması gerekli.',
+                    'message' => 'Kimlik doğrulaması yapılmamış.',
                 ], 401);
             }
 
             if ($e instanceof HttpExceptionInterface) {
                 return response()->json([
-                    'success' => false,
-                    'message' => $e->getMessage() ?: 'İstek gerçekleşirken bir hata oluştu.',
+                    'message' => $e->getMessage() ?: 'HTTP hatası oluştu.',
                 ], $e->getStatusCode());
             }
 
-            if ($e instanceof \RuntimeException) {
-                return response()->json([
-                    'success' => false,
-                    'message' => $e->getMessage(),
-                ], 400);
-            }
-
-            // Diğer tüm hatalar için 500
             return response()->json([
-                'success' => false,
-                'error' => class_basename($e),
-                'message' => $e->getMessage(),
+                'message' => config('app.debug')
+                    ? $e->getMessage()
+                    : 'Sunucu hatası oluştu.',
             ], 500);
         });
     }

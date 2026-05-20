@@ -2,19 +2,21 @@
 
 namespace App\Exceptions;
 
-class InsufficientStockException extends \Exception
+use Exception;
+use Illuminate\Http\JsonResponse;
+
+class InsufficientStockException extends Exception
 {
-    protected $variant;
-
-    protected $requestedQuantity;
-
-    protected $availableQuantity;
-
-    public function __construct(string $message, $variant = null, $requested = 0, $available = 0)
-    {
+    public function __construct(
+        string $message = 'Stokta yeterli ürün yok!'
+    ) {
         parent::__construct($message);
-        $this->variant = $variant;
-        $this->requestedQuantity = $requested;
-        $this->availableQuantity = $available;
+    }
+
+    public function render(): JsonResponse
+    {
+        return response()->json([
+            'message' => $this->getMessage(),
+        ], 409);
     }
 }

@@ -5,22 +5,23 @@ namespace App\Services\Bag\Services;
 use App\Exceptions\InsufficientStockException;
 use App\Models\Inventory;
 use App\Services\Bag\Contracts\StockInterface;
+use Exception;
 
 class StockService implements StockInterface
 {
-    public function checkStockAvailability($bag, $variantSizeId, $quantity = 1)
+    public function checkStockAvailability($bag, $variantSizeId, $quantity)
     {
         $stock = Inventory::where('variant_size_id', $variantSizeId)->first();
+        
+        if (! $stock) {
+            abort(404, 'Ürün varyantı veya stok kaydı bulunamadı!');
+        }
+
         $itemInTheBag = $bag->bagItems()->where('variant_size_id', $variantSizeId)->first();
         $currentQuantity = $itemInTheBag ? $itemInTheBag->quantity : 0;
 
         if ($stock->available < ($currentQuantity + $quantity)) {
-            throw new InsufficientStockException(
-                'Stokta yeterli ürün yok!',
-                $stock,
-                $quantity,
-                $currentQuantity
-            );
+            throw new InsufficientStockException();
         }
 
         return [
@@ -37,8 +38,7 @@ class StockService implements StockInterface
 
             return $itemInTheBag;
         } else {
-            $d = $stock->variantSize->productVariant->id;
-
+            
             return $bag->bagItems()->create([
                 'variant_id' => $stock->variantSize->productVariant->id,
                 'variant_size_id' => $variantSizeId,

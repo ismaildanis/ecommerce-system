@@ -16,8 +16,8 @@ class BagStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'variant_size_id' => 'required|exists:variant_sizes,id',
-            'quantity' => 'sometimes|integer|min:1',
+            'variant_size_id' => ['required', 'integer'],
+            'quantity' => ['nullable', 'integer', 'min:1'],
         ];
     }
 
@@ -25,16 +25,9 @@ class BagStoreRequest extends FormRequest
     {
         return [
             'variant_size_id.required' => 'Variant size zorunlu!',
-            'variant_size_id.exists' => 'Variant size bulunamadı!',
+            'variant_size_id.integer' => 'Variant size sayısal olmalıdır!',
             'quantity.integer' => 'Ürün adedi sayısal değer olmalıdır!',
+            'quantity.min' => 'Ürün adedi en az 1 olmalıdır!',
         ];
-    }
-
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json([
-            'message' => 'Geçersiz istek.',
-            'errors' => $validator->errors(),
-        ], 422));
     }
 }

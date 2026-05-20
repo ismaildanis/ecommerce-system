@@ -108,25 +108,33 @@ class BagService implements BagInterface
 
     }
 
-    public function addToBag($variantSizeId, $quantity = 1)
+    public function addToBag(int $variantSizeId, int $quantity = 1)
     {
-        try {
-            $user = $this->getUser();
-            if (! $user) {
-                throw new \Exception('Kullanıcı bulunamadı!');
-            }
-            $bag = $this->bagRepository->createBag($user);
-            if (! $bag) {
-                throw new \Exception('Sepet bulunamadı!');
-            }
-            $productItem = $this->stockService->checkStockAvailability($bag, $variantSizeId, $quantity);
+        $user = $this->getUser();
 
-            $a = $this->stockService->reserveStock($productItem['itemInTheBag'], $productItem['stock'], $bag, $variantSizeId, $quantity);
-
-            return $a;
-        } catch (InsufficientStockException $e) {
-            return ['error' => $e->getMessage()];
+        if (! $user) {
+            abort(401, 'Kullanıcı bulunamadı!');
         }
+
+        $bag = $this->bagRepository->createBag($user);
+
+        if (! $bag) {
+            abort(404, 'Sepet bulunamadı!');
+        }
+
+        $productItem = $this->stockService->checkStockAvailability(
+            $bag,
+            $variantSizeId,
+            $quantity
+        );
+
+        return $this->stockService->reserveStock(
+            $productItem['itemInTheBag'],
+            $productItem['stock'],
+            $bag,
+            $variantSizeId,
+            $quantity
+        );
     }
 
     public function selectCampaign(int $campaignId): array

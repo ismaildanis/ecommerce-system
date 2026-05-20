@@ -6,7 +6,7 @@ interface BagInterface
 {
     public function getBag();
 
-    public function addToBag($variantSizeId, $quantity = 1);
+    public function addToBag(int $variantSizeId, int $quantity);
 
     public function selectCampaign(int $campaignId): array;
 

@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Middleware\SellerRedirect;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Throwable;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -19,28 +23,47 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions): void {
 
-        // RuntimeException veya genel exception'lar için JSON çıktı
-        $exceptions->render(function (Throwable $e, $request) {
+        $exceptions->render(function (ValidationException $e, $request) {
             if ($request->expectsJson() || $request->is('api/*')) {
-                $status = 500;
-
-                if ($e instanceof RuntimeException) {
-                    $status = 400;
-                }
-
                 return response()->json([
-                    'message' => $e->getMessage(),
-                ], $status);
+                    'message' => 'Geçersiz istek.',
+                    'errors' => $e->errors(),
+                ], 422);
             }
 
-            return null; // web istekleri default davranışta kalsın
+            return null;
         });
 
-        // MethodNotAllowed gibi özel exception'ların override'ı (senin mevcut kodun)
-        $exceptions->render(function (MethodNotAllowedHttpException $e, $request) {
-            if ($request->is('api/*') || $request->expectsJson()) {
-                return null; // varsayılan 405 handling
+        $exceptions->render(function (AuthenticationException $e, $request) {
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json([
+                    'message' => 'Kimlik doğrulaması yapılmamış.',
+                ], 401);
             }
+
+            return null;
+        });
+
+        $exceptions->render(function (HttpExceptionInterface $e, $request) {
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json([
+                    'message' => $e->getMessage() ?: 'HTTP hatası oluştu.',
+                ], $e->getStatusCode());
+            }
+
+            return null;
+        });
+
+        $exceptions->render(function (Throwable $e, $request) {
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json([
+                    'message' => config('app.debug')
+                        ? $e->getMessage()
+                        : 'Sunucu hatası oluştu.',
+                ], 500);
+            }
+
+            return null;
         });
     })
     ->create();

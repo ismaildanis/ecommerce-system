@@ -3,7 +3,6 @@
 namespace App\Http;
 
 use App\Console\Commands\ReindexProducts;
-use App\Http\Middleware\ApiAuthenticate;
 use App\Http\Middleware\AuthenticateFromCookie;
 use App\Http\Middleware\AuthenticateSellerFromCookie;
 use App\Http\Middleware\DevelopmentOnly;
@@ -18,7 +17,6 @@ use Illuminate\Http\Middleware\HandleCors;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 class Kernel extends HttpKernel
 {
@@ -29,7 +27,6 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         HandleCors::class,
-
     ];
 
     protected $middlewareGroups = [
@@ -43,12 +40,8 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            EnsureFrontendRequestsAreStateful::class,
-            AuthenticateFromCookie::class,
-            AuthenticateSellerFromCookie::class,
-            ApiAuthenticate::class,
-            'throttle:api',
             SubstituteBindings::class,
+            'throttle:api',
         ],
 
         'dev' => [

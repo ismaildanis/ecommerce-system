@@ -23,34 +23,20 @@ class BagController extends Controller
 
     public function index()
     {
-        try {
-            $bag = $this->bagService->getBag();
+        $bag = $this->bagService->getBag();
 
-            if ($bag['products']->isEmpty()) {
-                return new BagResource($bag);
-            }
-
-            return new BagResource($bag);
-        } catch (\Exception $e) {
-            return Response::json([
-                'message' => $e->getMessage(),
-            ], 400);
-        }
+        return new BagResource($bag);
     }
 
     public function store(BagStoreRequest $request)
     {
-        $productItem = $this->bagService->addToBag($request->variant_size_id, $request->quantity);
+        $data = $request->validated();
 
-        if (is_array($productItem) && isset($productItem['error'])) {
-            return ResponseHelper::error($productItem['error'], 400);
-        }
+        $this->bagService->addToBag(
+            $data['variant_size_id'],
+            $data['quantity'] ?? 1
+        );
 
-        if (! $productItem) {
-            return ResponseHelper::error('Ürün bulunamadı!', 404);
-        }
-
-        Cache::flush();
         $bagData = $this->bagService->getBag();
 
         return new BagResource($bagData);

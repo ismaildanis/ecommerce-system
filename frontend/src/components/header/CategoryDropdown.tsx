@@ -94,13 +94,13 @@ export default function CategoryDropdown({ isMobile = false }: Props) {
 
       {active && (
         <div
-          className="fixed left-0 top-[64px] w-screen bg-[var(--campaign-bg)] text-black z-50 border-t border-neutral-800 shadow-2xl animate-fadeSlideDown"
+          className="fixed left-0 top-[100px] w-screen bg-[var(--campaign-bg)] text-black z-50 border-t border-neutral-800 shadow-2xl animate-fadeSlideDown"
           onMouseEnter={() => setActive(active)}
         >
           <div className="max-w-[1400px] mx-auto px-[8vw] py-5">
             <div
               key={active}
-              className="grid grid-cols-3 px-[8vw] items-center gap-12 animate-fadeSlideDown"
+              className="grid grid-cols-3 px-[18vw] items-center gap-12 animate-fadeSlideDown"
             >
               {chunkIntoThree(
                 categories.filter(
@@ -109,7 +109,7 @@ export default function CategoryDropdown({ isMobile = false }: Props) {
                 )
               ).map((col, i) => (
                 <div key={i}>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 ">
                     {col.map((cat) => (
                       <li key={cat.id}>
                         <Link

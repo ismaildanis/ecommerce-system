@@ -49,7 +49,7 @@ Route::get('/filter', [MainController::class, 'filter']);
 Route::get('/sorting', [MainController::class, 'sorting']);
 Route::get('/autocomplete', [MainController::class, 'autocomplete']);
 
-Route::middleware(AuthenticateFromCookie::class)->middleware('auth:user')->middleware(ApiAuthenticate::class)->group(function () {
+Route::middleware(AuthenticateFromCookie::class)->group(function () {
 
     Route::post('bags/campaign', [BagController::class, 'select']);
     Route::delete('bags/campaign', [BagController::class, 'unSelectCampaign']);
@@ -92,7 +92,7 @@ Route::middleware(AuthenticateFromCookie::class)->middleware('auth:user')->middl
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
-Route::middleware(AuthenticateSellerFromCookie::class)->middleware('auth:seller')->group(function () {
+Route::middleware(AuthenticateSellerFromCookie::class)->group(function () {
 
     Route::post('/seller-logout', [AuthController::class, 'sellerLogout']);
     Route::get('/my-seller', [AuthController::class, 'mySeller']);
