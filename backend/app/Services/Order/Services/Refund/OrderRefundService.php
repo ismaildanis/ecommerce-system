@@ -19,12 +19,9 @@ class OrderRefundService implements OrderRefundInterface
     use GetUser;
 
     public function __construct(
-        private IyzicoPaymentService $iyzicoService,
         private OrderCalculationInterface $orderCalculationService,
         private OrderCheckInterface $orderCheckService,
-        private OrderUpdateInterface $orderUpdateService,
         private RefundPlacementService $refundPlacementService,
-        private AuthenticationRepositoryInterface $authenticationRepository,
         private ReverseShipmentGatewayInterface $reverseShipmentGateway
     ) {}
 

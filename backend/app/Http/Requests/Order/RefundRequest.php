@@ -21,14 +21,6 @@ class RefundRequest extends FormRequest
         ];
     }
 
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json([
-            'message' => 'Geçersiz istek.',
-            'errors' => $validator->errors(),
-        ], 422));
-    }
-
     public function messages()
     {
         return [

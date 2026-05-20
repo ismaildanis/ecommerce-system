@@ -192,7 +192,7 @@ return [
         */
 
         AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
+        AuthServiceProvider::class,
         EventServiceProvider::class,
         RouteServiceProvider::class,
         OrderServiceProvider::class,

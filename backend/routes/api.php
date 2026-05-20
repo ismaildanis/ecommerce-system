@@ -6,10 +6,6 @@ use App\Http\Controllers\Api\Checkout\CheckoutController;
 use App\Http\Controllers\Api\ElasticSearch\CategoryFilterController;
 use App\Http\Controllers\Api\ElasticSearch\SearchController;
 use App\Http\Controllers\Api\MainController;
-use App\Http\Controllers\Api\Order\OrderController;
-use App\Http\Controllers\Api\Order\OrderRefundController;
-use App\Http\Controllers\Api\Order\OrderRefundWebhookController;
-use App\Http\Controllers\Api\Payments\CreditCardController;
 use App\Http\Controllers\Api\Payments\IyzicoCallbackController;
 use App\Http\Controllers\Api\Product\ProductVariantController;
 use App\Http\Controllers\Api\ResetPasswordController;
@@ -21,12 +17,15 @@ use App\Http\Controllers\Api\Seller\SellerOrderController;
 use App\Http\Controllers\Api\Seller\VariantController;
 use App\Http\Controllers\Api\Seller\VariantSizeController;
 use App\Http\Controllers\Api\User\AddressesController;
-use App\Http\Middleware\ApiAuthenticate;
 use App\Http\Middleware\AuthenticateFromCookie;
 use App\Http\Middleware\AuthenticateSellerFromCookie;
 use App\Http\Middleware\LoginRateLimit;
 use App\Http\Middleware\RegisterRateLimit;
 use Illuminate\Support\Facades\Route;
+
+// use App\Http\Controllers\Api\Order\OrderController;
+// use App\Http\Controllers\Api\Order\OrderRefundController;
+// use App\Http\Controllers\Api\Order\OrderRefundWebhookController;
 
 Route::post('/register', [AuthController::class, 'register'])->middleware(RegisterRateLimit::class);
 Route::post('/login', [AuthController::class, 'login'])->middleware(LoginRateLimit::class);
@@ -46,8 +45,6 @@ Route::prefix('category')->group(function () {
 
 Route::get('/search', [SearchController::class, 'search']);
 Route::get('/filter', [MainController::class, 'filter']);
-Route::get('/sorting', [MainController::class, 'sorting']);
-Route::get('/autocomplete', [MainController::class, 'autocomplete']);
 
 Route::middleware(AuthenticateFromCookie::class)->group(function () {
 
@@ -62,24 +59,23 @@ Route::middleware(AuthenticateFromCookie::class)->group(function () {
         Route::post('payment-intent', [CheckoutController::class, 'createPaymentIntent']);
     });
 
-    Route::prefix('orders')->group(function () {
-        Route::get('/', [OrderController::class, 'index']);
-        Route::get('/{order}', [OrderController::class, 'show']);
-        Route::post('/{order}/refund', [OrderController::class, 'refundItems']);
+    // Henüz kullanılmıyor 
+    // Route::prefix('orders')->group(function () {
+    //     Route::get('/', [OrderController::class, 'index']);
+    //     Route::get('/{order}', [OrderController::class, 'show']);
+    //     Route::post('/{order}/refund', [OrderController::class, 'refundItems']);
 
-    });
+    // });
 
-    Route::prefix('orders/{order}/refunds')->group(function () {
-        Route::get('/', [OrderRefundController::class, 'index']);
-        Route::post('/', [OrderRefundController::class, 'store']);
-    });
+    // Route::prefix('orders/{order}/refunds')->group(function () {
+    //     Route::get('/', [OrderRefundController::class, 'index']);
+    //     Route::post('/', [OrderRefundController::class, 'store']);
+    // });
 
-    Route::prefix('refunds/webhooks')->group(function () {
-        Route::post('/shipment', [OrderRefundWebhookController::class, 'handleShipmentStatus'])->middleware('verify.refund-webhook:shipment');
-        Route::post('/payment', [OrderRefundWebhookController::class, 'handlePaymentStatus'])->middleware('verify.refund-webhook:payment');
-    });
-
-    Route::apiResource('creditcard', CreditCardController::class);
+    // Route::prefix('refunds/webhooks')->group(function () {
+    //     Route::post('/shipment', [OrderRefundWebhookController::class, 'handleShipmentStatus'])->middleware('verify.refund-webhook:shipment');
+    //     Route::post('/payment', [OrderRefundWebhookController::class, 'handlePaymentStatus'])->middleware('verify.refund-webhook:payment');
+    // });
 
     Route::get('/me', [AuthController::class, 'me']);
 

@@ -10,29 +10,11 @@ use App\Services\Search\ElasticsearchService;
 
 class MainService
 {
-    protected $elasticSearch;
-
-    protected $productRepository;
-
-    protected $categoryRepository;
-
-    protected $campaignRepository;
-
-    protected $productVariantRepository;
-
     public function __construct(
-        ElasticsearchService $elasticSearch,
-        ProductRepositoryInterface $productRepository,
-        CategoryRepositoryInterface $categoryRepository,
-        CampaignRepositoryInterface $campaignRepository,
-        ProductVariantRepositoryInterface $productVariantRepository
-    ) {
-        $this->elasticSearch = $elasticSearch;
-        $this->productRepository = $productRepository;
-        $this->categoryRepository = $categoryRepository;
-        $this->campaignRepository = $campaignRepository;
-        $this->productVariantRepository = $productVariantRepository;
-    }
+       private readonly ProductRepositoryInterface $productRepository,
+       private readonly CategoryRepositoryInterface $categoryRepository,
+       private readonly CampaignRepositoryInterface $campaignRepository,
+    ) {}
 
     public function getProducts()
     {

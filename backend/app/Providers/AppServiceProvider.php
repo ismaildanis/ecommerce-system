@@ -20,7 +20,6 @@ use App\Repositories\Contracts\Bag\BagRepositoryInterface;
 use App\Repositories\Contracts\BaseRepositoryInterface;
 use App\Repositories\Contracts\Campaign\CampaignRepositoryInterface;
 use App\Repositories\Contracts\Category\CategoryRepositoryInterface;
-use App\Repositories\Contracts\CreditCard\CreditCardRepositoryInterface;
 use App\Repositories\Contracts\Image\ProductVariantImageRepositoryInterface;
 use App\Repositories\Contracts\Inventory\InventoryRepositoryInterface;
 use App\Repositories\Contracts\Order\OrderRepositoryInterface;
@@ -39,7 +38,6 @@ use App\Repositories\Eloquent\Bag\BagRepository;
 use App\Repositories\Eloquent\BaseRepository;
 use App\Repositories\Eloquent\Campaign\CampaignRepository;
 use App\Repositories\Eloquent\Category\CategoryRepository;
-use App\Repositories\Eloquent\CreditCard\CreditCardRepository;
 use App\Repositories\Eloquent\Image\ProductVariantImageRepository;
 use App\Repositories\Eloquent\Inventory\InventoryRepository;
 use App\Repositories\Eloquent\Order\OrderRepository;
@@ -154,12 +152,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             CampaignRepositoryInterface::class,
             CampaignRepository::class
-        );
-
-        // Credit Card Repository
-        $this->app->bind(
-            CreditCardRepositoryInterface::class,
-            CreditCardRepository::class
         );
 
         // User Repository

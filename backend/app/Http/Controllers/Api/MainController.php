@@ -14,25 +14,12 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    protected $elasticSearch;
-
-    protected $elasticSearchTypeService;
-
-    protected $elasticSearchProductService;
-
-    protected $mainService;
-
     public function __construct(
-        ElasticsearchService $elasticSearch,
-        ElasticSearchTypeService $elasticSearchTypeService,
-        ElasticSearchProductService $elasticSearchProductService,
-        MainService $mainService
-    ) {
-        $this->elasticSearch = $elasticSearch;
-        $this->elasticSearchTypeService = $elasticSearchTypeService;
-        $this->elasticSearchProductService = $elasticSearchProductService;
-        $this->mainService = $mainService;
-    }
+       private readonly ElasticSearchTypeService $elasticSearchTypeService,
+       private readonly ElasticSearchProductService $elasticSearchProductService,
+       private readonly MainService $mainService
+    ) { }
+
     /** @unauthenticated */
     public function main()
     {
@@ -66,32 +53,5 @@ class MainController extends Controller
             'filters' => $filters,
             'products' => ProductResource::collection($data['products']),
         ]);
-    }
-    /** @unauthenticated */
-    public function sorting(Request $request)
-    {
-        $sorting = $this->elasticSearchTypeService->sortingType($request);
-
-        $data = $this->elasticSearchProductService->sortingProducts(
-            $sorting,
-            $request->input('page', 1),
-            $request->input('size', 12)
-        );
-
-        return ResponseHelper::success('Sıralama', [
-            'total' => $data['results']['total'],
-            'page' => $request->input('page', 1),
-            'size' => $request->input('size', 12),
-            'sorting' => $sorting,
-            'products' => ProductResource::collection($data['products']),
-        ]);
-    }
-    /** @unauthenticated */
-    public function autocomplete(Request $request)
-    {
-        $query = $request->input('q', '');
-        $data = $this->elasticSearchProductService->autocomplete($query);
-
-        return ResponseHelper::success('Otomatik Tamamlama', $data);
     }
 }

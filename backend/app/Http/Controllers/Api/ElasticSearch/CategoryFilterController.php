@@ -12,24 +12,14 @@ use Illuminate\Http\Request;
 
 class CategoryFilterController extends Controller
 {
-    protected $elasticSearchTypeService;
-
-    protected $elasticSearchProductService;
-
-    protected $mainService;
-
     public function __construct(
-        ElasticSearchTypeService $elasticSearchTypeService,
-        ElasticSearchProductService $elasticSearchProductService,
-        MainService $mainService
-    ) {
-        $this->elasticSearchTypeService = $elasticSearchTypeService;
-        $this->elasticSearchProductService = $elasticSearchProductService;
-        $this->mainService = $mainService;
-    }
+       private readonly ElasticSearchTypeService $elasticSearchTypeService,
+       private readonly ElasticSearchProductService $elasticSearchProductService,
+       private readonly MainService $mainService
+    ) {}
 
     /** @unauthenticated */
-    public function categoryFilter(Request $request, $category_slug)
+    public function categoryFilter(Request $request, string $category_slug)
     {
         $categories = $this->mainService->getCategory($category_slug);
 

@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -53,7 +54,9 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
         if (! $user || ! Hash::check($request->input('password'), $user->password)) {
-            return ResponseHelper::error('Email veya Şifre Hatalı', 401);
+            throw ValidationException::withMessages([
+                'email' => ['Email veya Şifre Hatalı'],
+            ]);        
         }
         $token = $user->createToken('user-token')->plainTextToken;
 

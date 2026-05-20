@@ -5,7 +5,6 @@ import { FaFilter } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 import CategoryFilter from "@/components/product/CategoryFilter";
 import SearchProductList from "@/components/product/SearchProductList";
-import SortingFilter from "@/components/product/SortingFilter";
 
 const DESKTOP_FILTER_WIDTH = 280;
 
