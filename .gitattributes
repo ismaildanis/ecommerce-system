@@ -1,13 +1,14 @@
 * text=auto eol=lf
 
-*.blade.php diff=html
+*.blade.php diff=html linguist-vendored=true
 *.css diff=css
 *.html diff=html
 *.md diff=markdown
 *.php diff=php
 
-docs/** linguist-vendored
-*.blade.php linguist-vendored
+backend/resources/views/scribe/** linguist-vendored=true
+backend/public/docs/** linguist-documentation=true
+docs/** linguist-vendored=true
 
 /.github export-ignore
 CHANGELOG.md export-ignore
