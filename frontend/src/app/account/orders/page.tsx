@@ -3,10 +3,26 @@ import { motion } from 'framer-motion'
 import { useMe } from '@/hooks/useAuthQuery'
 import { useOrder } from '@/hooks/useOrderQuery'
 import OrdersList from '@/components/order/OrderList'
+import Link from "next/link"
 
 export default function OrdersPage() {
   const { data: me } = useMe()
   const { data: orders, error } = useOrder(me?.id)
+  
+  if (!orders || orders.length === 0) {
+    return (
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center py-12 sm:py-16 px-4">
+        <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-5 sm:mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+          <svg className="w-10 h-10 sm:w-12 sm:h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 111.314 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </div>
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Henüz siparişiniz yok</h3>
+        <p className="text-sm sm:text-base text-gray-600">Alışverişe devam ederek ilk siparişinizi oluşturabilirsiniz.</p>
+      </motion.div>
+    )
+  }
 
   if (error) {
     return (
@@ -20,23 +36,7 @@ export default function OrdersPage() {
           </svg>
           <span className="text-base sm:text-lg font-medium">Siparişler yüklenirken bir hata oluştu</span>
         </div>
-        <p className="mt-2 text-sm sm:text-base text-red-600 break-words">{error.message}</p>
       </div>
-    )
-  }
-
-  if (!orders || orders.length === 0) {
-    return (
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center py-12 sm:py-16 px-4">
-        <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-5 sm:mb-6 bg-gray-100 rounded-full flex items-center justify-center">
-          <svg className="w-10 h-10 sm:w-12 sm:h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 111.314 0z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-        </div>
-        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Henüz siparişiniz yok</h3>
-        <p className="text-sm sm:text-base text-gray-600">Alışverişe devam ederek ilk siparişinizi oluşturabilirsiniz.</p>
-      </motion.div>
     )
   }
 
