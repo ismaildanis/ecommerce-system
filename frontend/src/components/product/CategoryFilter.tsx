@@ -10,8 +10,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import LoadingState from '@/components/ui/LoadingState'
-
 export default function CategoryFilter({ isOpen }: { isOpen: boolean, handleOpen: () => void, handleClose: () => void }) {
   const { data: mainData, isLoading, error } = useMainData()
   const router = useRouter()

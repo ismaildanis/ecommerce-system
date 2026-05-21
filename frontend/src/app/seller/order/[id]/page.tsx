@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { FiPackage, FiTag, FiHash, FiTruck, FiDollarSign, FiArrowLeft, FiCheck, FiX } from "react-icons/fi";
+import { FiPackage, FiTag, FiHash, FiTruck, FiDollarSign, FiArrowLeft } from "react-icons/fi";
 import { useOrderConfirm, useOrderDetail } from "@/hooks/seller/useOrderQuery";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";

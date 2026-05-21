@@ -6,7 +6,7 @@ import CampaignList from '@/components/seller/campaign/list/CampaignList';
 import CampaignDrawer from '@/components/seller/campaign/CampaignDrawer';
 
 export default function CampaignsPage() {
-  const { data, isLoading, isError, refetch, isFetching } = useCampaignIndex();
+  const { data, isLoading, isError } = useCampaignIndex();
   const [selectedCampaignId, setSelectedCampaignId] = useState<number | null>(null);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 

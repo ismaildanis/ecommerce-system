@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion"
 import { z } from "zod"
 
 import AddressSelector from "@/components/forms/AddressSelector"
-import Input from "@/components/ui/Input"
 import { DeliveryMethodCard } from "./DeliveryMethodCard"
 import { shippingSchema, type ShippingFormValues } from "@/schemas/checkout/shippingSchema"
 

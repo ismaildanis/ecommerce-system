@@ -13,7 +13,7 @@ interface Props {
 
 export default function CategoryDropdown({ isMobile = false }: Props) {
   const { data, isError } = useMainData();
-  const categories = data?.categories ?? [];
+  const categories = useMemo(() => data?.categories ?? [], [data?.categories]);
   const [active, setActive] = useState<string | null>(null);
 
   const genderColumns = useMemo(() => {

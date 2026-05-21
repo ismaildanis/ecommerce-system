@@ -27,12 +27,9 @@ export const useUserAddressStore = (userId?: number) => {
             const response = await addressApi.store(data)
             return response.data.data
         },
-        onSuccess: (data: any) => {
+        onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: addressKeys.index(userId) })
         },
-        onError: (error: any) => {
-            // Error handling otomatik
-        }
     })
 }
 
@@ -59,9 +56,6 @@ export const useUserAddressUpdate = (userId?: number) => {
             queryClient.invalidateQueries({ queryKey: addressKeys.detail(id, userId) })
             queryClient.invalidateQueries({ queryKey: addressKeys.index(userId) })
         },
-        onError: (error: any) => {
-            // Error handling
-        }
     })
 }
 
@@ -76,8 +70,5 @@ export const useUserAddressDestroy = (userId?: number) => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: addressKeys.index(userId) })
         },
-        onError: (error: any) => {
-            // Error handling otomatik
-        }
     })
 }

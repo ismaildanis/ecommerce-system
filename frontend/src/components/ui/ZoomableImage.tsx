@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 
 export default function ZoomableImage({ src }: { src: string }) {
   const [isZoomed, setIsZoomed] = useState(false);
@@ -18,15 +19,18 @@ export default function ZoomableImage({ src }: { src: string }) {
       onMouseLeave={() => setIsZoomed(false)}
       onMouseMove={handleMouseMove}
     >
-      <img
+      <Image
         src={src}
         alt="Zoomable"
-        className={`w-full h-full object-contain transition-transform duration-200 ${
+        fill
+        unoptimized
+        className={`object-contain transition-transform duration-200 ${
           isZoomed ? "scale-300" : "scale-100"
         }`}
         style={{
-          transformOrigin: `${position.x}% ${position.y}%`
+          transformOrigin: `${position.x}% ${position.y}%`,
         }}
+        sizes="800px"
       />
     </div>
   );

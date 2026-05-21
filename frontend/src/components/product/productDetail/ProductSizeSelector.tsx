@@ -1,10 +1,9 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import type { Product, ProductVariant } from "@/types/seller/product"
+import type { ProductVariant } from "@/types/seller/product"
 
 interface ProductSizeSelectorProps {
-  product: Product
   variants: ProductVariant[]
   onSizeSelect: (variantSizeId: number) => Promise<void> | void
 }
@@ -22,7 +21,6 @@ type SizeOption = {
 const LOW_STOCK_THRESHOLD = 5
 
 export default function ProductSizeSelector({
-  product,
   variants,
   onSizeSelect,
 }: ProductSizeSelectorProps) {

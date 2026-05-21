@@ -1,10 +1,14 @@
 <?php
+
 namespace App\Http\Middleware;
+
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\PersonalAccessToken;
 use Symfony\Component\HttpFoundation\Response;
+
 class AuthenticateFromCookie
 {
     public function handle(Request $request, Closure $next): Response
@@ -27,16 +31,16 @@ class AuthenticateFromCookie
             }
         }
 
-        if (!$authenticated) {
+        if (! $authenticated) {
             $token = PersonalAccessToken::findToken($request->bearerToken());
-            if ($token && $token->tokenable instanceof \App\Models\User) {
+            if ($token && $token->tokenable instanceof User) {
                 Auth::guard('user')->setUser($token->tokenable);
                 $request->setUserResolver(fn () => $token->tokenable);
                 $authenticated = true;
             }
         }
 
-        if (!$authenticated) {
+        if (! $authenticated) {
             return response()->json(['message' => 'Kimlik doğrulaması yapılmamış.'], 401);
         }
 

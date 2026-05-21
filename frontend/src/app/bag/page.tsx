@@ -11,8 +11,6 @@ import { EmptyBagState } from "@/components/bag/EmptyBagState"
 import { BagCampaignSelector } from "@/components/bag/BagCampaignSelector"
 import { useCreateCheckoutSession } from '@/hooks/checkout/useCheckoutSession'
 import { useRouter } from 'next/navigation'
-import LoadingState from '@/components/ui/LoadingState'
-
 export default function BagPage() {
   const router = useRouter()
   const { data: me } = useMe() 

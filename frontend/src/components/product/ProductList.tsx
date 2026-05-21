@@ -1,6 +1,5 @@
 "use client"
 import { ProductWithVariant } from "@/types/search"
-import { useParams } from "next/navigation"
 import ProductCard from "./ProductCard"
 import { motion } from "framer-motion"
 

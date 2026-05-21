@@ -161,7 +161,7 @@ export default function AddressForm({
       ))}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {["first_name", "last_name"].map((field, i) => (
+        {["first_name", "last_name"].map((field) => (
           <motion.div key={field} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <label className="mb-2 block text-sm font-medium text-gray-700">
               {field === "first_name" ? "Ad" : "Soyad"}
@@ -179,7 +179,7 @@ export default function AddressForm({
       </div>
 
       <div className="space-y-4">
-        {["address_line_1", "address_line_2"].map((field, i) => (
+        {["address_line_1", "address_line_2"].map((field) => (
           <motion.div key={field} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <label className="mb-2 block text-sm font-medium text-gray-700">
               {field === "address_line_1" ? "Adres Satırı 1" : "Adres Satırı 2 (Opsiyonel)"}
@@ -201,7 +201,7 @@ export default function AddressForm({
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {["district", "city", "country", "postal_code"].map((field, i) => (
+        {["district", "city", "country", "postal_code"].map((field) => (
           <motion.div key={field} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <label className="mb-2 block text-sm font-medium text-gray-700">
               {field === "district"

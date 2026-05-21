@@ -16,6 +16,7 @@ class ProductVariantController extends Controller
     {
         $this->productVariantService = $productVariantService;
     }
+
     /** @unauthenticated */
     public function variantDetail($variant_slug)
     {

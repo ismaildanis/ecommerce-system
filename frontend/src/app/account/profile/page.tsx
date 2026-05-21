@@ -2,8 +2,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useProfile, useUpdateProfile } from '@/hooks/useAuthQuery'
-import LoadingState from '@/components/ui/LoadingState'
-
 export default function ProfilePage() {
     const [mounted, setMounted] = useState(false)
     useEffect(() => setMounted(true), [])

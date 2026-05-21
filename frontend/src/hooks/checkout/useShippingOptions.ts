@@ -18,8 +18,5 @@ export const useUpdateShipping = () => {
         onSuccess: (data: UpdateShippingResponse) => {
             queryClient.setQueryData(updateShippingKeys.get(data.session_id), data)
         },
-        onError: (error: any) => {
-            //
-        }
     })
 }

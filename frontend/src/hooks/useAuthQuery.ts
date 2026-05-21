@@ -57,9 +57,6 @@ export const useLogin = () => {
       queryClient.removeQueries({ queryKey: ['orders'] })
       queryClient.removeQueries({ queryKey: ['profile'] })
     },
-    onError: (error: any) => {
-      // Error handling otomatik
-    }
   })
 }
 
@@ -75,9 +72,6 @@ export const useRegister = () => {
       localStorage.setItem('user_token', data.data.token)
       queryClient.setQueryData(authKeys.me(), data.data.user)
     },
-    onError: (error: any) => {
-      // Error handling otomatik
-    }
   })
 }
 
@@ -115,9 +109,6 @@ export const useUpdateProfile = () => {
       queryClient.setQueryData([...authKeys.all, 'profile'], data.data)
       queryClient.setQueryData(authKeys.me(), data.data.user)
     },
-    onError: (error: any) => {
-      // Error handling otomatik
-    }
   })
 }
 
@@ -127,9 +118,6 @@ export const useForgotPassword = () =>
       const { data } = await authApi.forgotPassword(payload);
       return data;
     },
-    onError: (error) => {
-      // handleApiError(error);
-    },
   });
 
 export const useResetPassword = () =>
@@ -137,9 +125,6 @@ export const useResetPassword = () =>
     mutationFn: async (payload) => {
       const { data } = await authApi.resetPassword(payload);
       return data;
-    },
-    onError: (error) => {
-      // handleApiError(error);
     },
   });
 

@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 class CategoryFilterController extends Controller
 {
     public function __construct(
-       private readonly ElasticSearchTypeService $elasticSearchTypeService,
-       private readonly ElasticSearchProductService $elasticSearchProductService,
-       private readonly MainService $mainService
+        private readonly ElasticSearchTypeService $elasticSearchTypeService,
+        private readonly ElasticSearchProductService $elasticSearchProductService,
+        private readonly MainService $mainService
     ) {}
 
     /** @unauthenticated */

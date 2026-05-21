@@ -1,27 +1,29 @@
+﻿import Link from "next/link";
+
 export default function FooterLinks() {
   return (
     <div className="text-center sm:text-left">
       <h3 className="font-semibold mb-3 text-lg text-black">Keşfet</h3>
       <ul className="space-y-2">
         <li>
-          <a href="/" className="hover:text-gray-400 block">
+          <Link href="/" className="hover:text-gray-400 block">
             Ana Sayfa
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/about" className="hover:text-gray-400 block">
+          <Link href="/about" className="hover:text-gray-400 block">
             Hakkımızda
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/products" className="hover:text-gray-400 block">
+          <Link href="/products" className="hover:text-gray-400 block">
             Ürünler
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/contact" className="hover:text-gray-400 block">
+          <Link href="/contact" className="hover:text-gray-400 block">
             İletişim
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

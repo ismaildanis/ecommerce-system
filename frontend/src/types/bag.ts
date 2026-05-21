@@ -1,4 +1,4 @@
-import { VariantInventory, VariantSize, ProductVariantImage } from "./seller/product"
+import { VariantInventory, ProductVariantImage } from "./seller/product"
 
 export interface BagItem {
   id: number

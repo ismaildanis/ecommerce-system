@@ -1,24 +1,13 @@
 import { useState } from "react";
-import { useSearchQuery } from "@/hooks/useSearchQuery";
 import { useRouter } from "next/navigation";
 
 export default function SearchBox() {
   const router = useRouter();
   const [query, setQuery] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const { data, isLoading, error } = useSearchQuery(
-    searchQuery,
-    undefined,
-    undefined,
-    1,
-    12
-  );
 
   const handleSearch = () => {
     if (query.trim()) {
       router.push(`/search?q=${encodeURIComponent(query)}`);
-      setIsOpen(false);
     }
   };
 

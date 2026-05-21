@@ -1,6 +1,6 @@
-'use client';
+﻿'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
 import { tr } from 'date-fns/locale';
@@ -12,10 +12,10 @@ export interface OrderItemsListProps {
 }
 
 const statusMap: Record<string, { label: string; badgeClass: string }> = {
-  confirmed: { label: 'Onaylandı', badgeClass: 'bg-emerald-500 text-emerald-50' },
+  confirmed: { label: 'OnaylandÄ±', badgeClass: 'bg-emerald-500 text-emerald-50' },
   pending: { label: 'Bekliyor', badgeClass: 'bg-amber-500 text-amber-50' },
   shipped: { label: 'Kargoya Teslim Edildi', badgeClass: 'bg-amber-500 text-amber-50' },
-  cancelled: { label: 'İptal Edildi', badgeClass: 'bg-red-500 text-red-50' },
+  cancelled: { label: 'Ä°ptal Edildi', badgeClass: 'bg-red-500 text-red-50' },
 };
 
 const STORAGE_KEY = 'seller_seen_orders';
@@ -52,7 +52,7 @@ export default function SellerOrdersList({ orderItems }: OrderItemsListProps) {
   if (!orderItems?.length) {
     return (
       <div className="rounded-2xl border border-dashed border-neutral-200 bg-white p-8 text-center text-sm text-neutral-500">
-        Henüz sipariş bulunmuyor.
+        HenÃ¼z sipariÅŸ bulunmuyor.
       </div>
     );
   }
@@ -61,10 +61,7 @@ export default function SellerOrdersList({ orderItems }: OrderItemsListProps) {
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
       {orderItems.map((orderItem, index) => {
         const statusInfo = statusMap[orderItem.status] ?? statusMap.confirmed;
-        const createdAt = useMemo(
-          () => (orderItem.created_at ? new Date(orderItem.created_at) : null),
-          [orderItem.created_at],
-        );
+        const createdAt = orderItem.created_at ? new Date(orderItem.created_at) : null;
         const isNew =
           !!createdAt &&
           Date.now() - createdAt.getTime() < 24 * 60 * 60 * 1000 &&
@@ -86,7 +83,7 @@ export default function SellerOrdersList({ orderItems }: OrderItemsListProps) {
           >
             <header className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-xl font-semibold text-gray-900">Sipariş #{orderItem.id}</h2>
+                <h2 className="text-xl font-semibold text-gray-900">SipariÅŸ #{orderItem.id}</h2>
                 {createdAt ? (
                   <p className="text-gray-500">
                     {format(createdAt, 'd MMMM yyyy, HH:mm', { locale: tr })}
@@ -113,3 +110,4 @@ export default function SellerOrdersList({ orderItems }: OrderItemsListProps) {
     </div>
   );
 }
+

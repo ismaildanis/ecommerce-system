@@ -22,7 +22,6 @@ class SearchController extends Controller
     }
 
     /** @unauthenticated */
-
     public function search(Request $request)
     {
         $query = $request->input('q', '');

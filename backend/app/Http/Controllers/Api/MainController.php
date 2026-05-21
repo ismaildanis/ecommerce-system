@@ -8,17 +8,16 @@ use App\Http\Resources\MainResource;
 use App\Http\Resources\Product\ProductResource;
 use App\Services\MainService;
 use App\Services\Search\ElasticSearchProductService;
-use App\Services\Search\ElasticsearchService;
 use App\Services\Search\ElasticSearchTypeService;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
     public function __construct(
-       private readonly ElasticSearchTypeService $elasticSearchTypeService,
-       private readonly ElasticSearchProductService $elasticSearchProductService,
-       private readonly MainService $mainService
-    ) { }
+        private readonly ElasticSearchTypeService $elasticSearchTypeService,
+        private readonly ElasticSearchProductService $elasticSearchProductService,
+        private readonly MainService $mainService
+    ) {}
 
     /** @unauthenticated */
     public function main()
@@ -35,6 +34,7 @@ class MainController extends Controller
             'campaigns' => $campaigns,
         ]);
     }
+
     /** @unauthenticated */
     public function filter(Request $request)
     {

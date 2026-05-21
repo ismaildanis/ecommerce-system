@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import ZoomableImage from "@/components/ui/ZoomableImage";
 
 interface ProductGalleryProps {
@@ -25,11 +26,14 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
               currentIndex === index ? "opacity-100" : "opacity-60"
             }`}
           >
-            <div className="flex-1 overflow-hidden aspect-[4/5] bg-gray-50">
-              <img
+            <div className="relative flex-1 overflow-hidden aspect-[4/5] bg-gray-50">
+              <Image
                 src={img.image}
                 alt={`thumb-${img.id}`}
-                className="object-contain h-full w-full"
+                fill
+                unoptimized
+                className="object-contain"
+                sizes="80px"
               />
             </div>
           </button>
@@ -38,13 +42,16 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
 
       {/* Main image */}
       <div
-        className="flex-1 rounded-md overflow-hidden aspect-[4/5] bg-gray-50 cursor-pointer order-1 md:order-none"
+        className="relative flex-1 rounded-md overflow-hidden aspect-[4/5] bg-gray-50 cursor-pointer order-1 md:order-none"
         onClick={() => setIsOpen(true)}
       >
-        <img
+        <Image
           src={images[currentIndex].image}
           alt="Product"
-          className="w-full h-full object-contain md:object-cover max-h-[600px] sm:max-h-[500px] md:max-h-[650px] transition-transform duration-300 hover:scale-[1.02]"
+          fill
+          unoptimized
+          className="object-contain md:object-cover max-h-[600px] sm:max-h-[500px] md:max-h-[650px] transition-transform duration-300 hover:scale-[1.02]"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
       </div>
 
@@ -62,10 +69,13 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
                     currentIndex === index ? "opacity-100" : "opacity-50"
                   }`}
                 >
-                  <img
+                  <Image
                     src={img.image}
                     alt={`thumb-modal-${img.id}`}
-                    className="object-contain h-full w-full"
+                    fill
+                    unoptimized
+                    className="object-contain"
+                    sizes="80px"
                   />
                 </button>
               ))}

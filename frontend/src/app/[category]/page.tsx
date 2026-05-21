@@ -17,7 +17,7 @@ type PageProps = {
   searchParams: Record<string, string | string[] | undefined>;
 };
 
-export default function CategoryPageRoute({ params, searchParams }: PageProps) {
+export default function CategoryPageRoute({ params }: PageProps) {
   const resolvedParams = use(params);             // ← Promise’i çözüyoruz
   const { data, isLoading } = useCategoryProducts(resolvedParams.category);
 

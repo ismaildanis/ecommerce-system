@@ -10,7 +10,6 @@ use App\Http\Resources\Bag\BagResource;
 use App\Services\Bag\Contracts\BagInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Response;
 
 class BagController extends Controller
 {

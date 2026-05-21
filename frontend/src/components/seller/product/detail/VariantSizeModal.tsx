@@ -107,7 +107,7 @@ export default function VariantSizeModal({
           onClose()
           await onUpdated()
         },
-        onError: (error: unknown) =>
+        onError: () =>
           toast.error('Beden oluşturulamadı.'),
       },
     );

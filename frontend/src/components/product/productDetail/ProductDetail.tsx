@@ -52,7 +52,6 @@ const ProductDetail = ({ product, variant, allVariants, similarProducts }: Produ
 
         <div className="flex flex-col gap-3">
           <ProductSizeSelector
-            product={product}
             variants={product.variants}
             onSizeSelect={(variantSizeId) => setSelectedSizeId(variantSizeId)}
           />

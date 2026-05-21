@@ -20,6 +20,11 @@ export function SuccessHero({ orderCode, totalCents }: SuccessHeroProps) {
         <p className="text-sm text-muted-foreground">Sipariş özeti e-postana gönderildi. Aşağıdan detaylarını inceleyebilirsin.</p>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm">
+        {orderCode ? (
+          <span className="rounded-full bg-card px-3 sm:px-4 py-1 font-semibold">
+            Sipariş no: {orderCode}
+          </span>
+        ) : null}
         <span className="rounded-full bg-card px-3 sm:px-4 py-1 font-semibold">
           Toplam: {formatPrice(totalCents)}
         </span>

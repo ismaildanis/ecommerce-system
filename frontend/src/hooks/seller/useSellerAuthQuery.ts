@@ -1,6 +1,18 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
+import { useQuery, useMutation, useQueryClient, type UseMutationResult } from "@tanstack/react-query"
 import { SellerAuthApi } from "@/lib/api/seller/sellerAuthApi"
-import { LoginRequest } from "@/types/seller/seller"
+import { LoginRequest, LoginResponse } from "@/types/seller/seller"
+
+type SellerAuthApiError = {
+    error?: string
+    errors?: Record<string, string[]>
+    message?: string
+}
+
+type SellerAuthMutationError = {
+    response?: {
+        data?: SellerAuthApiError
+    }
+}
 
 export const sellerAuthKeys = {
     all: ['sellerAuth'] as const,
@@ -20,22 +32,23 @@ export const useMySeller = () => {
     })
 }
 
-export const useLogin = () => {
+export const useLogin = (): UseMutationResult<
+    LoginResponse,
+    SellerAuthMutationError,
+    LoginRequest
+> => {
     const queryClient = useQueryClient()
 
-    return useMutation({
+    return useMutation<LoginResponse, SellerAuthMutationError, LoginRequest>({
         mutationFn: async (data: LoginRequest) => {
             const response = await SellerAuthApi.login(data)
             return response.data
         },
-        onSuccess: (data: any) => {
+        onSuccess: (data) => {
             localStorage.setItem('seller_token', data.data.token)
             // Cookie backend tarafından HttpOnly olarak set ediliyor
             queryClient.setQueryData(sellerAuthKeys.mySeller(), data.data.seller)
         },
-        onError: (error: any) => {
-            // Error handling otomatik
-        }
     })
 }
 
@@ -53,7 +66,7 @@ export const useLogout = () => {
             queryClient.removeQueries({ queryKey: sellerAuthKeys.all })
             queryClient.removeQueries()
         },
-        onError: (error: any) => {
+        onError: () => {
             localStorage.removeItem('seller_token')
             // Cookie backend tarafından siliniyor
             queryClient.removeQueries({ queryKey: sellerAuthKeys.all })

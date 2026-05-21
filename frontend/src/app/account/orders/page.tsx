@@ -6,7 +6,7 @@ import OrdersList from '@/components/order/OrderList'
 
 export default function OrdersPage() {
   const { data: me } = useMe()
-  const { data: orders, isLoading, error } = useOrder(me?.id)
+  const { data: orders, error } = useOrder(me?.id)
 
   if (error) {
     return (

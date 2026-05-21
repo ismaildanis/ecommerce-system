@@ -102,7 +102,6 @@ export default function ProductDetailPage() {
 
       <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm">
         <VariantTable
-          productId={productId}
           variants={variants}
           onEdit={(variant) => handleVariantAction(variant, 'variant-edit')}
           onManageSizes={(variant) => handleVariantAction(variant, 'variant-sizes')}

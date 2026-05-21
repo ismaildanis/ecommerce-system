@@ -15,7 +15,7 @@ export default function OrderDetail() {
   const orderId = Number(params.orderNo);
 
   const { data: me } = useMe();
-  const { data: orderDetail, isLoading, isError } = useOrderDetail(orderId, me?.id);
+  const { data: orderDetail, isError } = useOrderDetail(orderId, me?.id);
   if (isError) return <div>Hata oluştu.</div>;
   if (!orderDetail) return <div>Sipariş bulunamadı.</div>;
 

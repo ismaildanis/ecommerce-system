@@ -1,13 +1,11 @@
 "use client"
 
-import { useEffect, useState, useMemo } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
 import { useUserAddressIndex, useUserAddressStore } from "@/hooks/useUserAddressQuery"
 import type { UserAddress, AddressStoreRequest } from "@/types/userAddress"
 import AddressFormModal from "./AddressFormModal"
-import LoadingState from "@/components/ui/LoadingState"
-
 interface AddressSelectorProps {
   userId: number
   onSelect: (address: UserAddress) => void

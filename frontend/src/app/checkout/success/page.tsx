@@ -8,11 +8,8 @@ import { SuccessInfoCard } from "@/components/checkout/success/SuccessInfoCard"
 import { OrderSummary } from "@/components/checkout/review/OrderSummary"
 import { useMe } from "@/hooks/useAuthQuery"
 import { useCheckoutSession } from "@/hooks/checkout/useCheckoutSession"
-import LoadingState from "@/components/ui/LoadingState"
-
 export default function SuccessPage() {
   const searchParams = useSearchParams()
-  const router = useRouter()
   const [resolvedSessionId, setResolvedSessionId] = useState<string | null>(null)
   useEffect(() => { setResolvedSessionId(searchParams.get("session")) }, [searchParams])
 

@@ -39,7 +39,7 @@ export default function ShippingStepPage() {
 
 function ShippingContent({ sessionId }: { sessionId: string }) {
   const router = useRouter()
-  const { data: me, isLoading: meLoading } = useMe()
+  const { data: me } = useMe()
   const { data, isLoading, isError } = useCheckoutSession(sessionId)
   const updateShipping = useUpdateShipping()
 

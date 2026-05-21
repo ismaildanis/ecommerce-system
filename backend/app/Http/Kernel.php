@@ -3,8 +3,6 @@
 namespace App\Http;
 
 use App\Console\Commands\ReindexProducts;
-use App\Http\Middleware\AuthenticateFromCookie;
-use App\Http\Middleware\AuthenticateSellerFromCookie;
 use App\Http\Middleware\DevelopmentOnly;
 use App\Http\Middleware\LoginRateLimit;
 use App\Http\Middleware\Refund\VerifyWebhookSignature;

@@ -4,8 +4,6 @@ import { useOrderList } from '@/hooks/seller/useOrderQuery'
 import { motion } from 'framer-motion'
 import SellerOrdersList from '@/components/seller/order/list/SellerOrdersList'
 import { useState, useEffect } from 'react'
-import LoadingState from '@/components/ui/LoadingState'
-
 export default function Orders() {
     const { data: me } = useMySeller()
     const sellerId = me?.id

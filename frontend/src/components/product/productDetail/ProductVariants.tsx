@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Product } from "@/types/seller/product"
 import { useParams, useRouter } from "next/navigation"
 
@@ -32,9 +33,12 @@ interface VariantSummary {
                 className={`rounded-md p-1 flex items-center justify-center cursor-pointer transition border-2 border-gray-200
                   ${params.slug === variant.slug ? "border-blue-500 ring-2 ring-black" : "hover:border-gray-400"}`}
               >
-                <img
+                <Image
                   src={variant.thumbnail}
                   alt={variant.slug}
+                  width={64}
+                  height={64}
+                  unoptimized
                   className="object-contain w-16 h-16"
                 />
               </button>

@@ -5,7 +5,6 @@ import {
   BagUpdateRequest,
   BagUpdateResponse,
   BagDestroyResponse,
-  BagCampaign,
 } from "@/types/bag"
 
 type ResourceResponse<T> = { data: T }

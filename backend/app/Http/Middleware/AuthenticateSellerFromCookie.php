@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Seller;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,16 +39,16 @@ class AuthenticateSellerFromCookie
             }
         }
 
-        if (!$authenticated) {
+        if (! $authenticated) {
             $token = PersonalAccessToken::findToken($request->bearerToken());
-            if ($token && $token->tokenable instanceof \App\Models\Seller) {
+            if ($token && $token->tokenable instanceof Seller) {
                 Auth::guard('seller')->setUser($token->tokenable);
                 $request->setUserResolver(fn () => $token->tokenable);
                 $authenticated = true;
             }
         }
 
-        if (!$authenticated) {
+        if (! $authenticated) {
             return response()->json(['message' => 'Kimlik doğrulaması yapılmamış.'], 401);
         }
 

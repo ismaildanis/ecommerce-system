@@ -59,7 +59,7 @@ Route::middleware(AuthenticateFromCookie::class)->group(function () {
         Route::post('payment-intent', [CheckoutController::class, 'createPaymentIntent']);
     });
 
-    // Henüz kullanılmıyor 
+    // Henüz kullanılmıyor
     // Route::prefix('orders')->group(function () {
     //     Route::get('/', [OrderController::class, 'index']);
     //     Route::get('/{order}', [OrderController::class, 'show']);

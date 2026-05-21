@@ -15,8 +15,11 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-    token: string
-    seller: Seller
+    message: string
+    data: {
+        token: string
+        seller: Seller
+    }
 }
 
 export interface LogoutResponse {

@@ -2,13 +2,11 @@
 import { useState, useEffect } from 'react'
 import { useLogout } from '@/hooks/useAuthQuery'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { UserIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import { UserMenuProps } from '@/types/header'
 
 export default function UserMenu({ user, isLoading, className = '' }: UserMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const router = useRouter()
   const logoutMutation = useLogout()
   const [mounted, setMounted] = useState(false)
 

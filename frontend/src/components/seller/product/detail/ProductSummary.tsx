@@ -9,9 +9,6 @@ type ProductSummaryProps = {
 }
 
 export default function ProductSummary({ product }: ProductSummaryProps) {
-  const primaryVariant = product.variants?.[0]
-  const primaryImage = primaryVariant?.images?.[0]?.image_url ?? null
-
   const [formattedDate, setFormattedDate] = useState('—')
 
 

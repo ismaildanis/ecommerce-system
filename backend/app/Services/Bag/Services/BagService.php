@@ -2,7 +2,6 @@
 
 namespace App\Services\Bag\Services;
 
-use App\Exceptions\InsufficientStockException;
 use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 use App\Repositories\Contracts\Bag\BagRepositoryInterface;
 use App\Repositories\Contracts\Campaign\CampaignRepositoryInterface;

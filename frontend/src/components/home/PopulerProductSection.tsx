@@ -27,7 +27,7 @@ export default function PopulerProductSection({ className }: PopulerProductSecti
   if (error) return <p>Hata oluştu</p>
 
   return (
-    <div className="relative px-4 sm:px-10 py-14 bg-white">
+    <div className={`relative px-4 sm:px-10 py-14 bg-white ${className ?? ''}`}>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 relative">
         <h2 className="text-2xl font-bold text-gray-900 ml-2 sm:ml-16 text-center sm:text-left mb-6 sm:mb-0">
           POPÜLER ÜRÜNLER

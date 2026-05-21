@@ -5,7 +5,6 @@ import VariantRowActions from './VariantRowActions'
 import ProductImage from '@/components/ui/ProductImage'
 
 type VariantTableProps = {
-  productId: number
   variants: ProductVariant[]
   onEdit: (variant: ProductVariant) => void
   onManageSizes: (variant: ProductVariant) => void
@@ -14,7 +13,6 @@ type VariantTableProps = {
 }
 
 export default function VariantTable({
-  productId,
   variants,
   onEdit,
   onManageSizes,

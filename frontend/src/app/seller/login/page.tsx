@@ -5,6 +5,16 @@ import { motion } from 'framer-motion'
 import Input from '@/components/ui/Input'
 import { useLogin, useCsrf } from '@/hooks/seller/useSellerAuthQuery'
 
+type SellerLoginErrorData = {
+    error?: string
+    errors?: Record<string, string[]>
+}
+
+const getLoginErrorData = (error: unknown): SellerLoginErrorData | undefined => {
+    const axiosLike = error as { response?: { data?: SellerLoginErrorData } }
+    return axiosLike.response?.data
+}
+
 export default function SellerLoginPage() {
     const router = useRouter()
     const loginMutation = useLogin()
@@ -13,8 +23,9 @@ export default function SellerLoginPage() {
     const [password, setPassword] = useState('')
     const [formErrors, setFormErrors] = useState<{ [key: string]: string[] }>({})
     const loading = loginMutation.isPending || csrfMutation.isPending
-    const error = loginMutation.error?.response?.data?.error
-    const fieldErrors = loginMutation.error?.response?.data?.errors
+    const loginErrorData = getLoginErrorData(loginMutation.error)
+    const error = loginErrorData?.error
+    const fieldErrors = loginErrorData?.errors
 
 
     const clearForm = () => {
@@ -34,11 +45,10 @@ export default function SellerLoginPage() {
             await loginMutation.mutateAsync({ email, password })
             clearForm()
             router.push('/seller/product')
-        }catch (error: any) {
-            if (error?.response?.data?.errors) {
-                const errors = error.response.data.errors
-                setFormErrors(errors)
-                console.log(errors)
+        } catch (err: unknown) {
+            const apiError = getLoginErrorData(err)
+            if (apiError?.errors) {
+                setFormErrors(apiError.errors)
             }
         }
     }

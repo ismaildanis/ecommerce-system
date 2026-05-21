@@ -102,7 +102,7 @@ class CheckoutController extends Controller
             'payment_data' => $session->payment_data,
         ]);
     }
-        
+
     /** @unauthenticated */
     public function confirmOrder(ConfirmOrderRequest $request)
     {

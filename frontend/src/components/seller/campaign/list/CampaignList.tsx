@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+﻿import { useEffect, useMemo, useState } from 'react';
 import { Campaign } from '@/types/seller/campaign';
 import { useCampaignDestroy } from '@/hooks/seller/useCampaignQuery';
 import { FiEdit2, FiTrash2, FiClock, FiTag, FiPercent, FiShoppingCart, FiCalendar, FiCheckCircle, FiXCircle, FiUser } from 'react-icons/fi';
@@ -14,19 +14,19 @@ interface Countdown {
 }
 
 function useCountdown(target?: string | null): Countdown {
-  const [label, setLabel] = useState<string>('—');
+  const [label, setLabel] = useState<string>('â€”');
   const [expired, setExpired] = useState<boolean>(false);
 
   useEffect(() => {
     if (!target) {
-      setLabel('Süresiz');
+      setLabel('SÃ¼resiz');
       setExpired(false);
       return;
     }
 
     const targetTime = new Date(target).getTime();
     if (Number.isNaN(targetTime)) {
-      setLabel('Geçersiz tarih');
+      setLabel('GeÃ§ersiz tarih');
       setExpired(false);
       return;
     }
@@ -36,7 +36,7 @@ function useCountdown(target?: string | null): Countdown {
       const diff = targetTime - now;
 
       if (diff <= 0) {
-        setLabel('Süre Doldu');
+        setLabel('SÃ¼re Doldu');
         setExpired(true);
         return;
       }
@@ -80,11 +80,11 @@ function CampaignCard({
 
   const durationLabel = useMemo(() => {
     if (!campaign.starts_at && !campaign.ends_at) {
-      return 'Süre sınırı yok';
+      return 'SÃ¼re sÄ±nÄ±rÄ± yok';
     }
 
     const formatDate = (dateString?: string) => {
-      if (!dateString) return '—';
+      if (!dateString) return 'â€”';
       const date = new Date(dateString);
       return date.toLocaleDateString('tr-TR', {
         day: '2-digit',
@@ -100,11 +100,11 @@ function CampaignCard({
   const getCampaignTypeLabel = () => {
     switch (campaign.type) {
       case 'percentage':
-        return 'Yüzde İndirim';
+        return 'YÃ¼zde Ä°ndirim';
       case 'fixed':
-        return 'Sabit İndirim';
+        return 'Sabit Ä°ndirim';
       case 'x_buy_y_pay':
-        return `${campaign.buy_quantity} Al ${campaign.pay_quantity} Öde`;
+        return `${campaign.buy_quantity} Al ${campaign.pay_quantity} Ã–de`;
       default:
         return campaign.type;
     }
@@ -114,13 +114,13 @@ function CampaignCard({
     if (campaign.type === 'x_buy_y_pay') {
       return (
         <span className="text-lg font-bold text-primary">
-          {campaign.buy_quantity} Al {campaign.pay_quantity} Öde
+          {campaign.buy_quantity} Al {campaign.pay_quantity} Ã–de
         </span>
       );
     }
     return (
       <span className="text-lg font-bold text-primary">
-        {campaign.type === 'percentage' ? '%' : '₺'}{campaign.discount_value}
+        {campaign.type === 'percentage' ? '%' : 'â‚º'}{campaign.discount_value}
       </span>
     );
   };
@@ -156,7 +156,7 @@ function CampaignCard({
             <button
               onClick={() => onEdit(campaign.id)}
               className="rounded-lg p-2 text-gray-500 hover:bg-gray-50 hover:text-primary cursor-pointer"
-              title="Düzenle"
+              title="DÃ¼zenle"
             >
               <FiEdit2 className="h-4 w-4" />
             </button>
@@ -194,7 +194,7 @@ function CampaignCard({
         <div className="space-y-1">
           <div className="flex items-center text-sm text-gray-500">
             <FiPercent className="mr-2 h-4 w-4 text-gray-400" />
-            <span>İndirim</span>
+            <span>Ä°ndirim</span>
           </div>
           {getCampaignValue()}
         </div>
@@ -202,27 +202,27 @@ function CampaignCard({
         <div className="space-y-1">
           <div className="flex items-center text-sm text-gray-500">
             <FiShoppingCart className="mr-2 h-4 w-4 text-gray-400" />
-            <span>Kullanım</span>
+            <span>KullanÄ±m</span>
           </div>
           <div className="text-sm font-medium text-gray-900">
-            {campaign.usage_count} / {campaign.usage_limit ?? '∞'}
+            {campaign.usage_count} / {campaign.usage_limit ?? 'âˆ'}
           </div>
         </div>
 
         <div className="space-y-1">
           <div className="flex items-center text-sm text-gray-500">
             <FiUser className="mr-2 h-4 w-4 text-gray-400" />
-            <span>Kullanıcı Limiti</span>
+            <span>KullanÄ±cÄ± Limiti</span>
           </div>
           <div className="text-sm font-medium text-gray-900">
-            {campaign.per_user_limit ?? '∞'}
+            {campaign.per_user_limit ?? 'âˆ'}
           </div>
         </div>
 
         <div className="space-y-1 sm:col-span-2">
           <div className="flex items-center text-sm text-gray-500">
             <FiCalendar className="mr-2 h-4 w-4 text-gray-400" />
-            <span>Geçerlilik</span>
+            <span>GeÃ§erlilik</span>
           </div>
           <div className="text-sm font-medium text-gray-900">
             {durationLabel}
@@ -232,7 +232,7 @@ function CampaignCard({
         <div className="space-y-1">
           <div className="flex items-center text-sm text-gray-500">
             <FiClock className="mr-2 h-4 w-4 text-gray-400" />
-            <span>Kalan Süre</span>
+            <span>Kalan SÃ¼re</span>
           </div>
           <div
             className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${
@@ -254,7 +254,7 @@ export default function CampaignList({ campaigns, onEdit }: CampaignListProps) {
 
   const handleDelete = async (id: number) => {
     const confirmed = window.confirm(
-      'Kampanyayı silmek istediğinize emin misiniz?\nBu işlem geri alınamaz.'
+      'KampanyayÄ± silmek istediÄŸinize emin misiniz?\nBu iÅŸlem geri alÄ±namaz.'
     );
     if (!confirmed) return;
     await mutateAsync(id);
@@ -266,9 +266,9 @@ export default function CampaignList({ campaigns, onEdit }: CampaignListProps) {
         <div className="mb-4 rounded-full bg-blue-100 p-4">
           <FiTag className="h-8 w-8 text-blue-600" />
         </div>
-        <h3 className="mb-2 text-lg font-medium text-gray-900">Henüz kampanya yok</h3>
+        <h3 className="mb-2 text-lg font-medium text-gray-900">HenÃ¼z kampanya yok</h3>
         <p className="mb-6 max-w-md text-gray-500">
-          "Yeni Kampanya" butonuna tıklayarak ilk kampanyanızı oluşturabilir ve satışlarınızı artırabilirsiniz.
+          &quot;Yeni Kampanya&quot; butonuna tÄ±klayarak ilk kampanyanÄ±zÄ± oluÅŸturabilir ve satÄ±ÅŸlarÄ±nÄ±zÄ± artÄ±rabilirsiniz.
         </p>
       </div>
     );
