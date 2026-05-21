@@ -15,7 +15,7 @@ import { useCheckoutSession } from "@/hooks/checkout/useCheckoutSession";
 import { useCreatePaymentIntent } from "@/hooks/checkout/usePaymentMethods";
 
 import type { CreatePaymentIntentRequest } from "@/types/checkout";
-  //yorum
+
 const extractErrorMessage = (error: unknown): string | null => {
   if (!error || typeof error !== "object") return null;
 
