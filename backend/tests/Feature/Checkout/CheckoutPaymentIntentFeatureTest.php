@@ -38,8 +38,9 @@ class CheckoutPaymentIntentFeatureTest extends TestCase
 
         $response = $this->postJson('/api/checkout/payment-intent', []);
 
-        $response->assertStatus(500)
-            ->assertJsonStructure(['message']);
+        $response->assertStatus(422)
+            ->assertJsonStructure(['message', 'errors'])
+            ->assertJsonValidationErrors(['session_id', 'payment_method', 'requires_3ds']);
     }
 
     public function test_create_payment_intent_returns_session_payload_when_valid(): void
