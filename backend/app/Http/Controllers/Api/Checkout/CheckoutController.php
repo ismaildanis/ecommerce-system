@@ -116,7 +116,7 @@ class CheckoutController extends Controller
             ], 422);
         }
         $user = $session->user ?: User::find($session->user_id);
-        OrderPlacementJob::dispatch($user, $session, $request->validated());
+        OrderPlacementJob::dispatch($user, $session, $request->validated())->onQueue('orders');
 
         return response()->json([
             'session' => $session,

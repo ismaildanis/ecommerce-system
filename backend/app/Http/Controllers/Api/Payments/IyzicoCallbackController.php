@@ -48,7 +48,7 @@ class IyzicoCallbackController extends Controller
             if (($payload['mdStatus'] ?? '') === '1') {
                 $user = $session['user'] ?? User::find($session['user_id']);
                 if ($user) {
-                    OrderPlacementJob::dispatch($user, $session, $payload);
+                    OrderPlacementJob::dispatch($user, $session, $payload)->onQueue('orders');
                 }
             }
 

@@ -20,7 +20,7 @@ class SellerRefundJob implements ShouldQueue
         private readonly array $payload,
         private readonly int $refundAmount,
     ) {
-        $this->onQueue('notifications');
+        $this->onQueue('orders');
     }
 
     public function handle(SellerOrderPlacement $sellerOrderPlacement): void

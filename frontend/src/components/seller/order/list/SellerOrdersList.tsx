@@ -12,7 +12,7 @@ export interface OrderItemsListProps {
 }
 
 const statusMap: Record<string, { label: string; badgeClass: string }> = {
-  confirmed: { label: 'OnaylandÄ±', badgeClass: 'bg-emerald-500 text-emerald-50' },
+  confirmed: { label: 'Onaylandı', badgeClass: 'bg-emerald-500 text-emerald-50' },
   pending: { label: 'Bekliyor', badgeClass: 'bg-amber-500 text-amber-50' },
   shipped: { label: 'Kargoya Teslim Edildi', badgeClass: 'bg-amber-500 text-amber-50' },
   cancelled: { label: 'Ä°ptal Edildi', badgeClass: 'bg-red-500 text-red-50' },
@@ -52,7 +52,7 @@ export default function SellerOrdersList({ orderItems }: OrderItemsListProps) {
   if (!orderItems?.length) {
     return (
       <div className="rounded-2xl border border-dashed border-neutral-200 bg-white p-8 text-center text-sm text-neutral-500">
-        HenÃ¼z sipariÅŸ bulunmuyor.
+        Henüz sipariş bulunmuyor.
       </div>
     );
   }
@@ -83,7 +83,7 @@ export default function SellerOrdersList({ orderItems }: OrderItemsListProps) {
           >
             <header className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-xl font-semibold text-gray-900">SipariÅŸ #{orderItem.id}</h2>
+                <h2 className="text-xl font-semibold text-gray-900">Sipariş #{orderItem.id}</h2>
                 {createdAt ? (
                   <p className="text-gray-500">
                     {format(createdAt, 'd MMMM yyyy, HH:mm', { locale: tr })}

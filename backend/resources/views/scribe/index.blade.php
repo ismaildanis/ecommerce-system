@@ -101,12 +101,6 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-filter">
                                 <a href="#endpoints-GETapi-filter">GET api/filter</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-sorting">
-                                <a href="#endpoints-GETapi-sorting">GET api/sorting</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-autocomplete">
-                                <a href="#endpoints-GETapi-autocomplete">GET api/autocomplete</a>
-                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-bags-campaign">
                                 <a href="#endpoints-POSTapi-bags-campaign">POST api/bags/campaign</a>
                             </li>
@@ -145,30 +139,6 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-orders--order-">
                                 <a href="#endpoints-GETapi-orders--order-">GET api/orders/{order}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-orders--order_id--refunds">
-                                <a href="#endpoints-POSTapi-orders--order_id--refunds">POST api/orders/{order_id}/refunds</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-refunds-webhooks-shipment">
-                                <a href="#endpoints-POSTapi-refunds-webhooks-shipment">POST api/refunds/webhooks/shipment</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-refunds-webhooks-payment">
-                                <a href="#endpoints-POSTapi-refunds-webhooks-payment">POST api/refunds/webhooks/payment</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-creditcard">
-                                <a href="#endpoints-GETapi-creditcard">GET api/creditcard</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-creditcard">
-                                <a href="#endpoints-POSTapi-creditcard">POST api/creditcard</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-creditcard--id-">
-                                <a href="#endpoints-GETapi-creditcard--id-">GET api/creditcard/{id}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-creditcard--id-">
-                                <a href="#endpoints-PUTapi-creditcard--id-">PUT api/creditcard/{id}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-creditcard--id-">
-                                <a href="#endpoints-DELETEapi-creditcard--id-">DELETE api/creditcard/{id}</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-me">
                                 <a href="#endpoints-GETapi-me">Mevcut kullanıcı bilgilerini getir</a>
@@ -301,7 +271,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 16, 2026</li>
+        <li>Last updated: May 23, 2026</li>
     </ul>
 </div>
 
@@ -1195,43 +1165,339 @@ vary: Origin
                 &quot;is_published&quot;: true,
                 &quot;variants&quot;: [
                     {
+                        &quot;id&quot;: 2,
+                        &quot;product_id&quot;: 1,
+                        &quot;sku&quot;: &quot;ESF-ERK-001-SYH&quot;,
+                        &quot;slug&quot;: &quot;erkek-esofman-siyah&quot;,
+                        &quot;color_name&quot;: &quot;Siyah&quot;,
+                        &quot;color_code&quot;: &quot;#000000&quot;,
+                        &quot;price_cents&quot;: 34900,
+                        &quot;is_popular&quot;: false,
+                        &quot;is_active&quot;: true,
+                        &quot;images&quot;: [
+                            {
+                                &quot;id&quot;: 3,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman.png&quot;,
+                                &quot;is_primary&quot;: true,
+                                &quot;sort_order&quot;: 1
+                            },
+                            {
+                                &quot;id&quot;: 4,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman1.png&quot;,
+                                &quot;is_primary&quot;: false,
+                                &quot;sort_order&quot;: 2
+                            },
+                            {
+                                &quot;id&quot;: 5,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman2.png&quot;,
+                                &quot;is_primary&quot;: false,
+                                &quot;sort_order&quot;: 3
+                            },
+                            {
+                                &quot;id&quot;: 11,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman.png&quot;,
+                                &quot;is_primary&quot;: true,
+                                &quot;sort_order&quot;: 1
+                            },
+                            {
+                                &quot;id&quot;: 12,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman1.png&quot;,
+                                &quot;is_primary&quot;: false,
+                                &quot;sort_order&quot;: 2
+                            },
+                            {
+                                &quot;id&quot;: 13,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman2.png&quot;,
+                                &quot;is_primary&quot;: false,
+                                &quot;sort_order&quot;: 3
+                            }
+                        ],
+                        &quot;sizes&quot;: [
+                            {
+                                &quot;id&quot;: 12,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;size_option_id&quot;: 1,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 1,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;6 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;6-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-6YAS&quot;,
+                                &quot;price_cents&quot;: 34900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 12,
+                                    &quot;variant_size_id&quot;: 12,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 26,
+                                    &quot;reserved&quot;: 0,
+                                    &quot;available&quot;: 26,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 13,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;size_option_id&quot;: 2,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 2,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;7 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;7-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-7YAS&quot;,
+                                &quot;price_cents&quot;: 34900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 13,
+                                    &quot;variant_size_id&quot;: 13,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 0,
+                                    &quot;reserved&quot;: 0,
+                                    &quot;available&quot;: 0,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 14,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;size_option_id&quot;: 3,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 3,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;8 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;8-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-8YAS&quot;,
+                                &quot;price_cents&quot;: 34900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 14,
+                                    &quot;variant_size_id&quot;: 14,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 38,
+                                    &quot;reserved&quot;: 1,
+                                    &quot;available&quot;: 37,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 15,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;size_option_id&quot;: 4,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 4,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;9 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;9-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-9YAS&quot;,
+                                &quot;price_cents&quot;: 34900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 15,
+                                    &quot;variant_size_id&quot;: 15,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 27,
+                                    &quot;reserved&quot;: 5,
+                                    &quot;available&quot;: 22,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 16,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;size_option_id&quot;: 5,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 5,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;10 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;10-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-10YAS&quot;,
+                                &quot;price_cents&quot;: 34900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 16,
+                                    &quot;variant_size_id&quot;: 16,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 42,
+                                    &quot;reserved&quot;: 1,
+                                    &quot;available&quot;: 41,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 17,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;size_option_id&quot;: 6,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 6,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;11 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;11-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-11YAS&quot;,
+                                &quot;price_cents&quot;: 34900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 17,
+                                    &quot;variant_size_id&quot;: 17,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 45,
+                                    &quot;reserved&quot;: 2,
+                                    &quot;available&quot;: 43,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 18,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;size_option_id&quot;: 7,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 7,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;12 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;12-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-12YAS&quot;,
+                                &quot;price_cents&quot;: 34900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 18,
+                                    &quot;variant_size_id&quot;: 18,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 22,
+                                    &quot;reserved&quot;: 5,
+                                    &quot;available&quot;: 17,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 19,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;size_option_id&quot;: 8,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 8,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;13 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;13-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-13YAS&quot;,
+                                &quot;price_cents&quot;: 34900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 19,
+                                    &quot;variant_size_id&quot;: 19,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 33,
+                                    &quot;reserved&quot;: 1,
+                                    &quot;available&quot;: 32,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 20,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;size_option_id&quot;: 9,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 9,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;14 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;14-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-14YAS&quot;,
+                                &quot;price_cents&quot;: 34900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 20,
+                                    &quot;variant_size_id&quot;: 20,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 30,
+                                    &quot;reserved&quot;: 3,
+                                    &quot;available&quot;: 27,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 21,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;size_option_id&quot;: 10,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 10,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;15 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;15-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-15YAS&quot;,
+                                &quot;price_cents&quot;: 34900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 21,
+                                    &quot;variant_size_id&quot;: 21,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 46,
+                                    &quot;reserved&quot;: 0,
+                                    &quot;available&quot;: 46,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 22,
+                                &quot;product_variant_id&quot;: 2,
+                                &quot;size_option_id&quot;: 11,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 11,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;16 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;16-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-16YAS&quot;,
+                                &quot;price_cents&quot;: 34900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 22,
+                                    &quot;variant_size_id&quot;: 22,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 12,
+                                    &quot;reserved&quot;: 3,
+                                    &quot;available&quot;: 9,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            }
+                        ]
+                    },
+                    {
                         &quot;id&quot;: 1,
                         &quot;product_id&quot;: 1,
-                        &quot;sku&quot;: &quot;ESF-ERK-001-MAV&quot;,
-                        &quot;slug&quot;: &quot;erkek-esofman-mavi&quot;,
+                        &quot;sku&quot;: &quot;ERK-1-MAVI-1&quot;,
+                        &quot;slug&quot;: &quot;erkek-cocuk-esofman-takimi-mavi-1&quot;,
                         &quot;color_name&quot;: &quot;Mavi&quot;,
                         &quot;color_code&quot;: &quot;#0066CC&quot;,
-                        &quot;price_cents&quot;: 34900,
+                        &quot;price_cents&quot;: 31900,
                         &quot;is_popular&quot;: true,
                         &quot;is_active&quot;: true,
                         &quot;images&quot;: [
                             {
-                                &quot;id&quot;: 1,
+                                &quot;id&quot;: 14,
                                 &quot;product_variant_id&quot;: 1,
-                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/xxllWS3ES9cgshwd6asqwHlqXL1TA9a4FtdFx6rC.png&quot;,
-                                &quot;is_primary&quot;: true,
-                                &quot;sort_order&quot;: 1
-                            },
-                            {
-                                &quot;id&quot;: 2,
-                                &quot;product_variant_id&quot;: 1,
-                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/QAEAY6rHh0RPTh4qo96scasAYhaXELtA3RoBaMeu.png&quot;,
+                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/iKQdu6y7dAHTcCMhzZWpGRrbAKrBWpow1EEh5Awr.png&quot;,
                                 &quot;is_primary&quot;: false,
-                                &quot;sort_order&quot;: 2
+                                &quot;sort_order&quot;: 0
                             },
                             {
-                                &quot;id&quot;: 9,
+                                &quot;id&quot;: 15,
                                 &quot;product_variant_id&quot;: 1,
-                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/xxllWS3ES9cgshwd6asqwHlqXL1TA9a4FtdFx6rC.png&quot;,
-                                &quot;is_primary&quot;: true,
-                                &quot;sort_order&quot;: 1
-                            },
-                            {
-                                &quot;id&quot;: 10,
-                                &quot;product_variant_id&quot;: 1,
-                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/QAEAY6rHh0RPTh4qo96scasAYhaXELtA3RoBaMeu.png&quot;,
+                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/hUyP379CUhudAlUGOM5z5a8TFEPEko619YjMzj03.png&quot;,
                                 &quot;is_primary&quot;: false,
-                                &quot;sort_order&quot;: 2
+                                &quot;sort_order&quot;: 0
                             }
                         ],
                         &quot;sizes&quot;: [
@@ -1252,9 +1518,9 @@ vary: Origin
                                     &quot;id&quot;: 1,
                                     &quot;variant_size_id&quot;: 1,
                                     &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 28,
+                                    &quot;on_hand&quot;: 27,
                                     &quot;reserved&quot;: 1,
-                                    &quot;available&quot;: 27,
+                                    &quot;available&quot;: 26,
                                     &quot;min_stock_level&quot;: 5
                                 }
                             },
@@ -1489,320 +1755,10 @@ vary: Origin
                                 }
                             }
                         ]
-                    },
-                    {
-                        &quot;id&quot;: 2,
-                        &quot;product_id&quot;: 1,
-                        &quot;sku&quot;: &quot;ESF-ERK-001-SYH&quot;,
-                        &quot;slug&quot;: &quot;erkek-esofman-siyah&quot;,
-                        &quot;color_name&quot;: &quot;Siyah&quot;,
-                        &quot;color_code&quot;: &quot;#000000&quot;,
-                        &quot;price_cents&quot;: 34900,
-                        &quot;is_popular&quot;: false,
-                        &quot;is_active&quot;: true,
-                        &quot;images&quot;: [
-                            {
-                                &quot;id&quot;: 3,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman.png&quot;,
-                                &quot;is_primary&quot;: true,
-                                &quot;sort_order&quot;: 1
-                            },
-                            {
-                                &quot;id&quot;: 4,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman1.png&quot;,
-                                &quot;is_primary&quot;: false,
-                                &quot;sort_order&quot;: 2
-                            },
-                            {
-                                &quot;id&quot;: 5,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman2.png&quot;,
-                                &quot;is_primary&quot;: false,
-                                &quot;sort_order&quot;: 3
-                            },
-                            {
-                                &quot;id&quot;: 11,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman.png&quot;,
-                                &quot;is_primary&quot;: true,
-                                &quot;sort_order&quot;: 1
-                            },
-                            {
-                                &quot;id&quot;: 12,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman1.png&quot;,
-                                &quot;is_primary&quot;: false,
-                                &quot;sort_order&quot;: 2
-                            },
-                            {
-                                &quot;id&quot;: 13,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman2.png&quot;,
-                                &quot;is_primary&quot;: false,
-                                &quot;sort_order&quot;: 3
-                            }
-                        ],
-                        &quot;sizes&quot;: [
-                            {
-                                &quot;id&quot;: 12,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;size_option_id&quot;: 1,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 1,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;6 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;6-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-6YAS&quot;,
-                                &quot;price_cents&quot;: 34900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 12,
-                                    &quot;variant_size_id&quot;: 12,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 30,
-                                    &quot;reserved&quot;: 0,
-                                    &quot;available&quot;: 30,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 13,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;size_option_id&quot;: 2,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 2,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;7 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;7-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-7YAS&quot;,
-                                &quot;price_cents&quot;: 34900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 13,
-                                    &quot;variant_size_id&quot;: 13,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 40,
-                                    &quot;reserved&quot;: 5,
-                                    &quot;available&quot;: 35,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 14,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;size_option_id&quot;: 3,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 3,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;8 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;8-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-8YAS&quot;,
-                                &quot;price_cents&quot;: 34900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 14,
-                                    &quot;variant_size_id&quot;: 14,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 39,
-                                    &quot;reserved&quot;: 1,
-                                    &quot;available&quot;: 38,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 15,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;size_option_id&quot;: 4,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 4,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;9 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;9-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-9YAS&quot;,
-                                &quot;price_cents&quot;: 34900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 15,
-                                    &quot;variant_size_id&quot;: 15,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 27,
-                                    &quot;reserved&quot;: 5,
-                                    &quot;available&quot;: 22,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 16,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;size_option_id&quot;: 5,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 5,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;10 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;10-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-10YAS&quot;,
-                                &quot;price_cents&quot;: 34900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 16,
-                                    &quot;variant_size_id&quot;: 16,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 42,
-                                    &quot;reserved&quot;: 1,
-                                    &quot;available&quot;: 41,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 17,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;size_option_id&quot;: 6,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 6,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;11 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;11-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-11YAS&quot;,
-                                &quot;price_cents&quot;: 34900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 17,
-                                    &quot;variant_size_id&quot;: 17,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 45,
-                                    &quot;reserved&quot;: 2,
-                                    &quot;available&quot;: 43,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 18,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;size_option_id&quot;: 7,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 7,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;12 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;12-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-12YAS&quot;,
-                                &quot;price_cents&quot;: 34900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 18,
-                                    &quot;variant_size_id&quot;: 18,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 22,
-                                    &quot;reserved&quot;: 5,
-                                    &quot;available&quot;: 17,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 19,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;size_option_id&quot;: 8,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 8,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;13 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;13-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-13YAS&quot;,
-                                &quot;price_cents&quot;: 34900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 19,
-                                    &quot;variant_size_id&quot;: 19,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 33,
-                                    &quot;reserved&quot;: 1,
-                                    &quot;available&quot;: 32,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 20,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;size_option_id&quot;: 9,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 9,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;14 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;14-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-14YAS&quot;,
-                                &quot;price_cents&quot;: 34900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 20,
-                                    &quot;variant_size_id&quot;: 20,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 30,
-                                    &quot;reserved&quot;: 3,
-                                    &quot;available&quot;: 27,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 21,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;size_option_id&quot;: 10,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 10,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;15 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;15-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-15YAS&quot;,
-                                &quot;price_cents&quot;: 34900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 21,
-                                    &quot;variant_size_id&quot;: 21,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 46,
-                                    &quot;reserved&quot;: 0,
-                                    &quot;available&quot;: 46,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 22,
-                                &quot;product_variant_id&quot;: 2,
-                                &quot;size_option_id&quot;: 11,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 11,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;16 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;16-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;ESF-ERK-001-SYH-16YAS&quot;,
-                                &quot;price_cents&quot;: 34900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 22,
-                                    &quot;variant_size_id&quot;: 22,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 12,
-                                    &quot;reserved&quot;: 3,
-                                    &quot;available&quot;: 9,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            }
-                        ]
                     }
                 ],
                 &quot;created_at&quot;: &quot;2026-05-15T19:37:44.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2026-05-15T19:37:44.000000Z&quot;
+                &quot;updated_at&quot;: &quot;2026-05-23T18:48:20.000000Z&quot;
             },
             {
                 &quot;id&quot;: 2,
@@ -2146,9 +2102,9 @@ vary: Origin
                                     &quot;id&quot;: 34,
                                     &quot;variant_size_id&quot;: 34,
                                     &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 10,
+                                    &quot;on_hand&quot;: 8,
                                     &quot;reserved&quot;: 4,
-                                    &quot;available&quot;: 6,
+                                    &quot;available&quot;: 4,
                                     &quot;min_stock_level&quot;: 5
                                 }
                             },
@@ -2284,9 +2240,9 @@ vary: Origin
                                     &quot;id&quot;: 40,
                                     &quot;variant_size_id&quot;: 40,
                                     &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 19,
+                                    &quot;on_hand&quot;: 18,
                                     &quot;reserved&quot;: 1,
-                                    &quot;available&quot;: 18,
+                                    &quot;available&quot;: 17,
                                     &quot;min_stock_level&quot;: 5
                                 }
                             },
@@ -2661,7 +2617,7 @@ vary: Origin
                     }
                 ],
                 &quot;created_at&quot;: &quot;2026-05-15T19:37:44.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2026-05-15T19:37:44.000000Z&quot;
+                &quot;updated_at&quot;: &quot;2026-05-23T19:07:54.000000Z&quot;
             }
         ],
         &quot;categories&quot;: [
@@ -2887,12 +2843,6 @@ vary: Origin
                 &quot;id&quot;: 2,
                 &quot;name&quot;: &quot;250 TL Sepet İndirimi&quot;,
                 &quot;description&quot;: &quot;Se&ccedil;ili &Uuml;r&uuml;nlerde 250 TL Sepet İndirimi&quot;,
-                &quot;is_active&quot;: true
-            },
-            {
-                &quot;id&quot;: 3,
-                &quot;name&quot;: &quot;3 Al 2 &Ouml;de&quot;,
-                &quot;description&quot;: &quot;Se&ccedil;ili &Uuml;r&uuml;nlerde 3 Al 2 &Ouml;de&quot;,
                 &quot;is_active&quot;: true
             }
         ]
@@ -3302,7 +3252,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-search">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -3314,14 +3264,1490 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&Uuml;r&uuml;n bulunamadı.&quot;,
-    &quot;data&quot;: {
-        &quot;total&quot;: 0,
-        &quot;page&quot;: 1,
-        &quot;size&quot;: 12,
-        &quot;query&quot;: &quot;&quot;,
-        &quot;products&quot;: []
-    }
+    &quot;total&quot;: 2,
+    &quot;page&quot;: 1,
+    &quot;size&quot;: 12,
+    &quot;query&quot;: &quot;&quot;,
+    &quot;products&quot;: [
+        {
+            &quot;id&quot;: 2,
+            &quot;store_id&quot;: 1,
+            &quot;title&quot;: &quot;Kız &Ccedil;ocuk Jean Pantolon&quot;,
+            &quot;slug&quot;: &quot;kiz-cocuk-jean-pantolon&quot;,
+            &quot;category&quot;: {
+                &quot;id&quot;: 7,
+                &quot;title&quot;: &quot;Jean&quot;,
+                &quot;slug&quot;: &quot;erkek-cocuk-jean&quot;,
+                &quot;gender_id&quot;: 1,
+                &quot;parent_id&quot;: 1,
+                &quot;gender&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;title&quot;: &quot;Erkek &Ccedil;ocuk&quot;,
+                    &quot;slug&quot;: &quot;erkek-cocuk&quot;
+                },
+                &quot;parent&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;title&quot;: &quot;Jean&quot;,
+                    &quot;slug&quot;: &quot;jean&quot;
+                }
+            },
+            &quot;description&quot;: &quot;Şık ve rahat kız jean pantolonu&quot;,
+            &quot;meta_title&quot;: null,
+            &quot;meta_description&quot;: null,
+            &quot;is_published&quot;: true,
+            &quot;variants&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV&quot;,
+                    &quot;slug&quot;: &quot;kiz-jean-acik-mavi&quot;,
+                    &quot;price_cents&quot;: 27900,
+                    &quot;color_name&quot;: &quot;A&ccedil;ık Mavi&quot;,
+                    &quot;color_code&quot;: &quot;#87CEEB&quot;,
+                    &quot;is_popular&quot;: false,
+                    &quot;is_active&quot;: true,
+                    &quot;images&quot;: [
+                        {
+                            &quot;id&quot;: 6,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/jean-acik-mavi.png&quot;,
+                            &quot;is_primary&quot;: true,
+                            &quot;sort_order&quot;: 1
+                        }
+                    ],
+                    &quot;sizes&quot;: [
+                        {
+                            &quot;id&quot;: 23,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 1,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 1,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;6 Yaş&quot;,
+                                &quot;slug&quot;: &quot;6-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-6YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 23,
+                                &quot;variant_size_id&quot;: 23,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 19,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 16,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 24,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 2,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 2,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;7 Yaş&quot;,
+                                &quot;slug&quot;: &quot;7-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-7YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 24,
+                                &quot;variant_size_id&quot;: 24,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 41,
+                                &quot;reserved&quot;: 2,
+                                &quot;available&quot;: 39,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 25,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 3,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 3,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;8 Yaş&quot;,
+                                &quot;slug&quot;: &quot;8-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-8YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 25,
+                                &quot;variant_size_id&quot;: 25,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 36,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 35,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 26,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 4,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 4,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;9 Yaş&quot;,
+                                &quot;slug&quot;: &quot;9-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-9YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 26,
+                                &quot;variant_size_id&quot;: 26,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 44,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 43,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 27,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 5,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 5,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;10 Yaş&quot;,
+                                &quot;slug&quot;: &quot;10-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-10YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 27,
+                                &quot;variant_size_id&quot;: 27,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 49,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 49,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 28,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 6,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 6,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;11 Yaş&quot;,
+                                &quot;slug&quot;: &quot;11-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-11YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 28,
+                                &quot;variant_size_id&quot;: 28,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 31,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 28,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 29,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 7,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 7,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;12 Yaş&quot;,
+                                &quot;slug&quot;: &quot;12-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-12YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 29,
+                                &quot;variant_size_id&quot;: 29,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 13,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 10,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 30,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 8,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 8,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;13 Yaş&quot;,
+                                &quot;slug&quot;: &quot;13-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-13YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 30,
+                                &quot;variant_size_id&quot;: 30,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 10,
+                                &quot;reserved&quot;: 2,
+                                &quot;available&quot;: 8,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 31,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 9,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 9,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;14 Yaş&quot;,
+                                &quot;slug&quot;: &quot;14-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-14YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 31,
+                                &quot;variant_size_id&quot;: 31,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 23,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 22,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 32,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 10,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 10,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;15 Yaş&quot;,
+                                &quot;slug&quot;: &quot;15-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-15YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 32,
+                                &quot;variant_size_id&quot;: 32,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 44,
+                                &quot;reserved&quot;: 4,
+                                &quot;available&quot;: 40,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 33,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 11,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 11,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;16 Yaş&quot;,
+                                &quot;slug&quot;: &quot;16-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-16YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 33,
+                                &quot;variant_size_id&quot;: 33,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 21,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 20,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        }
+                    ]
+                },
+                {
+                    &quot;id&quot;: 4,
+                    &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV&quot;,
+                    &quot;slug&quot;: &quot;kiz-jean-koyu-mavi&quot;,
+                    &quot;price_cents&quot;: 27900,
+                    &quot;color_name&quot;: &quot;Koyu Mavi&quot;,
+                    &quot;color_code&quot;: &quot;#003366&quot;,
+                    &quot;is_popular&quot;: false,
+                    &quot;is_active&quot;: true,
+                    &quot;images&quot;: [
+                        {
+                            &quot;id&quot;: 7,
+                            &quot;product_variant_id&quot;: 4,
+                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/jean-koyu-mavi.png&quot;,
+                            &quot;is_primary&quot;: true,
+                            &quot;sort_order&quot;: 1
+                        }
+                    ],
+                    &quot;sizes&quot;: [
+                        {
+                            &quot;id&quot;: 34,
+                            &quot;product_variant_id&quot;: 4,
+                            &quot;size_option_id&quot;: 1,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 1,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;6 Yaş&quot;,
+                                &quot;slug&quot;: &quot;6-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-6YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 34,
+                                &quot;variant_size_id&quot;: 34,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 10,
+                                &quot;reserved&quot;: 4,
+                                &quot;available&quot;: 6,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 35,
+                            &quot;product_variant_id&quot;: 4,
+                            &quot;size_option_id&quot;: 2,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 2,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;7 Yaş&quot;,
+                                &quot;slug&quot;: &quot;7-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-7YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 35,
+                                &quot;variant_size_id&quot;: 35,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 14,
+                                &quot;reserved&quot;: 4,
+                                &quot;available&quot;: 10,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 36,
+                            &quot;product_variant_id&quot;: 4,
+                            &quot;size_option_id&quot;: 3,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 3,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;8 Yaş&quot;,
+                                &quot;slug&quot;: &quot;8-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-8YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 36,
+                                &quot;variant_size_id&quot;: 36,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 11,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 10,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 37,
+                            &quot;product_variant_id&quot;: 4,
+                            &quot;size_option_id&quot;: 4,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 4,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;9 Yaş&quot;,
+                                &quot;slug&quot;: &quot;9-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-9YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 37,
+                                &quot;variant_size_id&quot;: 37,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 19,
+                                &quot;reserved&quot;: 2,
+                                &quot;available&quot;: 17,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 38,
+                            &quot;product_variant_id&quot;: 4,
+                            &quot;size_option_id&quot;: 5,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 5,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;10 Yaş&quot;,
+                                &quot;slug&quot;: &quot;10-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-10YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 38,
+                                &quot;variant_size_id&quot;: 38,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 26,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 26,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 39,
+                            &quot;product_variant_id&quot;: 4,
+                            &quot;size_option_id&quot;: 6,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 6,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;11 Yaş&quot;,
+                                &quot;slug&quot;: &quot;11-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-11YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 39,
+                                &quot;variant_size_id&quot;: 39,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 30,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 27,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 40,
+                            &quot;product_variant_id&quot;: 4,
+                            &quot;size_option_id&quot;: 7,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 7,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;12 Yaş&quot;,
+                                &quot;slug&quot;: &quot;12-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-12YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 40,
+                                &quot;variant_size_id&quot;: 40,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 19,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 18,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 41,
+                            &quot;product_variant_id&quot;: 4,
+                            &quot;size_option_id&quot;: 8,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 8,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;13 Yaş&quot;,
+                                &quot;slug&quot;: &quot;13-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-13YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 41,
+                                &quot;variant_size_id&quot;: 41,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 15,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 12,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 42,
+                            &quot;product_variant_id&quot;: 4,
+                            &quot;size_option_id&quot;: 9,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 9,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;14 Yaş&quot;,
+                                &quot;slug&quot;: &quot;14-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-14YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 42,
+                                &quot;variant_size_id&quot;: 42,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 20,
+                                &quot;reserved&quot;: 4,
+                                &quot;available&quot;: 16,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 43,
+                            &quot;product_variant_id&quot;: 4,
+                            &quot;size_option_id&quot;: 10,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 10,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;15 Yaş&quot;,
+                                &quot;slug&quot;: &quot;15-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-15YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 43,
+                                &quot;variant_size_id&quot;: 43,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 31,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 31,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 44,
+                            &quot;product_variant_id&quot;: 4,
+                            &quot;size_option_id&quot;: 11,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 11,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;16 Yaş&quot;,
+                                &quot;slug&quot;: &quot;16-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-16YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 44,
+                                &quot;variant_size_id&quot;: 44,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 10,
+                                &quot;reserved&quot;: 5,
+                                &quot;available&quot;: 5,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        }
+                    ]
+                },
+                {
+                    &quot;id&quot;: 5,
+                    &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH&quot;,
+                    &quot;slug&quot;: &quot;kiz-jean-siyah&quot;,
+                    &quot;price_cents&quot;: 27900,
+                    &quot;color_name&quot;: &quot;Siyah&quot;,
+                    &quot;color_code&quot;: &quot;#000000&quot;,
+                    &quot;is_popular&quot;: false,
+                    &quot;is_active&quot;: true,
+                    &quot;images&quot;: [
+                        {
+                            &quot;id&quot;: 8,
+                            &quot;product_variant_id&quot;: 5,
+                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/jean-siyah.png&quot;,
+                            &quot;is_primary&quot;: true,
+                            &quot;sort_order&quot;: 1
+                        }
+                    ],
+                    &quot;sizes&quot;: [
+                        {
+                            &quot;id&quot;: 45,
+                            &quot;product_variant_id&quot;: 5,
+                            &quot;size_option_id&quot;: 1,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 1,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;6 Yaş&quot;,
+                                &quot;slug&quot;: &quot;6-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH-6YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 45,
+                                &quot;variant_size_id&quot;: 45,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 49,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 49,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 46,
+                            &quot;product_variant_id&quot;: 5,
+                            &quot;size_option_id&quot;: 2,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 2,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;7 Yaş&quot;,
+                                &quot;slug&quot;: &quot;7-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH-7YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 46,
+                                &quot;variant_size_id&quot;: 46,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 12,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 11,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 47,
+                            &quot;product_variant_id&quot;: 5,
+                            &quot;size_option_id&quot;: 3,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 3,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;8 Yaş&quot;,
+                                &quot;slug&quot;: &quot;8-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH-8YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 47,
+                                &quot;variant_size_id&quot;: 47,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 13,
+                                &quot;reserved&quot;: 5,
+                                &quot;available&quot;: 8,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 48,
+                            &quot;product_variant_id&quot;: 5,
+                            &quot;size_option_id&quot;: 4,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 4,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;9 Yaş&quot;,
+                                &quot;slug&quot;: &quot;9-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH-9YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 48,
+                                &quot;variant_size_id&quot;: 48,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 14,
+                                &quot;reserved&quot;: 5,
+                                &quot;available&quot;: 9,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 49,
+                            &quot;product_variant_id&quot;: 5,
+                            &quot;size_option_id&quot;: 5,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 5,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;10 Yaş&quot;,
+                                &quot;slug&quot;: &quot;10-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH-10YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 49,
+                                &quot;variant_size_id&quot;: 49,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 10,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 7,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 50,
+                            &quot;product_variant_id&quot;: 5,
+                            &quot;size_option_id&quot;: 6,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 6,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;11 Yaş&quot;,
+                                &quot;slug&quot;: &quot;11-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH-11YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 50,
+                                &quot;variant_size_id&quot;: 50,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 14,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 14,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 51,
+                            &quot;product_variant_id&quot;: 5,
+                            &quot;size_option_id&quot;: 7,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 7,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;12 Yaş&quot;,
+                                &quot;slug&quot;: &quot;12-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH-12YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 51,
+                                &quot;variant_size_id&quot;: 51,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 17,
+                                &quot;reserved&quot;: 4,
+                                &quot;available&quot;: 13,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 52,
+                            &quot;product_variant_id&quot;: 5,
+                            &quot;size_option_id&quot;: 8,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 8,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;13 Yaş&quot;,
+                                &quot;slug&quot;: &quot;13-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH-13YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 52,
+                                &quot;variant_size_id&quot;: 52,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 15,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 15,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 53,
+                            &quot;product_variant_id&quot;: 5,
+                            &quot;size_option_id&quot;: 9,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 9,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;14 Yaş&quot;,
+                                &quot;slug&quot;: &quot;14-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH-14YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 53,
+                                &quot;variant_size_id&quot;: 53,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 31,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 30,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 54,
+                            &quot;product_variant_id&quot;: 5,
+                            &quot;size_option_id&quot;: 10,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 10,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;15 Yaş&quot;,
+                                &quot;slug&quot;: &quot;15-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH-15YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 54,
+                                &quot;variant_size_id&quot;: 54,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 49,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 49,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 55,
+                            &quot;product_variant_id&quot;: 5,
+                            &quot;size_option_id&quot;: 11,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 11,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;16 Yaş&quot;,
+                                &quot;slug&quot;: &quot;16-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH-16YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 55,
+                                &quot;variant_size_id&quot;: 55,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 20,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 20,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        }
+                    ]
+                }
+            ],
+            &quot;created_at&quot;: &quot;2026-05-15T19:37:44+00:00&quot;,
+            &quot;updated_at&quot;: &quot;2026-05-15T19:37:44+00:00&quot;,
+            &quot;category_title&quot;: &quot;Jean&quot;,
+            &quot;gender&quot;: &quot;Erkek &Ccedil;ocuk&quot;
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;store_id&quot;: 1,
+            &quot;title&quot;: &quot;Erkek &Ccedil;ocuk Eşofman Takımı&quot;,
+            &quot;slug&quot;: &quot;erkek-cocuk-esofman-takimi&quot;,
+            &quot;category&quot;: {
+                &quot;id&quot;: 6,
+                &quot;title&quot;: &quot;Eşofman Takım&quot;,
+                &quot;slug&quot;: &quot;unisex-esofman-takim&quot;,
+                &quot;gender_id&quot;: 3,
+                &quot;parent_id&quot;: 3,
+                &quot;gender&quot;: {
+                    &quot;id&quot;: 3,
+                    &quot;title&quot;: &quot;Unisex&quot;,
+                    &quot;slug&quot;: &quot;unisex&quot;
+                },
+                &quot;parent&quot;: {
+                    &quot;id&quot;: 3,
+                    &quot;title&quot;: &quot;Eşofman Takım&quot;,
+                    &quot;slug&quot;: &quot;esofman-takim&quot;
+                }
+            },
+            &quot;description&quot;: &quot;Kaliteli pamuklu erkek &ccedil;ocuk eşofman takımı&quot;,
+            &quot;meta_title&quot;: null,
+            &quot;meta_description&quot;: null,
+            &quot;is_published&quot;: true,
+            &quot;variants&quot;: [
+                {
+                    &quot;id&quot;: 2,
+                    &quot;sku&quot;: &quot;ESF-ERK-001-SYH&quot;,
+                    &quot;slug&quot;: &quot;erkek-esofman-siyah&quot;,
+                    &quot;price_cents&quot;: 34900,
+                    &quot;color_name&quot;: &quot;Siyah&quot;,
+                    &quot;color_code&quot;: &quot;#000000&quot;,
+                    &quot;is_popular&quot;: false,
+                    &quot;is_active&quot;: true,
+                    &quot;images&quot;: [
+                        {
+                            &quot;id&quot;: 3,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman.png&quot;,
+                            &quot;is_primary&quot;: true,
+                            &quot;sort_order&quot;: 1
+                        },
+                        {
+                            &quot;id&quot;: 4,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman1.png&quot;,
+                            &quot;is_primary&quot;: false,
+                            &quot;sort_order&quot;: 2
+                        },
+                        {
+                            &quot;id&quot;: 5,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman2.png&quot;,
+                            &quot;is_primary&quot;: false,
+                            &quot;sort_order&quot;: 3
+                        },
+                        {
+                            &quot;id&quot;: 11,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman.png&quot;,
+                            &quot;is_primary&quot;: true,
+                            &quot;sort_order&quot;: 1
+                        },
+                        {
+                            &quot;id&quot;: 12,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman1.png&quot;,
+                            &quot;is_primary&quot;: false,
+                            &quot;sort_order&quot;: 2
+                        },
+                        {
+                            &quot;id&quot;: 13,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/esofman2.png&quot;,
+                            &quot;is_primary&quot;: false,
+                            &quot;sort_order&quot;: 3
+                        }
+                    ],
+                    &quot;sizes&quot;: [
+                        {
+                            &quot;id&quot;: 12,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;size_option_id&quot;: 1,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 1,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;6 Yaş&quot;,
+                                &quot;slug&quot;: &quot;6-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-SYH-6YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 12,
+                                &quot;variant_size_id&quot;: 12,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 26,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 26,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 13,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;size_option_id&quot;: 2,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 2,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;7 Yaş&quot;,
+                                &quot;slug&quot;: &quot;7-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-SYH-7YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 13,
+                                &quot;variant_size_id&quot;: 13,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 0,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 0,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 14,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;size_option_id&quot;: 3,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 3,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;8 Yaş&quot;,
+                                &quot;slug&quot;: &quot;8-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-SYH-8YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 14,
+                                &quot;variant_size_id&quot;: 14,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 39,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 38,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 15,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;size_option_id&quot;: 4,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 4,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;9 Yaş&quot;,
+                                &quot;slug&quot;: &quot;9-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-SYH-9YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 15,
+                                &quot;variant_size_id&quot;: 15,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 27,
+                                &quot;reserved&quot;: 5,
+                                &quot;available&quot;: 22,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 16,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;size_option_id&quot;: 5,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 5,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;10 Yaş&quot;,
+                                &quot;slug&quot;: &quot;10-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-SYH-10YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 16,
+                                &quot;variant_size_id&quot;: 16,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 42,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 41,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 17,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;size_option_id&quot;: 6,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 6,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;11 Yaş&quot;,
+                                &quot;slug&quot;: &quot;11-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-SYH-11YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 17,
+                                &quot;variant_size_id&quot;: 17,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 45,
+                                &quot;reserved&quot;: 2,
+                                &quot;available&quot;: 43,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 18,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;size_option_id&quot;: 7,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 7,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;12 Yaş&quot;,
+                                &quot;slug&quot;: &quot;12-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-SYH-12YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 18,
+                                &quot;variant_size_id&quot;: 18,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 22,
+                                &quot;reserved&quot;: 5,
+                                &quot;available&quot;: 17,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 19,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;size_option_id&quot;: 8,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 8,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;13 Yaş&quot;,
+                                &quot;slug&quot;: &quot;13-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-SYH-13YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 19,
+                                &quot;variant_size_id&quot;: 19,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 33,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 32,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 20,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;size_option_id&quot;: 9,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 9,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;14 Yaş&quot;,
+                                &quot;slug&quot;: &quot;14-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-SYH-14YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 20,
+                                &quot;variant_size_id&quot;: 20,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 30,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 27,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 21,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;size_option_id&quot;: 10,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 10,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;15 Yaş&quot;,
+                                &quot;slug&quot;: &quot;15-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-SYH-15YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 21,
+                                &quot;variant_size_id&quot;: 21,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 46,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 46,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 22,
+                            &quot;product_variant_id&quot;: 2,
+                            &quot;size_option_id&quot;: 11,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 11,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;16 Yaş&quot;,
+                                &quot;slug&quot;: &quot;16-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-SYH-16YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 22,
+                                &quot;variant_size_id&quot;: 22,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 12,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 9,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        }
+                    ]
+                },
+                {
+                    &quot;id&quot;: 1,
+                    &quot;sku&quot;: &quot;ERK-1-MAVI-1&quot;,
+                    &quot;slug&quot;: &quot;erkek-cocuk-esofman-takimi-mavi-1&quot;,
+                    &quot;price_cents&quot;: 31900,
+                    &quot;color_name&quot;: &quot;Mavi&quot;,
+                    &quot;color_code&quot;: &quot;#0066CC&quot;,
+                    &quot;is_popular&quot;: true,
+                    &quot;is_active&quot;: true,
+                    &quot;images&quot;: [
+                        {
+                            &quot;id&quot;: 14,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/iKQdu6y7dAHTcCMhzZWpGRrbAKrBWpow1EEh5Awr.png&quot;,
+                            &quot;is_primary&quot;: false,
+                            &quot;sort_order&quot;: 0
+                        },
+                        {
+                            &quot;id&quot;: 15,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/hUyP379CUhudAlUGOM5z5a8TFEPEko619YjMzj03.png&quot;,
+                            &quot;is_primary&quot;: false,
+                            &quot;sort_order&quot;: 0
+                        }
+                    ],
+                    &quot;sizes&quot;: [
+                        {
+                            &quot;id&quot;: 1,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;size_option_id&quot;: 1,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 1,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;6 Yaş&quot;,
+                                &quot;slug&quot;: &quot;6-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-MAV-6YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 1,
+                                &quot;variant_size_id&quot;: 1,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 28,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 27,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 2,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;size_option_id&quot;: 2,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 2,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;7 Yaş&quot;,
+                                &quot;slug&quot;: &quot;7-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-MAV-7YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 2,
+                                &quot;variant_size_id&quot;: 2,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 19,
+                                &quot;reserved&quot;: 2,
+                                &quot;available&quot;: 17,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 3,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;size_option_id&quot;: 3,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 3,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;8 Yaş&quot;,
+                                &quot;slug&quot;: &quot;8-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-MAV-8YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 3,
+                                &quot;variant_size_id&quot;: 3,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 32,
+                                &quot;reserved&quot;: 5,
+                                &quot;available&quot;: 27,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 4,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;size_option_id&quot;: 4,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 4,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;9 Yaş&quot;,
+                                &quot;slug&quot;: &quot;9-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-MAV-9YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 4,
+                                &quot;variant_size_id&quot;: 4,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 16,
+                                &quot;reserved&quot;: 4,
+                                &quot;available&quot;: 12,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 5,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;size_option_id&quot;: 5,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 5,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;10 Yaş&quot;,
+                                &quot;slug&quot;: &quot;10-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-MAV-10YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 5,
+                                &quot;variant_size_id&quot;: 5,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 29,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 26,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 6,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;size_option_id&quot;: 6,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 6,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;11 Yaş&quot;,
+                                &quot;slug&quot;: &quot;11-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-MAV-11YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 6,
+                                &quot;variant_size_id&quot;: 6,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 31,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 28,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 7,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;size_option_id&quot;: 7,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 7,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;12 Yaş&quot;,
+                                &quot;slug&quot;: &quot;12-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-MAV-12YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 7,
+                                &quot;variant_size_id&quot;: 7,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 32,
+                                &quot;reserved&quot;: 2,
+                                &quot;available&quot;: 30,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 8,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;size_option_id&quot;: 8,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 8,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;13 Yaş&quot;,
+                                &quot;slug&quot;: &quot;13-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-MAV-13YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 8,
+                                &quot;variant_size_id&quot;: 8,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 23,
+                                &quot;reserved&quot;: 4,
+                                &quot;available&quot;: 19,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 9,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;size_option_id&quot;: 9,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 9,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;14 Yaş&quot;,
+                                &quot;slug&quot;: &quot;14-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-MAV-14YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 9,
+                                &quot;variant_size_id&quot;: 9,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 28,
+                                &quot;reserved&quot;: 2,
+                                &quot;available&quot;: 26,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 10,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;size_option_id&quot;: 10,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 10,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;15 Yaş&quot;,
+                                &quot;slug&quot;: &quot;15-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-MAV-15YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 10,
+                                &quot;variant_size_id&quot;: 10,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 25,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 22,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 11,
+                            &quot;product_variant_id&quot;: 1,
+                            &quot;size_option_id&quot;: 11,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 11,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;16 Yaş&quot;,
+                                &quot;slug&quot;: &quot;16-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ESF-ERK-001-MAV-16YAS&quot;,
+                            &quot;price_cents&quot;: 34900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 11,
+                                &quot;variant_size_id&quot;: 11,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 13,
+                                &quot;reserved&quot;: 5,
+                                &quot;available&quot;: 8,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        }
+                    ]
+                }
+            ],
+            &quot;created_at&quot;: &quot;2026-05-15T19:37:44+00:00&quot;,
+            &quot;updated_at&quot;: &quot;2026-05-20T21:57:05+00:00&quot;,
+            &quot;category_title&quot;: &quot;Eşofman Takım&quot;,
+            &quot;gender&quot;: &quot;Unisex&quot;
+        }
+    ]
 }</code>
  </pre>
     </span>
@@ -3450,7 +4876,7 @@ vary: Origin
 <code class="language-json" style="max-height: 300px;">{
     &quot;message&quot;: &quot;Filtre Sonucu&quot;,
     &quot;data&quot;: {
-        &quot;total&quot;: 0,
+        &quot;total&quot;: 2,
         &quot;page&quot;: 1,
         &quot;size&quot;: 12,
         &quot;filters&quot;: [],
@@ -3525,311 +4951,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Accept"                data-endpoint="GETapi-filter"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="endpoints-GETapi-sorting">GET api/sorting</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-sorting">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/sorting" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/sorting"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-sorting">
-            <blockquote>
-            <p>Example response (500):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Attempt to read property \&quot;id\&quot; on array&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-sorting" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-sorting"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-sorting"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-sorting" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-sorting">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-sorting" data-method="GET"
-      data-path="api/sorting"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-sorting', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-sorting"
-                    onclick="tryItOut('GETapi-sorting');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-sorting"
-                    onclick="cancelTryOut('GETapi-sorting');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-sorting"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/sorting</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-sorting"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-sorting"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="endpoints-GETapi-autocomplete">GET api/autocomplete</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-autocomplete">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/autocomplete" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/autocomplete"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-autocomplete">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Otomatik Tamamlama&quot;,
-    &quot;data&quot;: {
-        &quot;products&quot;: [
-            {
-                &quot;id&quot;: 3,
-                &quot;title&quot;: &quot;Takım Eşofman Seti&quot;,
-                &quot;category_title&quot;: &quot;Keten&quot;
-            },
-            {
-                &quot;id&quot;: 2,
-                &quot;title&quot;: &quot;Kız &Ccedil;ocuk Jean Pantolon&quot;,
-                &quot;category_title&quot;: &quot;Jean&quot;
-            },
-            {
-                &quot;id&quot;: 1,
-                &quot;title&quot;: &quot;Erkek &Ccedil;ocuk Eşofman Takımı&quot;,
-                &quot;category_title&quot;: &quot;Eşofman Takım&quot;
-            }
-        ],
-        &quot;results&quot;: [
-            {
-                &quot;_index&quot;: &quot;products&quot;,
-                &quot;_id&quot;: &quot;3&quot;,
-                &quot;_score&quot;: 1,
-                &quot;_source&quot;: {
-                    &quot;id&quot;: 3,
-                    &quot;title&quot;: &quot;Takım Eşofman Seti&quot;,
-                    &quot;category_title&quot;: &quot;Keten&quot;
-                }
-            },
-            {
-                &quot;_index&quot;: &quot;products&quot;,
-                &quot;_id&quot;: &quot;2&quot;,
-                &quot;_score&quot;: 1,
-                &quot;_source&quot;: {
-                    &quot;id&quot;: 2,
-                    &quot;title&quot;: &quot;Kız &Ccedil;ocuk Jean Pantolon&quot;,
-                    &quot;category_title&quot;: &quot;Jean&quot;
-                }
-            },
-            {
-                &quot;_index&quot;: &quot;products&quot;,
-                &quot;_id&quot;: &quot;1&quot;,
-                &quot;_score&quot;: 1,
-                &quot;_source&quot;: {
-                    &quot;id&quot;: 1,
-                    &quot;title&quot;: &quot;Erkek &Ccedil;ocuk Eşofman Takımı&quot;,
-                    &quot;category_title&quot;: &quot;Eşofman Takım&quot;
-                }
-            }
-        ]
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-autocomplete" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-autocomplete"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-autocomplete"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-autocomplete" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-autocomplete">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-autocomplete" data-method="GET"
-      data-path="api/autocomplete"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-autocomplete', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-autocomplete"
-                    onclick="tryItOut('GETapi-autocomplete');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-autocomplete"
-                    onclick="cancelTryOut('GETapi-autocomplete');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-autocomplete"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/autocomplete</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-autocomplete"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-autocomplete"
                value="application/json"
                data-component="header">
     <br>
@@ -4118,7 +5239,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-bags">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -4130,7 +5251,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -4224,7 +5345,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"variant_size_id\": \"consequatur\",
+    \"variant_size_id\": 17,
     \"quantity\": 45
 }"
 </code></pre></div>
@@ -4241,7 +5362,7 @@ const headers = {
 };
 
 let body = {
-    "variant_size_id": "consequatur",
+    "variant_size_id": 17,
     "quantity": 45
 };
 
@@ -4329,15 +5450,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>variant_size_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="variant_size_id"                data-endpoint="POSTapi-bags"
-               value="consequatur"
+                <input type="number" style="display: none"
+               step="any"               name="variant_size_id"                data-endpoint="POSTapi-bags"
+               value="17"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the variant_sizes table. Example: <code>consequatur</code></p>
+<p>Example: <code>17</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>quantity</code></b>&nbsp;&nbsp;
@@ -4391,7 +5512,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-bags--id-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -4403,7 +5524,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -4783,7 +5904,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-checkout-session--session_id-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -4795,7 +5916,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -5200,7 +6321,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"session_id\": \"66529e01-d113-3473-8d6f-9e11e09332ea\",
-    \"payment_method\": \"saved_card\",
+    \"payment_method\": \"new_card\",
     \"payment_method_id\": 17,
     \"provider\": \"iyzico\",
     \"card_alias\": \"mqeopfuudtdsufvyvddqa\",
@@ -5211,7 +6332,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"cvv\": \"4976\",
     \"save_card\": true,
     \"installment\": 8,
-    \"requires_3ds\": false
+    \"requires_3ds\": true
 }"
 </code></pre></div>
 
@@ -5228,7 +6349,7 @@ const headers = {
 
 let body = {
     "session_id": "66529e01-d113-3473-8d6f-9e11e09332ea",
-    "payment_method": "saved_card",
+    "payment_method": "new_card",
     "payment_method_id": 17,
     "provider": "iyzico",
     "card_alias": "mqeopfuudtdsufvyvddqa",
@@ -5239,7 +6360,7 @@ let body = {
     "cvv": "4976",
     "save_card": true,
     "installment": 8,
-    "requires_3ds": false
+    "requires_3ds": true
 };
 
 fetch(url, {
@@ -5343,10 +6464,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="payment_method"                data-endpoint="POSTapi-checkout-payment-intent"
-               value="saved_card"
+               value="new_card"
                data-component="body">
     <br>
-<p>Example: <code>saved_card</code></p>
+<p>Example: <code>new_card</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>saved_card</code></li> <li><code>new_card</code></li> <li><code>cash_on_delivery</code></li></ul>
         </div>
@@ -5502,7 +6623,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
         </form>
 
@@ -5544,7 +6665,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-orders">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -5556,7 +6677,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -5671,7 +6792,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-orders--order-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -5683,7 +6804,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -5773,1457 +6894,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi-orders--order_id--refunds">POST api/orders/{order_id}/refunds</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-orders--order_id--refunds">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/orders/17/refunds" \
-    --header "Content-Type: multipart/form-data" \
-    --header "Accept: application/json" \
-    --form "reason=vmqeopfuudtdsufvyvddq"\
-    --form "customer_note=consequatur"\
-    --form "items[][order_item_id]=17"\
-    --form "items[][quantity]=45"\
-    --form "items[][refund_amount_cents]=56"\
-    --form "attachments[]=@/tmp/phpAcwdex" </code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/orders/17/refunds"
-);
-
-const headers = {
-    "Content-Type": "multipart/form-data",
-    "Accept": "application/json",
-};
-
-const body = new FormData();
-body.append('reason', 'vmqeopfuudtdsufvyvddq');
-body.append('customer_note', 'consequatur');
-body.append('items[][order_item_id]', '17');
-body.append('items[][quantity]', '45');
-body.append('items[][refund_amount_cents]', '56');
-body.append('attachments[]', document.querySelector('input[name="attachments[]"]').files[0]);
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-orders--order_id--refunds">
-</span>
-<span id="execution-results-POSTapi-orders--order_id--refunds" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-orders--order_id--refunds"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-orders--order_id--refunds"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-orders--order_id--refunds" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-orders--order_id--refunds">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-orders--order_id--refunds" data-method="POST"
-      data-path="api/orders/{order_id}/refunds"
-      data-authed="0"
-      data-hasfiles="1"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-orders--order_id--refunds', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-orders--order_id--refunds"
-                    onclick="tryItOut('POSTapi-orders--order_id--refunds');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-orders--order_id--refunds"
-                    onclick="cancelTryOut('POSTapi-orders--order_id--refunds');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-orders--order_id--refunds"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/orders/{order_id}/refunds</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-orders--order_id--refunds"
-               value="multipart/form-data"
-               data-component="header">
-    <br>
-<p>Example: <code>multipart/form-data</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-orders--order_id--refunds"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>order_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="order_id"                data-endpoint="POSTapi-orders--order_id--refunds"
-               value="17"
-               data-component="url">
-    <br>
-<p>The ID of the order. Example: <code>17</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="reason"                data-endpoint="POSTapi-orders--order_id--refunds"
-               value="vmqeopfuudtdsufvyvddq"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>customer_note</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="customer_note"                data-endpoint="POSTapi-orders--order_id--refunds"
-               value="consequatur"
-               data-component="body">
-    <br>
-<p>Example: <code>consequatur</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-        <details>
-            <summary style="padding-bottom: 10px;">
-                <b style="line-height: 2;"><code>items</code></b>&nbsp;&nbsp;
-<small>object[]</small>&nbsp;
- &nbsp;
- &nbsp;
-<br>
-<p>Must have at least 1 items.</p>
-            </summary>
-                                                <div style="margin-left: 14px; clear: unset;">
-                        <b style="line-height: 2;"><code>order_item_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="items.0.order_item_id"                data-endpoint="POSTapi-orders--order_id--refunds"
-               value="17"
-               data-component="body">
-    <br>
-<p>The <code>id</code> of an existing record in the order_items table. Example: <code>17</code></p>
-                    </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
-                        <b style="line-height: 2;"><code>quantity</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="items.0.quantity"                data-endpoint="POSTapi-orders--order_id--refunds"
-               value="45"
-               data-component="body">
-    <br>
-<p>Must be at least 1. Example: <code>45</code></p>
-                    </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
-                        <b style="line-height: 2;"><code>refund_amount_cents</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="items.0.refund_amount_cents"                data-endpoint="POSTapi-orders--order_id--refunds"
-               value="56"
-               data-component="body">
-    <br>
-<p>Must be at least 0. Example: <code>56</code></p>
-                    </div>
-                                    </details>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>attachments</code></b>&nbsp;&nbsp;
-<small>file[]</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="file" style="display: none"
-                              name="attachments[0]"                data-endpoint="POSTapi-orders--order_id--refunds"
-               data-component="body">
-        <input type="file" style="display: none"
-               name="attachments[1]"                data-endpoint="POSTapi-orders--order_id--refunds"
-               data-component="body">
-    <br>
-<p>Must be a file. Must not be greater than 2048 kilobytes.</p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-POSTapi-refunds-webhooks-shipment">POST api/refunds/webhooks/shipment</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-refunds-webhooks-shipment">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/refunds/webhooks/shipment" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"tracking_number\": \"vmqeopfuudtdsufvyvddq\",
-    \"status\": \"FAILED\",
-    \"timestamp\": \"2026-05-16T13:11:32\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/refunds/webhooks/shipment"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "tracking_number": "vmqeopfuudtdsufvyvddq",
-    "status": "FAILED",
-    "timestamp": "2026-05-16T13:11:32"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-refunds-webhooks-shipment">
-</span>
-<span id="execution-results-POSTapi-refunds-webhooks-shipment" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-refunds-webhooks-shipment"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-refunds-webhooks-shipment"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-refunds-webhooks-shipment" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-refunds-webhooks-shipment">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-refunds-webhooks-shipment" data-method="POST"
-      data-path="api/refunds/webhooks/shipment"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-refunds-webhooks-shipment', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-refunds-webhooks-shipment"
-                    onclick="tryItOut('POSTapi-refunds-webhooks-shipment');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-refunds-webhooks-shipment"
-                    onclick="cancelTryOut('POSTapi-refunds-webhooks-shipment');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-refunds-webhooks-shipment"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/refunds/webhooks/shipment</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-refunds-webhooks-shipment"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-refunds-webhooks-shipment"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>tracking_number</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="tracking_number"                data-endpoint="POSTapi-refunds-webhooks-shipment"
-               value="vmqeopfuudtdsufvyvddq"
-               data-component="body">
-    <br>
-<p>Must not be greater than 100 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="status"                data-endpoint="POSTapi-refunds-webhooks-shipment"
-               value="FAILED"
-               data-component="body">
-    <br>
-<p>Example: <code>FAILED</code></p>
-Must be one of:
-<ul style="list-style-type: square;"><li><code>PICKED_UP</code></li> <li><code>IN_TRANSIT</code></li> <li><code>DELIVERED</code></li> <li><code>FAILED</code></li></ul>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>timestamp</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="timestamp"                data-endpoint="POSTapi-refunds-webhooks-shipment"
-               value="2026-05-16T13:11:32"
-               data-component="body">
-    <br>
-<p>Must be a valid date. Example: <code>2026-05-16T13:11:32</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>meta</code></b>&nbsp;&nbsp;
-<small>object</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="meta"                data-endpoint="POSTapi-refunds-webhooks-shipment"
-               value=""
-               data-component="body">
-    <br>
-
-        </div>
-        </form>
-
-                    <h2 id="endpoints-POSTapi-refunds-webhooks-payment">POST api/refunds/webhooks/payment</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-refunds-webhooks-payment">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/refunds/webhooks/payment" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"reference\": \"vmqeopfuudtdsufvyvddq\",
-    \"status\": \"FAILED\",
-    \"amount\": 1,
-    \"currency\": \"mni\",
-    \"timestamp\": \"2026-05-16T13:11:32\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/refunds/webhooks/payment"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "reference": "vmqeopfuudtdsufvyvddq",
-    "status": "FAILED",
-    "amount": 1,
-    "currency": "mni",
-    "timestamp": "2026-05-16T13:11:32"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-refunds-webhooks-payment">
-</span>
-<span id="execution-results-POSTapi-refunds-webhooks-payment" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-refunds-webhooks-payment"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-refunds-webhooks-payment"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-refunds-webhooks-payment" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-refunds-webhooks-payment">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-refunds-webhooks-payment" data-method="POST"
-      data-path="api/refunds/webhooks/payment"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-refunds-webhooks-payment', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-refunds-webhooks-payment"
-                    onclick="tryItOut('POSTapi-refunds-webhooks-payment');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-refunds-webhooks-payment"
-                    onclick="cancelTryOut('POSTapi-refunds-webhooks-payment');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-refunds-webhooks-payment"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/refunds/webhooks/payment</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-refunds-webhooks-payment"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-refunds-webhooks-payment"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>reference</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="reference"                data-endpoint="POSTapi-refunds-webhooks-payment"
-               value="vmqeopfuudtdsufvyvddq"
-               data-component="body">
-    <br>
-<p>Must not be greater than 100 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="status"                data-endpoint="POSTapi-refunds-webhooks-payment"
-               value="FAILED"
-               data-component="body">
-    <br>
-<p>Example: <code>FAILED</code></p>
-Must be one of:
-<ul style="list-style-type: square;"><li><code>SUCCESS</code></li> <li><code>FAILED</code></li></ul>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="amount"                data-endpoint="POSTapi-refunds-webhooks-payment"
-               value="1"
-               data-component="body">
-    <br>
-<p>Must be at least 0. Example: <code>1</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>currency</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="currency"                data-endpoint="POSTapi-refunds-webhooks-payment"
-               value="mni"
-               data-component="body">
-    <br>
-<p>Must be 3 characters. Example: <code>mni</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>timestamp</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="timestamp"                data-endpoint="POSTapi-refunds-webhooks-payment"
-               value="2026-05-16T13:11:32"
-               data-component="body">
-    <br>
-<p>Must be a valid date. Example: <code>2026-05-16T13:11:32</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>meta</code></b>&nbsp;&nbsp;
-<small>object</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="meta"                data-endpoint="POSTapi-refunds-webhooks-payment"
-               value=""
-               data-component="body">
-    <br>
-
-        </div>
-        </form>
-
-                    <h2 id="endpoints-GETapi-creditcard">GET api/creditcard</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-creditcard">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/creditcard" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/creditcard"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-creditcard">
-            <blockquote>
-            <p>Example response (500):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-creditcard" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-creditcard"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-creditcard"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-creditcard" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-creditcard">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-creditcard" data-method="GET"
-      data-path="api/creditcard"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-creditcard', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-creditcard"
-                    onclick="tryItOut('GETapi-creditcard');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-creditcard"
-                    onclick="cancelTryOut('GETapi-creditcard');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-creditcard"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/creditcard</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-creditcard"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-creditcard"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="endpoints-POSTapi-creditcard">POST api/creditcard</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-creditcard">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/creditcard" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"card_number\": \"amniihfqcoynlazghdtqt\",
-    \"expire_year\": \"qxbajwbpilpmufinllwlo\",
-    \"expire_month\": \"auydlsmsjuryvojcybzvr\",
-    \"card_type\": \"byickznkygloigmkwxphl\",
-    \"card_holder_name\": \"vazjrcnfbaqywuxhgjjmz\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/creditcard"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "card_number": "amniihfqcoynlazghdtqt",
-    "expire_year": "qxbajwbpilpmufinllwlo",
-    "expire_month": "auydlsmsjuryvojcybzvr",
-    "card_type": "byickznkygloigmkwxphl",
-    "card_holder_name": "vazjrcnfbaqywuxhgjjmz"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-creditcard">
-</span>
-<span id="execution-results-POSTapi-creditcard" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-creditcard"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-creditcard"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-creditcard" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-creditcard">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-creditcard" data-method="POST"
-      data-path="api/creditcard"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-creditcard', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-creditcard"
-                    onclick="tryItOut('POSTapi-creditcard');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-creditcard"
-                    onclick="cancelTryOut('POSTapi-creditcard');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-creditcard"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/creditcard</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-creditcard"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-creditcard"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="name"                data-endpoint="POSTapi-creditcard"
-               value="vmqeopfuudtdsufvyvddq"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>card_number</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="card_number"                data-endpoint="POSTapi-creditcard"
-               value="amniihfqcoynlazghdtqt"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>amniihfqcoynlazghdtqt</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>expire_year</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="expire_year"                data-endpoint="POSTapi-creditcard"
-               value="qxbajwbpilpmufinllwlo"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>qxbajwbpilpmufinllwlo</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>expire_month</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="expire_month"                data-endpoint="POSTapi-creditcard"
-               value="auydlsmsjuryvojcybzvr"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>auydlsmsjuryvojcybzvr</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>card_type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="card_type"                data-endpoint="POSTapi-creditcard"
-               value="byickznkygloigmkwxphl"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>byickznkygloigmkwxphl</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>card_holder_name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="card_holder_name"                data-endpoint="POSTapi-creditcard"
-               value="vazjrcnfbaqywuxhgjjmz"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>vazjrcnfbaqywuxhgjjmz</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-GETapi-creditcard--id-">GET api/creditcard/{id}</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-creditcard--id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/creditcard/consequatur" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/creditcard/consequatur"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-creditcard--id-">
-            <blockquote>
-            <p>Example response (500):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-creditcard--id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-creditcard--id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-creditcard--id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-creditcard--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-creditcard--id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-creditcard--id-" data-method="GET"
-      data-path="api/creditcard/{id}"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-creditcard--id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-creditcard--id-"
-                    onclick="tryItOut('GETapi-creditcard--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-creditcard--id-"
-                    onclick="cancelTryOut('GETapi-creditcard--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-creditcard--id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/creditcard/{id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-creditcard--id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-creditcard--id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="GETapi-creditcard--id-"
-               value="consequatur"
-               data-component="url">
-    <br>
-<p>The ID of the creditcard. Example: <code>consequatur</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-PUTapi-creditcard--id-">PUT api/creditcard/{id}</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-PUTapi-creditcard--id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/creditcard/consequatur" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"name\": \"vmqeopfuudtdsufvyvddq\",
-    \"card_number\": \"amniihfqcoynlazghdtqt\",
-    \"cvv\": \"qxbajwbpilpmufinllwlo\",
-    \"expire_year\": \"auydlsmsjuryvojcybzvr\",
-    \"expire_month\": \"byickznkygloigmkwxphl\",
-    \"card_type\": \"vazjrcnfbaqywuxhgjjmz\",
-    \"card_holder_name\": \"uxjubqouzswiwxtrkimfc\",
-    \"is_active\": true
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/creditcard/consequatur"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "name": "vmqeopfuudtdsufvyvddq",
-    "card_number": "amniihfqcoynlazghdtqt",
-    "cvv": "qxbajwbpilpmufinllwlo",
-    "expire_year": "auydlsmsjuryvojcybzvr",
-    "expire_month": "byickznkygloigmkwxphl",
-    "card_type": "vazjrcnfbaqywuxhgjjmz",
-    "card_holder_name": "uxjubqouzswiwxtrkimfc",
-    "is_active": true
-};
-
-fetch(url, {
-    method: "PUT",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-PUTapi-creditcard--id-">
-</span>
-<span id="execution-results-PUTapi-creditcard--id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-PUTapi-creditcard--id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-creditcard--id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-PUTapi-creditcard--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-creditcard--id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-PUTapi-creditcard--id-" data-method="PUT"
-      data-path="api/creditcard/{id}"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-creditcard--id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-creditcard--id-"
-                    onclick="tryItOut('PUTapi-creditcard--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-creditcard--id-"
-                    onclick="cancelTryOut('PUTapi-creditcard--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-creditcard--id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/creditcard/{id}</code></b>
-        </p>
-            <p>
-            <small class="badge badge-purple">PATCH</small>
-            <b><code>api/creditcard/{id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi-creditcard--id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi-creditcard--id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="PUTapi-creditcard--id-"
-               value="consequatur"
-               data-component="url">
-    <br>
-<p>The ID of the creditcard. Example: <code>consequatur</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="name"                data-endpoint="PUTapi-creditcard--id-"
-               value="vmqeopfuudtdsufvyvddq"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>card_number</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="card_number"                data-endpoint="PUTapi-creditcard--id-"
-               value="amniihfqcoynlazghdtqt"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>amniihfqcoynlazghdtqt</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>cvv</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="cvv"                data-endpoint="PUTapi-creditcard--id-"
-               value="qxbajwbpilpmufinllwlo"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>qxbajwbpilpmufinllwlo</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>expire_year</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="expire_year"                data-endpoint="PUTapi-creditcard--id-"
-               value="auydlsmsjuryvojcybzvr"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>auydlsmsjuryvojcybzvr</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>expire_month</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="expire_month"                data-endpoint="PUTapi-creditcard--id-"
-               value="byickznkygloigmkwxphl"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>byickznkygloigmkwxphl</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>card_type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="card_type"                data-endpoint="PUTapi-creditcard--id-"
-               value="vazjrcnfbaqywuxhgjjmz"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>vazjrcnfbaqywuxhgjjmz</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>card_holder_name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="card_holder_name"                data-endpoint="PUTapi-creditcard--id-"
-               value="uxjubqouzswiwxtrkimfc"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>uxjubqouzswiwxtrkimfc</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <label data-endpoint="PUTapi-creditcard--id-" style="display: none">
-            <input type="radio" name="is_active"
-                   value="true"
-                   data-endpoint="PUTapi-creditcard--id-"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="PUTapi-creditcard--id-" style="display: none">
-            <input type="radio" name="is_active"
-                   value="false"
-                   data-endpoint="PUTapi-creditcard--id-"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-<p>Example: <code>true</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-DELETEapi-creditcard--id-">DELETE api/creditcard/{id}</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-DELETEapi-creditcard--id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/creditcard/consequatur" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/creditcard/consequatur"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "DELETE",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-DELETEapi-creditcard--id-">
-</span>
-<span id="execution-results-DELETEapi-creditcard--id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-DELETEapi-creditcard--id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-creditcard--id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-DELETEapi-creditcard--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-creditcard--id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-DELETEapi-creditcard--id-" data-method="DELETE"
-      data-path="api/creditcard/{id}"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-creditcard--id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-creditcard--id-"
-                    onclick="tryItOut('DELETEapi-creditcard--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-creditcard--id-"
-                    onclick="cancelTryOut('DELETEapi-creditcard--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-creditcard--id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-red">DELETE</small>
-            <b><code>api/creditcard/{id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="DELETEapi-creditcard--id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="DELETEapi-creditcard--id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="DELETEapi-creditcard--id-"
-               value="consequatur"
-               data-component="url">
-    <br>
-<p>The ID of the creditcard. Example: <code>consequatur</code></p>
-            </div>
-                    </form>
-
                     <h2 id="endpoints-GETapi-me">Mevcut kullanıcı bilgilerini getir</h2>
 
 <p>
@@ -7262,7 +6932,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-me">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -7274,7 +6944,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -7389,7 +7059,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-account-addresses">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -7401,7 +7071,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -7505,8 +7175,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"city\": \"atbxspzmrazsroyjpxmqe\",
     \"postal_code\": \"sedyghenqcopwvownkbam\",
     \"country\": \"lnfngefbeilfzsyuxoezb\",
-    \"is_default\": false,
-    \"is_active\": true,
+    \"is_default\": true,
+    \"is_active\": false,
     \"notes\": \"dtabptcyyerevrljcbwkt\"
 }"
 </code></pre></div>
@@ -7533,8 +7203,8 @@ let body = {
     "city": "atbxspzmrazsroyjpxmqe",
     "postal_code": "sedyghenqcopwvownkbam",
     "country": "lnfngefbeilfzsyuxoezb",
-    "is_default": false,
-    "is_active": true,
+    "is_default": true,
+    "is_active": false,
     "notes": "dtabptcyyerevrljcbwkt"
 };
 
@@ -7760,7 +7430,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -7782,7 +7452,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -7836,7 +7506,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-account-addresses--id-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -7848,7 +7518,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -7965,8 +7635,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"city\": \"atbxspzmrazsroyjpxmqe\",
     \"postal_code\": \"sedyghenqcopwvownkbam\",
     \"country\": \"lnfngefbeilfzsyuxoezb\",
-    \"is_default\": false,
-    \"is_active\": true,
+    \"is_default\": true,
+    \"is_active\": false,
     \"notes\": \"dtabptcyyerevrljcbwkt\"
 }"
 </code></pre></div>
@@ -7993,8 +7663,8 @@ let body = {
     "city": "atbxspzmrazsroyjpxmqe",
     "postal_code": "sedyghenqcopwvownkbam",
     "country": "lnfngefbeilfzsyuxoezb",
-    "is_default": false,
-    "is_active": true,
+    "is_default": true,
+    "is_active": false,
     "notes": "dtabptcyyerevrljcbwkt"
 };
 
@@ -8237,7 +7907,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -8259,7 +7929,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -8437,7 +8107,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-account-profile">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -8449,7 +8119,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -8946,7 +8616,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-my-seller">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -8958,7 +8628,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -9073,7 +8743,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-seller-product-search">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -9085,7 +8755,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -9200,7 +8870,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-seller-campaign">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -9212,7 +8882,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -9309,7 +8979,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"vmqeopfuudtdsufvyvddq\",
     \"code\": \"amniihfqcoynlazghdtqt\",
     \"description\": \"Dolores dolorum amet iste laborum eius est dolor.\",
-    \"type\": \"percentage\",
+    \"type\": \"fixed\",
     \"discount_value\": 12,
     \"buy_quantity\": 66,
     \"pay_quantity\": 13,
@@ -9317,8 +8987,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"usage_limit\": 72,
     \"per_user_limit\": 19,
     \"is_active\": false,
-    \"starts_at\": \"2107-06-15\",
-    \"ends_at\": \"2107-06-15\",
+    \"starts_at\": \"2107-06-22\",
+    \"ends_at\": \"2107-06-22\",
     \"product_ids\": [
         17
     ],
@@ -9343,7 +9013,7 @@ let body = {
     "name": "vmqeopfuudtdsufvyvddq",
     "code": "amniihfqcoynlazghdtqt",
     "description": "Dolores dolorum amet iste laborum eius est dolor.",
-    "type": "percentage",
+    "type": "fixed",
     "discount_value": 12,
     "buy_quantity": 66,
     "pay_quantity": 13,
@@ -9351,8 +9021,8 @@ let body = {
     "usage_limit": 72,
     "per_user_limit": 19,
     "is_active": false,
-    "starts_at": "2107-06-15",
-    "ends_at": "2107-06-15",
+    "starts_at": "2107-06-22",
+    "ends_at": "2107-06-22",
     "product_ids": [
         17
     ],
@@ -9486,10 +9156,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-seller-campaign"
-               value="percentage"
+               value="fixed"
                data-component="body">
     <br>
-<p>Example: <code>percentage</code></p>
+<p>Example: <code>fixed</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>percentage</code></li> <li><code>fixed</code></li> <li><code>x_buy_y_pay</code></li></ul>
         </div>
@@ -9594,10 +9264,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="starts_at"                data-endpoint="POSTapi-seller-campaign"
-               value="2107-06-15"
+               value="2107-06-22"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date after or equal to <code>today</code>. Example: <code>2107-06-15</code></p>
+<p>Must be a valid date. Must be a date after or equal to <code>today</code>. Example: <code>2107-06-22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ends_at</code></b>&nbsp;&nbsp;
@@ -9606,10 +9276,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="ends_at"                data-endpoint="POSTapi-seller-campaign"
-               value="2107-06-15"
+               value="2107-06-22"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date after <code>starts_at</code>. Example: <code>2107-06-15</code></p>
+<p>Must be a valid date. Must be a date after <code>starts_at</code>. Example: <code>2107-06-22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>product_ids</code></b>&nbsp;&nbsp;
@@ -9654,14 +9324,14 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/seller/campaign/1" \
+    --get "http://localhost:8000/api/seller/campaign/3" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/seller/campaign/1"
+    "http://localhost:8000/api/seller/campaign/3"
 );
 
 const headers = {
@@ -9679,7 +9349,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-seller-campaign--id-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -9691,7 +9361,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -9774,10 +9444,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-seller-campaign--id-"
-               value="1"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the campaign. Example: <code>1</code></p>
+<p>The ID of the campaign. Example: <code>3</code></p>
             </div>
                     </form>
 
@@ -9794,14 +9464,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/seller/campaign/1" \
+    "http://localhost:8000/api/seller/campaign/3" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"name\": \"vmqeopfuudtdsufvyvddq\",
     \"code\": \"amniihfqcoynlazghdtqt\",
     \"description\": \"Dolores dolorum amet iste laborum eius est dolor.\",
-    \"type\": \"fixed\",
+    \"type\": \"percentage\",
     \"discount_value\": 4,
     \"buy_quantity\": 66,
     \"pay_quantity\": 13,
@@ -9809,8 +9479,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"usage_limit\": 72,
     \"per_user_limit\": 19,
     \"is_active\": true,
-    \"starts_at\": \"2026-05-16T13:11:34\",
-    \"ends_at\": \"2107-06-15\",
+    \"starts_at\": \"2026-05-23T19:22:02\",
+    \"ends_at\": \"2107-06-22\",
     \"product_ids\": [
         17
     ],
@@ -9823,7 +9493,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/seller/campaign/1"
+    "http://localhost:8000/api/seller/campaign/3"
 );
 
 const headers = {
@@ -9835,7 +9505,7 @@ let body = {
     "name": "vmqeopfuudtdsufvyvddq",
     "code": "amniihfqcoynlazghdtqt",
     "description": "Dolores dolorum amet iste laborum eius est dolor.",
-    "type": "fixed",
+    "type": "percentage",
     "discount_value": 4,
     "buy_quantity": 66,
     "pay_quantity": 13,
@@ -9843,8 +9513,8 @@ let body = {
     "usage_limit": 72,
     "per_user_limit": 19,
     "is_active": true,
-    "starts_at": "2026-05-16T13:11:34",
-    "ends_at": "2107-06-15",
+    "starts_at": "2026-05-23T19:22:02",
+    "ends_at": "2107-06-22",
     "product_ids": [
         17
     ],
@@ -9946,10 +9616,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-seller-campaign--id-"
-               value="1"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the campaign. Example: <code>1</code></p>
+<p>The ID of the campaign. Example: <code>3</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -9995,10 +9665,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="PUTapi-seller-campaign--id-"
-               value="fixed"
+               value="percentage"
                data-component="body">
     <br>
-<p>Example: <code>fixed</code></p>
+<p>Example: <code>percentage</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>percentage</code></li> <li><code>fixed</code></li> <li><code>x_buy_y_pay</code></li></ul>
         </div>
@@ -10103,10 +9773,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="starts_at"                data-endpoint="PUTapi-seller-campaign--id-"
-               value="2026-05-16T13:11:34"
+               value="2026-05-23T19:22:02"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-05-16T13:11:34</code></p>
+<p>Must be a valid date. Example: <code>2026-05-23T19:22:02</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ends_at</code></b>&nbsp;&nbsp;
@@ -10115,10 +9785,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="ends_at"                data-endpoint="PUTapi-seller-campaign--id-"
-               value="2107-06-15"
+               value="2107-06-22"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date after <code>starts_at</code>. Example: <code>2107-06-15</code></p>
+<p>Must be a valid date. Must be a date after <code>starts_at</code>. Example: <code>2107-06-22</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>product_ids</code></b>&nbsp;&nbsp;
@@ -10163,14 +9833,14 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/seller/campaign/1" \
+    "http://localhost:8000/api/seller/campaign/3" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/seller/campaign/1"
+    "http://localhost:8000/api/seller/campaign/3"
 );
 
 const headers = {
@@ -10267,10 +9937,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-seller-campaign--id-"
-               value="1"
+               value="3"
                data-component="url">
     <br>
-<p>The ID of the campaign. Example: <code>1</code></p>
+<p>The ID of the campaign. Example: <code>3</code></p>
             </div>
                     </form>
 
@@ -10312,7 +9982,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-seller-product">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -10324,7 +9994,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -10431,7 +10101,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "variants[][sizes][][inventory][reserved]=16"\
     --form "variants[][sizes][][inventory][warehouse_id]=50"\
     --form "variants[][sizes][][inventory][min_stock_level]=55"\
-    --form "variants[][images][]=@/tmp/phpfHyOJg" </code></pre></div>
+    --form "variants[][images][]=@/tmp/phpXdYHTV" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -10823,7 +10493,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-seller-product--product_slug-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -10835,7 +10505,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -11290,7 +10960,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-seller-product--product--variants">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -11302,7 +10972,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -11761,7 +11431,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-seller-product--product--variants--variant-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -11773,7 +11443,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -11895,8 +11565,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"color_name\": \"vmqeopfuudtdsufvyvddq\",
     \"color_code\": \"#01E45C\",
     \"price_cents\": 66,
-    \"is_popular\": false,
-    \"is_active\": true
+    \"is_popular\": true,
+    \"is_active\": false
 }"
 </code></pre></div>
 
@@ -11915,8 +11585,8 @@ let body = {
     "color_name": "vmqeopfuudtdsufvyvddq",
     "color_code": "#01E45C",
     "price_cents": 66,
-    "is_popular": false,
-    "is_active": true
+    "is_popular": true,
+    "is_active": false
 };
 
 fetch(url, {
@@ -12082,7 +11752,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -12104,7 +11774,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -12257,13 +11927,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/seller/product/1/variants/1/sizes" \
+    "http://localhost:8000/api/seller/product/1/variants/2/sizes" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"size_option_id\": 73,
     \"price_cents\": 45,
-    \"is_active\": true,
+    \"is_active\": false,
     \"inventory\": {
         \"on_hand\": 56,
         \"reserved\": 16,
@@ -12276,7 +11946,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/seller/product/1/variants/1/sizes"
+    "http://localhost:8000/api/seller/product/1/variants/2/sizes"
 );
 
 const headers = {
@@ -12287,7 +11957,7 @@ const headers = {
 let body = {
     "size_option_id": 73,
     "price_cents": 45,
-    "is_active": true,
+    "is_active": false,
     "inventory": {
         "on_hand": 56,
         "reserved": 16,
@@ -12397,10 +12067,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="variant_id"                data-endpoint="POSTapi-seller-product--product_id--variants--variant_id--sizes"
-               value="1"
+               value="2"
                data-component="url">
     <br>
-<p>The ID of the variant. Example: <code>1</code></p>
+<p>The ID of the variant. Example: <code>2</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -12447,7 +12117,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -12524,7 +12194,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/seller/product/1/variants/1/sizes/1" \
+    "http://localhost:8000/api/seller/product/1/variants/2/sizes/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -12543,7 +12213,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/seller/product/1/variants/1/sizes/1"
+    "http://localhost:8000/api/seller/product/1/variants/2/sizes/1"
 );
 
 const headers = {
@@ -12664,10 +12334,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="variant_id"                data-endpoint="PUTapi-seller-product--product_id--variants--variant_id--sizes--size_id-"
-               value="1"
+               value="2"
                data-component="url">
     <br>
-<p>The ID of the variant. Example: <code>1</code></p>
+<p>The ID of the variant. Example: <code>2</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>size_id</code></b>&nbsp;&nbsp;
@@ -12803,14 +12473,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/seller/product/1/variants/1/sizes/1" \
+    "http://localhost:8000/api/seller/product/1/variants/2/sizes/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/seller/product/1/variants/1/sizes/1"
+    "http://localhost:8000/api/seller/product/1/variants/2/sizes/1"
 );
 
 const headers = {
@@ -12919,10 +12589,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="variant_id"                data-endpoint="DELETEapi-seller-product--product_id--variants--variant_id--sizes--size_id-"
-               value="1"
+               value="2"
                data-component="url">
     <br>
-<p>The ID of the variant. Example: <code>1</code></p>
+<p>The ID of the variant. Example: <code>2</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>size_id</code></b>&nbsp;&nbsp;
@@ -12954,7 +12624,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost:8000/api/seller/product/1/variants/consequatur/images" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "image=@/tmp/phpXm5868" </code></pre></div>
+    --form "image=@/tmp/phpcPX9oB" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -13087,7 +12757,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be an image. Must not be greater than 2048 kilobytes. Example: <code>/tmp/phpXm5868</code></p>
+<p>Must be an image. Must not be greater than 2048 kilobytes. Example: <code>/tmp/phpcPX9oB</code></p>
         </div>
         </form>
 
@@ -13468,7 +13138,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-seller-categories--id--children">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -13480,7 +13150,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -13608,7 +13278,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-seller-order">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -13620,7 +13290,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -13710,14 +13380,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/seller/order/17" \
+    --get "http://localhost:8000/api/seller/order/consequatur" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/seller/order/17"
+    "http://localhost:8000/api/seller/order/consequatur"
 );
 
 const headers = {
@@ -13735,7 +13405,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-seller-order--id-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -13747,7 +13417,7 @@ vary: Origin
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
 }</code>
  </pre>
     </span>
@@ -13825,15 +13495,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
+<small>string</small>&nbsp;
  &nbsp;
  &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="id"                data-endpoint="GETapi-seller-order--id-"
-               value="17"
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="GETapi-seller-order--id-"
+               value="consequatur"
                data-component="url">
     <br>
-<p>The ID of the order. Example: <code>17</code></p>
+<p>The ID of the order. Example: <code>consequatur</code></p>
             </div>
                     </form>
 

@@ -23,7 +23,7 @@ use App\Http\Middleware\LoginRateLimit;
 use App\Http\Middleware\RegisterRateLimit;
 use Illuminate\Support\Facades\Route;
 
-// use App\Http\Controllers\Api\Order\OrderController;
+use App\Http\Controllers\Api\Order\OrderController;
 // use App\Http\Controllers\Api\Order\OrderRefundController;
 // use App\Http\Controllers\Api\Order\OrderRefundWebhookController;
 
@@ -59,13 +59,12 @@ Route::middleware(AuthenticateFromCookie::class)->group(function () {
         Route::post('payment-intent', [CheckoutController::class, 'createPaymentIntent']);
     });
 
-    // Henüz kullanılmıyor
-    // Route::prefix('orders')->group(function () {
-    //     Route::get('/', [OrderController::class, 'index']);
-    //     Route::get('/{order}', [OrderController::class, 'show']);
-    //     Route::post('/{order}/refund', [OrderController::class, 'refundItems']);
+    Route::prefix('orders')->group(function () {
+        Route::get('/', [OrderController::class, 'index']);
+        Route::get('/{order}', [OrderController::class, 'show']);
+       // Route::post('/{order}/refund', [OrderController::class, 'refundItems']);
 
-    // });
+    });
 
     // Route::prefix('orders/{order}/refunds')->group(function () {
     //     Route::get('/', [OrderRefundController::class, 'index']);

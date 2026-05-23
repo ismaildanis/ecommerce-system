@@ -132,8 +132,8 @@ services:
       - laravel-development
 
 
-  queue:
-    container_name: laravel-queue
+  queue-notifications:
+    container_name: laravel-queue-notifications
     build:
       context: .
       dockerfile: ./docker/common/php-fpm/Dockerfile
@@ -155,6 +155,28 @@ services:
     networks:
       - laravel-development
     
+  queue-orders:
+    container_name: laravel-queue-orders
+    build:
+      context: .
+      dockerfile: ./docker/common/php-fpm/Dockerfile
+      target: development
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+        XDEBUG_ENABLED: "false"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/var/www
+      - /var/www/vendor
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    command: php artisan queue:work rabbitmq --queue=orders --verbose --tries=3 --timeout=90
+    networks:
+      - laravel-development
 
   # Elasticsearch
   elasticsearch:

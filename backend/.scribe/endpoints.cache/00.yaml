@@ -355,7 +355,7 @@ endpoints:
       -
         custom: []
         status: 200
-        content: '{"data":{"products":[{"id":1,"store_id":1,"title":"Erkek \u00c7ocuk E\u015fofman Tak\u0131m\u0131","slug":"erkek-cocuk-esofman-takimi","category":{"id":6,"title":"E\u015fofman Tak\u0131m","slug":"unisex-esofman-takim","gender_id":3,"parent_id":3,"gender":{"id":3,"title":"Unisex","slug":"unisex"},"parent":{"id":3,"title":"E\u015fofman Tak\u0131m","slug":"esofman-takim","gender_id":null,"parent_id":null},"children":[]},"description":"Kaliteli pamuklu erkek \u00e7ocuk e\u015fofman tak\u0131m\u0131","meta_title":null,"meta_description":null,"is_published":true,"variants":[{"id":1,"product_id":1,"sku":"ESF-ERK-001-MAV","slug":"erkek-esofman-mavi","color_name":"Mavi","color_code":"#0066CC","price_cents":34900,"is_popular":true,"is_active":true,"images":[{"id":1,"product_variant_id":1,"image":"http:\/\/localhost:8000\/storage\/productImages\/xxllWS3ES9cgshwd6asqwHlqXL1TA9a4FtdFx6rC.png","is_primary":true,"sort_order":1},{"id":2,"product_variant_id":1,"image":"http:\/\/localhost:8000\/storage\/productImages\/QAEAY6rHh0RPTh4qo96scasAYhaXELtA3RoBaMeu.png","is_primary":false,"sort_order":2},{"id":9,"product_variant_id":1,"image":"http:\/\/localhost:8000\/storage\/productImages\/xxllWS3ES9cgshwd6asqwHlqXL1TA9a4FtdFx6rC.png","is_primary":true,"sort_order":1},{"id":10,"product_variant_id":1,"image":"http:\/\/localhost:8000\/storage\/productImages\/QAEAY6rHh0RPTh4qo96scasAYhaXELtA3RoBaMeu.png","is_primary":false,"sort_order":2}],"sizes":[{"id":1,"product_variant_id":1,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"ESF-ERK-001-MAV-6YAS","price_cents":34900,"is_active":true,"inventory":{"id":1,"variant_size_id":1,"warehouse_id":1,"on_hand":28,"reserved":1,"available":27,"min_stock_level":5}},{"id":2,"product_variant_id":1,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"ESF-ERK-001-MAV-7YAS","price_cents":34900,"is_active":true,"inventory":{"id":2,"variant_size_id":2,"warehouse_id":1,"on_hand":19,"reserved":2,"available":17,"min_stock_level":5}},{"id":3,"product_variant_id":1,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"ESF-ERK-001-MAV-8YAS","price_cents":34900,"is_active":true,"inventory":{"id":3,"variant_size_id":3,"warehouse_id":1,"on_hand":32,"reserved":5,"available":27,"min_stock_level":5}},{"id":4,"product_variant_id":1,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"ESF-ERK-001-MAV-9YAS","price_cents":34900,"is_active":true,"inventory":{"id":4,"variant_size_id":4,"warehouse_id":1,"on_hand":16,"reserved":4,"available":12,"min_stock_level":5}},{"id":5,"product_variant_id":1,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"ESF-ERK-001-MAV-10YAS","price_cents":34900,"is_active":true,"inventory":{"id":5,"variant_size_id":5,"warehouse_id":1,"on_hand":29,"reserved":3,"available":26,"min_stock_level":5}},{"id":6,"product_variant_id":1,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"ESF-ERK-001-MAV-11YAS","price_cents":34900,"is_active":true,"inventory":{"id":6,"variant_size_id":6,"warehouse_id":1,"on_hand":31,"reserved":3,"available":28,"min_stock_level":5}},{"id":7,"product_variant_id":1,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"ESF-ERK-001-MAV-12YAS","price_cents":34900,"is_active":true,"inventory":{"id":7,"variant_size_id":7,"warehouse_id":1,"on_hand":32,"reserved":2,"available":30,"min_stock_level":5}},{"id":8,"product_variant_id":1,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"ESF-ERK-001-MAV-13YAS","price_cents":34900,"is_active":true,"inventory":{"id":8,"variant_size_id":8,"warehouse_id":1,"on_hand":23,"reserved":4,"available":19,"min_stock_level":5}},{"id":9,"product_variant_id":1,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"ESF-ERK-001-MAV-14YAS","price_cents":34900,"is_active":true,"inventory":{"id":9,"variant_size_id":9,"warehouse_id":1,"on_hand":28,"reserved":2,"available":26,"min_stock_level":5}},{"id":10,"product_variant_id":1,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"ESF-ERK-001-MAV-15YAS","price_cents":34900,"is_active":true,"inventory":{"id":10,"variant_size_id":10,"warehouse_id":1,"on_hand":25,"reserved":3,"available":22,"min_stock_level":5}},{"id":11,"product_variant_id":1,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"ESF-ERK-001-MAV-16YAS","price_cents":34900,"is_active":true,"inventory":{"id":11,"variant_size_id":11,"warehouse_id":1,"on_hand":13,"reserved":5,"available":8,"min_stock_level":5}}]},{"id":2,"product_id":1,"sku":"ESF-ERK-001-SYH","slug":"erkek-esofman-siyah","color_name":"Siyah","color_code":"#000000","price_cents":34900,"is_popular":false,"is_active":true,"images":[{"id":3,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman.png","is_primary":true,"sort_order":1},{"id":4,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman1.png","is_primary":false,"sort_order":2},{"id":5,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman2.png","is_primary":false,"sort_order":3},{"id":11,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman.png","is_primary":true,"sort_order":1},{"id":12,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman1.png","is_primary":false,"sort_order":2},{"id":13,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman2.png","is_primary":false,"sort_order":3}],"sizes":[{"id":12,"product_variant_id":2,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"ESF-ERK-001-SYH-6YAS","price_cents":34900,"is_active":true,"inventory":{"id":12,"variant_size_id":12,"warehouse_id":1,"on_hand":30,"reserved":0,"available":30,"min_stock_level":5}},{"id":13,"product_variant_id":2,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"ESF-ERK-001-SYH-7YAS","price_cents":34900,"is_active":true,"inventory":{"id":13,"variant_size_id":13,"warehouse_id":1,"on_hand":40,"reserved":5,"available":35,"min_stock_level":5}},{"id":14,"product_variant_id":2,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"ESF-ERK-001-SYH-8YAS","price_cents":34900,"is_active":true,"inventory":{"id":14,"variant_size_id":14,"warehouse_id":1,"on_hand":39,"reserved":1,"available":38,"min_stock_level":5}},{"id":15,"product_variant_id":2,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"ESF-ERK-001-SYH-9YAS","price_cents":34900,"is_active":true,"inventory":{"id":15,"variant_size_id":15,"warehouse_id":1,"on_hand":27,"reserved":5,"available":22,"min_stock_level":5}},{"id":16,"product_variant_id":2,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"ESF-ERK-001-SYH-10YAS","price_cents":34900,"is_active":true,"inventory":{"id":16,"variant_size_id":16,"warehouse_id":1,"on_hand":42,"reserved":1,"available":41,"min_stock_level":5}},{"id":17,"product_variant_id":2,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"ESF-ERK-001-SYH-11YAS","price_cents":34900,"is_active":true,"inventory":{"id":17,"variant_size_id":17,"warehouse_id":1,"on_hand":45,"reserved":2,"available":43,"min_stock_level":5}},{"id":18,"product_variant_id":2,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"ESF-ERK-001-SYH-12YAS","price_cents":34900,"is_active":true,"inventory":{"id":18,"variant_size_id":18,"warehouse_id":1,"on_hand":22,"reserved":5,"available":17,"min_stock_level":5}},{"id":19,"product_variant_id":2,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"ESF-ERK-001-SYH-13YAS","price_cents":34900,"is_active":true,"inventory":{"id":19,"variant_size_id":19,"warehouse_id":1,"on_hand":33,"reserved":1,"available":32,"min_stock_level":5}},{"id":20,"product_variant_id":2,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"ESF-ERK-001-SYH-14YAS","price_cents":34900,"is_active":true,"inventory":{"id":20,"variant_size_id":20,"warehouse_id":1,"on_hand":30,"reserved":3,"available":27,"min_stock_level":5}},{"id":21,"product_variant_id":2,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"ESF-ERK-001-SYH-15YAS","price_cents":34900,"is_active":true,"inventory":{"id":21,"variant_size_id":21,"warehouse_id":1,"on_hand":46,"reserved":0,"available":46,"min_stock_level":5}},{"id":22,"product_variant_id":2,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"ESF-ERK-001-SYH-16YAS","price_cents":34900,"is_active":true,"inventory":{"id":22,"variant_size_id":22,"warehouse_id":1,"on_hand":12,"reserved":3,"available":9,"min_stock_level":5}}]}],"created_at":"2026-05-15T19:37:44.000000Z","updated_at":"2026-05-15T19:37:44.000000Z"},{"id":2,"store_id":1,"title":"K\u0131z \u00c7ocuk Jean Pantolon","slug":"kiz-cocuk-jean-pantolon","category":{"id":7,"title":"Jean","slug":"erkek-cocuk-jean","gender_id":1,"parent_id":1,"gender":{"id":1,"title":"Erkek \u00c7ocuk","slug":"erkek-cocuk"},"parent":{"id":1,"title":"Jean","slug":"jean","gender_id":null,"parent_id":null},"children":[]},"description":"\u015e\u0131k ve rahat k\u0131z jean pantolonu","meta_title":null,"meta_description":null,"is_published":true,"variants":[{"id":3,"product_id":2,"sku":"JEAN-KIZ-001-AMAV","slug":"kiz-jean-acik-mavi","color_name":"A\u00e7\u0131k Mavi","color_code":"#87CEEB","price_cents":27900,"is_popular":false,"is_active":true,"images":[{"id":6,"product_variant_id":3,"image":"http:\/\/localhost:8000\/storage\/productImages\/jean-acik-mavi.png","is_primary":true,"sort_order":1}],"sizes":[{"id":23,"product_variant_id":3,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"JEAN-KIZ-001-AMAV-6YAS","price_cents":27900,"is_active":true,"inventory":{"id":23,"variant_size_id":23,"warehouse_id":1,"on_hand":19,"reserved":3,"available":16,"min_stock_level":5}},{"id":24,"product_variant_id":3,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"JEAN-KIZ-001-AMAV-7YAS","price_cents":27900,"is_active":true,"inventory":{"id":24,"variant_size_id":24,"warehouse_id":1,"on_hand":41,"reserved":2,"available":39,"min_stock_level":5}},{"id":25,"product_variant_id":3,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"JEAN-KIZ-001-AMAV-8YAS","price_cents":27900,"is_active":true,"inventory":{"id":25,"variant_size_id":25,"warehouse_id":1,"on_hand":36,"reserved":1,"available":35,"min_stock_level":5}},{"id":26,"product_variant_id":3,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"JEAN-KIZ-001-AMAV-9YAS","price_cents":27900,"is_active":true,"inventory":{"id":26,"variant_size_id":26,"warehouse_id":1,"on_hand":44,"reserved":1,"available":43,"min_stock_level":5}},{"id":27,"product_variant_id":3,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"JEAN-KIZ-001-AMAV-10YAS","price_cents":27900,"is_active":true,"inventory":{"id":27,"variant_size_id":27,"warehouse_id":1,"on_hand":49,"reserved":0,"available":49,"min_stock_level":5}},{"id":28,"product_variant_id":3,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"JEAN-KIZ-001-AMAV-11YAS","price_cents":27900,"is_active":true,"inventory":{"id":28,"variant_size_id":28,"warehouse_id":1,"on_hand":31,"reserved":3,"available":28,"min_stock_level":5}},{"id":29,"product_variant_id":3,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"JEAN-KIZ-001-AMAV-12YAS","price_cents":27900,"is_active":true,"inventory":{"id":29,"variant_size_id":29,"warehouse_id":1,"on_hand":13,"reserved":3,"available":10,"min_stock_level":5}},{"id":30,"product_variant_id":3,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"JEAN-KIZ-001-AMAV-13YAS","price_cents":27900,"is_active":true,"inventory":{"id":30,"variant_size_id":30,"warehouse_id":1,"on_hand":10,"reserved":2,"available":8,"min_stock_level":5}},{"id":31,"product_variant_id":3,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"JEAN-KIZ-001-AMAV-14YAS","price_cents":27900,"is_active":true,"inventory":{"id":31,"variant_size_id":31,"warehouse_id":1,"on_hand":23,"reserved":1,"available":22,"min_stock_level":5}},{"id":32,"product_variant_id":3,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"JEAN-KIZ-001-AMAV-15YAS","price_cents":27900,"is_active":true,"inventory":{"id":32,"variant_size_id":32,"warehouse_id":1,"on_hand":44,"reserved":4,"available":40,"min_stock_level":5}},{"id":33,"product_variant_id":3,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"JEAN-KIZ-001-AMAV-16YAS","price_cents":27900,"is_active":true,"inventory":{"id":33,"variant_size_id":33,"warehouse_id":1,"on_hand":21,"reserved":1,"available":20,"min_stock_level":5}}]},{"id":4,"product_id":2,"sku":"JEAN-KIZ-001-KMAV","slug":"kiz-jean-koyu-mavi","color_name":"Koyu Mavi","color_code":"#003366","price_cents":27900,"is_popular":false,"is_active":true,"images":[{"id":7,"product_variant_id":4,"image":"http:\/\/localhost:8000\/storage\/productImages\/jean-koyu-mavi.png","is_primary":true,"sort_order":1}],"sizes":[{"id":34,"product_variant_id":4,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"JEAN-KIZ-001-KMAV-6YAS","price_cents":27900,"is_active":true,"inventory":{"id":34,"variant_size_id":34,"warehouse_id":1,"on_hand":10,"reserved":4,"available":6,"min_stock_level":5}},{"id":35,"product_variant_id":4,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"JEAN-KIZ-001-KMAV-7YAS","price_cents":27900,"is_active":true,"inventory":{"id":35,"variant_size_id":35,"warehouse_id":1,"on_hand":14,"reserved":4,"available":10,"min_stock_level":5}},{"id":36,"product_variant_id":4,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"JEAN-KIZ-001-KMAV-8YAS","price_cents":27900,"is_active":true,"inventory":{"id":36,"variant_size_id":36,"warehouse_id":1,"on_hand":11,"reserved":1,"available":10,"min_stock_level":5}},{"id":37,"product_variant_id":4,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"JEAN-KIZ-001-KMAV-9YAS","price_cents":27900,"is_active":true,"inventory":{"id":37,"variant_size_id":37,"warehouse_id":1,"on_hand":19,"reserved":2,"available":17,"min_stock_level":5}},{"id":38,"product_variant_id":4,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"JEAN-KIZ-001-KMAV-10YAS","price_cents":27900,"is_active":true,"inventory":{"id":38,"variant_size_id":38,"warehouse_id":1,"on_hand":26,"reserved":0,"available":26,"min_stock_level":5}},{"id":39,"product_variant_id":4,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"JEAN-KIZ-001-KMAV-11YAS","price_cents":27900,"is_active":true,"inventory":{"id":39,"variant_size_id":39,"warehouse_id":1,"on_hand":30,"reserved":3,"available":27,"min_stock_level":5}},{"id":40,"product_variant_id":4,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"JEAN-KIZ-001-KMAV-12YAS","price_cents":27900,"is_active":true,"inventory":{"id":40,"variant_size_id":40,"warehouse_id":1,"on_hand":19,"reserved":1,"available":18,"min_stock_level":5}},{"id":41,"product_variant_id":4,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"JEAN-KIZ-001-KMAV-13YAS","price_cents":27900,"is_active":true,"inventory":{"id":41,"variant_size_id":41,"warehouse_id":1,"on_hand":15,"reserved":3,"available":12,"min_stock_level":5}},{"id":42,"product_variant_id":4,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"JEAN-KIZ-001-KMAV-14YAS","price_cents":27900,"is_active":true,"inventory":{"id":42,"variant_size_id":42,"warehouse_id":1,"on_hand":20,"reserved":4,"available":16,"min_stock_level":5}},{"id":43,"product_variant_id":4,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"JEAN-KIZ-001-KMAV-15YAS","price_cents":27900,"is_active":true,"inventory":{"id":43,"variant_size_id":43,"warehouse_id":1,"on_hand":31,"reserved":0,"available":31,"min_stock_level":5}},{"id":44,"product_variant_id":4,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"JEAN-KIZ-001-KMAV-16YAS","price_cents":27900,"is_active":true,"inventory":{"id":44,"variant_size_id":44,"warehouse_id":1,"on_hand":10,"reserved":5,"available":5,"min_stock_level":5}}]},{"id":5,"product_id":2,"sku":"JEAN-KIZ-001-SYH","slug":"kiz-jean-siyah","color_name":"Siyah","color_code":"#000000","price_cents":27900,"is_popular":false,"is_active":true,"images":[{"id":8,"product_variant_id":5,"image":"http:\/\/localhost:8000\/storage\/productImages\/jean-siyah.png","is_primary":true,"sort_order":1}],"sizes":[{"id":45,"product_variant_id":5,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"JEAN-KIZ-001-SYH-6YAS","price_cents":27900,"is_active":true,"inventory":{"id":45,"variant_size_id":45,"warehouse_id":1,"on_hand":49,"reserved":0,"available":49,"min_stock_level":5}},{"id":46,"product_variant_id":5,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"JEAN-KIZ-001-SYH-7YAS","price_cents":27900,"is_active":true,"inventory":{"id":46,"variant_size_id":46,"warehouse_id":1,"on_hand":12,"reserved":1,"available":11,"min_stock_level":5}},{"id":47,"product_variant_id":5,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"JEAN-KIZ-001-SYH-8YAS","price_cents":27900,"is_active":true,"inventory":{"id":47,"variant_size_id":47,"warehouse_id":1,"on_hand":13,"reserved":5,"available":8,"min_stock_level":5}},{"id":48,"product_variant_id":5,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"JEAN-KIZ-001-SYH-9YAS","price_cents":27900,"is_active":true,"inventory":{"id":48,"variant_size_id":48,"warehouse_id":1,"on_hand":14,"reserved":5,"available":9,"min_stock_level":5}},{"id":49,"product_variant_id":5,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"JEAN-KIZ-001-SYH-10YAS","price_cents":27900,"is_active":true,"inventory":{"id":49,"variant_size_id":49,"warehouse_id":1,"on_hand":10,"reserved":3,"available":7,"min_stock_level":5}},{"id":50,"product_variant_id":5,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"JEAN-KIZ-001-SYH-11YAS","price_cents":27900,"is_active":true,"inventory":{"id":50,"variant_size_id":50,"warehouse_id":1,"on_hand":14,"reserved":0,"available":14,"min_stock_level":5}},{"id":51,"product_variant_id":5,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"JEAN-KIZ-001-SYH-12YAS","price_cents":27900,"is_active":true,"inventory":{"id":51,"variant_size_id":51,"warehouse_id":1,"on_hand":17,"reserved":4,"available":13,"min_stock_level":5}},{"id":52,"product_variant_id":5,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"JEAN-KIZ-001-SYH-13YAS","price_cents":27900,"is_active":true,"inventory":{"id":52,"variant_size_id":52,"warehouse_id":1,"on_hand":15,"reserved":0,"available":15,"min_stock_level":5}},{"id":53,"product_variant_id":5,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"JEAN-KIZ-001-SYH-14YAS","price_cents":27900,"is_active":true,"inventory":{"id":53,"variant_size_id":53,"warehouse_id":1,"on_hand":31,"reserved":1,"available":30,"min_stock_level":5}},{"id":54,"product_variant_id":5,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"JEAN-KIZ-001-SYH-15YAS","price_cents":27900,"is_active":true,"inventory":{"id":54,"variant_size_id":54,"warehouse_id":1,"on_hand":49,"reserved":0,"available":49,"min_stock_level":5}},{"id":55,"product_variant_id":5,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"JEAN-KIZ-001-SYH-16YAS","price_cents":27900,"is_active":true,"inventory":{"id":55,"variant_size_id":55,"warehouse_id":1,"on_hand":20,"reserved":0,"available":20,"min_stock_level":5}}]}],"created_at":"2026-05-15T19:37:44.000000Z","updated_at":"2026-05-15T19:37:44.000000Z"}],"categories":[{"id":1,"title":"Jean","slug":"jean","gender_id":null,"parent_id":null,"gender":null,"children":[{"id":4,"title":"Jean","slug":"unisex-jean","gender_id":3,"parent_id":1},{"id":7,"title":"Jean","slug":"erkek-cocuk-jean","gender_id":1,"parent_id":1},{"id":10,"title":"Jean","slug":"kiz-cocuk-jean","gender_id":2,"parent_id":1}]},{"id":2,"title":"Keten","slug":"keten","gender_id":null,"parent_id":null,"gender":null,"children":[{"id":5,"title":"Keten","slug":"unisex-keten","gender_id":3,"parent_id":2},{"id":8,"title":"Keten","slug":"erkek-cocuk-keten","gender_id":1,"parent_id":2},{"id":11,"title":"Keten","slug":"kiz-cocuk-keten","gender_id":2,"parent_id":2}]},{"id":3,"title":"E\u015fofman Tak\u0131m","slug":"esofman-takim","gender_id":null,"parent_id":null,"gender":null,"children":[{"id":6,"title":"E\u015fofman Tak\u0131m","slug":"unisex-esofman-takim","gender_id":3,"parent_id":3},{"id":9,"title":"E\u015fofman Tak\u0131m","slug":"erkek-cocuk-esofman-takim","gender_id":1,"parent_id":3},{"id":12,"title":"E\u015fofman Tak\u0131m","slug":"kiz-cocuk-esofman-takim","gender_id":2,"parent_id":3}]},{"id":4,"title":"Jean","slug":"unisex-jean","gender_id":3,"parent_id":1,"gender":{"id":3,"title":"Unisex","slug":"unisex"},"children":[]},{"id":5,"title":"Keten","slug":"unisex-keten","gender_id":3,"parent_id":2,"gender":{"id":3,"title":"Unisex","slug":"unisex"},"children":[]},{"id":6,"title":"E\u015fofman Tak\u0131m","slug":"unisex-esofman-takim","gender_id":3,"parent_id":3,"gender":{"id":3,"title":"Unisex","slug":"unisex"},"children":[]},{"id":7,"title":"Jean","slug":"erkek-cocuk-jean","gender_id":1,"parent_id":1,"gender":{"id":1,"title":"Erkek \u00c7ocuk","slug":"erkek-cocuk"},"children":[]},{"id":8,"title":"Keten","slug":"erkek-cocuk-keten","gender_id":1,"parent_id":2,"gender":{"id":1,"title":"Erkek \u00c7ocuk","slug":"erkek-cocuk"},"children":[]},{"id":9,"title":"E\u015fofman Tak\u0131m","slug":"erkek-cocuk-esofman-takim","gender_id":1,"parent_id":3,"gender":{"id":1,"title":"Erkek \u00c7ocuk","slug":"erkek-cocuk"},"children":[]},{"id":10,"title":"Jean","slug":"kiz-cocuk-jean","gender_id":2,"parent_id":1,"gender":{"id":2,"title":"K\u0131z \u00c7ocuk","slug":"kiz-cocuk"},"children":[]},{"id":11,"title":"Keten","slug":"kiz-cocuk-keten","gender_id":2,"parent_id":2,"gender":{"id":2,"title":"K\u0131z \u00c7ocuk","slug":"kiz-cocuk"},"children":[]},{"id":12,"title":"E\u015fofman Tak\u0131m","slug":"kiz-cocuk-esofman-takim","gender_id":2,"parent_id":3,"gender":{"id":2,"title":"K\u0131z \u00c7ocuk","slug":"kiz-cocuk"},"children":[]}],"campaigns":[{"id":1,"name":"K\u0131\u015fa \u00d6zel %20","description":"Se\u00e7ili \u00dcr\u00fcnlerde K\u0131\u015fa \u00d6zel %20","is_active":true},{"id":2,"name":"250 TL Sepet \u0130ndirimi","description":"Se\u00e7ili \u00dcr\u00fcnlerde 250 TL Sepet \u0130ndirimi","is_active":true},{"id":3,"name":"3 Al 2 \u00d6de","description":"Se\u00e7ili \u00dcr\u00fcnlerde 3 Al 2 \u00d6de","is_active":true}]}}'
+        content: '{"data":{"products":[{"id":1,"store_id":1,"title":"Erkek \u00c7ocuk E\u015fofman Tak\u0131m\u0131","slug":"erkek-cocuk-esofman-takimi","category":{"id":6,"title":"E\u015fofman Tak\u0131m","slug":"unisex-esofman-takim","gender_id":3,"parent_id":3,"gender":{"id":3,"title":"Unisex","slug":"unisex"},"parent":{"id":3,"title":"E\u015fofman Tak\u0131m","slug":"esofman-takim","gender_id":null,"parent_id":null},"children":[]},"description":"Kaliteli pamuklu erkek \u00e7ocuk e\u015fofman tak\u0131m\u0131","meta_title":null,"meta_description":null,"is_published":true,"variants":[{"id":2,"product_id":1,"sku":"ESF-ERK-001-SYH","slug":"erkek-esofman-siyah","color_name":"Siyah","color_code":"#000000","price_cents":34900,"is_popular":false,"is_active":true,"images":[{"id":3,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman.png","is_primary":true,"sort_order":1},{"id":4,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman1.png","is_primary":false,"sort_order":2},{"id":5,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman2.png","is_primary":false,"sort_order":3},{"id":11,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman.png","is_primary":true,"sort_order":1},{"id":12,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman1.png","is_primary":false,"sort_order":2},{"id":13,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman2.png","is_primary":false,"sort_order":3}],"sizes":[{"id":12,"product_variant_id":2,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"ESF-ERK-001-SYH-6YAS","price_cents":34900,"is_active":true,"inventory":{"id":12,"variant_size_id":12,"warehouse_id":1,"on_hand":26,"reserved":0,"available":26,"min_stock_level":5}},{"id":13,"product_variant_id":2,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"ESF-ERK-001-SYH-7YAS","price_cents":34900,"is_active":true,"inventory":{"id":13,"variant_size_id":13,"warehouse_id":1,"on_hand":0,"reserved":0,"available":0,"min_stock_level":5}},{"id":14,"product_variant_id":2,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"ESF-ERK-001-SYH-8YAS","price_cents":34900,"is_active":true,"inventory":{"id":14,"variant_size_id":14,"warehouse_id":1,"on_hand":38,"reserved":1,"available":37,"min_stock_level":5}},{"id":15,"product_variant_id":2,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"ESF-ERK-001-SYH-9YAS","price_cents":34900,"is_active":true,"inventory":{"id":15,"variant_size_id":15,"warehouse_id":1,"on_hand":27,"reserved":5,"available":22,"min_stock_level":5}},{"id":16,"product_variant_id":2,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"ESF-ERK-001-SYH-10YAS","price_cents":34900,"is_active":true,"inventory":{"id":16,"variant_size_id":16,"warehouse_id":1,"on_hand":42,"reserved":1,"available":41,"min_stock_level":5}},{"id":17,"product_variant_id":2,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"ESF-ERK-001-SYH-11YAS","price_cents":34900,"is_active":true,"inventory":{"id":17,"variant_size_id":17,"warehouse_id":1,"on_hand":45,"reserved":2,"available":43,"min_stock_level":5}},{"id":18,"product_variant_id":2,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"ESF-ERK-001-SYH-12YAS","price_cents":34900,"is_active":true,"inventory":{"id":18,"variant_size_id":18,"warehouse_id":1,"on_hand":22,"reserved":5,"available":17,"min_stock_level":5}},{"id":19,"product_variant_id":2,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"ESF-ERK-001-SYH-13YAS","price_cents":34900,"is_active":true,"inventory":{"id":19,"variant_size_id":19,"warehouse_id":1,"on_hand":33,"reserved":1,"available":32,"min_stock_level":5}},{"id":20,"product_variant_id":2,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"ESF-ERK-001-SYH-14YAS","price_cents":34900,"is_active":true,"inventory":{"id":20,"variant_size_id":20,"warehouse_id":1,"on_hand":30,"reserved":3,"available":27,"min_stock_level":5}},{"id":21,"product_variant_id":2,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"ESF-ERK-001-SYH-15YAS","price_cents":34900,"is_active":true,"inventory":{"id":21,"variant_size_id":21,"warehouse_id":1,"on_hand":46,"reserved":0,"available":46,"min_stock_level":5}},{"id":22,"product_variant_id":2,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"ESF-ERK-001-SYH-16YAS","price_cents":34900,"is_active":true,"inventory":{"id":22,"variant_size_id":22,"warehouse_id":1,"on_hand":12,"reserved":3,"available":9,"min_stock_level":5}}]},{"id":1,"product_id":1,"sku":"ERK-1-MAVI-1","slug":"erkek-cocuk-esofman-takimi-mavi-1","color_name":"Mavi","color_code":"#0066CC","price_cents":31900,"is_popular":true,"is_active":true,"images":[{"id":14,"product_variant_id":1,"image":"http:\/\/localhost:8000\/storage\/productImages\/iKQdu6y7dAHTcCMhzZWpGRrbAKrBWpow1EEh5Awr.png","is_primary":false,"sort_order":0},{"id":15,"product_variant_id":1,"image":"http:\/\/localhost:8000\/storage\/productImages\/hUyP379CUhudAlUGOM5z5a8TFEPEko619YjMzj03.png","is_primary":false,"sort_order":0}],"sizes":[{"id":1,"product_variant_id":1,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"ESF-ERK-001-MAV-6YAS","price_cents":34900,"is_active":true,"inventory":{"id":1,"variant_size_id":1,"warehouse_id":1,"on_hand":27,"reserved":1,"available":26,"min_stock_level":5}},{"id":2,"product_variant_id":1,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"ESF-ERK-001-MAV-7YAS","price_cents":34900,"is_active":true,"inventory":{"id":2,"variant_size_id":2,"warehouse_id":1,"on_hand":19,"reserved":2,"available":17,"min_stock_level":5}},{"id":3,"product_variant_id":1,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"ESF-ERK-001-MAV-8YAS","price_cents":34900,"is_active":true,"inventory":{"id":3,"variant_size_id":3,"warehouse_id":1,"on_hand":32,"reserved":5,"available":27,"min_stock_level":5}},{"id":4,"product_variant_id":1,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"ESF-ERK-001-MAV-9YAS","price_cents":34900,"is_active":true,"inventory":{"id":4,"variant_size_id":4,"warehouse_id":1,"on_hand":16,"reserved":4,"available":12,"min_stock_level":5}},{"id":5,"product_variant_id":1,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"ESF-ERK-001-MAV-10YAS","price_cents":34900,"is_active":true,"inventory":{"id":5,"variant_size_id":5,"warehouse_id":1,"on_hand":29,"reserved":3,"available":26,"min_stock_level":5}},{"id":6,"product_variant_id":1,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"ESF-ERK-001-MAV-11YAS","price_cents":34900,"is_active":true,"inventory":{"id":6,"variant_size_id":6,"warehouse_id":1,"on_hand":31,"reserved":3,"available":28,"min_stock_level":5}},{"id":7,"product_variant_id":1,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"ESF-ERK-001-MAV-12YAS","price_cents":34900,"is_active":true,"inventory":{"id":7,"variant_size_id":7,"warehouse_id":1,"on_hand":32,"reserved":2,"available":30,"min_stock_level":5}},{"id":8,"product_variant_id":1,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"ESF-ERK-001-MAV-13YAS","price_cents":34900,"is_active":true,"inventory":{"id":8,"variant_size_id":8,"warehouse_id":1,"on_hand":23,"reserved":4,"available":19,"min_stock_level":5}},{"id":9,"product_variant_id":1,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"ESF-ERK-001-MAV-14YAS","price_cents":34900,"is_active":true,"inventory":{"id":9,"variant_size_id":9,"warehouse_id":1,"on_hand":28,"reserved":2,"available":26,"min_stock_level":5}},{"id":10,"product_variant_id":1,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"ESF-ERK-001-MAV-15YAS","price_cents":34900,"is_active":true,"inventory":{"id":10,"variant_size_id":10,"warehouse_id":1,"on_hand":25,"reserved":3,"available":22,"min_stock_level":5}},{"id":11,"product_variant_id":1,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"ESF-ERK-001-MAV-16YAS","price_cents":34900,"is_active":true,"inventory":{"id":11,"variant_size_id":11,"warehouse_id":1,"on_hand":13,"reserved":5,"available":8,"min_stock_level":5}}]}],"created_at":"2026-05-15T19:37:44.000000Z","updated_at":"2026-05-23T18:48:20.000000Z"},{"id":2,"store_id":1,"title":"K\u0131z \u00c7ocuk Jean Pantolon","slug":"kiz-cocuk-jean-pantolon","category":{"id":7,"title":"Jean","slug":"erkek-cocuk-jean","gender_id":1,"parent_id":1,"gender":{"id":1,"title":"Erkek \u00c7ocuk","slug":"erkek-cocuk"},"parent":{"id":1,"title":"Jean","slug":"jean","gender_id":null,"parent_id":null},"children":[]},"description":"\u015e\u0131k ve rahat k\u0131z jean pantolonu","meta_title":null,"meta_description":null,"is_published":true,"variants":[{"id":3,"product_id":2,"sku":"JEAN-KIZ-001-AMAV","slug":"kiz-jean-acik-mavi","color_name":"A\u00e7\u0131k Mavi","color_code":"#87CEEB","price_cents":27900,"is_popular":false,"is_active":true,"images":[{"id":6,"product_variant_id":3,"image":"http:\/\/localhost:8000\/storage\/productImages\/jean-acik-mavi.png","is_primary":true,"sort_order":1}],"sizes":[{"id":23,"product_variant_id":3,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"JEAN-KIZ-001-AMAV-6YAS","price_cents":27900,"is_active":true,"inventory":{"id":23,"variant_size_id":23,"warehouse_id":1,"on_hand":19,"reserved":3,"available":16,"min_stock_level":5}},{"id":24,"product_variant_id":3,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"JEAN-KIZ-001-AMAV-7YAS","price_cents":27900,"is_active":true,"inventory":{"id":24,"variant_size_id":24,"warehouse_id":1,"on_hand":41,"reserved":2,"available":39,"min_stock_level":5}},{"id":25,"product_variant_id":3,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"JEAN-KIZ-001-AMAV-8YAS","price_cents":27900,"is_active":true,"inventory":{"id":25,"variant_size_id":25,"warehouse_id":1,"on_hand":36,"reserved":1,"available":35,"min_stock_level":5}},{"id":26,"product_variant_id":3,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"JEAN-KIZ-001-AMAV-9YAS","price_cents":27900,"is_active":true,"inventory":{"id":26,"variant_size_id":26,"warehouse_id":1,"on_hand":44,"reserved":1,"available":43,"min_stock_level":5}},{"id":27,"product_variant_id":3,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"JEAN-KIZ-001-AMAV-10YAS","price_cents":27900,"is_active":true,"inventory":{"id":27,"variant_size_id":27,"warehouse_id":1,"on_hand":49,"reserved":0,"available":49,"min_stock_level":5}},{"id":28,"product_variant_id":3,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"JEAN-KIZ-001-AMAV-11YAS","price_cents":27900,"is_active":true,"inventory":{"id":28,"variant_size_id":28,"warehouse_id":1,"on_hand":31,"reserved":3,"available":28,"min_stock_level":5}},{"id":29,"product_variant_id":3,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"JEAN-KIZ-001-AMAV-12YAS","price_cents":27900,"is_active":true,"inventory":{"id":29,"variant_size_id":29,"warehouse_id":1,"on_hand":13,"reserved":3,"available":10,"min_stock_level":5}},{"id":30,"product_variant_id":3,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"JEAN-KIZ-001-AMAV-13YAS","price_cents":27900,"is_active":true,"inventory":{"id":30,"variant_size_id":30,"warehouse_id":1,"on_hand":10,"reserved":2,"available":8,"min_stock_level":5}},{"id":31,"product_variant_id":3,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"JEAN-KIZ-001-AMAV-14YAS","price_cents":27900,"is_active":true,"inventory":{"id":31,"variant_size_id":31,"warehouse_id":1,"on_hand":23,"reserved":1,"available":22,"min_stock_level":5}},{"id":32,"product_variant_id":3,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"JEAN-KIZ-001-AMAV-15YAS","price_cents":27900,"is_active":true,"inventory":{"id":32,"variant_size_id":32,"warehouse_id":1,"on_hand":44,"reserved":4,"available":40,"min_stock_level":5}},{"id":33,"product_variant_id":3,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"JEAN-KIZ-001-AMAV-16YAS","price_cents":27900,"is_active":true,"inventory":{"id":33,"variant_size_id":33,"warehouse_id":1,"on_hand":21,"reserved":1,"available":20,"min_stock_level":5}}]},{"id":4,"product_id":2,"sku":"JEAN-KIZ-001-KMAV","slug":"kiz-jean-koyu-mavi","color_name":"Koyu Mavi","color_code":"#003366","price_cents":27900,"is_popular":false,"is_active":true,"images":[{"id":7,"product_variant_id":4,"image":"http:\/\/localhost:8000\/storage\/productImages\/jean-koyu-mavi.png","is_primary":true,"sort_order":1}],"sizes":[{"id":34,"product_variant_id":4,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"JEAN-KIZ-001-KMAV-6YAS","price_cents":27900,"is_active":true,"inventory":{"id":34,"variant_size_id":34,"warehouse_id":1,"on_hand":8,"reserved":4,"available":4,"min_stock_level":5}},{"id":35,"product_variant_id":4,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"JEAN-KIZ-001-KMAV-7YAS","price_cents":27900,"is_active":true,"inventory":{"id":35,"variant_size_id":35,"warehouse_id":1,"on_hand":14,"reserved":4,"available":10,"min_stock_level":5}},{"id":36,"product_variant_id":4,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"JEAN-KIZ-001-KMAV-8YAS","price_cents":27900,"is_active":true,"inventory":{"id":36,"variant_size_id":36,"warehouse_id":1,"on_hand":11,"reserved":1,"available":10,"min_stock_level":5}},{"id":37,"product_variant_id":4,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"JEAN-KIZ-001-KMAV-9YAS","price_cents":27900,"is_active":true,"inventory":{"id":37,"variant_size_id":37,"warehouse_id":1,"on_hand":19,"reserved":2,"available":17,"min_stock_level":5}},{"id":38,"product_variant_id":4,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"JEAN-KIZ-001-KMAV-10YAS","price_cents":27900,"is_active":true,"inventory":{"id":38,"variant_size_id":38,"warehouse_id":1,"on_hand":26,"reserved":0,"available":26,"min_stock_level":5}},{"id":39,"product_variant_id":4,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"JEAN-KIZ-001-KMAV-11YAS","price_cents":27900,"is_active":true,"inventory":{"id":39,"variant_size_id":39,"warehouse_id":1,"on_hand":30,"reserved":3,"available":27,"min_stock_level":5}},{"id":40,"product_variant_id":4,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"JEAN-KIZ-001-KMAV-12YAS","price_cents":27900,"is_active":true,"inventory":{"id":40,"variant_size_id":40,"warehouse_id":1,"on_hand":18,"reserved":1,"available":17,"min_stock_level":5}},{"id":41,"product_variant_id":4,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"JEAN-KIZ-001-KMAV-13YAS","price_cents":27900,"is_active":true,"inventory":{"id":41,"variant_size_id":41,"warehouse_id":1,"on_hand":15,"reserved":3,"available":12,"min_stock_level":5}},{"id":42,"product_variant_id":4,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"JEAN-KIZ-001-KMAV-14YAS","price_cents":27900,"is_active":true,"inventory":{"id":42,"variant_size_id":42,"warehouse_id":1,"on_hand":20,"reserved":4,"available":16,"min_stock_level":5}},{"id":43,"product_variant_id":4,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"JEAN-KIZ-001-KMAV-15YAS","price_cents":27900,"is_active":true,"inventory":{"id":43,"variant_size_id":43,"warehouse_id":1,"on_hand":31,"reserved":0,"available":31,"min_stock_level":5}},{"id":44,"product_variant_id":4,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"JEAN-KIZ-001-KMAV-16YAS","price_cents":27900,"is_active":true,"inventory":{"id":44,"variant_size_id":44,"warehouse_id":1,"on_hand":10,"reserved":5,"available":5,"min_stock_level":5}}]},{"id":5,"product_id":2,"sku":"JEAN-KIZ-001-SYH","slug":"kiz-jean-siyah","color_name":"Siyah","color_code":"#000000","price_cents":27900,"is_popular":false,"is_active":true,"images":[{"id":8,"product_variant_id":5,"image":"http:\/\/localhost:8000\/storage\/productImages\/jean-siyah.png","is_primary":true,"sort_order":1}],"sizes":[{"id":45,"product_variant_id":5,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"JEAN-KIZ-001-SYH-6YAS","price_cents":27900,"is_active":true,"inventory":{"id":45,"variant_size_id":45,"warehouse_id":1,"on_hand":49,"reserved":0,"available":49,"min_stock_level":5}},{"id":46,"product_variant_id":5,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"JEAN-KIZ-001-SYH-7YAS","price_cents":27900,"is_active":true,"inventory":{"id":46,"variant_size_id":46,"warehouse_id":1,"on_hand":12,"reserved":1,"available":11,"min_stock_level":5}},{"id":47,"product_variant_id":5,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"JEAN-KIZ-001-SYH-8YAS","price_cents":27900,"is_active":true,"inventory":{"id":47,"variant_size_id":47,"warehouse_id":1,"on_hand":13,"reserved":5,"available":8,"min_stock_level":5}},{"id":48,"product_variant_id":5,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"JEAN-KIZ-001-SYH-9YAS","price_cents":27900,"is_active":true,"inventory":{"id":48,"variant_size_id":48,"warehouse_id":1,"on_hand":14,"reserved":5,"available":9,"min_stock_level":5}},{"id":49,"product_variant_id":5,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"JEAN-KIZ-001-SYH-10YAS","price_cents":27900,"is_active":true,"inventory":{"id":49,"variant_size_id":49,"warehouse_id":1,"on_hand":10,"reserved":3,"available":7,"min_stock_level":5}},{"id":50,"product_variant_id":5,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"JEAN-KIZ-001-SYH-11YAS","price_cents":27900,"is_active":true,"inventory":{"id":50,"variant_size_id":50,"warehouse_id":1,"on_hand":14,"reserved":0,"available":14,"min_stock_level":5}},{"id":51,"product_variant_id":5,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"JEAN-KIZ-001-SYH-12YAS","price_cents":27900,"is_active":true,"inventory":{"id":51,"variant_size_id":51,"warehouse_id":1,"on_hand":17,"reserved":4,"available":13,"min_stock_level":5}},{"id":52,"product_variant_id":5,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"JEAN-KIZ-001-SYH-13YAS","price_cents":27900,"is_active":true,"inventory":{"id":52,"variant_size_id":52,"warehouse_id":1,"on_hand":15,"reserved":0,"available":15,"min_stock_level":5}},{"id":53,"product_variant_id":5,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"JEAN-KIZ-001-SYH-14YAS","price_cents":27900,"is_active":true,"inventory":{"id":53,"variant_size_id":53,"warehouse_id":1,"on_hand":31,"reserved":1,"available":30,"min_stock_level":5}},{"id":54,"product_variant_id":5,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"JEAN-KIZ-001-SYH-15YAS","price_cents":27900,"is_active":true,"inventory":{"id":54,"variant_size_id":54,"warehouse_id":1,"on_hand":49,"reserved":0,"available":49,"min_stock_level":5}},{"id":55,"product_variant_id":5,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"JEAN-KIZ-001-SYH-16YAS","price_cents":27900,"is_active":true,"inventory":{"id":55,"variant_size_id":55,"warehouse_id":1,"on_hand":20,"reserved":0,"available":20,"min_stock_level":5}}]}],"created_at":"2026-05-15T19:37:44.000000Z","updated_at":"2026-05-23T19:07:54.000000Z"}],"categories":[{"id":1,"title":"Jean","slug":"jean","gender_id":null,"parent_id":null,"gender":null,"children":[{"id":4,"title":"Jean","slug":"unisex-jean","gender_id":3,"parent_id":1},{"id":7,"title":"Jean","slug":"erkek-cocuk-jean","gender_id":1,"parent_id":1},{"id":10,"title":"Jean","slug":"kiz-cocuk-jean","gender_id":2,"parent_id":1}]},{"id":2,"title":"Keten","slug":"keten","gender_id":null,"parent_id":null,"gender":null,"children":[{"id":5,"title":"Keten","slug":"unisex-keten","gender_id":3,"parent_id":2},{"id":8,"title":"Keten","slug":"erkek-cocuk-keten","gender_id":1,"parent_id":2},{"id":11,"title":"Keten","slug":"kiz-cocuk-keten","gender_id":2,"parent_id":2}]},{"id":3,"title":"E\u015fofman Tak\u0131m","slug":"esofman-takim","gender_id":null,"parent_id":null,"gender":null,"children":[{"id":6,"title":"E\u015fofman Tak\u0131m","slug":"unisex-esofman-takim","gender_id":3,"parent_id":3},{"id":9,"title":"E\u015fofman Tak\u0131m","slug":"erkek-cocuk-esofman-takim","gender_id":1,"parent_id":3},{"id":12,"title":"E\u015fofman Tak\u0131m","slug":"kiz-cocuk-esofman-takim","gender_id":2,"parent_id":3}]},{"id":4,"title":"Jean","slug":"unisex-jean","gender_id":3,"parent_id":1,"gender":{"id":3,"title":"Unisex","slug":"unisex"},"children":[]},{"id":5,"title":"Keten","slug":"unisex-keten","gender_id":3,"parent_id":2,"gender":{"id":3,"title":"Unisex","slug":"unisex"},"children":[]},{"id":6,"title":"E\u015fofman Tak\u0131m","slug":"unisex-esofman-takim","gender_id":3,"parent_id":3,"gender":{"id":3,"title":"Unisex","slug":"unisex"},"children":[]},{"id":7,"title":"Jean","slug":"erkek-cocuk-jean","gender_id":1,"parent_id":1,"gender":{"id":1,"title":"Erkek \u00c7ocuk","slug":"erkek-cocuk"},"children":[]},{"id":8,"title":"Keten","slug":"erkek-cocuk-keten","gender_id":1,"parent_id":2,"gender":{"id":1,"title":"Erkek \u00c7ocuk","slug":"erkek-cocuk"},"children":[]},{"id":9,"title":"E\u015fofman Tak\u0131m","slug":"erkek-cocuk-esofman-takim","gender_id":1,"parent_id":3,"gender":{"id":1,"title":"Erkek \u00c7ocuk","slug":"erkek-cocuk"},"children":[]},{"id":10,"title":"Jean","slug":"kiz-cocuk-jean","gender_id":2,"parent_id":1,"gender":{"id":2,"title":"K\u0131z \u00c7ocuk","slug":"kiz-cocuk"},"children":[]},{"id":11,"title":"Keten","slug":"kiz-cocuk-keten","gender_id":2,"parent_id":2,"gender":{"id":2,"title":"K\u0131z \u00c7ocuk","slug":"kiz-cocuk"},"children":[]},{"id":12,"title":"E\u015fofman Tak\u0131m","slug":"kiz-cocuk-esofman-takim","gender_id":2,"parent_id":3,"gender":{"id":2,"title":"K\u0131z \u00c7ocuk","slug":"kiz-cocuk"},"children":[]}],"campaigns":[{"id":1,"name":"K\u0131\u015fa \u00d6zel %20","description":"Se\u00e7ili \u00dcr\u00fcnlerde K\u0131\u015fa \u00d6zel %20","is_active":true},{"id":2,"name":"250 TL Sepet \u0130ndirimi","description":"Se\u00e7ili \u00dcr\u00fcnlerde 250 TL Sepet \u0130ndirimi","is_active":true}]}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -498,8 +498,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 404
-        content: '{"message":"\u00dcr\u00fcn bulunamad\u0131.","data":{"total":0,"page":1,"size":12,"query":"","products":[]}}'
+        status: 200
+        content: '{"total":2,"page":1,"size":12,"query":"","products":[{"id":2,"store_id":1,"title":"K\u0131z \u00c7ocuk Jean Pantolon","slug":"kiz-cocuk-jean-pantolon","category":{"id":7,"title":"Jean","slug":"erkek-cocuk-jean","gender_id":1,"parent_id":1,"gender":{"id":1,"title":"Erkek \u00c7ocuk","slug":"erkek-cocuk"},"parent":{"id":1,"title":"Jean","slug":"jean"}},"description":"\u015e\u0131k ve rahat k\u0131z jean pantolonu","meta_title":null,"meta_description":null,"is_published":true,"variants":[{"id":3,"sku":"JEAN-KIZ-001-AMAV","slug":"kiz-jean-acik-mavi","price_cents":27900,"color_name":"A\u00e7\u0131k Mavi","color_code":"#87CEEB","is_popular":false,"is_active":true,"images":[{"id":6,"product_variant_id":3,"image":"http:\/\/localhost:8000\/storage\/productImages\/jean-acik-mavi.png","is_primary":true,"sort_order":1}],"sizes":[{"id":23,"product_variant_id":3,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"JEAN-KIZ-001-AMAV-6YAS","price_cents":27900,"is_active":true,"inventory":{"id":23,"variant_size_id":23,"warehouse_id":1,"on_hand":19,"reserved":3,"available":16,"min_stock_level":5}},{"id":24,"product_variant_id":3,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"JEAN-KIZ-001-AMAV-7YAS","price_cents":27900,"is_active":true,"inventory":{"id":24,"variant_size_id":24,"warehouse_id":1,"on_hand":41,"reserved":2,"available":39,"min_stock_level":5}},{"id":25,"product_variant_id":3,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"JEAN-KIZ-001-AMAV-8YAS","price_cents":27900,"is_active":true,"inventory":{"id":25,"variant_size_id":25,"warehouse_id":1,"on_hand":36,"reserved":1,"available":35,"min_stock_level":5}},{"id":26,"product_variant_id":3,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"JEAN-KIZ-001-AMAV-9YAS","price_cents":27900,"is_active":true,"inventory":{"id":26,"variant_size_id":26,"warehouse_id":1,"on_hand":44,"reserved":1,"available":43,"min_stock_level":5}},{"id":27,"product_variant_id":3,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"JEAN-KIZ-001-AMAV-10YAS","price_cents":27900,"is_active":true,"inventory":{"id":27,"variant_size_id":27,"warehouse_id":1,"on_hand":49,"reserved":0,"available":49,"min_stock_level":5}},{"id":28,"product_variant_id":3,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"JEAN-KIZ-001-AMAV-11YAS","price_cents":27900,"is_active":true,"inventory":{"id":28,"variant_size_id":28,"warehouse_id":1,"on_hand":31,"reserved":3,"available":28,"min_stock_level":5}},{"id":29,"product_variant_id":3,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"JEAN-KIZ-001-AMAV-12YAS","price_cents":27900,"is_active":true,"inventory":{"id":29,"variant_size_id":29,"warehouse_id":1,"on_hand":13,"reserved":3,"available":10,"min_stock_level":5}},{"id":30,"product_variant_id":3,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"JEAN-KIZ-001-AMAV-13YAS","price_cents":27900,"is_active":true,"inventory":{"id":30,"variant_size_id":30,"warehouse_id":1,"on_hand":10,"reserved":2,"available":8,"min_stock_level":5}},{"id":31,"product_variant_id":3,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"JEAN-KIZ-001-AMAV-14YAS","price_cents":27900,"is_active":true,"inventory":{"id":31,"variant_size_id":31,"warehouse_id":1,"on_hand":23,"reserved":1,"available":22,"min_stock_level":5}},{"id":32,"product_variant_id":3,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"JEAN-KIZ-001-AMAV-15YAS","price_cents":27900,"is_active":true,"inventory":{"id":32,"variant_size_id":32,"warehouse_id":1,"on_hand":44,"reserved":4,"available":40,"min_stock_level":5}},{"id":33,"product_variant_id":3,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"JEAN-KIZ-001-AMAV-16YAS","price_cents":27900,"is_active":true,"inventory":{"id":33,"variant_size_id":33,"warehouse_id":1,"on_hand":21,"reserved":1,"available":20,"min_stock_level":5}}]},{"id":4,"sku":"JEAN-KIZ-001-KMAV","slug":"kiz-jean-koyu-mavi","price_cents":27900,"color_name":"Koyu Mavi","color_code":"#003366","is_popular":false,"is_active":true,"images":[{"id":7,"product_variant_id":4,"image":"http:\/\/localhost:8000\/storage\/productImages\/jean-koyu-mavi.png","is_primary":true,"sort_order":1}],"sizes":[{"id":34,"product_variant_id":4,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"JEAN-KIZ-001-KMAV-6YAS","price_cents":27900,"is_active":true,"inventory":{"id":34,"variant_size_id":34,"warehouse_id":1,"on_hand":10,"reserved":4,"available":6,"min_stock_level":5}},{"id":35,"product_variant_id":4,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"JEAN-KIZ-001-KMAV-7YAS","price_cents":27900,"is_active":true,"inventory":{"id":35,"variant_size_id":35,"warehouse_id":1,"on_hand":14,"reserved":4,"available":10,"min_stock_level":5}},{"id":36,"product_variant_id":4,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"JEAN-KIZ-001-KMAV-8YAS","price_cents":27900,"is_active":true,"inventory":{"id":36,"variant_size_id":36,"warehouse_id":1,"on_hand":11,"reserved":1,"available":10,"min_stock_level":5}},{"id":37,"product_variant_id":4,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"JEAN-KIZ-001-KMAV-9YAS","price_cents":27900,"is_active":true,"inventory":{"id":37,"variant_size_id":37,"warehouse_id":1,"on_hand":19,"reserved":2,"available":17,"min_stock_level":5}},{"id":38,"product_variant_id":4,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"JEAN-KIZ-001-KMAV-10YAS","price_cents":27900,"is_active":true,"inventory":{"id":38,"variant_size_id":38,"warehouse_id":1,"on_hand":26,"reserved":0,"available":26,"min_stock_level":5}},{"id":39,"product_variant_id":4,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"JEAN-KIZ-001-KMAV-11YAS","price_cents":27900,"is_active":true,"inventory":{"id":39,"variant_size_id":39,"warehouse_id":1,"on_hand":30,"reserved":3,"available":27,"min_stock_level":5}},{"id":40,"product_variant_id":4,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"JEAN-KIZ-001-KMAV-12YAS","price_cents":27900,"is_active":true,"inventory":{"id":40,"variant_size_id":40,"warehouse_id":1,"on_hand":19,"reserved":1,"available":18,"min_stock_level":5}},{"id":41,"product_variant_id":4,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"JEAN-KIZ-001-KMAV-13YAS","price_cents":27900,"is_active":true,"inventory":{"id":41,"variant_size_id":41,"warehouse_id":1,"on_hand":15,"reserved":3,"available":12,"min_stock_level":5}},{"id":42,"product_variant_id":4,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"JEAN-KIZ-001-KMAV-14YAS","price_cents":27900,"is_active":true,"inventory":{"id":42,"variant_size_id":42,"warehouse_id":1,"on_hand":20,"reserved":4,"available":16,"min_stock_level":5}},{"id":43,"product_variant_id":4,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"JEAN-KIZ-001-KMAV-15YAS","price_cents":27900,"is_active":true,"inventory":{"id":43,"variant_size_id":43,"warehouse_id":1,"on_hand":31,"reserved":0,"available":31,"min_stock_level":5}},{"id":44,"product_variant_id":4,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"JEAN-KIZ-001-KMAV-16YAS","price_cents":27900,"is_active":true,"inventory":{"id":44,"variant_size_id":44,"warehouse_id":1,"on_hand":10,"reserved":5,"available":5,"min_stock_level":5}}]},{"id":5,"sku":"JEAN-KIZ-001-SYH","slug":"kiz-jean-siyah","price_cents":27900,"color_name":"Siyah","color_code":"#000000","is_popular":false,"is_active":true,"images":[{"id":8,"product_variant_id":5,"image":"http:\/\/localhost:8000\/storage\/productImages\/jean-siyah.png","is_primary":true,"sort_order":1}],"sizes":[{"id":45,"product_variant_id":5,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"JEAN-KIZ-001-SYH-6YAS","price_cents":27900,"is_active":true,"inventory":{"id":45,"variant_size_id":45,"warehouse_id":1,"on_hand":49,"reserved":0,"available":49,"min_stock_level":5}},{"id":46,"product_variant_id":5,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"JEAN-KIZ-001-SYH-7YAS","price_cents":27900,"is_active":true,"inventory":{"id":46,"variant_size_id":46,"warehouse_id":1,"on_hand":12,"reserved":1,"available":11,"min_stock_level":5}},{"id":47,"product_variant_id":5,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"JEAN-KIZ-001-SYH-8YAS","price_cents":27900,"is_active":true,"inventory":{"id":47,"variant_size_id":47,"warehouse_id":1,"on_hand":13,"reserved":5,"available":8,"min_stock_level":5}},{"id":48,"product_variant_id":5,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"JEAN-KIZ-001-SYH-9YAS","price_cents":27900,"is_active":true,"inventory":{"id":48,"variant_size_id":48,"warehouse_id":1,"on_hand":14,"reserved":5,"available":9,"min_stock_level":5}},{"id":49,"product_variant_id":5,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"JEAN-KIZ-001-SYH-10YAS","price_cents":27900,"is_active":true,"inventory":{"id":49,"variant_size_id":49,"warehouse_id":1,"on_hand":10,"reserved":3,"available":7,"min_stock_level":5}},{"id":50,"product_variant_id":5,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"JEAN-KIZ-001-SYH-11YAS","price_cents":27900,"is_active":true,"inventory":{"id":50,"variant_size_id":50,"warehouse_id":1,"on_hand":14,"reserved":0,"available":14,"min_stock_level":5}},{"id":51,"product_variant_id":5,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"JEAN-KIZ-001-SYH-12YAS","price_cents":27900,"is_active":true,"inventory":{"id":51,"variant_size_id":51,"warehouse_id":1,"on_hand":17,"reserved":4,"available":13,"min_stock_level":5}},{"id":52,"product_variant_id":5,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"JEAN-KIZ-001-SYH-13YAS","price_cents":27900,"is_active":true,"inventory":{"id":52,"variant_size_id":52,"warehouse_id":1,"on_hand":15,"reserved":0,"available":15,"min_stock_level":5}},{"id":53,"product_variant_id":5,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"JEAN-KIZ-001-SYH-14YAS","price_cents":27900,"is_active":true,"inventory":{"id":53,"variant_size_id":53,"warehouse_id":1,"on_hand":31,"reserved":1,"available":30,"min_stock_level":5}},{"id":54,"product_variant_id":5,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"JEAN-KIZ-001-SYH-15YAS","price_cents":27900,"is_active":true,"inventory":{"id":54,"variant_size_id":54,"warehouse_id":1,"on_hand":49,"reserved":0,"available":49,"min_stock_level":5}},{"id":55,"product_variant_id":5,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"JEAN-KIZ-001-SYH-16YAS","price_cents":27900,"is_active":true,"inventory":{"id":55,"variant_size_id":55,"warehouse_id":1,"on_hand":20,"reserved":0,"available":20,"min_stock_level":5}}]}],"created_at":"2026-05-15T19:37:44+00:00","updated_at":"2026-05-15T19:37:44+00:00","category_title":"Jean","gender":"Erkek \u00c7ocuk"},{"id":1,"store_id":1,"title":"Erkek \u00c7ocuk E\u015fofman Tak\u0131m\u0131","slug":"erkek-cocuk-esofman-takimi","category":{"id":6,"title":"E\u015fofman Tak\u0131m","slug":"unisex-esofman-takim","gender_id":3,"parent_id":3,"gender":{"id":3,"title":"Unisex","slug":"unisex"},"parent":{"id":3,"title":"E\u015fofman Tak\u0131m","slug":"esofman-takim"}},"description":"Kaliteli pamuklu erkek \u00e7ocuk e\u015fofman tak\u0131m\u0131","meta_title":null,"meta_description":null,"is_published":true,"variants":[{"id":2,"sku":"ESF-ERK-001-SYH","slug":"erkek-esofman-siyah","price_cents":34900,"color_name":"Siyah","color_code":"#000000","is_popular":false,"is_active":true,"images":[{"id":3,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman.png","is_primary":true,"sort_order":1},{"id":4,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman1.png","is_primary":false,"sort_order":2},{"id":5,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman2.png","is_primary":false,"sort_order":3},{"id":11,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman.png","is_primary":true,"sort_order":1},{"id":12,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman1.png","is_primary":false,"sort_order":2},{"id":13,"product_variant_id":2,"image":"http:\/\/localhost:8000\/storage\/productImages\/esofman2.png","is_primary":false,"sort_order":3}],"sizes":[{"id":12,"product_variant_id":2,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"ESF-ERK-001-SYH-6YAS","price_cents":34900,"is_active":true,"inventory":{"id":12,"variant_size_id":12,"warehouse_id":1,"on_hand":26,"reserved":0,"available":26,"min_stock_level":5}},{"id":13,"product_variant_id":2,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"ESF-ERK-001-SYH-7YAS","price_cents":34900,"is_active":true,"inventory":{"id":13,"variant_size_id":13,"warehouse_id":1,"on_hand":0,"reserved":0,"available":0,"min_stock_level":5}},{"id":14,"product_variant_id":2,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"ESF-ERK-001-SYH-8YAS","price_cents":34900,"is_active":true,"inventory":{"id":14,"variant_size_id":14,"warehouse_id":1,"on_hand":39,"reserved":1,"available":38,"min_stock_level":5}},{"id":15,"product_variant_id":2,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"ESF-ERK-001-SYH-9YAS","price_cents":34900,"is_active":true,"inventory":{"id":15,"variant_size_id":15,"warehouse_id":1,"on_hand":27,"reserved":5,"available":22,"min_stock_level":5}},{"id":16,"product_variant_id":2,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"ESF-ERK-001-SYH-10YAS","price_cents":34900,"is_active":true,"inventory":{"id":16,"variant_size_id":16,"warehouse_id":1,"on_hand":42,"reserved":1,"available":41,"min_stock_level":5}},{"id":17,"product_variant_id":2,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"ESF-ERK-001-SYH-11YAS","price_cents":34900,"is_active":true,"inventory":{"id":17,"variant_size_id":17,"warehouse_id":1,"on_hand":45,"reserved":2,"available":43,"min_stock_level":5}},{"id":18,"product_variant_id":2,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"ESF-ERK-001-SYH-12YAS","price_cents":34900,"is_active":true,"inventory":{"id":18,"variant_size_id":18,"warehouse_id":1,"on_hand":22,"reserved":5,"available":17,"min_stock_level":5}},{"id":19,"product_variant_id":2,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"ESF-ERK-001-SYH-13YAS","price_cents":34900,"is_active":true,"inventory":{"id":19,"variant_size_id":19,"warehouse_id":1,"on_hand":33,"reserved":1,"available":32,"min_stock_level":5}},{"id":20,"product_variant_id":2,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"ESF-ERK-001-SYH-14YAS","price_cents":34900,"is_active":true,"inventory":{"id":20,"variant_size_id":20,"warehouse_id":1,"on_hand":30,"reserved":3,"available":27,"min_stock_level":5}},{"id":21,"product_variant_id":2,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"ESF-ERK-001-SYH-15YAS","price_cents":34900,"is_active":true,"inventory":{"id":21,"variant_size_id":21,"warehouse_id":1,"on_hand":46,"reserved":0,"available":46,"min_stock_level":5}},{"id":22,"product_variant_id":2,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"ESF-ERK-001-SYH-16YAS","price_cents":34900,"is_active":true,"inventory":{"id":22,"variant_size_id":22,"warehouse_id":1,"on_hand":12,"reserved":3,"available":9,"min_stock_level":5}}]},{"id":1,"sku":"ERK-1-MAVI-1","slug":"erkek-cocuk-esofman-takimi-mavi-1","price_cents":31900,"color_name":"Mavi","color_code":"#0066CC","is_popular":true,"is_active":true,"images":[{"id":14,"product_variant_id":1,"image":"http:\/\/localhost:8000\/storage\/productImages\/iKQdu6y7dAHTcCMhzZWpGRrbAKrBWpow1EEh5Awr.png","is_primary":false,"sort_order":0},{"id":15,"product_variant_id":1,"image":"http:\/\/localhost:8000\/storage\/productImages\/hUyP379CUhudAlUGOM5z5a8TFEPEko619YjMzj03.png","is_primary":false,"sort_order":0}],"sizes":[{"id":1,"product_variant_id":1,"size_option_id":1,"size_option":{"id":1,"attribute_id":1,"value":"6 Ya\u015f","slug":"6-yas"},"sku":"ESF-ERK-001-MAV-6YAS","price_cents":34900,"is_active":true,"inventory":{"id":1,"variant_size_id":1,"warehouse_id":1,"on_hand":28,"reserved":1,"available":27,"min_stock_level":5}},{"id":2,"product_variant_id":1,"size_option_id":2,"size_option":{"id":2,"attribute_id":1,"value":"7 Ya\u015f","slug":"7-yas"},"sku":"ESF-ERK-001-MAV-7YAS","price_cents":34900,"is_active":true,"inventory":{"id":2,"variant_size_id":2,"warehouse_id":1,"on_hand":19,"reserved":2,"available":17,"min_stock_level":5}},{"id":3,"product_variant_id":1,"size_option_id":3,"size_option":{"id":3,"attribute_id":1,"value":"8 Ya\u015f","slug":"8-yas"},"sku":"ESF-ERK-001-MAV-8YAS","price_cents":34900,"is_active":true,"inventory":{"id":3,"variant_size_id":3,"warehouse_id":1,"on_hand":32,"reserved":5,"available":27,"min_stock_level":5}},{"id":4,"product_variant_id":1,"size_option_id":4,"size_option":{"id":4,"attribute_id":1,"value":"9 Ya\u015f","slug":"9-yas"},"sku":"ESF-ERK-001-MAV-9YAS","price_cents":34900,"is_active":true,"inventory":{"id":4,"variant_size_id":4,"warehouse_id":1,"on_hand":16,"reserved":4,"available":12,"min_stock_level":5}},{"id":5,"product_variant_id":1,"size_option_id":5,"size_option":{"id":5,"attribute_id":1,"value":"10 Ya\u015f","slug":"10-yas"},"sku":"ESF-ERK-001-MAV-10YAS","price_cents":34900,"is_active":true,"inventory":{"id":5,"variant_size_id":5,"warehouse_id":1,"on_hand":29,"reserved":3,"available":26,"min_stock_level":5}},{"id":6,"product_variant_id":1,"size_option_id":6,"size_option":{"id":6,"attribute_id":1,"value":"11 Ya\u015f","slug":"11-yas"},"sku":"ESF-ERK-001-MAV-11YAS","price_cents":34900,"is_active":true,"inventory":{"id":6,"variant_size_id":6,"warehouse_id":1,"on_hand":31,"reserved":3,"available":28,"min_stock_level":5}},{"id":7,"product_variant_id":1,"size_option_id":7,"size_option":{"id":7,"attribute_id":1,"value":"12 Ya\u015f","slug":"12-yas"},"sku":"ESF-ERK-001-MAV-12YAS","price_cents":34900,"is_active":true,"inventory":{"id":7,"variant_size_id":7,"warehouse_id":1,"on_hand":32,"reserved":2,"available":30,"min_stock_level":5}},{"id":8,"product_variant_id":1,"size_option_id":8,"size_option":{"id":8,"attribute_id":1,"value":"13 Ya\u015f","slug":"13-yas"},"sku":"ESF-ERK-001-MAV-13YAS","price_cents":34900,"is_active":true,"inventory":{"id":8,"variant_size_id":8,"warehouse_id":1,"on_hand":23,"reserved":4,"available":19,"min_stock_level":5}},{"id":9,"product_variant_id":1,"size_option_id":9,"size_option":{"id":9,"attribute_id":1,"value":"14 Ya\u015f","slug":"14-yas"},"sku":"ESF-ERK-001-MAV-14YAS","price_cents":34900,"is_active":true,"inventory":{"id":9,"variant_size_id":9,"warehouse_id":1,"on_hand":28,"reserved":2,"available":26,"min_stock_level":5}},{"id":10,"product_variant_id":1,"size_option_id":10,"size_option":{"id":10,"attribute_id":1,"value":"15 Ya\u015f","slug":"15-yas"},"sku":"ESF-ERK-001-MAV-15YAS","price_cents":34900,"is_active":true,"inventory":{"id":10,"variant_size_id":10,"warehouse_id":1,"on_hand":25,"reserved":3,"available":22,"min_stock_level":5}},{"id":11,"product_variant_id":1,"size_option_id":11,"size_option":{"id":11,"attribute_id":1,"value":"16 Ya\u015f","slug":"16-yas"},"sku":"ESF-ERK-001-MAV-16YAS","price_cents":34900,"is_active":true,"inventory":{"id":11,"variant_size_id":11,"warehouse_id":1,"on_hand":13,"reserved":5,"available":8,"min_stock_level":5}}]}],"created_at":"2026-05-15T19:37:44+00:00","updated_at":"2026-05-20T21:57:05+00:00","category_title":"E\u015fofman Tak\u0131m","gender":"Unisex"}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -539,87 +539,7 @@ endpoints:
       -
         custom: []
         status: 200
-        content: '{"message":"Filtre Sonucu","data":{"total":0,"page":1,"size":12,"filters":[],"products":[]}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: api/sorting
-    metadata:
-      custom: []
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 500
-        content: '{"message":"Attempt to read property \"id\" on array"}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: api/autocomplete
-    metadata:
-      custom: []
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: '{"message":"Otomatik Tamamlama","data":{"products":[{"id":3,"title":"Tak\u0131m E\u015fofman Seti","category_title":"Keten"},{"id":2,"title":"K\u0131z \u00c7ocuk Jean Pantolon","category_title":"Jean"},{"id":1,"title":"Erkek \u00c7ocuk E\u015fofman Tak\u0131m\u0131","category_title":"E\u015fofman Tak\u0131m"}],"results":[{"_index":"products","_id":"3","_score":1,"_source":{"id":3,"title":"Tak\u0131m E\u015fofman Seti","category_title":"Keten"}},{"_index":"products","_id":"2","_score":1,"_source":{"id":2,"title":"K\u0131z \u00c7ocuk Jean Pantolon","category_title":"Jean"}},{"_index":"products","_id":"1","_score":1,"_source":{"id":1,"title":"Erkek \u00c7ocuk E\u015fofman Tak\u0131m\u0131","category_title":"E\u015fofman Tak\u0131m"}}]}}'
+        content: '{"message":"Filtre Sonucu","data":{"total":2,"page":1,"size":12,"filters":[],"products":[]}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -732,8 +652,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -770,10 +690,10 @@ endpoints:
       variant_size_id:
         custom: []
         name: variant_size_id
-        description: 'The <code>id</code> of an existing record in the variant_sizes table.'
+        description: ''
         required: true
-        example: consequatur
-        type: string
+        example: 17
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
@@ -787,10 +707,10 @@ endpoints:
         type: integer
         enumValues: []
         exampleWasSpecified: false
-        nullable: false
+        nullable: true
         deprecated: false
     cleanBodyParameters:
-      variant_size_id: consequatur
+      variant_size_id: 17
       quantity: 45
     fileParameters: []
     responses: []
@@ -839,8 +759,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -978,8 +898,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -1150,7 +1070,7 @@ endpoints:
         name: payment_method
         description: ''
         required: true
-        example: saved_card
+        example: new_card
         type: string
         enumValues:
           - saved_card
@@ -1275,7 +1195,7 @@ endpoints:
         name: requires_3ds
         description: ''
         required: true
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -1283,7 +1203,7 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       session_id: 66529e01-d113-3473-8d6f-9e11e09332ea
-      payment_method: saved_card
+      payment_method: new_card
       payment_method_id: 17
       provider: iyzico
       card_alias: mqeopfuudtdsufvyvddqa
@@ -1294,7 +1214,7 @@ endpoints:
       cvv: '4976'
       save_card: true
       installment: 8
-      requires_3ds: false
+      requires_3ds: true
     fileParameters: []
     responses: []
     responseFields: []
@@ -1330,8 +1250,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -1382,708 +1302,13 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           vary: Origin
         description: null
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: 'api/orders/{order_id}/refunds'
-    metadata:
-      custom: []
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: multipart/form-data
-      Accept: application/json
-    urlParameters:
-      order_id:
-        custom: []
-        name: order_id
-        description: 'The ID of the order.'
-        required: true
-        example: 17
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      order_id: 17
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      reason:
-        custom: []
-        name: reason
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: vmqeopfuudtdsufvyvddq
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      customer_note:
-        custom: []
-        name: customer_note
-        description: ''
-        required: false
-        example: consequatur
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-      items:
-        custom: []
-        name: items
-        description: 'Must have at least 1 items.'
-        required: true
-        example:
-          - []
-        type: 'object[]'
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      attachments:
-        custom: []
-        name: attachments
-        description: 'Must be a file. Must not be greater than 2048 kilobytes.'
-        required: false
-        example:
-          - null
-        type: 'file[]'
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      'items[].order_item_id':
-        custom: []
-        name: 'items[].order_item_id'
-        description: 'The <code>id</code> of an existing record in the order_items table.'
-        required: true
-        example: 17
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      'items[].quantity':
-        custom: []
-        name: 'items[].quantity'
-        description: 'Must be at least 1.'
-        required: true
-        example: 45
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      'items[].refund_amount_cents':
-        custom: []
-        name: 'items[].refund_amount_cents'
-        description: 'Must be at least 0.'
-        required: false
-        example: 56
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-    cleanBodyParameters:
-      reason: vmqeopfuudtdsufvyvddq
-      customer_note: consequatur
-      items:
-        -
-          order_item_id: 17
-          quantity: 45
-          refund_amount_cents: 56
-    fileParameters:
-      attachments:
-        - null
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: api/refunds/webhooks/shipment
-    metadata:
-      custom: []
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      tracking_number:
-        custom: []
-        name: tracking_number
-        description: 'Must not be greater than 100 characters.'
-        required: true
-        example: vmqeopfuudtdsufvyvddq
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      status:
-        custom: []
-        name: status
-        description: ''
-        required: true
-        example: FAILED
-        type: string
-        enumValues:
-          - PICKED_UP
-          - IN_TRANSIT
-          - DELIVERED
-          - FAILED
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      timestamp:
-        custom: []
-        name: timestamp
-        description: 'Must be a valid date.'
-        required: true
-        example: '2026-05-16T13:11:32'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      meta:
-        custom: []
-        name: meta
-        description: ''
-        required: false
-        example: null
-        type: object
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-    cleanBodyParameters:
-      tracking_number: vmqeopfuudtdsufvyvddq
-      status: FAILED
-      timestamp: '2026-05-16T13:11:32'
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: api/refunds/webhooks/payment
-    metadata:
-      custom: []
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      reference:
-        custom: []
-        name: reference
-        description: 'Must not be greater than 100 characters.'
-        required: true
-        example: vmqeopfuudtdsufvyvddq
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      status:
-        custom: []
-        name: status
-        description: ''
-        required: true
-        example: FAILED
-        type: string
-        enumValues:
-          - SUCCESS
-          - FAILED
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      amount:
-        custom: []
-        name: amount
-        description: 'Must be at least 0.'
-        required: true
-        example: 1
-        type: number
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      currency:
-        custom: []
-        name: currency
-        description: 'Must be 3 characters.'
-        required: true
-        example: mni
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      timestamp:
-        custom: []
-        name: timestamp
-        description: 'Must be a valid date.'
-        required: true
-        example: '2026-05-16T13:11:32'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      meta:
-        custom: []
-        name: meta
-        description: ''
-        required: false
-        example: null
-        type: object
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-    cleanBodyParameters:
-      reference: vmqeopfuudtdsufvyvddq
-      status: FAILED
-      amount: 1
-      currency: mni
-      timestamp: '2026-05-16T13:11:32'
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: api/creditcard
-    metadata:
-      custom: []
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: api/creditcard
-    metadata:
-      custom: []
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      name:
-        custom: []
-        name: name
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: vmqeopfuudtdsufvyvddq
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      card_number:
-        custom: []
-        name: card_number
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: amniihfqcoynlazghdtqt
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      expire_year:
-        custom: []
-        name: expire_year
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: qxbajwbpilpmufinllwlo
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      expire_month:
-        custom: []
-        name: expire_month
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: auydlsmsjuryvojcybzvr
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      card_type:
-        custom: []
-        name: card_type
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: byickznkygloigmkwxphl
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      card_holder_name:
-        custom: []
-        name: card_holder_name
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: vazjrcnfbaqywuxhgjjmz
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanBodyParameters:
-      name: vmqeopfuudtdsufvyvddq
-      card_number: amniihfqcoynlazghdtqt
-      expire_year: qxbajwbpilpmufinllwlo
-      expire_month: auydlsmsjuryvojcybzvr
-      card_type: byickznkygloigmkwxphl
-      card_holder_name: vazjrcnfbaqywuxhgjjmz
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: 'api/creditcard/{id}'
-    metadata:
-      custom: []
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        custom: []
-        name: id
-        description: 'The ID of the creditcard.'
-        required: true
-        example: consequatur
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      id: consequatur
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          vary: Origin
-        description: null
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - PUT
-      - PATCH
-    uri: 'api/creditcard/{id}'
-    metadata:
-      custom: []
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        custom: []
-        name: id
-        description: 'The ID of the creditcard.'
-        required: true
-        example: consequatur
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      id: consequatur
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      name:
-        custom: []
-        name: name
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: vmqeopfuudtdsufvyvddq
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      card_number:
-        custom: []
-        name: card_number
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: amniihfqcoynlazghdtqt
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      cvv:
-        custom: []
-        name: cvv
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: qxbajwbpilpmufinllwlo
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      expire_year:
-        custom: []
-        name: expire_year
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: auydlsmsjuryvojcybzvr
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      expire_month:
-        custom: []
-        name: expire_month
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: byickznkygloigmkwxphl
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      card_type:
-        custom: []
-        name: card_type
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: vazjrcnfbaqywuxhgjjmz
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      card_holder_name:
-        custom: []
-        name: card_holder_name
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: uxjubqouzswiwxtrkimfc
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      is_active:
-        custom: []
-        name: is_active
-        description: ''
-        required: false
-        example: true
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanBodyParameters:
-      name: vmqeopfuudtdsufvyvddq
-      card_number: amniihfqcoynlazghdtqt
-      cvv: qxbajwbpilpmufinllwlo
-      expire_year: auydlsmsjuryvojcybzvr
-      expire_month: byickznkygloigmkwxphl
-      card_type: vazjrcnfbaqywuxhgjjmz
-      card_holder_name: uxjubqouzswiwxtrkimfc
-      is_active: true
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - DELETE
-    uri: 'api/creditcard/{id}'
-    metadata:
-      custom: []
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        custom: []
-        name: id
-        description: 'The ID of the creditcard.'
-        required: true
-        example: consequatur
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      id: consequatur
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
     responseFields: []
     auth: []
     controller: null
@@ -2117,8 +1342,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -2157,8 +1382,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -2307,7 +1532,7 @@ endpoints:
         name: is_default
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -2318,7 +1543,7 @@ endpoints:
         name: is_active
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -2346,8 +1571,8 @@ endpoints:
       city: atbxspzmrazsroyjpxmqe
       postal_code: sedyghenqcopwvownkbam
       country: lnfngefbeilfzsyuxoezb
-      is_default: false
-      is_active: true
+      is_default: true
+      is_active: false
       notes: dtabptcyyerevrljcbwkt
     fileParameters: []
     responses: []
@@ -2396,8 +1621,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -2559,7 +1784,7 @@ endpoints:
         name: is_default
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -2570,7 +1795,7 @@ endpoints:
         name: is_active
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -2598,8 +1823,8 @@ endpoints:
       city: atbxspzmrazsroyjpxmqe
       postal_code: sedyghenqcopwvownkbam
       country: lnfngefbeilfzsyuxoezb
-      is_default: false
-      is_active: true
+      is_default: true
+      is_active: false
       notes: dtabptcyyerevrljcbwkt
     fileParameters: []
     responses: []
@@ -2679,8 +1904,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -2848,8 +2073,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -2888,8 +2113,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -2928,8 +2153,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -3001,7 +2226,7 @@ endpoints:
         name: type
         description: ''
         required: true
-        example: percentage
+        example: fixed
         type: string
         enumValues:
           - percentage
@@ -3092,7 +2317,7 @@ endpoints:
         name: starts_at
         description: 'Must be a valid date. Must be a date after or equal to <code>today</code>.'
         required: false
-        example: '2107-06-15'
+        example: '2107-06-22'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -3103,7 +2328,7 @@ endpoints:
         name: ends_at
         description: 'Must be a valid date. Must be a date after <code>starts_at</code>.'
         required: false
-        example: '2107-06-15'
+        example: '2107-06-22'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -3137,7 +2362,7 @@ endpoints:
       name: vmqeopfuudtdsufvyvddq
       code: amniihfqcoynlazghdtqt
       description: 'Dolores dolorum amet iste laborum eius est dolor.'
-      type: percentage
+      type: fixed
       discount_value: 12
       buy_quantity: 66
       pay_quantity: 13
@@ -3145,8 +2370,8 @@ endpoints:
       usage_limit: 72
       per_user_limit: 19
       is_active: false
-      starts_at: '2107-06-15'
-      ends_at: '2107-06-15'
+      starts_at: '2107-06-22'
+      ends_at: '2107-06-22'
       product_ids:
         - 17
       category_ids:
@@ -3182,14 +2407,14 @@ endpoints:
         name: id
         description: 'The ID of the campaign.'
         required: true
-        example: 1
+        example: 3
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: 1
+      id: 3
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -3198,8 +2423,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -3235,14 +2460,14 @@ endpoints:
         name: id
         description: 'The ID of the campaign.'
         required: true
-        example: 1
+        example: 3
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: 1
+      id: 3
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -3284,7 +2509,7 @@ endpoints:
         name: type
         description: ''
         required: false
-        example: fixed
+        example: percentage
         type: string
         enumValues:
           - percentage
@@ -3375,7 +2600,7 @@ endpoints:
         name: starts_at
         description: 'Must be a valid date.'
         required: false
-        example: '2026-05-16T13:11:34'
+        example: '2026-05-23T19:22:02'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -3386,7 +2611,7 @@ endpoints:
         name: ends_at
         description: 'Must be a valid date. Must be a date after <code>starts_at</code>.'
         required: false
-        example: '2107-06-15'
+        example: '2107-06-22'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -3420,7 +2645,7 @@ endpoints:
       name: vmqeopfuudtdsufvyvddq
       code: amniihfqcoynlazghdtqt
       description: 'Dolores dolorum amet iste laborum eius est dolor.'
-      type: fixed
+      type: percentage
       discount_value: 4
       buy_quantity: 66
       pay_quantity: 13
@@ -3428,8 +2653,8 @@ endpoints:
       usage_limit: 72
       per_user_limit: 19
       is_active: true
-      starts_at: '2026-05-16T13:11:34'
-      ends_at: '2107-06-15'
+      starts_at: '2026-05-23T19:22:02'
+      ends_at: '2107-06-22'
       product_ids:
         - 17
       category_ids:
@@ -3465,14 +2690,14 @@ endpoints:
         name: id
         description: 'The ID of the campaign.'
         required: true
-        example: 1
+        example: 3
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: 1
+      id: 3
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -3512,8 +2737,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -3830,8 +3055,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -4028,8 +3253,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -4283,8 +3508,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -4380,7 +3605,7 @@ endpoints:
         name: is_popular
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -4391,7 +3616,7 @@ endpoints:
         name: is_active
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -4401,8 +3626,8 @@ endpoints:
       color_name: vmqeopfuudtdsufvyvddq
       color_code: '#01E45C'
       price_cents: 66
-      is_popular: false
-      is_active: true
+      is_popular: true
+      is_active: false
     fileParameters: []
     responses: []
     responseFields: []
@@ -4500,7 +3725,7 @@ endpoints:
         name: variant_id
         description: 'The ID of the variant.'
         required: true
-        example: 1
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -4508,7 +3733,7 @@ endpoints:
         deprecated: false
     cleanUrlParameters:
       product_id: 1
-      variant_id: 1
+      variant_id: 2
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -4539,7 +3764,7 @@ endpoints:
         name: is_active
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -4603,7 +3828,7 @@ endpoints:
     cleanBodyParameters:
       size_option_id: 73
       price_cents: 45
-      is_active: true
+      is_active: false
       inventory:
         on_hand: 56
         reserved: 16
@@ -4651,7 +3876,7 @@ endpoints:
         name: variant_id
         description: 'The ID of the variant.'
         required: true
-        example: 1
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -4670,7 +3895,7 @@ endpoints:
         deprecated: false
     cleanUrlParameters:
       product_id: 1
-      variant_id: 1
+      variant_id: 2
       size_id: 1
     queryParameters: []
     cleanQueryParameters: []
@@ -4814,7 +4039,7 @@ endpoints:
         name: variant_id
         description: 'The ID of the variant.'
         required: true
-        example: 1
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -4833,7 +4058,7 @@ endpoints:
         deprecated: false
     cleanUrlParameters:
       product_id: 1
-      variant_id: 1
+      variant_id: 2
       size_id: 1
     queryParameters: []
     cleanQueryParameters: []
@@ -5113,8 +4338,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -5153,8 +4378,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -5189,14 +4414,14 @@ endpoints:
         name: id
         description: 'The ID of the order.'
         required: true
-        example: 17
-        type: integer
+        example: consequatur
+        type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      id: 17
+      id: consequatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -5205,8 +4430,8 @@ endpoints:
     responses:
       -
         custom: []
-        status: 500
-        content: '{"message":"Unauthenticated."}'
+        status: 401
+        content: '{"message":"Kimlik do\u011frulamas\u0131 yap\u0131lmam\u0131\u015f."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json

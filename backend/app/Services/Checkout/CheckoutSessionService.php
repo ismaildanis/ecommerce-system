@@ -128,11 +128,12 @@ class CheckoutSessionService
         $session->payment_data = $paymentData;
         if (! empty($intent['requires_3ds'])) {
             $session->status = 'pending_3ds';
+            $session->save();
         } else {
             $session->status = 'confirmed';
-            OrderPlacementJob::dispatch($user, $session, $data);
+            OrderPlacementJob::dispatch($user, $session, $data)->onQueue('orders');
+            $session->save();
         }
-        $session->save();
 
         return $session->fresh();
     }

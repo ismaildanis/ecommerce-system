@@ -11,7 +11,11 @@ type SellerLoginErrorData = {
 }
 
 const getLoginErrorData = (error: unknown): SellerLoginErrorData | undefined => {
-    const axiosLike = error as { response?: { data?: SellerLoginErrorData } }
+    if (!error || typeof error !== 'object') {
+        return undefined
+    }
+
+    const axiosLike = error as { response?: { data?: SellerLoginErrorData } | null }
     return axiosLike.response?.data
 }
 
@@ -132,4 +136,3 @@ export default function SellerLoginPage() {
       )
       
 }
-

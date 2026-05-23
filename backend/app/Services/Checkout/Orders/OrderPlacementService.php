@@ -21,20 +21,28 @@ class OrderPlacementService
         private readonly OrderItemFactory $orderItemFactory,
         private readonly InventoryService $inventoryService,
         private readonly PaymentRecorder $paymentRecorder,
-        private readonly PaymentMethodRecorder $PaymentMethodRecorder,
+        private readonly PaymentMethodRecorder $paymentMethodRecorder,
         private readonly BagRepositoryInterface $bagRepository,
         private readonly CampaignManager $campaign
     ) {}
 
-    public function placeFromSession(User $user, CheckoutSession $session, $data): Order
+    public function placeFromSession(User $user, CheckoutSession $session, array $data): Order
     {
         return DB::transaction(function () use ($user, $session, $data) {
+            $session = CheckoutSession::whereKey($session->id)
+                ->lockForUpdate()
+                ->firstOrFail();
+
+            if ($orderId = data_get($session->meta, 'order_id')) {
+                return Order::findOrFail($orderId);
+            }
+
             $order = $this->orderFactory->create($user, $session);
             $items = $this->orderItemFactory->createMany($order, $session);
 
             $this->inventoryService->decrementForOrderItems($items);
             $this->paymentRecorder->record($order, $session->payment_data);
-            $this->PaymentMethodRecorder->store($user, $session->payment_data, $data);
+            $this->paymentMethodRecorder->store($user, $session->payment_data, $data);
 
             $bagPayload = $session->bag_snapshot;
             $campaignId = data_get($bagPayload, 'applied_campaign.id');
@@ -52,16 +60,25 @@ class OrderPlacementService
             $bag = $this->bagRepository->getBag($user);
             $this->bagRepository->clearBagItems($bag);
 
-            $session->update([
+            $meta = $session->meta ?? [];
+            $meta['order_id'] = $order->id;
+
+            $session->forceFill([
                 'status' => 'confirmed',
-                'meta->order_id' => $order->id,
-            ]);
+                'meta' => $meta,
+            ])->save();
 
             foreach ($items as $item) {
                 $seller = $item->product->store->seller;
-                SellerOrderNotification::dispatch($order, $seller);
+
+                SellerOrderNotification::dispatch($order, $seller)
+                    ->afterCommit()
+                    ->onQueue('notifications');
             }
-            SendOrderNotification::dispatch($order, $user);
+
+            SendOrderNotification::dispatch($order, $user)
+                ->afterCommit()
+                ->onQueue('notifications');
 
             return $order;
         });

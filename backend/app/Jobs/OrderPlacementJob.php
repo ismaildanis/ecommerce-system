@@ -22,7 +22,7 @@ class OrderPlacementJob implements ShouldQueue
         public readonly CheckoutSession $session,
         public readonly array $data)
     {
-        $this->onQueue('notifications');
+        $this->onQueue('orders');
     }
 
     /**

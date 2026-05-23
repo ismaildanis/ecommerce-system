@@ -96,7 +96,7 @@ class SellerOrderService
         $orderItem->status = 'shipped';
         $orderItem->save();
 
-        ShippedOrderItemNotification::dispatch($orderItem, $user);
+        ShippedOrderItemNotification::dispatch($orderItem, $user)->onQueue('notifications');
 
         return $orderItem;
     }
@@ -153,8 +153,8 @@ class SellerOrderService
             'refunded_at' => now(),
         ]);
 
-        SellerRefundJob::dispatch($orderItem, $payload, $refundAmount);
-        RefundOrderItemNotification::dispatch($orderItem, $orderItem->order->user, $payload, $refundAmount);
+        SellerRefundJob::dispatch($orderItem, $payload, $refundAmount)->onQueue('orders');
+        RefundOrderItemNotification::dispatch($orderItem, $orderItem->order->user, $payload, $refundAmount)->onQueue('notifications');
 
         return $gatewayResponse;
     }
