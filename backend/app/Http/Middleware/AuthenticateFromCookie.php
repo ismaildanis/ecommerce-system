@@ -25,17 +25,23 @@ class AuthenticateFromCookie
                 $accessToken = PersonalAccessToken::find($id);
             }
             if ($accessToken && $plainToken && hash_equals($accessToken->token, hash('sha256', $plainToken))) {
-                $request->setUserResolver(fn () => $accessToken->tokenable);
-                Auth::guard('user')->setUser($accessToken->tokenable);
-                $authenticated = true;
+                $user = $accessToken->tokenable;
+                if ($user instanceof User) {
+                    $user->withAccessToken($accessToken);
+                    Auth::guard('user')->setUser($user);
+                    $request->setUserResolver(fn () => $user);
+                    $authenticated = true;
+                }
             }
         }
 
         if (! $authenticated) {
             $token = PersonalAccessToken::findToken($request->bearerToken());
             if ($token && $token->tokenable instanceof User) {
-                Auth::guard('user')->setUser($token->tokenable);
-                $request->setUserResolver(fn () => $token->tokenable);
+                $user = $token->tokenable;
+                $user->withAccessToken($token);
+                Auth::guard('user')->setUser($user);
+                $request->setUserResolver(fn () => $user);
                 $authenticated = true;
             }
         }

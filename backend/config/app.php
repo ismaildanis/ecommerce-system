@@ -2,7 +2,6 @@
 
 use App\Providers\AppServiceProvider;
 use App\Providers\BagServiceProvider;
-use App\Providers\CampaignServiceProvider;
 use App\Providers\CheckoutServiceProvider;
 use App\Providers\EventServiceProvider;
 use App\Providers\OrderServiceProvider;
@@ -197,7 +196,6 @@ return [
         RouteServiceProvider::class,
         OrderServiceProvider::class,
         BagServiceProvider::class,
-        CampaignServiceProvider::class,
         CheckoutServiceProvider::class,
         PaymentServiceProvider::class,
         ShippingServiceProvider::class,

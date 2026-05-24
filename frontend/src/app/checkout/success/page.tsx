@@ -2,12 +2,16 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
+import { useQueryClient } from "@tanstack/react-query"
 import { CheckoutLayout } from "@/components/checkout/layout/CheckoutLayout"
 import { SuccessHero } from "@/components/checkout/success/SuccessHero"
 import { SuccessInfoCard } from "@/components/checkout/success/SuccessInfoCard"
 import { OrderSummary } from "@/components/checkout/review/OrderSummary"
 import { useMe } from "@/hooks/useAuthQuery"
 import { useCheckoutSession } from "@/hooks/checkout/useCheckoutSession"
+import { bagKeys, emptyBag } from "@/hooks/useBagQuery"
+import { OrderKeys } from "@/hooks/useOrderQuery"
+
 export default function SuccessPage() {
   const searchParams = useSearchParams()
   const [resolvedSessionId, setResolvedSessionId] = useState<string | null>(null)
@@ -38,8 +42,26 @@ export default function SuccessPage() {
 
 function SuccessContent({ sessionId }: { sessionId: string }) {
   const router = useRouter()
+  const queryClient = useQueryClient()
   const { data: me, isLoading: meLoading } = useMe()
   const { data, isLoading, isError } = useCheckoutSession(sessionId)
+
+  useEffect(() => {
+    if (!me?.id) return
+    if (!data) return
+
+    queryClient.setQueryData(bagKeys.index(me.id), emptyBag)
+
+    queryClient.removeQueries({
+      queryKey: bagKeys.all,
+      exact: false,
+    })
+
+    queryClient.invalidateQueries({
+      queryKey: OrderKeys.all,
+      exact: false,
+    })
+  }, [me?.id, data, queryClient])
 
   if (meLoading || isLoading) {
     return (

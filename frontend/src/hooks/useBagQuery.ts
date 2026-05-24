@@ -13,6 +13,18 @@ export const bagKeys = {
     [...bagKeys.all, "detail", id, userId] as const,
 }
 
+export const emptyBag = {
+  products: [],
+  totals: {
+    total_cents: 0,
+    cargo_cents: 0,
+    discount_cents: 0,
+    final_cents: 0,
+  },
+  applied_campaign: null,
+  campaigns: [],
+}
+
 export const useBagIndex = (userId?: number) =>
   useQuery<GetBagItems>({
     queryKey: bagKeys.index(userId),
@@ -22,22 +34,15 @@ export const useBagIndex = (userId?: number) =>
         return response.data.data
       } catch (error: any) {
         if (error.response?.data?.message === "Sepet Boş!") {
-          return {
-            products: [],
-            totals: {
-              total_cents: 0,
-              cargo_cents: 0,
-              discount_cents: 0,
-              final_cents: 0
-            },
-            applied_campaign: null,
-            campaigns: []
-          }
+          return emptyBag
         }
         throw error
       }
     },
     enabled: !!userId,
+    staleTime: 30 * 1000,
+    refetchOnMount: true,
+    refetchOnWindowFocus: false,
   })
 
 export const useBagStore = (userId?: number) => {

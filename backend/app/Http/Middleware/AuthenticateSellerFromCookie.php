@@ -11,11 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthenticateSellerFromCookie
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  Closure(Request): (Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
         $cookie = $request->cookie('seller_token');
@@ -33,17 +28,22 @@ class AuthenticateSellerFromCookie
 
             if ($accessToken && $plainToken && hash_equals($accessToken->token, hash('sha256', $plainToken))) {
                 $seller = $accessToken->tokenable;
-                $request->setUserResolver(fn () => $seller);
-                Auth::guard('seller')->setUser($seller);
-                $authenticated = true;
+                if ($seller instanceof Seller) {
+                    $seller->withAccessToken($accessToken);
+                    Auth::guard('seller')->setUser($seller);
+                    $request->setUserResolver(fn () => $seller);
+                    $authenticated = true;
+                }
             }
         }
 
         if (! $authenticated) {
             $token = PersonalAccessToken::findToken($request->bearerToken());
             if ($token && $token->tokenable instanceof Seller) {
-                Auth::guard('seller')->setUser($token->tokenable);
-                $request->setUserResolver(fn () => $token->tokenable);
+                $seller = $token->tokenable;
+                $seller->withAccessToken($token);
+                Auth::guard('seller')->setUser($seller);
+                $request->setUserResolver(fn () => $seller);
                 $authenticated = true;
             }
         }

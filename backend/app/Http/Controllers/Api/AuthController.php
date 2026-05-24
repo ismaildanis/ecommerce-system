@@ -2,231 +2,103 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helpers\ResponseHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthValidation\LoginRequest;
 use App\Http\Requests\AuthValidation\RegisterRequest;
 use App\Http\Requests\AuthValidation\UpdateProfileRequest;
-use App\Models\Seller;
-use App\Models\User;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 use App\Services\Auth\ProfileService;
+use App\Services\Auth\SellerLoginService;
+use App\Services\Auth\UserLoginService;
 use App\Services\Auth\UserRegistrationService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Response;
-use Illuminate\Validation\ValidationException;
-use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthController extends Controller
 {
-    protected $authenticationRepository;
-
-    protected $userRegistrationService;
-
-    protected $profileService;
-
     public function __construct(
-        AuthenticationRepositoryInterface $authenticationRepository,
-        UserRegistrationService $userRegistrationService,
-        ProfileService $profileService
-    ) {
-        $this->authenticationRepository = $authenticationRepository;
-        $this->userRegistrationService = $userRegistrationService;
-        $this->profileService = $profileService;
+        private readonly UserRegistrationService $userRegistrationService,
+        private readonly UserLoginService $userLoginService,
+        private readonly SellerLoginService $sellerLoginService,
+        private readonly ProfileService $profileService,
+    ) {}
+
+    public function register(RegisterRequest $request): JsonResponse
+    {
+        $data = $this->userRegistrationService->registerUser($request->validated());
+
+        return $this->json('Kullanıcı başarıyla kaydedildi', $data, 201)
+            ->withCookie($this->makeAuthCookie('user_token', $data['token']));
     }
 
-    /**
-     * Kullanıcı kayıt işlemi
-     *
-     * @unauthenticated
-     */
-    public function register(RegisterRequest $request)
+    public function login(LoginRequest $request): JsonResponse
     {
-        return $this->userRegistrationService->registerUser($request->validated());
+        $data = $this->userLoginService->login($request->validated());
+
+        return $this->json('Giriş Başarılı', $data)
+            ->withCookie($this->makeAuthCookie('user_token', $data['token']));
     }
 
-    /**
-     * Kullanıcı giriş işlemi
-     *
-     * @unauthenticated
-     */
-    public function login(LoginRequest $request)
+    public function me(): JsonResponse
     {
-        $user = User::where('email', $request->email)->first();
-        if (! $user || ! Hash::check($request->input('password'), $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['Email veya Şifre Hatalı'],
-            ]);
-        }
-        $token = $user->createToken('user-token')->plainTextToken;
+        return $this->json('Kullanıcı Bilgileri', auth('user')->user());
+    }
 
-        $cookie = cookie(
-            'user_token',
+    public function updateProfile(UpdateProfileRequest $request): JsonResponse
+    {
+        $user = $this->profileService->updateUserProfile(
+            auth('user')->user(),
+            $request->validated()
+        );
+
+        return $this->json('Profil başarıyla güncellendi', $user);
+    }
+
+    public function logout(Request $request): JsonResponse
+    {
+        $request->user('user')?->currentAccessToken()?->delete();
+
+        return $this->json('Çıkış Yapıldı.')
+            ->withCookie($this->forgetAuthCookie('user_token'));
+    }
+
+    public function sellerLogin(LoginRequest $request): JsonResponse
+    {
+        $data = $this->sellerLoginService->login($request->validated());
+
+        return $this->json('Giriş Başarılı', $data)
+            ->withCookie($this->makeAuthCookie('seller_token', $data['token']));
+    }
+
+    public function sellerLogout(Request $request): JsonResponse
+    {
+        $request->user('seller')?->currentAccessToken()?->delete();
+
+        return $this->json('Çıkış Yapıldı.')
+            ->withCookie($this->forgetAuthCookie('seller_token'));
+    }
+
+    public function mySeller(): JsonResponse
+    {
+        return $this->json('Satıcı Bilgileri', auth('seller')->user());
+    }
+
+    private function makeAuthCookie(string $name, string $token)
+    {
+        return cookie(
+            $name,
             $token,
             config('session.lifetime'),
             '/',
             null,
-            env('SESSION_SECURE_COOKIE', false),
+            (bool) env('SESSION_SECURE_COOKIE', false),
             true,
             false,
             env('SESSION_SAME_SITE', 'lax')
         );
-
-        $response = ResponseHelper::success('Giriş Başarılı', ['token' => $token, 'user' => $user]);
-
-        return $response->withCookie($cookie);
     }
 
-    /**
-     * Mevcut kullanıcı bilgilerini getir
-     */
-    public function me(Request $request)
+    private function forgetAuthCookie(string $name)
     {
-        $user = $this->authenticationRepository->getUser();
-        if (! $user) {
-            return Response::json([
-                'message' => 'Kullanıcı bulunamadı.',
-            ], 404);
-        }
-
-        return ResponseHelper::success('Kullanıcı Bilgileri', $user);
-    }
-
-    /**
-     * Kullanıcı profil bilgilerini getir
-     */
-    public function profile(Request $request)
-    {
-        $user = $this->authenticationRepository->getUser();
-        if (! $user) {
-            return Response::json([
-                'message' => 'Kullanıcı bulunamadı.',
-            ], 404);
-        }
-
-        $result = $this->profileService->getUserProfile($user->id);
-
-        if ($result['success']) {
-            return ResponseHelper::success($result['message'], $result['data']);
-        } else {
-            return ResponseHelper::error($result['message'], 400, $result['errors'] ?? []);
-        }
-    }
-
-    /**
-     * Kullanıcı profil bilgilerini güncelle
-     */
-    public function updateProfile(UpdateProfileRequest $request)
-    {
-        $user = $this->authenticationRepository->getUser();
-        if (! $user) {
-            return Response::json([
-                'message' => 'Kullanıcı bulunamadı.',
-            ], 404);
-        }
-
-        $result = $this->profileService->updateUserProfile($user->id, $request->validated());
-
-        if ($result['success']) {
-            return ResponseHelper::success($result['message'], $result['data']);
-        } else {
-            return ResponseHelper::error($result['message'], 400, $result['errors'] ?? []);
-        }
-    }
-
-    public function logout(Request $request)
-    {
-        $user = $this->authenticationRepository->getUser();
-        if (! $user) {
-            return Response::json([
-                'message' => 'Kullanıcı bulunamadı.',
-            ], 404);
-        }
-        $cookieToken = $request->cookie('user_token');
-
-        if ($cookieToken) {
-            $cookieToken = urldecode($cookieToken);
-
-            if (strpos($cookieToken, '|') !== false) {
-                [$id, $plainToken] = explode('|', $cookieToken, 2);
-                $accessToken = PersonalAccessToken::find($id);
-
-                if ($accessToken && hash_equals($accessToken->token, hash('sha256', $plainToken))) {
-                    $accessToken->delete();
-                }
-            }
-        }
-
-        $forgetCookie = cookie()->forget('user_token');
-
-        return ResponseHelper::success('Çıkış Yapıldı.')->withCookie($forgetCookie);
-    }
-
-    // seller login
-    /** @unauthenticated */
-    public function sellerLogin(LoginRequest $request)
-    {
-        $seller = Seller::where('email', $request->email)->first();
-        if (! $seller || ! Hash::check($request->input('password'), $seller->password)) {
-            return ResponseHelper::error('Email veya Şifre Hatalı', 401);
-        }
-        $token = $seller->createToken('seller-token')->plainTextToken;
-
-        $cookie = cookie(
-            'seller_token',
-            $token,
-            config('session.lifetime'),
-            '/',
-            null,
-            env('SESSION_SECURE_COOKIE', false),
-            true,
-            false,
-            env('SESSION_SAME_SITE', 'lax')
-        );
-
-        $response = ResponseHelper::success('Giriş Başarılı', ['token' => $token, 'seller' => $seller]);
-
-        return $response->withCookie($cookie);
-    }
-
-    public function sellerLogout(Request $request)
-    {
-        $seller = $this->authenticationRepository->getSeller();
-        if (! $seller) {
-            return Response::json([
-                'message' => 'Satıcı bulunamadı.',
-            ], 404);
-        }
-
-        $cookieToken = $request->cookie('seller_token');
-
-        if ($cookieToken) {
-            $cookieToken = urldecode($cookieToken);
-
-            if (strpos($cookieToken, '|') !== false) {
-                [$id, $plainToken] = explode('|', $cookieToken, 2);
-                $accessToken = PersonalAccessToken::find($id);
-
-                if ($accessToken && hash_equals($accessToken->token, hash('sha256', $plainToken))) {
-                    $accessToken->delete();
-                }
-            }
-        }
-        $forgetCookie = cookie()->forget('seller_token');
-
-        return ResponseHelper::success('Çıkış Yapıldı.', ['seller' => $seller])->withCookie($forgetCookie);
-    }
-
-    public function mySeller(Request $request)
-    {
-        $seller = $this->authenticationRepository->getSeller();
-        if (! $seller) {
-            return Response::json([
-                'message' => 'Satıcı bulunamadı.',
-            ], 404);
-        }
-
-        return ResponseHelper::success('Satıcı Bilgileri', $seller);
+        return cookie()->forget($name);
     }
 }

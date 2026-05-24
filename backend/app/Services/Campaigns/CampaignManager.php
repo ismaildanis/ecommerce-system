@@ -3,23 +3,21 @@
 namespace App\Services\Campaigns;
 
 use App\Models\Campaign;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 use App\Services\Campaigns\Handlers\FixedCampaign;
 use App\Services\Campaigns\Handlers\PercentageCampaign;
 use App\Services\Campaigns\Handlers\XBuyYPayCampaign;
 use App\Traits\GetUser;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 
 class CampaignManager
 {
-    private $authenticationRepository;
-
     use GetUser;
 
-    public function __construct(AuthenticationRepositoryInterface $authenticationRepository)
-    {
-        $this->authenticationRepository = $authenticationRepository;
-    }
+    public function __construct(
+        private readonly AuthenticationRepositoryInterface $authenticationRepository
+    ) {}
 
     public function resolveHandler(Campaign $campaign): ?CampaignInterface
     {
@@ -38,11 +36,25 @@ class CampaignManager
 
     public function touchUsage(Campaign $campaign): void
     {
-        if ($campaign->usage_limit && $campaign->usage_count >= $campaign->usage_limit) {
-            throw new \RuntimeException('Bu kampanya kullanım limitine ulaştı.');
+        $query = Campaign::query()->whereKey($campaign->id);
+
+        if ($campaign->usage_limit !== null) {
+            $query->where('usage_count', '<', $campaign->usage_limit);
         }
 
-        $campaign->increment('usage_count');
+        $affected = $query->update([
+            'usage_count' => DB::raw('usage_count + 1'),
+        ]);
+
+        if ($affected === 0) {
+            if ($campaign->usage_limit !== null) {
+                throw new \RuntimeException('Bu kampanya kullanım limitine ulaştı.');
+            }
+
+            throw new \RuntimeException('Kampanya kullanımı güncellenemedi.');
+        }
+
+        $campaign->refresh();
     }
 
     public function logUsage(?int $campaignId, int $userId, ?int $orderId, int $discountAmount): void
@@ -51,25 +63,30 @@ class CampaignManager
             return;
         }
 
-        $campaign = Campaign::find($campaignId);
+        DB::transaction(function () use ($campaignId, $userId, $orderId, $discountAmount) {
+            $campaign = Campaign::query()
+                ->whereKey($campaignId)
+                ->lockForUpdate()
+                ->first();
 
-        if (! $campaign) {
-            Log::warning('Kampanya kaydı bulunamadığı için usage loglanamadı.', [
-                'campaign_id' => $campaignId,
+            if (! $campaign) {
+                Log::warning('Kampanya kaydı bulunamadığı için usage loglanamadı.', [
+                    'campaign_id' => $campaignId,
+                    'user_id' => $userId,
+                    'order_id' => $orderId,
+                ]);
+
+                return;
+            }
+
+            $this->touchUsage($campaign);
+
+            $campaign->campaign_usages()->create([
                 'user_id' => $userId,
                 'order_id' => $orderId,
+                'discount_amount' => $discountAmount,
+                'total_usage_count' => $campaign->campaign_usages()->where('user_id', $userId)->count(),
             ]);
-
-            return;
-        }
-
-        $this->touchUsage($campaign);
-
-        $campaign->campaign_usages()->create([
-            'user_id' => $userId,
-            'order_id' => $orderId,
-            'discount_amount' => $discountAmount,
-            'total_usage_count' => $campaign->campaign_usages()->where('user_id', $userId)->count(),
-        ]);
+        });
     }
 }

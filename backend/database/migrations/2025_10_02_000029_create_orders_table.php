@@ -49,6 +49,8 @@ return new class extends Migration
             $table->index(['user_id', 'status', 'created_at']); // Kullanıcı sipariş listesi
             $table->index(['order_number']); // Sipariş arama
             $table->index(['status', 'created_at']); // Admin liste
+
+            
         });
     }
 

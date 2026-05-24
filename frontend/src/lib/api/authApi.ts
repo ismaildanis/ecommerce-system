@@ -48,7 +48,6 @@ export const authApi = {
     login: (data: LoginRequest) => api.post<LoginResponse>('/login', data),
     register: (data: RegisterRequest) => api.post<RegisterResponse>('/register', data),
     me: () => api.get<MeResponse>('/me'),
-    profile: () => api.get<ProfileResponse>('/account/profile'),
     updateProfile: (data: UpdateProfileRequest) => api.put<UpdateProfileResponse>('/account/profile', data),
     forgotPassword: (data: ForgotPasswordRequest) => api.post<ForgotPasswordResponse>('/forgot-password', data),
     resetPassword: (data: ResetPasswordRequest) => api.post<ResetPasswordResponse>('/reset-password', data),

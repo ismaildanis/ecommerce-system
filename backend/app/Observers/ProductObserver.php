@@ -12,7 +12,7 @@ class ProductObserver
 {
     public function saved(Product $product): void
     {
-        dispatch(new IndexProductToElasticsearch($product->id));
+        IndexProductToElasticsearch::dispatch($product->id)->afterCommit();
     }
 
     /**
@@ -71,8 +71,7 @@ class ProductObserver
     public function deleted(Product $product): void
     {
         ProductCategory::where('product_id', $product->id)->delete();
-
-        dispatch(new DeleteProductToElasticsearch($product->id));
+        DeleteProductToElasticsearch::dispatch($product->id)->afterCommit();
     }
 
     /**

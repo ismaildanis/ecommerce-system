@@ -2,52 +2,28 @@
 
 namespace App\Services\Auth;
 
+use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
-use Exception;
 use Illuminate\Support\Facades\DB;
 
 class UserRegistrationService
 {
-    protected $userRepository;
+    public function __construct(
+        private readonly UserRepositoryInterface $userRepository
+    ) {}
 
-    public function __construct(UserRepositoryInterface $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
-
-    /**
-     * Yeni kullanıcı kaydı oluştur
-     */
     public function registerUser(array $data): array
     {
-        try {
-            DB::beginTransaction();
-
-            // Kullanıcıyı oluştur
+        return DB::transaction(function () use ($data) {
+            /** @var User $user */
             $user = $this->userRepository->createUser($data);
 
-            // Sanctum token oluştur
             $token = $user->createToken('user-token')->plainTextToken;
 
-            DB::commit();
-
             return [
-                'success' => true,
-                'message' => 'Kullanıcı başarıyla kaydedildi',
-                'data' => [
-                    'user' => $user,
-                    'token' => $token,
-                ],
+                'token' => $token,
+                'user' => $user,
             ];
-
-        } catch (Exception $e) {
-            DB::rollBack();
-
-            return [
-                'success' => false,
-                'message' => 'Kullanıcı kaydı sırasında bir hata oluştu: '.$e->getMessage(),
-                'errors' => ['error' => $e->getMessage()],
-            ];
-        }
+        });
     }
 }

@@ -1,6 +1,8 @@
 "use client"
 
-import { useBagIndex, useBagUpdate, useBagDestroy } from '@/hooks/useBagQuery'
+import { useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import { useBagIndex, useBagUpdate, useBagDestroy, bagKeys } from '@/hooks/useBagQuery'
 import { useMe } from '@/hooks/useAuthQuery'
 import { BagItem, BagTotals, BagCampaign } from '@/types/bag'
 import { toast } from 'sonner'
@@ -13,11 +15,20 @@ import { useCreateCheckoutSession } from '@/hooks/checkout/useCheckoutSession'
 import { useRouter } from 'next/navigation'
 export default function BagPage() {
   const router = useRouter()
+  const queryClient = useQueryClient()
   const { data: me } = useMe() 
   const { data, isLoading, error } = useBagIndex(me?.id)
   const updateBag = useBagUpdate(me?.id)
   const destroyBag = useBagDestroy(me?.id)
   const createSession  = useCreateCheckoutSession()
+
+  useEffect(() => {
+    if (!me?.id) return
+
+    queryClient.invalidateQueries({
+      queryKey: bagKeys.index(me.id),
+    })
+  }, [me?.id, queryClient])
 
   if (isLoading) {
     return (

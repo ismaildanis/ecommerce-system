@@ -15,6 +15,7 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'bag_id',
+        'checkout_session_id',
         'user_shipping_address_id',
         'user_billing_address_id',
         'campaign_id',
@@ -52,6 +53,11 @@ class Order extends Model
     public function payments()
     {
         return $this->hasMany(Payment::class);
+    }
+
+    public function checkoutSession()
+    {
+        return $this->belongsTo(CheckoutSession::class, 'checkout_session_id');
     }
 
     public function bag()

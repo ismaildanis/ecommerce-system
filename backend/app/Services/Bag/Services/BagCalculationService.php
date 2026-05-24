@@ -6,22 +6,14 @@ use App\Services\Bag\Contracts\BagCalculationInterface;
 
 class BagCalculationService implements BagCalculationInterface
 {
-    private $cargoThreshold;
+    private int $cargoThreshold;
 
-    protected $cargoPrice;
+    protected int $cargoPrice;
 
     public function __construct()
     {
         $this->cargoThreshold = config('order.cargo.threshold');
         $this->cargoPrice = config('order.cargo.price');
-    }
-
-    public function getBestCampaign($bagItems, $user)
-    {/*
-        $campaigns = Campaign::where('is_active', 1)->get();
-        $bestCampaign = $this->campaignManager->getBestCampaigns($bagItems->all(), $campaigns, $user);
-        return $bestCampaign;
-        */
     }
 
     public function calculateTotal($bagItems)

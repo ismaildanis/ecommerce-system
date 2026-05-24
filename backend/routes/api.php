@@ -24,8 +24,6 @@ use App\Http\Middleware\RegisterRateLimit;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\Order\OrderController;
-// use App\Http\Controllers\Api\Order\OrderRefundController;
-// use App\Http\Controllers\Api\Order\OrderRefundWebhookController;
 
 Route::post('/register', [AuthController::class, 'register'])->middleware(RegisterRateLimit::class);
 Route::post('/login', [AuthController::class, 'login'])->middleware(LoginRateLimit::class);
@@ -62,26 +60,13 @@ Route::middleware(AuthenticateFromCookie::class)->group(function () {
     Route::prefix('orders')->group(function () {
         Route::get('/', [OrderController::class, 'index']);
         Route::get('/{order}', [OrderController::class, 'show']);
-       // Route::post('/{order}/refund', [OrderController::class, 'refundItems']);
-
     });
-
-    // Route::prefix('orders/{order}/refunds')->group(function () {
-    //     Route::get('/', [OrderRefundController::class, 'index']);
-    //     Route::post('/', [OrderRefundController::class, 'store']);
-    // });
-
-    // Route::prefix('refunds/webhooks')->group(function () {
-    //     Route::post('/shipment', [OrderRefundWebhookController::class, 'handleShipmentStatus'])->middleware('verify.refund-webhook:shipment');
-    //     Route::post('/payment', [OrderRefundWebhookController::class, 'handlePaymentStatus'])->middleware('verify.refund-webhook:payment');
-    // });
 
     Route::get('/me', [AuthController::class, 'me']);
 
     Route::prefix('account')->group(function () {
         Route::apiResource('addresses', AddressesController::class);
 
-        Route::get('/profile', [AuthController::class, 'profile']);
         Route::put('/profile', [AuthController::class, 'updateProfile']);
     });
     Route::post('/logout', [AuthController::class, 'logout']);

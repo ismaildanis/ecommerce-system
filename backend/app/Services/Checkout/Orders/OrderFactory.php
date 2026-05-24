@@ -23,6 +23,7 @@ class OrderFactory
         return $this->orders->create([
             'user_id' => $user->id,
             'bag_id' => $session->bag_id,
+            'checkout_session_id' => $session->id,
             'user_shipping_address_id' => $shipping['shipping_address_id'] ?? null,
             'user_billing_address_id' => $billing['billing_address_id'] ?? null,
             'campaign_id' => $appliedCampaign['id'] ?? null,

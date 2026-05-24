@@ -8,35 +8,20 @@ use App\Http\Requests\Checkout\CreatePaymentIntentRequest;
 use App\Http\Requests\Checkout\UpdateShippingRequest;
 use App\Jobs\OrderPlacementJob;
 use App\Models\User;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 use App\Services\Bag\Contracts\BagInterface;
 use App\Services\Checkout\CheckoutSessionService;
-use App\Services\Checkout\Orders\OrderPlacementService;
 use App\Traits\GetUser;
+use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 
 class CheckoutController extends Controller
 {
     use GetUser;
 
-    protected $bagService;
-
-    protected $authenticationRepository;
-
-    protected $checkoutSessionService;
-
-    protected $orderPlacementService;
-
     public function __construct(
-        BagInterface $bagService,
-        AuthenticationRepositoryInterface $authenticationRepository,
-        CheckoutSessionService $checkoutSessionService,
-        OrderPlacementService $orderPlacementService,
-    ) {
-        $this->bagService = $bagService;
-        $this->authenticationRepository = $authenticationRepository;
-        $this->checkoutSessionService = $checkoutSessionService;
-        $this->orderPlacementService = $orderPlacementService;
-    }
+        private readonly BagInterface $bagService,
+        private readonly CheckoutSessionService $checkoutSessionService,
+        private readonly AuthenticationRepositoryInterface $authenticationRepository
+    ) {}
 
     public function createSession()
     {

@@ -84,7 +84,7 @@ function PaymentContent({ sessionId, errorMessage }: { sessionId: string; errorM
   const router = useRouter();
   const { data: me, isLoading: meLoading } = useMe();
   const { data, isLoading, isError } = useCheckoutSession(sessionId);
-  const createPaymentIntent = useCreatePaymentIntent();
+  const createPaymentIntent = useCreatePaymentIntent(me?.id);
   const [formErrors, setFormErrors] = useState<Record<string, string[]>>({});
   const [decodedError, setDecodedError] = useState<string | null>(
     errorMessage ? decodeURIComponent(errorMessage) : ""

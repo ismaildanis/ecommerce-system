@@ -28,8 +28,8 @@ services:
     networks:
       - laravel-production
 
-  queue:
-    container_name: laravel-queue-prod
+  queue-notifications:
+    container_name: laravel-queue-notifications-prod
     build:
       context: .
       dockerfile: ./docker/common/php-fpm/Dockerfile
@@ -43,6 +43,24 @@ services:
       - redis
       - rabbitmq
     command: php artisan queue:work rabbitmq --queue=notifications --verbose --tries=3 --timeout=90
+    networks:
+      - laravel-production
+
+  queue-orders:
+    container_name: laravel-queue-orders-prod
+    build:
+      context: .
+      dockerfile: ./docker/common/php-fpm/Dockerfile
+      target: production
+    env_file:
+      - ./backend/.env
+    volumes:
+      - laravel_storage:/var/www/storage
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+    command: php artisan queue:work rabbitmq --queue=orders --verbose --tries=3 --timeout=90
     networks:
       - laravel-production
 

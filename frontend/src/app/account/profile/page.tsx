@@ -1,11 +1,11 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { useProfile, useUpdateProfile } from '@/hooks/useAuthQuery'
+import {  useMe, useUpdateProfile } from '@/hooks/useAuthQuery'
 export default function ProfilePage() {
     const [mounted, setMounted] = useState(false)
     useEffect(() => setMounted(true), [])
-    const { data: profile, isLoading, error } = useProfile()
+    const { data: me, isLoading, error } = useMe()
     const updateProfileMutation = useUpdateProfile()
     
     const [isEditing, setIsEditing] = useState(false)
@@ -18,13 +18,13 @@ export default function ProfilePage() {
     })
 
     const handleEdit = () => {
-        if (profile?.user) {
+        if (me) {
             setFormData({
-                first_name: profile.user.first_name || '',
-                last_name: profile.user.last_name || '',
-                username: profile.user.username || '',
-                email: profile.user.email || '',
-                phone: profile.user.phone || ''
+                first_name: me.first_name || '',
+                last_name: me.last_name || '',
+                username: me.username || '',
+                email: me.email || '',
+                phone: me.phone || ''
             })
         }
         setIsEditing(true)
@@ -189,27 +189,27 @@ export default function ProfilePage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-500 mb-1">Ad</label>
-                                    <p className="text-lg text-gray-900">{profile?.user.first_name || '-'}</p>
+                                    <p className="text-lg text-gray-900">{me?.first_name || '-'}</p>
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-500 mb-1">Soyad</label>
-                                    <p className="text-lg text-gray-900">{profile?.user.last_name || '-'}</p>
+                                    <p className="text-lg text-gray-900">{me?.last_name || '-'}</p>
                                 </div>
                             </div>
                             
                             <div>
                                 <label className="block text-sm font-medium text-gray-500 mb-1">Kullanıcı Adı</label>
-                                <p className="text-lg text-gray-900">{profile?.user.username || '-'}</p>
+                                <p className="text-lg text-gray-900">{me?.username || '-'}</p>
                             </div>
                             
                             <div>
                                 <label className="block text-sm font-medium text-gray-500 mb-1">E-posta</label>
-                                <p className="text-lg text-gray-900">{profile?.user.email || '-'}</p>
+                                <p className="text-lg text-gray-900">{me?.email || '-'}</p>
                             </div>
                             
                             <div>
                                 <label className="block text-sm font-medium text-gray-500 mb-1">Telefon</label>
-                                <p className="text-lg text-gray-900">{profile?.user.phone || '-'}</p>
+                                <p className="text-lg text-gray-900">{me?.phone || '-'}</p>
                             </div>
                         </div>
                     )}

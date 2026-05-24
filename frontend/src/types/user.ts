@@ -53,10 +53,8 @@ export interface RegisterResponse {
 }
 
 export interface MeResponse {
-    success: boolean
     message: string
     data: User
-    
 }
 
 export interface LogoutResponse {
@@ -65,7 +63,6 @@ export interface LogoutResponse {
 }
 
 export interface ProfileResponse {
-    success: boolean
     message: string
     data: {
         user: User
@@ -81,11 +78,8 @@ export interface UpdateProfileRequest {
 }
 
 export interface UpdateProfileResponse {
-    success: boolean
     message: string
-    data: {
-        user: User
-    }
+    data: User
 }
 
 export interface ForgotPasswordRequest {

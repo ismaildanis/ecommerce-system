@@ -2,25 +2,18 @@
 
 namespace App\Http\Middleware;
 
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SellerRedirect
 {
-    protected $authenticationRepository;
-
-    public function __construct(AuthenticationRepositoryInterface $authenticationRepository)
-    {
-        $this->authenticationRepository = $authenticationRepository;
-    }
-
     public function handle(Request $request, Closure $next)
     {
 
         if (request()->is('seller/*') || request()->is('seller')) {
             if (! request()->is('seller/login')) {
-                if (! $this->authenticationRepository->isSellerLoggedIn()) {
+                if (! Auth::guard('seller')->check()) {
                     return redirect()->route('seller.login');
                 }
             }

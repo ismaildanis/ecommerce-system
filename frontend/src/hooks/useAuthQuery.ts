@@ -17,21 +17,11 @@ export const useMe = () => {
   return useQuery({
     queryKey: authKeys.me(),
     queryFn: async () => {
-      const response = await authApi.me()
-      return response.data.data
-    },
-    enabled: typeof window !== 'undefined' && !!localStorage.getItem('user_token'),
-    staleTime: 5 * 60 * 1000, 
-    retry: 1,
-  })
-}
-
-export const useProfile = () => {
-  return useQuery({
-    queryKey: [...authKeys.all, 'profile'],
-    queryFn: async () => {
-      const response = await authApi.profile()
-      return response.data.data
+      const { data } = await authApi.me()
+      if (!data.data) {
+        throw new Error('Kullanıcı bilgisi alınamadı.')
+      }
+      return data.data
     },
     enabled: typeof window !== 'undefined' && !!localStorage.getItem('user_token'),
     staleTime: 5 * 60 * 1000, 
@@ -106,8 +96,7 @@ export const useUpdateProfile = () => {
       return response.data
     },
     onSuccess: (data: any) => {
-      queryClient.setQueryData([...authKeys.all, 'profile'], data.data)
-      queryClient.setQueryData(authKeys.me(), data.data.user)
+      queryClient.setQueryData(authKeys.me(), data.data)
     },
   })
 }
