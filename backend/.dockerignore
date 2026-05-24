@@ -6,13 +6,6 @@
 *.swp
 *.swo
 
-# Node.js bağımlılıkları
-node_modules
-node_modules/*
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
 # Laravel cache ve log dosyaları
 bootstrap/cache/
 storage/logs/

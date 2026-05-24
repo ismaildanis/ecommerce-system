@@ -320,9 +320,11 @@ php artisan queue:work rabbitmq
 php artisan scout:import "App\Models\Product"
 ```
 
-### NPM Komutları
+### NPM Komutları (Frontend)
 
 ```bash
+cd frontend
+
 # Development mode
 npm run dev
 
