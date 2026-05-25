@@ -45,16 +45,25 @@ Modern, ölçeklenebilir ve mikroservis benzeri mimariye sahip full-stack e-tica
 - Stok takibi
 - Satış raporları
 
-### Sistem Özellikleri
-- Asenkron sipariş işleme (RabbitMQ)
-- Otomatik bildirim sistemi
-- Elasticsearch ile hızlı arama
-- Redis ile önbellekleme
-- Stok yönetimi ve takibi
-- Webhook desteği
-- Repository ve Service pattern
-- Observer pattern ile model events
-- Docker ile kolay deployment
+###  Mimari & Teknik Mühendislik Çözümleri (Technical Highlights)
+
+Bu proje, standart bir e-ticaret uygulamasının ötesinde, **yüksek trafikli (High-Traffic)** ve **dağıtık (Distributed)** sistemlerde karşılaşılan gerçek dünya problemlerine çözümler üreten kurumsal bir mimariyle geliştirilmiştir. Mülakatlarda teknik derinliği göstermek adına uygulanan temel mühendislik çözümleri şunlardır:
+
+- **Concurrency (Eşzamanlılık) & Race Condition Yönetimi:** 
+  - Ödeme ve sipariş oluşturma süreçlerinde çifte işlemleri (double-spending) ve milisaniyelik çift tıklamaları engellemek için **Redis Distributed Lock (`Cache::lock`)** mekanizması ve bloklama (`block()`) kuyrukları uygulanmıştır.
+  - Sınırlı stok ve kampanya kullanımlarında veritabanı seviyesinde **Pessimistic Locking (`lockForUpdate`)** kullanılarak anlık yoğunluklarda %100 veri tutarlılığı garanti altına alınmıştır.
+- **Eventual Consistency & Gelişmiş Arama (Elasticsearch):**
+  - Ürünlerin Elasticsearch'e aktarılması Observer'lar içerisinde doğrudan değil, veritabanı işlemi başarıyla kesinleştikten sonra (`afterCommit`) RabbitMQ üzerinden asenkron (Job) olarak tetiklenerek **Eventual Consistency** sağlanmıştır.
+  - Arama motorunda **Fuzzy Search**, Nested Doküman yapıları (Ürün -> Varyant) ve dinamik filtreleme kullanılmış; senkronizasyon hatalarına karşı **Exponential Backoff** (10s, 30s, 60s) retry mekanizması kurulmuştur.
+- **SOLID & Design Patterns (Tasarım Desenleri):**
+  - **Strategy Pattern:** İndirim/Kampanya motoru (Yüzdelik, Sabit fiyat, X Al Y Öde) `CampaignManager` ve Handler arayüzleri üzerinden if-else karmaşasından kurtarılarak Strategy pattern ile dinamik ve genişletilebilir hale getirilmiştir.
+  - **Domain Driven Design (DDD) Yaklaşımı:** Veri erişimi (Data Access) ve iş kuralları (Business Logic) Controller'lardan tamamen soyutlanmış; Controller'lar HTTP request yönetimine, Service'ler iş akışlarına, Repository'ler ise sadece veri erişimine odaklanacak şekilde (Single Responsibility) izole edilmiştir.
+- **Performans & Akıllı Önbellek (Caching):**
+  - Veritabanı yükünü minimize etmek için **Redis Cache Tags** kullanılmış; ürün veya kategori güncellendiğinde tüm sistemi yormak yerine sadece ilgili etiketlere sahip önbellekler anında temizlenerek (Cache Invalidation) kusursuz bir okuma performansı elde edilmiştir.
+  - **PHP 8.2+**'nin getirdiği modern özellikler (Readonly properties, Constructor Property Promotion, Match expressions) standartlaştırılarak Tip güvenliği (Strict Type) ve bellek optimizasyonu sağlanmıştır.
+- **Asenkron Mesajlaşma (Message Queue & RabbitMQ):**
+  - Iyzico webhook bildirimleri, 3DS doğrulama süreçleri ve satıcı sipariş e-posta bildirimleri RabbitMQ üzerinden kuyruk mimarisine alınarak API'nin kullanıcıya dönüş hızı (Latency) milisaniyeler seviyesinde tutulmuştur.
+- **Docker & Konteynerizasyon:** Uygulamanın tüm bağımlılıkları (PostgreSQL, Redis, Elasticsearch, RabbitMQ) Docker Compose ile izole edilip tek komutla ayağa kalkacak CI/CD süreçlerine hazır hale getirilmiştir.
 
 ---
 

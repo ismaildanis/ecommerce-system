@@ -80,7 +80,8 @@ class OrderPlacementServiceTest extends TestCase
         };
 
         $items = new Collection([$item]);
-        $bag = (object) ['id' => 5];
+        $bag = new \App\Models\Bag();
+        $bag->id = 5;
 
         $orderFactory = Mockery::mock(OrderFactory::class);
         $orderItemFactory = Mockery::mock(OrderItemFactory::class);
