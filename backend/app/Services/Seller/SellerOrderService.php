@@ -7,25 +7,23 @@ use App\Jobs\SellerRefundJob;
 use App\Jobs\ShippedOrderItemNotification;
 use App\Models\Payment;
 use App\Models\PaymentProvider;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
+use App\Models\Seller;
 use App\Repositories\Contracts\OrderItem\OrderItemRepositoryInterface;
 use App\Repositories\Contracts\Store\StoreRepositoryInterface;
 use App\Services\Payments\Contracts\PaymentGatewayInterface;
+use Illuminate\Auth\AuthenticationException;
 
 class SellerOrderService
 {
     public function __construct(
         private readonly OrderItemRepositoryInterface $orderItemRepository,
         private readonly StoreRepositoryInterface $storeRepository,
-        private readonly AuthenticationRepositoryInterface $authenticationRepository,
     ) {}
 
     public function getSellerOrders()
     {
-        $seller = $this->authenticationRepository->getSeller();
-        if (! $seller) {
-            throw new \Exception('Satıcı bulunamadı');
-        }
+        $seller = $this->getSeller();
+
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
         if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
@@ -36,10 +34,8 @@ class SellerOrderService
 
     public function getSellerOneOrder($id)
     {
-        $seller = $this->authenticationRepository->getSeller();
-        if (! $seller) {
-            throw new \Exception('Satıcı bulunamadı');
-        }
+        $seller = $this->getSeller();
+
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
         if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
@@ -50,10 +46,8 @@ class SellerOrderService
 
     public function confirmItem($id)
     {
-        $seller = $this->authenticationRepository->getSeller();
-        if (! $seller) {
-            throw new \Exception('Satıcı bulunamadı');
-        }
+        $seller = $this->getSeller();
+
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
         if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
@@ -72,25 +66,6 @@ class SellerOrderService
         $order = $orderItem->order;
         $user = $order->user;
 
-        /* ilerde...
-        $payload = [
-            'order_item_id' => $orderItem->id,
-            'username' => $user->username,
-            'phone' => $user->phone,
-            'email' => $user->email,
-            'address' => $user->address,
-            'city' => $user->city,
-            'district' => $user->district,
-            'product_title' => $orderItem->product_title,
-            'quantity' => $orderItem->quantity,
-        ];
-
-        $result = $this->shippingService->createShipment($payload);
-
-        if(!($result['success'])){
-            throw new \Exception('Kargo oluşturulamadı: '.($result['error'] ?? 'bilinmeyen hata'));
-        }*/
-
         $orderItem->status = 'shipped';
         $orderItem->save();
 
@@ -101,10 +76,8 @@ class SellerOrderService
 
     public function refundSelectedItems($id, array $payload)
     {
-        $seller = $this->authenticationRepository->getSeller();
-        if (! $seller) {
-            throw new \Exception('Satıcı bulunamadı');
-        }
+        $seller = $this->getSeller();
+
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
         if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
@@ -116,14 +89,15 @@ class SellerOrderService
         $blockedStatuses = ['refunded', 'canceled'];
         $allowedStatuses = ['confirmed', 'partial_refunded'];
 
-        if (in_array($orderItem->status, $blockedStatuses, true)
-            || ! in_array($orderItem->status, $allowedStatuses, true)) {
+        if (
+            in_array($orderItem->status, $blockedStatuses, true)
+            || ! in_array($orderItem->status, $allowedStatuses, true)
+        ) {
             throw new \Exception('Bu ürün iade edilemez veya iade edilmiş.');
         }
         $result = $this->processRefund($orderItem, $payload);
 
         return $result;
-
     }
 
     private function processRefund($orderItem, array $payload)
@@ -170,5 +144,10 @@ class SellerOrderService
         }
 
         return $refundPrice;
+    }
+
+    private function getSeller(): Seller
+    {
+        return auth('seller')->user() ?? throw new AuthenticationException('Satıcı bulunamadı.');
     }
 }

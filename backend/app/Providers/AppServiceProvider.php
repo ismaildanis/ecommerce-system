@@ -12,7 +12,6 @@ use App\Observers\ProductObserver;
 use App\Observers\ProductVariantImageObserver;
 use App\Observers\ProductVariantObserver;
 use App\Observers\VariantAttributeObserver;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 use App\Repositories\Contracts\Bag\BagRepositoryInterface;
 use App\Repositories\Contracts\Campaign\CampaignRepositoryInterface;
 use App\Repositories\Contracts\Category\CategoryRepositoryInterface;
@@ -25,7 +24,6 @@ use App\Repositories\Contracts\Product\ProductVariantRepositoryInterface;
 use App\Repositories\Contracts\Store\StoreRepositoryInterface;
 use App\Repositories\Contracts\User\AddressesRepositoryInterface;
 use App\Repositories\Contracts\User\UserRepositoryInterface;
-use App\Repositories\Eloquent\AuthenticationRepository;
 use App\Repositories\Eloquent\Bag\BagRepository;
 use App\Repositories\Eloquent\Campaign\CampaignRepository;
 use App\Repositories\Eloquent\Category\CategoryRepository;
@@ -47,11 +45,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(
-            AuthenticationRepositoryInterface::class,
-            AuthenticationRepository::class
-        );
-
         $this->app->bind(
             BagRepositoryInterface::class,
             BagRepository::class

@@ -2,40 +2,32 @@
 
 namespace App\Services\Seller;
 
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
+use App\Models\Seller;
 use App\Repositories\Contracts\Campaign\CampaignRepositoryInterface;
 use App\Repositories\Contracts\Store\StoreRepositoryInterface;
+use Illuminate\Auth\AuthenticationException;
 
 class CampaignService
 {
     public function __construct(
         private readonly StoreRepositoryInterface $storeRepository,
         private readonly CampaignRepositoryInterface $campaignRepository,
-        private readonly AuthenticationRepositoryInterface $authenticationRepository
-
     ) {}
 
     public function getCampaigns()
     {
-        $seller = $this->authenticationRepository->getSeller();
-        if (! $seller) {
-            throw new \Exception('Seller bulunamadı');
-        }
+        $seller = $this->getSeller();
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
         if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
         }
 
         return $this->campaignRepository->getCampaignsByStoreId($store->id);
-
     }
 
     public function createCampaign(array $campaignData)
     {
-        $seller = $this->authenticationRepository->getSeller();
-        if (! $seller) {
-            throw new \Exception('Seller bulunamadı');
-        }
+        $seller = $this->getSeller();
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
         if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
@@ -53,7 +45,7 @@ class CampaignService
         if ($categoryIds) {
             $campaign->campaignCategories()->delete();
             $campaign->campaignCategories()->createMany(
-                collect($categoryIds)->map(fn ($id) => ['category_id' => $id])->all()
+                collect($categoryIds)->map(fn($id) => ['category_id' => $id])->all()
             );
         }
 
@@ -62,10 +54,7 @@ class CampaignService
 
     public function showCampaign($id)
     {
-        $seller = $this->authenticationRepository->getSeller();
-        if (! $seller) {
-            throw new \Exception('Seller bulunamadı');
-        }
+        $seller = $this->getSeller();
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
 
         if (! $store) {
@@ -78,16 +67,11 @@ class CampaignService
         }
 
         return $campaign;
-
     }
 
     public function updateCampaign(array $campaignData, $id)
     {
-        $seller = $this->authenticationRepository->getSeller();
-        if (! $seller) {
-            throw new \Exception('Seller bulunamadı');
-        }
-
+        $seller = $this->getSeller();
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
         if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
@@ -111,14 +95,14 @@ class CampaignService
         if ($productIds !== null) {
             $updatedCampaign->campaignProducts()->delete();
             $updatedCampaign->campaignProducts()->createMany(
-                collect($productIds)->map(fn ($prodId) => ['product_id' => $prodId])->all()
+                collect($productIds)->map(fn($prodId) => ['product_id' => $prodId])->all()
             );
         }
 
         if ($categoryIds !== null) {
             $updatedCampaign->campaignCategories()->delete();
             $updatedCampaign->campaignCategories()->createMany(
-                collect($categoryIds)->map(fn ($catId) => ['category_id' => $catId])->all()
+                collect($categoryIds)->map(fn($catId) => ['category_id' => $catId])->all()
             );
         }
 
@@ -127,10 +111,7 @@ class CampaignService
 
     public function deleteCampaign($id)
     {
-        $seller = $this->authenticationRepository->getSeller();
-        if (! $seller) {
-            throw new \Exception('Seller bulunamadı');
-        }
+        $seller = $this->getSeller();
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
         if (! $store) {
             throw new \Exception('Mağaza bulunamadı');
@@ -142,5 +123,10 @@ class CampaignService
         $campaign->delete();
 
         return true;
+    }
+
+    private function getSeller(): Seller
+    {
+        return auth('seller')->user() ?? throw new AuthenticationException('Satıcı bulunamadı.');
     }
 }

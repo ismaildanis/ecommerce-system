@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Response;
 class VariantController extends Controller
 {
     public function __construct(
-        private readonly ProductVariantService $variantService
+        private readonly ProductVariantService $variantService,
     ) {}
 
     public function index(int $productId)
