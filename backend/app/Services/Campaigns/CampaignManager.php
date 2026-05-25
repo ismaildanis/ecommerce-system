@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaigns;
 
-use App\Models\User;
 use App\Models\Campaign;
 use App\Services\Campaigns\Handlers\FixedCampaign;
 use App\Services\Campaigns\Handlers\PercentageCampaign;

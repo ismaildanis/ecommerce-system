@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent\Product;
 
 use App\Models\ProductVariant;
 use App\Repositories\Contracts\Product\ProductVariantRepositoryInterface;
+
 class ProductVariantRepository implements ProductVariantRepositoryInterface
 {
     protected $model;

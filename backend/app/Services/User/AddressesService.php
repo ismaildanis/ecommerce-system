@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class AddressesService
 {
     public function __construct(
-       private readonly AddressesRepositoryInterface $addressesRepository, 
+        private readonly AddressesRepositoryInterface $addressesRepository,
     ) {}
 
     public function indexAddresses()

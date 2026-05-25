@@ -4,7 +4,7 @@ namespace Tests\Feature\Checkout;
 
 use App\Models\CheckoutSession;
 use App\Models\User;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Services\Bag\Contracts\BagInterface;
 use App\Services\Checkout\CheckoutSessionService;
 use App\Services\Checkout\Orders\OrderPlacementService;
@@ -13,6 +13,7 @@ use Tests\TestCase;
 
 class CheckoutPaymentIntentFeatureTest extends TestCase
 {
+    use DatabaseTransactions;
     protected function tearDown(): void
     {
         Mockery::close();
@@ -23,15 +24,19 @@ class CheckoutPaymentIntentFeatureTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $auth = Mockery::mock(AuthenticationRepositoryInterface::class);
+        $user = User::factory()->create([
+            'first_name' => 'Test',
+            'last_name' => 'User',
+        ]);
+        assert($user instanceof User);
+        $this->actingAs($user, 'user');
+
         $bag = Mockery::mock(BagInterface::class);
         $checkout = Mockery::mock(CheckoutSessionService::class);
         $orderPlacement = Mockery::mock(OrderPlacementService::class);
 
-        $auth->shouldNotReceive('getUser');
         $checkout->shouldNotReceive('createPaymentIntent');
 
-        $this->app->instance(AuthenticationRepositoryInterface::class, $auth);
         $this->app->instance(BagInterface::class, $bag);
         $this->app->instance(CheckoutSessionService::class, $checkout);
         $this->app->instance(OrderPlacementService::class, $orderPlacement);
@@ -47,8 +52,12 @@ class CheckoutPaymentIntentFeatureTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = new User;
-        $user->id = 99;
+        $user = User::factory()->create([
+            'first_name' => 'Test',
+            'last_name' => 'User',
+        ]);
+        assert($user instanceof User);
+        $this->actingAs($user, 'user');
 
         $session = new CheckoutSession;
         $session->id = '22222222-2222-2222-2222-222222222222';
@@ -59,9 +68,6 @@ class CheckoutPaymentIntentFeatureTest extends TestCase
             'intent' => ['payment_id' => 'pay_1'],
         ];
 
-        $auth = Mockery::mock(AuthenticationRepositoryInterface::class);
-        $auth->shouldReceive('getUser')->once()->andReturn($user);
-
         $bag = Mockery::mock(BagInterface::class);
         $orderPlacement = Mockery::mock(OrderPlacementService::class);
 
@@ -70,7 +76,6 @@ class CheckoutPaymentIntentFeatureTest extends TestCase
             ->once()
             ->andReturn($session);
 
-        $this->app->instance(AuthenticationRepositoryInterface::class, $auth);
         $this->app->instance(BagInterface::class, $bag);
         $this->app->instance(CheckoutSessionService::class, $checkout);
         $this->app->instance(OrderPlacementService::class, $orderPlacement);

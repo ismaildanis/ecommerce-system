@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent\Order;
 
 use App\Models\Order;
 use App\Repositories\Contracts\Order\OrderRepositoryInterface;
+
 class OrderRepository implements OrderRepositoryInterface
 {
     protected $model;

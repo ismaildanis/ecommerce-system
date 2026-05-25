@@ -43,7 +43,7 @@ class ProductService
 
             $productData = $request;
             $productData['store_id'] = $store->id;
-            $productData['slug'] = Str::slug($productData['title'], '-' . Str::random(5));
+            $productData['slug'] = Str::slug($productData['title'], '-'.Str::random(5));
             $productData['category_id'] = $productData['category_id'];
             $productData['is_published'] = true;
             $productData['meta_title'] = $this->generateMetaTitle($productData, $store);
@@ -52,7 +52,7 @@ class ProductService
             $product = $this->productRepository->createProduct($productData);
 
             $product->update([
-                'slug' => Str::slug($product->title . '-' . $product->id),
+                'slug' => Str::slug($product->title.'-'.$product->id),
             ]);
 
             foreach ($request['variants'] as $index => $variantData) {
@@ -179,7 +179,7 @@ class ProductService
 
             if ($oldTitle !== $product->title) {
                 $product->update([
-                    'slug' => Str::slug($product->title . '-' . $product->id),
+                    'slug' => Str::slug($product->title.'-'.$product->id),
                 ]);
 
                 foreach ($product->variants as $variant) {
@@ -234,7 +234,7 @@ class ProductService
 
         foreach ($product->variants as $variant) {
             foreach ($variant->variantImages as $image) {
-                Storage::disk('public')->delete('productImages/' . $image->image);
+                Storage::disk('public')->delete('productImages/'.$image->image);
             }
             $variant->variantImages()->delete();
             $variant->variantAttributes()->delete();
@@ -260,7 +260,7 @@ class ProductService
             $metaTitle .= " | {$storeName}";
         }
 
-        return strlen($metaTitle) > 60 ? substr($metaTitle, 0, 57) . '...' : $metaTitle;
+        return strlen($metaTitle) > 60 ? substr($metaTitle, 0, 57).'...' : $metaTitle;
     }
 
     private function generateMetaDescription($request, $store)
@@ -273,17 +273,17 @@ class ProductService
         $metaDescription = $title;
 
         if ($description) {
-            $shortDesc = strlen($description) > 100 ? substr($description, 0, 97) . '...' : $description;
+            $shortDesc = strlen($description) > 100 ? substr($description, 0, 97).'...' : $description;
             $metaDescription .= " {$shortDesc}";
         }
 
         if ($price > 0) {
-            $metaDescription .= ' En uygun fiyat: ' . number_format($price, 2) . ' TL.';
+            $metaDescription .= ' En uygun fiyat: '.number_format($price, 2).' TL.';
         }
 
         $metaDescription .= ' Hızlı kargo, güvenli ödeme.';
 
-        return strlen($metaDescription) > 160 ? substr($metaDescription, 0, 157) . '...' : $metaDescription;
+        return strlen($metaDescription) > 160 ? substr($metaDescription, 0, 157).'...' : $metaDescription;
     }
 
     private function generateSku($product, array $variantData, int $index): string
@@ -291,7 +291,7 @@ class ProductService
         $prefix = strtoupper(Str::slug(substr($product->title, 0, 3)));
         $color = Str::upper(Str::slug($variantData['color_name']));
 
-        return "{$prefix}-{$product->id}-{$color}-" . ($index + 1);
+        return "{$prefix}-{$product->id}-{$color}-".($index + 1);
     }
 
     public function generateSkuForVariant($product, $variant): string
@@ -307,7 +307,7 @@ class ProductService
         $productSlug = Str::slug($product->title);
         $colorSlug = Str::slug($colorName, 0, 3);
 
-        return "{$productSlug}-{$colorSlug}-" . ($index + 1);
+        return "{$productSlug}-{$colorSlug}-".($index + 1);
     }
 
     public function generateSlugForVariant($product, $variant): string
@@ -323,12 +323,12 @@ class ProductService
         $productSlug = Str::slug($product->title);
         $colorSlug = Str::slug($variantData['color_name']);
 
-        return "{$colorSlug}-{$productSlug}-" . $variantData['id'];
+        return "{$colorSlug}-{$productSlug}-".$variantData['id'];
     }
 
     private function generateSizeSku(string $variantSku, int $sizeOptionId): string
     {
-        return $variantSku . '-' . Str::upper(Str::slug($sizeOptionId));
+        return $variantSku.'-'.Str::upper(Str::slug($sizeOptionId));
     }
 
     private function getSeller(): Seller

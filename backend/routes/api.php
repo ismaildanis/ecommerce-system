@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Checkout\CheckoutController;
 use App\Http\Controllers\Api\ElasticSearch\CategoryFilterController;
 use App\Http\Controllers\Api\ElasticSearch\SearchController;
 use App\Http\Controllers\Api\MainController;
+use App\Http\Controllers\Api\Order\OrderController;
 use App\Http\Controllers\Api\Payments\IyzicoCallbackController;
 use App\Http\Controllers\Api\Product\ProductVariantController;
 use App\Http\Controllers\Api\ResetPasswordController;
@@ -22,8 +23,6 @@ use App\Http\Middleware\AuthenticateSellerFromCookie;
 use App\Http\Middleware\LoginRateLimit;
 use App\Http\Middleware\RegisterRateLimit;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\Api\Order\OrderController;
 
 Route::post('/register', [AuthController::class, 'register'])->middleware(RegisterRateLimit::class);
 Route::post('/login', [AuthController::class, 'login'])->middleware(LoginRateLimit::class);

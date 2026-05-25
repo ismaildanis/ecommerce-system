@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent\Bag;
 
 use App\Models\Bag;
 use App\Repositories\Contracts\Bag\BagRepositoryInterface;
+
 class BagRepository implements BagRepositoryInterface
 {
     protected Bag $model;

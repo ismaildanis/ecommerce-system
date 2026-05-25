@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent\Payment;
 
 use App\Models\PaymentMethod;
 use App\Repositories\Contracts\Payment\PaymentMethodRepositoryInterface;
+
 class PaymentMethodRepository implements PaymentMethodRepositoryInterface
 {
     protected $model;

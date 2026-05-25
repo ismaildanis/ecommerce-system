@@ -45,7 +45,7 @@ class CampaignService
         if ($categoryIds) {
             $campaign->campaignCategories()->delete();
             $campaign->campaignCategories()->createMany(
-                collect($categoryIds)->map(fn($id) => ['category_id' => $id])->all()
+                collect($categoryIds)->map(fn ($id) => ['category_id' => $id])->all()
             );
         }
 
@@ -95,14 +95,14 @@ class CampaignService
         if ($productIds !== null) {
             $updatedCampaign->campaignProducts()->delete();
             $updatedCampaign->campaignProducts()->createMany(
-                collect($productIds)->map(fn($prodId) => ['product_id' => $prodId])->all()
+                collect($productIds)->map(fn ($prodId) => ['product_id' => $prodId])->all()
             );
         }
 
         if ($categoryIds !== null) {
             $updatedCampaign->campaignCategories()->delete();
             $updatedCampaign->campaignCategories()->createMany(
-                collect($categoryIds)->map(fn($catId) => ['category_id' => $catId])->all()
+                collect($categoryIds)->map(fn ($catId) => ['category_id' => $catId])->all()
             );
         }
 

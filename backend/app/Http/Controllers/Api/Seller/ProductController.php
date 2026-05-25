@@ -8,7 +8,6 @@ use App\Http\Requests\Seller\Product\ProductStoreRequest;
 use App\Http\Requests\Seller\Product\ProductUpdateRequest;
 use App\Http\Resources\Product\ProductResource;
 use App\Services\Seller\ProductService;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {

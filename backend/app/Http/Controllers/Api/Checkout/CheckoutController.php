@@ -10,6 +10,7 @@ use App\Jobs\OrderPlacementJob;
 use App\Models\User;
 use App\Services\Bag\Contracts\BagInterface;
 use App\Services\Checkout\CheckoutSessionService;
+use Illuminate\Auth\AuthenticationException;
 
 class CheckoutController extends Controller
 {
@@ -20,7 +21,8 @@ class CheckoutController extends Controller
 
     public function createSession()
     {
-        $user = auth('user')->user();
+        $user = auth('user')->user()
+            ?? throw new AuthenticationException('Kullanıcı bulunamadı.');
 
         $bagData = $this->bagService->getBag();
 
@@ -39,7 +41,8 @@ class CheckoutController extends Controller
 
     public function getSession($sessionId)
     {
-        $user = auth('user')->user();
+        $user = auth('user')->user()
+            ?? throw new AuthenticationException('Kullanıcı bulunamadı.');
 
         $session = $this->checkoutSessionService->getSession($user, $sessionId);
 
@@ -58,7 +61,8 @@ class CheckoutController extends Controller
 
     public function updateShipping(UpdateShippingRequest $request)
     {
-        $user = auth('user')->user();
+        $user = auth('user')->user()
+            ?? throw new AuthenticationException('Kullanıcı bulunamadı.');
         $session = $this->checkoutSessionService->updateShipping($user, $request->validated());
 
         return response()->json([
@@ -72,7 +76,8 @@ class CheckoutController extends Controller
 
     public function createPaymentIntent(CreatePaymentIntentRequest $request)
     {
-        $user = auth('user')->user();
+        $user = auth('user')->user()
+            ?? throw new AuthenticationException('Kullanıcı bulunamadı.');
 
         $session = $this->checkoutSessionService->createPaymentIntent($user, $request->validated());
 

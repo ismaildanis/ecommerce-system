@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent\Campaign;
 
 use App\Models\Campaign;
 use App\Repositories\Contracts\Campaign\CampaignRepositoryInterface;
+
 class CampaignRepository implements CampaignRepositoryInterface
 {
     protected $model;

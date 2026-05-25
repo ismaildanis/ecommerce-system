@@ -4,7 +4,7 @@ namespace App\Services\Bag\Contracts;
 
 interface BagCalculationInterface
 {
-     public function calculateTotal($bagItems);
+    public function calculateTotal($bagItems);
 
     public function calculateCargoPrice($total);
 

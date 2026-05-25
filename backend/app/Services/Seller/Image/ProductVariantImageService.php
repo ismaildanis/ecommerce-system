@@ -50,7 +50,7 @@ class ProductVariantImageService
             throw new AppException('Resim bulunamadı');
         }
         $image->delete();
-        Storage::disk('public')->delete('productImages/' . $image->image);
+        Storage::disk('public')->delete('productImages/'.$image->image);
 
         return true;
     }

@@ -4,7 +4,7 @@ namespace Tests\Feature\Checkout;
 
 use App\Models\CheckoutSession;
 use App\Models\User;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Services\Bag\Contracts\BagInterface;
 use App\Services\Checkout\CheckoutSessionService;
 use App\Services\Checkout\Orders\OrderPlacementService;
@@ -13,6 +13,7 @@ use Tests\TestCase;
 
 class CheckoutSessionFeatureTest extends TestCase
 {
+    use DatabaseTransactions;
     protected function tearDown(): void
     {
         Mockery::close();
@@ -23,11 +24,12 @@ class CheckoutSessionFeatureTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = new User;
-        $user->id = 10;
-
-        $auth = Mockery::mock(AuthenticationRepositoryInterface::class);
-        $auth->shouldReceive('getUser')->once()->andReturn($user);
+        $user = User::factory()->create([
+            'first_name' => 'Test',
+            'last_name' => 'User',
+        ]);
+        assert($user instanceof User);
+        $this->actingAs($user, 'user');
 
         $bag = Mockery::mock(BagInterface::class);
         $bag->shouldReceive('getBag')->once()->andReturn([
@@ -39,7 +41,7 @@ class CheckoutSessionFeatureTest extends TestCase
 
         $orderPlacement = Mockery::mock(OrderPlacementService::class);
 
-        $this->app->instance(AuthenticationRepositoryInterface::class, $auth);
+        // No auth binding
         $this->app->instance(BagInterface::class, $bag);
         $this->app->instance(CheckoutSessionService::class, $checkout);
         $this->app->instance(OrderPlacementService::class, $orderPlacement);
@@ -54,8 +56,12 @@ class CheckoutSessionFeatureTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = new User;
-        $user->id = 10;
+        $user = User::factory()->create([
+            'first_name' => 'Test',
+            'last_name' => 'User',
+        ]);
+        assert($user instanceof User);
+        $this->actingAs($user, 'user');
 
         $bagData = [
             'products' => collect([(object) ['bag_id' => 22]]),
@@ -65,9 +71,6 @@ class CheckoutSessionFeatureTest extends TestCase
         $session->id = '11111111-1111-1111-1111-111111111111';
         $session->expires_at = now()->addHour();
         $session->bag_snapshot = ['items' => [], 'totals' => ['final_cents' => 1000]];
-
-        $auth = Mockery::mock(AuthenticationRepositoryInterface::class);
-        $auth->shouldReceive('getUser')->once()->andReturn($user);
 
         $bag = Mockery::mock(BagInterface::class);
         $bag->shouldReceive('getBag')->once()->andReturn($bagData);
@@ -80,7 +83,7 @@ class CheckoutSessionFeatureTest extends TestCase
 
         $orderPlacement = Mockery::mock(OrderPlacementService::class);
 
-        $this->app->instance(AuthenticationRepositoryInterface::class, $auth);
+        // No auth binding
         $this->app->instance(BagInterface::class, $bag);
         $this->app->instance(CheckoutSessionService::class, $checkout);
         $this->app->instance(OrderPlacementService::class, $orderPlacement);

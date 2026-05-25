@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent\User;
 
 use App\Models\UserAddress;
 use App\Repositories\Contracts\User\AddressesRepositoryInterface;
+
 class AddressesRepository implements AddressesRepositoryInterface
 {
     protected UserAddress $model;

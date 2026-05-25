@@ -50,7 +50,6 @@ return new class extends Migration
             $table->index(['order_number']); // Sipariş arama
             $table->index(['status', 'created_at']); // Admin liste
 
-            
         });
     }
 

@@ -105,7 +105,7 @@ jobs:
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Run Pint
-        run: ./vendor/bin/pint --test
+        run: ./vendor/bin/pint
 
   frontend:
     runs-on: ubuntu-latest

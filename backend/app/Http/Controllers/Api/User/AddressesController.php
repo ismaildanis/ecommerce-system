@@ -11,7 +11,7 @@ use App\Services\User\AddressesService;
 class AddressesController extends Controller
 {
     public function __construct(
-       private readonly AddressesService $addressesService
+        private readonly AddressesService $addressesService
     ) {}
 
     public function index()

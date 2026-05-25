@@ -19,10 +19,12 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\DB;
 use Mockery;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class OrderPlacementServiceTest extends TestCase
 {
+    use DatabaseTransactions;
     protected function tearDown(): void
     {
         Mockery::close();
@@ -33,36 +35,33 @@ class OrderPlacementServiceTest extends TestCase
     {
         Bus::fake();
 
-        DB::shouldReceive('transaction')
-            ->once()
-            ->andReturnUsing(fn ($callback) => $callback());
+        $user = User::factory()->create([
+            'first_name' => 'Test',
+            'last_name' => 'User',
+        ]);
 
-        $user = new User;
-        $user->id = 10;
-
-        $seller = new User;
-        $seller->id = 99;
+        $seller = User::factory()->create([
+            'first_name' => 'Test',
+            'last_name' => 'Seller',
+        ]);
 
         $order = new Order;
         $order->id = 777;
 
-        $session = Mockery::mock(CheckoutSession::class)->makePartial();
-        assert($session instanceof CheckoutSession);
-
-        $session->bag_snapshot = [
-            'applied_campaign' => ['id' => 44],
-            'totals' => ['discount_cents' => 1200],
-        ];
-        $session->payment_data = [
-            'provider' => 'iyzico',
-            'intent' => ['payment_id' => 'pay_1'],
-        ];
-        $session->shouldReceive('update')
-            ->once()
-            ->with([
-                'status' => 'confirmed',
-                'meta->order_id' => 777,
-            ]);
+        $session = CheckoutSession::create([
+            'id' => (string) \Illuminate\Support\Str::uuid(),
+            'user_id' => $user->id,
+            'status' => 'pending',
+            'expires_at' => now()->addHour(),
+            'bag_snapshot' => [
+                'applied_campaign' => ['id' => 44],
+                'totals' => ['discount_cents' => 1200],
+            ],
+            'payment_data' => [
+                'provider' => 'iyzico',
+                'intent' => ['payment_id' => 'pay_1'],
+            ],
+        ]);
 
         $item = new class($seller)
         {
@@ -99,7 +98,7 @@ class OrderPlacementServiceTest extends TestCase
 
         $campaign->shouldReceive('logUsage')
             ->once()
-            ->with(44, 10, 777, 1200);
+            ->with(44, $user->id, 777, 1200);
 
         $bagRepository->shouldReceive('getBag')->once()->with($user)->andReturn($bag);
         $bagRepository->shouldReceive('clearBagItems')->once()->with($bag);
@@ -117,6 +116,10 @@ class OrderPlacementServiceTest extends TestCase
         $result = $service->placeFromSession($user, $session, ['save_card' => false]);
 
         $this->assertSame(777, $result->id);
+
+        $freshSession = $session->fresh();
+        $this->assertSame('confirmed', $freshSession->status);
+        $this->assertSame(777, $freshSession->meta['order_id']);
 
         Bus::assertDispatched(SellerOrderNotification::class);
         Bus::assertDispatched(SendOrderNotification::class);

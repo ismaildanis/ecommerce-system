@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent\Store;
 
 use App\Models\Store;
 use App\Repositories\Contracts\Store\StoreRepositoryInterface;
+
 class StoreRepository implements StoreRepositoryInterface
 {
     protected $model;

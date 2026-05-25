@@ -3,6 +3,7 @@
 namespace App\Repositories\Contracts\Order;
 
 use App\Models\Order;
+
 interface OrderRepositoryInterface
 {
     public function getOrdersBySeller($sellerId);

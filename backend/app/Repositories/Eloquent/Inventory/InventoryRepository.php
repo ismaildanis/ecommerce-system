@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent\Inventory;
 
 use App\Models\Inventory;
 use App\Repositories\Contracts\Inventory\InventoryRepositoryInterface;
+
 class InventoryRepository implements InventoryRepositoryInterface
 {
     protected $model;
