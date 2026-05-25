@@ -93,4 +93,26 @@ class CheckoutController extends Controller
             'payment_data' => $session->payment_data,
         ]);
     }
+
+    public function confirmPaymentIntent()
+    {
+        $data = request()->all();
+
+        $session = $this->checkoutSessionService->confirmPaymentIntent($data);
+
+        if ($session->status !== 'confirmed') {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Ödeme henüz onaylanmadı.',
+            ], 422);
+        }
+
+        \App\Jobs\OrderPlacementJob::dispatch($session->user, $session, $data)
+            ->onQueue('orders');
+
+        return response()->json([
+            'status' => 'success',
+            'session_id' => $session->id,
+        ]);
+    }
 }

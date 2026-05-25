@@ -44,6 +44,7 @@ Route::get('/search', [SearchController::class, 'search']);
 Route::get('/filter', [MainController::class, 'filter']);
 
 Route::post('/iyzico-callback', IyzicoCallbackController::class);
+Route::post('/checkout/confirm', [CheckoutController::class, 'confirmPaymentIntent']);
 
 Route::middleware(AuthenticateFromCookie::class)->group(function () {
 

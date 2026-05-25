@@ -25,6 +25,7 @@ class OrderFactoryTest extends TestCase
 
         $session = new CheckoutSession;
         $session->bag_id = 55;
+        $session->order_number = 10;
         $session->shipping_data = ['shipping_address_id' => 1001];
         $session->billing_data = ['billing_address_id' => 1002];
         $session->bag_snapshot = [
@@ -41,10 +42,6 @@ class OrderFactoryTest extends TestCase
         ];
 
         $orders = Mockery::mock(OrderRepositoryInterface::class);
-
-        $lastOrder = new Order;
-        $lastOrder->order_number = '00000009';
-        $orders->shouldReceive('latest')->once()->andReturn($lastOrder);
 
         $expectedOrder = new Order;
         $expectedOrder->id = 1;
