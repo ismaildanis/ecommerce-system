@@ -2,14 +2,14 @@
 import { CheckCircle2 } from "lucide-react"
 
 interface SuccessHeroProps {
-  orderCode?: string
+  orderNo?: number
   totalCents?: number
 }
 
 const formatPrice = (cents?: number) =>
   typeof cents === "number" ? `${(cents / 100).toFixed(2)} ₺` : "-"
 
-export function SuccessHero({ orderCode, totalCents }: SuccessHeroProps) {
+export function SuccessHero({ orderNo, totalCents }: SuccessHeroProps) {
   return (
     <div className="flex flex-col items-center gap-4 rounded-3xl border border-color bg-gradient-to-br from-[var(--accent)]/10 via-card to-card p-6 sm:p-8 text-center shadow-md">
       <div className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[var(--accent)] text-white shadow-lg">
@@ -20,9 +20,9 @@ export function SuccessHero({ orderCode, totalCents }: SuccessHeroProps) {
         <p className="text-sm text-muted-foreground">Sipariş özeti e-postana gönderildi. Aşağıdan detaylarını inceleyebilirsin.</p>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm">
-        {orderCode ? (
+        {orderNo ? (
           <span className="rounded-full bg-card px-3 sm:px-4 py-1 font-semibold">
-            Sipariş no: {orderCode}
+            Sipariş no: {orderNo}
           </span>
         ) : null}
         <span className="rounded-full bg-card px-3 sm:px-4 py-1 font-semibold">

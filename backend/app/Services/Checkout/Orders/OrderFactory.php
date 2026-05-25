@@ -28,7 +28,7 @@ class OrderFactory
             'user_billing_address_id' => $billing['billing_address_id'] ?? null,
             'campaign_id' => $appliedCampaign['id'] ?? null,
             'campaign_info' => $appliedCampaign['name'] ?? null,
-            'order_number' => $this->generateOrderNumber(),
+            'order_number' => str_pad((string) $session->order_number, 8, '0', STR_PAD_LEFT),
             'subtotal_cents' => $totals['total_cents'] ?? 0,
             'discount_cents' => $totals['discount_cents'] ?? 0,
             'cargo_price_cents' => $totals['cargo_cents'] ?? 0,
@@ -36,15 +36,5 @@ class OrderFactory
             'currency' => 'TRY',
             'status' => 'confirmed',
         ]);
-    }
-
-    private function generateOrderNumber(): string
-    {
-        $lastOrder = $this->orders->latest();
-        $lastNumber = $lastOrder?->order_number;
-
-        $next = $lastNumber ? (int) $lastNumber + 1 : 1;
-
-        return str_pad((string) $next, 8, '0', STR_PAD_LEFT);
     }
 }

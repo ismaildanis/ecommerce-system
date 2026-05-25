@@ -67,7 +67,7 @@ class IyzicoGateway implements PaymentGatewayInterface
         $request = new CreatePaymentRequest;
 
         $request->setLocale(Locale::TR);
-        $conversationId = 'session_'.$session->id.'_'.time();
+        $conversationId = 'session_' . $session->id . '_' . time();
         $request->setConversationId($conversationId);
         $request->setCurrency(Currency::TL);
         $request->setBasketId((string) $session->id);
@@ -96,7 +96,7 @@ class IyzicoGateway implements PaymentGatewayInterface
         $buyer->setId((string) $user->id);
         $buyer->setName($user->first_name);
         $buyer->setSurname($user->last_name);
-        $buyer->setGsmNumber('+90'.ltrim($user->phone, '0'));
+        $buyer->setGsmNumber('+90' . ltrim($user->phone, '0'));
         $buyer->setEmail($user->email);
         $buyer->setIdentityNumber('74300864791');
         $buyer->setLastLoginDate(now()->subDays(1)->format('Y-m-d H:i:s'));
@@ -149,7 +149,7 @@ class IyzicoGateway implements PaymentGatewayInterface
         $request->setBasketItems($basketItems);
         $request->setPrice(sprintf('%.2f', $finalPrice));
         $request->setPaidPrice(sprintf('%.2f', $finalPrice));
-        $request->setCallbackUrl('https://nonseriately-uncoded-elba.ngrok-free.dev/api/proxy/iyzico-callback');
+        $request->setCallbackUrl(config('services.iyzico.callback_url'));
 
         if (! empty($data['requires_3ds']) && $data['requires_3ds'] === true) {
 
@@ -174,7 +174,6 @@ class IyzicoGateway implements PaymentGatewayInterface
                 'three_ds_html' => $initialize->getHtmlContent(),
                 'raw' => $initialize->getRawResult(),
             ];
-
         } else {
             $payment = Payment::create($request, $this->options);
 
@@ -261,7 +260,7 @@ class IyzicoGateway implements PaymentGatewayInterface
     {
         $request = new CreateRefundRequest;
         $request->setLocale(Locale::TR);
-        $request->setConversationId('refund_'.time());
+        $request->setConversationId('refund_' . time());
         $request->setCurrency(Currency::TL);
         $request->setPaymentTransactionId($transactionId);
         $request->setPrice(number_format($amountCents / 100, 2, '.', ''));
@@ -283,7 +282,7 @@ class IyzicoGateway implements PaymentGatewayInterface
     {
         $request = new CreateCardRequest;
         $request->setLocale(Locale::TR);
-        $request->setConversationId('card_'.$user->id.'_'.time());
+        $request->setConversationId('card_' . $user->id . '_' . time());
         $request->setEmail($user->email);
         $request->setExternalId((string) $user->id);
         $cardInformation = new CardInformation;
@@ -312,6 +311,5 @@ class IyzicoGateway implements PaymentGatewayInterface
         ])->save();
 
         return $method;
-
     }
 }

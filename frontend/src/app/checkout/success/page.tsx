@@ -85,12 +85,12 @@ function SuccessContent({ sessionId }: { sessionId: string }) {
     )
   }
 
-  const orderCode = (data.meta as Record<string, unknown> | undefined)?.order_number?.toString() ?? data.session_id
+  const orderNo = data.order_number
 
   return (
     <CheckoutLayout currentStep="success" showSummary={false}>
       <div className="flex flex-col gap-8">
-        <SuccessHero orderCode={orderCode} totalCents={data.bag?.totals.final_cents} />
+        <SuccessHero orderNo={orderNo} totalCents={data.bag?.totals.final_cents} />
         <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
           <OrderSummary bag={data.bag ?? null} />
           <SuccessInfoCard shipping={data.shipping_data} billing={data.billing_data} payment={data.payment_data} />

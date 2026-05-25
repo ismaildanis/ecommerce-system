@@ -4,13 +4,13 @@ namespace App\Repositories\Contracts\User;
 
 interface AddressesRepositoryInterface
 {
-    public function getAddressesByUserId($userId);
+    public function getAddressesByUserId(int $userId);
 
-    public function getAddressById($id, $userId);
+    public function getAddressById(int $id, int $userId);
 
-    public function createAddress(array $data, $userId);
+    public function createAddress(array $data, int $userId);
 
-    public function updateAddress(array $data, $id, $userId);
+    public function updateAddress(array $data, int $id, int $userId);
 
-    public function deleteAddress($id, $userId);
+    public function deleteAddress(int $id, int $userId);
 }

@@ -3,7 +3,7 @@ export interface CreateSessionRequest {
     coupon_code?: string
 }
 
-export interface GetSessionResponse  {
+export interface GetSessionResponse {
     session_id: string
     expires_at: string
     is_active: boolean
@@ -12,8 +12,12 @@ export interface GetSessionResponse  {
     shipping_data: ShippingData
     billing_data: BillingData
     payment_data: PaymentData
-    meta?: string
+    meta?: {
+        order_id: number
+    }
+    order_number?: number
 }
+
 
 export interface CreateSessionResponse {
     session_id: string
@@ -85,14 +89,37 @@ export interface AppliedCampaign {
 }
 
 //UpdateShippingResponse
+export interface Address {
+    id: number
+    user_id: number
+    title: string
+    first_name: string
+    last_name: string
+    phone: string
+    address_line_1: string
+    address_line_2?: string | null
+    district: string
+    city: string
+    postal_code: string
+    country: string
+    is_default: boolean
+    is_active: boolean
+    notes?: string | null
+    created_at: string
+    updated_at: string
+    deleted_at?: string | null
+}
+
 export interface ShippingData {
     shipping_address_id: number
     delivery_method: string
     notes?: string
+    shipping_address?: Address
 }
 
 export interface BillingData {
     billing_address_id?: number
+    billing_address?: Address
 }
 
 //CreatePaymentIntentResponse

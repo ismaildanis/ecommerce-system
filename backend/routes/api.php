@@ -43,6 +43,8 @@ Route::prefix('category')->group(function () {
 Route::get('/search', [SearchController::class, 'search']);
 Route::get('/filter', [MainController::class, 'filter']);
 
+Route::post('/iyzico-callback', IyzicoCallbackController::class);
+
 Route::middleware(AuthenticateFromCookie::class)->group(function () {
 
     Route::post('bags/campaign', [BagController::class, 'select']);
@@ -108,12 +110,5 @@ Route::middleware(AuthenticateSellerFromCookie::class)->group(function () {
         Route::apiResource('order', SellerOrderController::class)->only(['index', 'show']);
         Route::post('orderitem/{id}/confirm', [SellerOrderController::class, 'confirmOrderItem']);
         Route::post('orderitem/{id}/refund', [SellerOrderController::class, 'refundOrderItem']);
-
     });
-
 });
-
-Route::post('proxy/iyzico-callback', IyzicoCallbackController::class);
-Route::post('checkout/confirm', [CheckoutController::class, 'confirmOrder'])
-    ->withoutMiddleware('auth:sanctum')
-    ->name('checkout.confirm');

@@ -4,6 +4,7 @@ namespace App\Services\Checkout;
 
 use App\Jobs\OrderPlacementJob;
 use App\Models\CheckoutSession;
+use App\Models\Order;
 use App\Models\User;
 use App\Repositories\Contracts\Inventory\InventoryRepositoryInterface;
 use App\Repositories\Contracts\Payment\PaymentMethodRepositoryInterface;
@@ -40,9 +41,26 @@ class CheckoutSessionService
         return $session;
     }
 
-    public function getSession($user, $sessionId)
+    public function getSession(User $user, string $sessionId)
     {
-        return $this->findSessionForUser($sessionId, $user->id);
+        $session = $this->findSessionForUser($sessionId, $user->id);
+
+        $shippingAddressId = $session->shipping_data['shipping_address_id'] ?? null;
+        $billingAddressId  = $session->billing_data['billing_address_id'] ?? null;
+
+        $shippingAddress = $shippingAddressId
+            ? $this->addressesRepository->getAddressById($shippingAddressId, $user->id)
+            : null;
+
+        $billingAddress = $billingAddressId
+            ? $this->addressesRepository->getAddressById($billingAddressId, $user->id)
+            : $shippingAddress;
+
+        return [
+            'session'         => $session,
+            'shippingAddress' => $shippingAddress,
+            'billingAddress'  => $billingAddress,
+        ];
     }
 
     public function updateShipping($user, array $data): CheckoutSession
@@ -79,7 +97,6 @@ class CheckoutSessionService
         $session->save();
 
         return $session->fresh();
-
     }
 
     public function createPaymentIntent(User $user, array $data): CheckoutSession
@@ -96,7 +113,6 @@ class CheckoutSessionService
             if (! $paymentMethod) {
                 throw new ModelNotFoundException('Geçerli bir ödeme yöntemi bulunamadı.');
             }
-
         } elseif ($data['payment_method'] === 'new_card') {
             $paymentMethod = $this->checkoutPaymentService->buildTemporaryMethodFromData($user, $data);
         } else {
@@ -131,10 +147,10 @@ class CheckoutSessionService
             $session->save();
         } else {
             $session->status = 'confirmed';
+            $session->order_number = $this->generateOrderNumber();
             OrderPlacementJob::dispatch($user, $session, $data)->onQueue('orders');
             $session->save();
         }
-
         return $session->fresh();
     }
 
@@ -166,7 +182,6 @@ class CheckoutSessionService
                 ->where('payment_data->provider', 'iyzico')
                 ->latest()
                 ->first();
-
         }
 
         if (! $session) {
@@ -200,6 +215,7 @@ class CheckoutSessionService
 
         $session->payment_data = $paymentData;
         $session->status = 'confirmed';
+        $session->order_number = $this->generateOrderNumber();
         $session->save();
 
         return $session->fresh();
@@ -224,6 +240,12 @@ class CheckoutSessionService
         return $session;
     }
 
+    private function generateOrderNumber(): int
+    {
+        return Order::max('order_number') + 1;
+    }
+
+
     private function prepareBagSnapshot(array $bagData): array
     {
         $items = $bagData['products']->map(function ($item) {
@@ -232,7 +254,7 @@ class CheckoutSessionService
                 'store_id' => $item->store_id,
                 'variant_size_id' => $item->variant_size_id,
                 'product_id' => $item->variantSize->productVariant->product_id,
-                'product_title' => $item->variantSize->productVariant->color_name.' '.$item->variantSize->productVariant->product->title,
+                'product_title' => $item->variantSize->productVariant->color_name . ' ' . $item->variantSize->productVariant->product->title,
                 'product_category_title' => $item->variantSize->productVariant->product->category->title,
                 'size_name' => $item->variantSize->sizeOption->value,
                 'color_name' => $item->variantSize->productVariant->color_name,

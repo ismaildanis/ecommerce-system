@@ -14,26 +14,26 @@ class AddressesRepository implements AddressesRepositoryInterface
         $this->model = $model;
     }
 
-    public function getAddressesByUserId($userId)
+    public function getAddressesByUserId(int $userId)
     {
         return $this->model->where('user_id', $userId)->get();
     }
 
-    public function getAddressById($id, $userId)
+    public function getAddressById(int $id, int $userId)
     {
         return $this->model->where('user_id', $userId)
             ->where('id', $id)
             ->first();
     }
 
-    public function createAddress(array $data, $userId)
+    public function createAddress(array $data, int $userId)
     {
         $data['user_id'] = $userId;
 
         return $this->model->create($data);
     }
 
-    public function updateAddress(array $data, $id, $userId)
+    public function updateAddress(array $data, int $id, int $userId)
     {
         $address = $this->getAddressById($id, $userId);
         if (! $address) {
@@ -44,7 +44,7 @@ class AddressesRepository implements AddressesRepositoryInterface
         return $address;
     }
 
-    public function deleteAddress($id, $userId)
+    public function deleteAddress(int $id, int $userId)
     {
         $address = $this->getAddressById($id, $userId);
         if (! $address) {
