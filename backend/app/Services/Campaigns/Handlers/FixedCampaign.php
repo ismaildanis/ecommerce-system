@@ -31,7 +31,6 @@ class FixedCampaign extends BaseCampaign
     protected function checkPerUserLimit(): void
     {
         if ($this->campaign->per_user_limit && $this->campaign->campaign_usages()->where('user_id', $this->user->id)->count() >= $this->campaign->per_user_limit) {
-            dd($this->campaign->campaign_usages()->where('user_id', $this->user->id)->count());
             throw ValidationException::withMessages([
                 'campaign' => [
                     'Bu kampanya kullanım limitine ulaştı.',
@@ -72,7 +71,7 @@ class FixedCampaign extends BaseCampaign
 
     protected function subtotalCents(Collection $items): int
     {
-        return (int) $items->sum(fn ($item) => $item->unit_price_cents * $item->quantity);
+        return (int) $items->sum(fn($item) => $item->unit_price_cents * $item->quantity);
     }
 
     protected function splitDiscount(Collection $items, int $discountCents): Collection

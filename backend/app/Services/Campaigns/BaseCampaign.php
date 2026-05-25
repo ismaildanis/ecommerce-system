@@ -8,15 +8,10 @@ use Illuminate\Validation\ValidationException;
 
 abstract class BaseCampaign implements CampaignInterface
 {
-    protected Campaign $campaign;
-
-    protected User $user;
-
-    public function __construct(Campaign $campaign, User $user)
-    {
-        $this->campaign = $campaign;
-        $this->user = $user;
-    }
+    public function __construct(
+        protected readonly Campaign $campaign,
+        protected readonly User $user
+    ) {}
 
     protected function isCampaignActive(): bool
     {

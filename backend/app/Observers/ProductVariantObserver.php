@@ -10,7 +10,7 @@ class ProductVariantObserver
 {
     public function saved(ProductVariant $productVariant): void
     {
-        dispatch(new IndexProductToElasticsearch($productVariant->product_id));
+        IndexProductToElasticsearch::dispatch($productVariant->product_id)->afterCommit();
     }
 
     /**
@@ -34,7 +34,7 @@ class ProductVariantObserver
      */
     public function deleted(ProductVariant $productVariant): void
     {
-        dispatch(new DeleteProductToElasticsearch($productVariant->product_id));
+        IndexProductToElasticsearch::dispatch($productVariant->product_id)->afterCommit();
     }
 
     /**

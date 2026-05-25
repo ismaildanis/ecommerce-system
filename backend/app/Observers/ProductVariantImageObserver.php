@@ -16,7 +16,7 @@ class ProductVariantImageObserver
             $productVariantImage->load('productVariant.product');
 
             if ($productVariantImage->productVariant && $productVariantImage->productVariant->product) {
-                dispatch(new IndexProductToElasticsearch($productVariantImage->productVariant->product->id));
+                IndexProductToElasticsearch::dispatch($productVariantImage->productVariant->product->id)->afterCommit();
             }
         } catch (\Exception $e) {
             Log::error('ProductVariantImageObserver error: '.$e->getMessage());
@@ -48,7 +48,7 @@ class ProductVariantImageObserver
             ?? ProductVariant::whereKey($productVariantImage->product_variant_id)->value('product_id');
 
         if ($productId) {
-            dispatch(new DeleteProductToElasticsearch($productId));
+            IndexProductToElasticsearch::dispatch($productId)->afterCommit();
         }
     }
 

@@ -56,7 +56,6 @@ class BagCalculationService implements BagCalculationInterface
         $productPrices = collect($perItemPrice)->mapWithKeys(function ($value, $bagItemId) {
             return [$bagItemId => (int) $value];
         });
-        // dd($perItemCargoPrice, $perItemPrice, $discountItems, $discounts, $cargoShares, $productPrices);
 
         return $productPrices->mapWithKeys(function ($price, $bagItemId) use ($cargoShares, $discounts) {
             $cargo = $cargoShares->get($bagItemId, 0);
