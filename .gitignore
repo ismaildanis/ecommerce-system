@@ -10,6 +10,7 @@ Thumbs.db
 /.nova
 /.zed
 
+load_test.js
 # Root & env
 .env
 .env.*
