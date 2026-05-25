@@ -10,22 +10,17 @@ use App\Jobs\OrderPlacementJob;
 use App\Models\User;
 use App\Services\Bag\Contracts\BagInterface;
 use App\Services\Checkout\CheckoutSessionService;
-use App\Traits\GetUser;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 
 class CheckoutController extends Controller
 {
-    use GetUser;
-
     public function __construct(
         private readonly BagInterface $bagService,
         private readonly CheckoutSessionService $checkoutSessionService,
-        private readonly AuthenticationRepositoryInterface $authenticationRepository
     ) {}
 
     public function createSession()
     {
-        $user = $this->getUser();
+        $user = auth('user')->user();
 
         $bagData = $this->bagService->getBag();
 
@@ -44,7 +39,7 @@ class CheckoutController extends Controller
 
     public function getSession($sessionId)
     {
-        $user = $this->getUser();
+        $user = auth('user')->user();
 
         $session = $this->checkoutSessionService->getSession($user, $sessionId);
 
@@ -63,7 +58,7 @@ class CheckoutController extends Controller
 
     public function updateShipping(UpdateShippingRequest $request)
     {
-        $user = $this->getUser();
+        $user = auth('user')->user();
         $session = $this->checkoutSessionService->updateShipping($user, $request->validated());
 
         return response()->json([
@@ -77,7 +72,7 @@ class CheckoutController extends Controller
 
     public function createPaymentIntent(CreatePaymentIntentRequest $request)
     {
-        $user = $this->getUser();
+        $user = auth('user')->user();
 
         $session = $this->checkoutSessionService->createPaymentIntent($user, $request->validated());
 

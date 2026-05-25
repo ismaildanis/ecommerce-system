@@ -6,5 +6,5 @@ interface OrderInterface
 {
     public function getOrdersforUser();
 
-    public function getOneOrderforUser($orderId);
+    public function getOneOrderforUser(int $orderId);
 }

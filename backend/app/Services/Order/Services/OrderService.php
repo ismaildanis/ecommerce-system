@@ -2,25 +2,21 @@
 
 namespace App\Services\Order\Services;
 
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 use App\Repositories\Contracts\Order\OrderRepositoryInterface;
 use App\Repositories\Contracts\OrderItem\OrderItemRepositoryInterface;
 use App\Services\Order\Contracts\OrderInterface;
-use App\Traits\GetUser;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class OrderService implements OrderInterface
 {
-    use GetUser;
-
     public function __construct(
         private readonly OrderRepositoryInterface $orderRepository,
         private readonly OrderItemRepositoryInterface $orderItemRepository,
-        private readonly AuthenticationRepositoryInterface $authenticationRepository
     ) {}
 
     public function getOrdersforUser()
     {
-        $user = $this->getUser();
+        $user = auth('user')->user();
         $orders = $this->orderRepository->getOrdersforUser($user->id);
         if (! $orders) {
             throw new \Exception('Sipariş bulunamadı.');
@@ -29,12 +25,12 @@ class OrderService implements OrderInterface
         return $orders;
     }
 
-    public function getOneOrderforUser($orderId)
+    public function getOneOrderforUser(int $orderId)
     {
-        $user = $this->getUser();
+        $user = auth('user')->user();
         $orders = $this->orderItemRepository->getOrderDetailforUser($user->id, $orderId);
         if (! $orders || $orders->isEmpty()) {
-            throw new \Exception('Sipariş bulunamadı.');
+            throw new ModelNotFoundException('Sipariş bulunamadı.');
         }
 
         return $orders;

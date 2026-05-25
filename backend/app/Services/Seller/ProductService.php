@@ -282,25 +282,6 @@ class ProductService
         return $product->delete();
     }
 
-    public function searchProduct($request)
-    {
-        $seller = $this->authenticationRepository->getSeller();
-        if (! $seller) {
-            throw new \Exception('Satıcı bulunamadı');
-        }
-        $store = $this->storeRepository->getStoreBySellerId($seller->id);
-        if (! $store) {
-            throw new \Exception('Mağaza bulunamadı');
-        }
-        $query = $request->input('q', '') ?? '';
-        $filters = $this->elasticSearchTypeService->filterType($request);
-        $filters['store_id'] = $store->id;
-        $sorting = $this->elasticSearchTypeService->sortingType($request);
-        $data = $this->elasticSearchProductService->searchProducts($query, $filters, $sorting, $request->input('page', 1), $request->input('size', 12));
-
-        return $data;
-    }
-
     private function generateMetaTitle($request, $store)
     {
         $title = $request['title'] ?? '';

@@ -59,29 +59,6 @@ class ProductController extends Controller
         return ResponseHelper::success('Ürün başarıyla silindi.');
     }
 
-    public function searchProduct(Request $request)
-    {
-        $data = $this->productService->searchProduct($request);
-
-        if (! empty($data['products'])) {
-            return ResponseHelper::success('Ürünler Bulundu', [
-                'total' => $data['results']['total'],
-                'page' => $request->input('page', 1),
-                'size' => $request->input('size', 12),
-                'query' => $request->input('q', '') ?? '',
-                'products' => ProductResource::collection(collect($data['products'])->load($this->getProductLoadRelations())),
-            ]);
-        }
-
-        return ResponseHelper::notFound('Ürün bulunamadı.', [
-            'total' => 0,
-            'page' => $request->input('page', 1),
-            'size' => $request->input('size', 12),
-            'query' => $request->input('q', '') ?? '',
-            'products' => [],
-        ]);
-    }
-
     protected function getProductLoadRelations()
     {
         return [

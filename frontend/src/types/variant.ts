@@ -6,7 +6,7 @@ export interface ProductDetailResponse {
     all_variants: {
         id: number
         slug: string
-        thumbnail: string
+        thumbnail: string | null
     }[]
     similar_products?: Product[] 
 }

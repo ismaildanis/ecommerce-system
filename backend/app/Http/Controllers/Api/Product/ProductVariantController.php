@@ -10,15 +10,11 @@ use App\Services\Product\ProductVariantService;
 
 class ProductVariantController extends Controller
 {
-    protected $productVariantService;
+    public function __construct(
+        private readonly ProductVariantService $productVariantService
+    ) {}
 
-    public function __construct(ProductVariantService $productVariantService)
-    {
-        $this->productVariantService = $productVariantService;
-    }
-
-    /** @unauthenticated */
-    public function variantDetail($variant_slug)
+    public function variantDetail(string $variant_slug)
     {
         $variant = $this->productVariantService->getProductVariantBySlug($variant_slug);
         if (! $variant) {

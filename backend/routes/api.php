@@ -79,7 +79,6 @@ Route::middleware(AuthenticateSellerFromCookie::class)->group(function () {
 
     Route::prefix('seller')->group(function () {
         Route::post('product/bulk', [ProductController::class, 'bulkStore']);
-        Route::get('product/search', [ProductController::class, 'searchProduct']);
 
         Route::apiResource('campaign', CampaignController::class);
 

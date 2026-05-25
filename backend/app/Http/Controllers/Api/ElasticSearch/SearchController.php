@@ -11,17 +11,11 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    protected $elasticSearchTypeService;
+    public function __construct(
+        private readonly ElasticSearchTypeService $elasticSearchTypeService,
+        private readonly ElasticSearchProductService $elasticSearchProductService
+    ) {}
 
-    protected $elasticSearchProductService;
-
-    public function __construct(ElasticSearchTypeService $elasticSearchTypeService, ElasticSearchProductService $elasticSearchProductService)
-    {
-        $this->elasticSearchTypeService = $elasticSearchTypeService;
-        $this->elasticSearchProductService = $elasticSearchProductService;
-    }
-
-    /** @unauthenticated */
     public function search(Request $request)
     {
         $query = $request->input('q', '');

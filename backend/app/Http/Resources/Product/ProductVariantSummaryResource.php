@@ -8,12 +8,12 @@ class ProductVariantSummaryResource extends JsonResource
 {
     public function toArray($request)
     {
-        $firstImage = $this->variantImages->first();
+        $firstImage = $this->variantImages->first(fn ($image) => filled($image->image));
 
         return [
             'id' => $this->id,
             'slug' => $this->slug,
-            'thumbnail' => $firstImage ? $firstImage->image_url : null,
+            'thumbnail' => $firstImage?->image_url,
         ];
     }
 }

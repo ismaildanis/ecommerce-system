@@ -14,7 +14,7 @@ interface ProductDetailProps {
   allVariants: {
     id: number;
     slug: string;
-    thumbnail: string;
+    thumbnail: string | null;
   }[];
   similarProducts?: Product[];
 }

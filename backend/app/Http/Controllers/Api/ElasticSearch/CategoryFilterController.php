@@ -18,7 +18,6 @@ class CategoryFilterController extends Controller
         private readonly MainService $mainService
     ) {}
 
-    /** @unauthenticated */
     public function categoryFilter(Request $request, string $category_slug)
     {
         $categories = $this->mainService->getCategory($category_slug);
