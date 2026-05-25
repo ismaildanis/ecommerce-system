@@ -72,10 +72,10 @@
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="endpoints-POSTapi-register">
-                                <a href="#endpoints-POSTapi-register">Kullanıcı kayıt işlemi</a>
+                                <a href="#endpoints-POSTapi-register">POST api/register</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-login">
-                                <a href="#endpoints-POSTapi-login">Kullanıcı giriş işlemi</a>
+                                <a href="#endpoints-POSTapi-login">POST api/login</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-forgot-password">
                                 <a href="#endpoints-POSTapi-forgot-password">POST api/forgot-password</a>
@@ -100,6 +100,12 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-filter">
                                 <a href="#endpoints-GETapi-filter">GET api/filter</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-iyzico-callback">
+                                <a href="#endpoints-POSTapi-iyzico-callback">POST api/iyzico-callback</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-checkout-confirm">
+                                <a href="#endpoints-POSTapi-checkout-confirm">POST api/checkout/confirm</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-bags-campaign">
                                 <a href="#endpoints-POSTapi-bags-campaign">POST api/bags/campaign</a>
@@ -141,7 +147,7 @@
                                 <a href="#endpoints-GETapi-orders--order-">GET api/orders/{order}</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-me">
-                                <a href="#endpoints-GETapi-me">Mevcut kullanıcı bilgilerini getir</a>
+                                <a href="#endpoints-GETapi-me">GET api/me</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-account-addresses">
                                 <a href="#endpoints-GETapi-account-addresses">GET api/account/addresses</a>
@@ -158,11 +164,8 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-account-addresses--id-">
                                 <a href="#endpoints-DELETEapi-account-addresses--id-">DELETE api/account/addresses/{id}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-account-profile">
-                                <a href="#endpoints-GETapi-account-profile">Kullanıcı profil bilgilerini getir</a>
-                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-PUTapi-account-profile">
-                                <a href="#endpoints-PUTapi-account-profile">Kullanıcı profil bilgilerini güncelle</a>
+                                <a href="#endpoints-PUTapi-account-profile">PUT api/account/profile</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-logout">
                                 <a href="#endpoints-POSTapi-logout">POST api/logout</a>
@@ -172,9 +175,6 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-my-seller">
                                 <a href="#endpoints-GETapi-my-seller">GET api/my-seller</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-seller-product-search">
-                                <a href="#endpoints-GETapi-seller-product-search">GET api/seller/product/search</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-seller-campaign">
                                 <a href="#endpoints-GETapi-seller-campaign">GET api/seller/campaign</a>
@@ -254,12 +254,6 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-seller-orderitem--id--refund">
                                 <a href="#endpoints-POSTapi-seller-orderitem--id--refund">POST api/seller/orderitem/{id}/refund</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-proxy-iyzico-callback">
-                                <a href="#endpoints-POSTapi-proxy-iyzico-callback">POST api/proxy/iyzico-callback</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-checkout-confirm">
-                                <a href="#endpoints-POSTapi-checkout-confirm">POST api/checkout/confirm</a>
-                            </li>
                                                                         </ul>
                             </ul>
             </div>
@@ -271,7 +265,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 23, 2026</li>
+        <li>Last updated: May 25, 2026</li>
     </ul>
 </div>
 
@@ -296,7 +290,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
     
 
-                                <h2 id="endpoints-POSTapi-register">Kullanıcı kayıt işlemi</h2>
+                                <h2 id="endpoints-POSTapi-register">POST api/register</h2>
 
 <p>
 </p>
@@ -498,7 +492,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-login">Kullanıcı giriş işlemi</h2>
+                    <h2 id="endpoints-POSTapi-login">POST api/login</h2>
 
 <p>
 </p>
@@ -1518,9 +1512,9 @@ vary: Origin
                                     &quot;id&quot;: 1,
                                     &quot;variant_size_id&quot;: 1,
                                     &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 27,
+                                    &quot;on_hand&quot;: 20,
                                     &quot;reserved&quot;: 1,
-                                    &quot;available&quot;: 26,
+                                    &quot;available&quot;: 19,
                                     &quot;min_stock_level&quot;: 5
                                 }
                             },
@@ -1541,9 +1535,9 @@ vary: Origin
                                     &quot;id&quot;: 2,
                                     &quot;variant_size_id&quot;: 2,
                                     &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 19,
+                                    &quot;on_hand&quot;: 12,
                                     &quot;reserved&quot;: 2,
-                                    &quot;available&quot;: 17,
+                                    &quot;available&quot;: 10,
                                     &quot;min_stock_level&quot;: 5
                                 }
                             },
@@ -1564,9 +1558,9 @@ vary: Origin
                                     &quot;id&quot;: 3,
                                     &quot;variant_size_id&quot;: 3,
                                     &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 32,
+                                    &quot;on_hand&quot;: 31,
                                     &quot;reserved&quot;: 5,
-                                    &quot;available&quot;: 27,
+                                    &quot;available&quot;: 26,
                                     &quot;min_stock_level&quot;: 5
                                 }
                             },
@@ -1633,9 +1627,9 @@ vary: Origin
                                     &quot;id&quot;: 6,
                                     &quot;variant_size_id&quot;: 6,
                                     &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 31,
+                                    &quot;on_hand&quot;: 25,
                                     &quot;reserved&quot;: 3,
-                                    &quot;available&quot;: 28,
+                                    &quot;available&quot;: 22,
                                     &quot;min_stock_level&quot;: 5
                                 }
                             },
@@ -1656,9 +1650,9 @@ vary: Origin
                                     &quot;id&quot;: 7,
                                     &quot;variant_size_id&quot;: 7,
                                     &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 32,
+                                    &quot;on_hand&quot;: 24,
                                     &quot;reserved&quot;: 2,
-                                    &quot;available&quot;: 30,
+                                    &quot;available&quot;: 22,
                                     &quot;min_stock_level&quot;: 5
                                 }
                             },
@@ -1679,9 +1673,9 @@ vary: Origin
                                     &quot;id&quot;: 8,
                                     &quot;variant_size_id&quot;: 8,
                                     &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 23,
+                                    &quot;on_hand&quot;: 20,
                                     &quot;reserved&quot;: 4,
-                                    &quot;available&quot;: 19,
+                                    &quot;available&quot;: 16,
                                     &quot;min_stock_level&quot;: 5
                                 }
                             },
@@ -1702,9 +1696,9 @@ vary: Origin
                                     &quot;id&quot;: 9,
                                     &quot;variant_size_id&quot;: 9,
                                     &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 28,
+                                    &quot;on_hand&quot;: 27,
                                     &quot;reserved&quot;: 2,
-                                    &quot;available&quot;: 26,
+                                    &quot;available&quot;: 25,
                                     &quot;min_stock_level&quot;: 5
                                 }
                             },
@@ -1748,17 +1742,91 @@ vary: Origin
                                     &quot;id&quot;: 11,
                                     &quot;variant_size_id&quot;: 11,
                                     &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 13,
+                                    &quot;on_hand&quot;: 12,
                                     &quot;reserved&quot;: 5,
-                                    &quot;available&quot;: 8,
+                                    &quot;available&quot;: 7,
                                     &quot;min_stock_level&quot;: 5
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        &quot;id&quot;: 7,
+                        &quot;product_id&quot;: 1,
+                        &quot;sku&quot;: &quot;ERK-1-MAVI-7&quot;,
+                        &quot;slug&quot;: &quot;erkek-cocuk-esofman-takimi-mavi-7&quot;,
+                        &quot;color_name&quot;: &quot;Mavi&quot;,
+                        &quot;color_code&quot;: &quot;#000000&quot;,
+                        &quot;price_cents&quot;: 11111,
+                        &quot;is_popular&quot;: false,
+                        &quot;is_active&quot;: true,
+                        &quot;images&quot;: [],
+                        &quot;sizes&quot;: [
+                            {
+                                &quot;id&quot;: 57,
+                                &quot;product_variant_id&quot;: 7,
+                                &quot;size_option_id&quot;: 5,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 5,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;10 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;10-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ERK-1-MAVI-7-10-yas&quot;,
+                                &quot;price_cents&quot;: 11111,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 57,
+                                    &quot;variant_size_id&quot;: 57,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 9,
+                                    &quot;reserved&quot;: 0,
+                                    &quot;available&quot;: 9,
+                                    &quot;min_stock_level&quot;: 0
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        &quot;id&quot;: 8,
+                        &quot;product_id&quot;: 1,
+                        &quot;sku&quot;: &quot;ERK-1-YESIL-8&quot;,
+                        &quot;slug&quot;: &quot;erkek-cocuk-esofman-takimi-yesil-8&quot;,
+                        &quot;color_name&quot;: &quot;Yeşil&quot;,
+                        &quot;color_code&quot;: &quot;#000000&quot;,
+                        &quot;price_cents&quot;: 1111,
+                        &quot;is_popular&quot;: false,
+                        &quot;is_active&quot;: true,
+                        &quot;images&quot;: [],
+                        &quot;sizes&quot;: [
+                            {
+                                &quot;id&quot;: 58,
+                                &quot;product_variant_id&quot;: 8,
+                                &quot;size_option_id&quot;: 4,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 4,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;9 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;9-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;ERK-1-YESIL-8-9-yas&quot;,
+                                &quot;price_cents&quot;: 1111,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 58,
+                                    &quot;variant_size_id&quot;: 58,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 11,
+                                    &quot;reserved&quot;: 0,
+                                    &quot;available&quot;: 11,
+                                    &quot;min_stock_level&quot;: 0
                                 }
                             }
                         ]
                     }
                 ],
                 &quot;created_at&quot;: &quot;2026-05-15T19:37:44.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2026-05-23T18:48:20.000000Z&quot;
+                &quot;updated_at&quot;: &quot;2026-05-25T21:33:58.000000Z&quot;
             },
             {
                 &quot;id&quot;: 2,
@@ -1790,556 +1858,6 @@ vary: Origin
                 &quot;meta_description&quot;: null,
                 &quot;is_published&quot;: true,
                 &quot;variants&quot;: [
-                    {
-                        &quot;id&quot;: 3,
-                        &quot;product_id&quot;: 2,
-                        &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV&quot;,
-                        &quot;slug&quot;: &quot;kiz-jean-acik-mavi&quot;,
-                        &quot;color_name&quot;: &quot;A&ccedil;ık Mavi&quot;,
-                        &quot;color_code&quot;: &quot;#87CEEB&quot;,
-                        &quot;price_cents&quot;: 27900,
-                        &quot;is_popular&quot;: false,
-                        &quot;is_active&quot;: true,
-                        &quot;images&quot;: [
-                            {
-                                &quot;id&quot;: 6,
-                                &quot;product_variant_id&quot;: 3,
-                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/jean-acik-mavi.png&quot;,
-                                &quot;is_primary&quot;: true,
-                                &quot;sort_order&quot;: 1
-                            }
-                        ],
-                        &quot;sizes&quot;: [
-                            {
-                                &quot;id&quot;: 23,
-                                &quot;product_variant_id&quot;: 3,
-                                &quot;size_option_id&quot;: 1,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 1,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;6 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;6-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-6YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 23,
-                                    &quot;variant_size_id&quot;: 23,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 19,
-                                    &quot;reserved&quot;: 3,
-                                    &quot;available&quot;: 16,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 24,
-                                &quot;product_variant_id&quot;: 3,
-                                &quot;size_option_id&quot;: 2,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 2,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;7 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;7-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-7YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 24,
-                                    &quot;variant_size_id&quot;: 24,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 41,
-                                    &quot;reserved&quot;: 2,
-                                    &quot;available&quot;: 39,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 25,
-                                &quot;product_variant_id&quot;: 3,
-                                &quot;size_option_id&quot;: 3,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 3,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;8 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;8-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-8YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 25,
-                                    &quot;variant_size_id&quot;: 25,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 36,
-                                    &quot;reserved&quot;: 1,
-                                    &quot;available&quot;: 35,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 26,
-                                &quot;product_variant_id&quot;: 3,
-                                &quot;size_option_id&quot;: 4,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 4,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;9 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;9-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-9YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 26,
-                                    &quot;variant_size_id&quot;: 26,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 44,
-                                    &quot;reserved&quot;: 1,
-                                    &quot;available&quot;: 43,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 27,
-                                &quot;product_variant_id&quot;: 3,
-                                &quot;size_option_id&quot;: 5,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 5,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;10 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;10-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-10YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 27,
-                                    &quot;variant_size_id&quot;: 27,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 49,
-                                    &quot;reserved&quot;: 0,
-                                    &quot;available&quot;: 49,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 28,
-                                &quot;product_variant_id&quot;: 3,
-                                &quot;size_option_id&quot;: 6,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 6,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;11 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;11-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-11YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 28,
-                                    &quot;variant_size_id&quot;: 28,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 31,
-                                    &quot;reserved&quot;: 3,
-                                    &quot;available&quot;: 28,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 29,
-                                &quot;product_variant_id&quot;: 3,
-                                &quot;size_option_id&quot;: 7,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 7,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;12 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;12-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-12YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 29,
-                                    &quot;variant_size_id&quot;: 29,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 13,
-                                    &quot;reserved&quot;: 3,
-                                    &quot;available&quot;: 10,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 30,
-                                &quot;product_variant_id&quot;: 3,
-                                &quot;size_option_id&quot;: 8,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 8,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;13 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;13-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-13YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 30,
-                                    &quot;variant_size_id&quot;: 30,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 10,
-                                    &quot;reserved&quot;: 2,
-                                    &quot;available&quot;: 8,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 31,
-                                &quot;product_variant_id&quot;: 3,
-                                &quot;size_option_id&quot;: 9,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 9,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;14 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;14-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-14YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 31,
-                                    &quot;variant_size_id&quot;: 31,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 23,
-                                    &quot;reserved&quot;: 1,
-                                    &quot;available&quot;: 22,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 32,
-                                &quot;product_variant_id&quot;: 3,
-                                &quot;size_option_id&quot;: 10,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 10,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;15 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;15-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-15YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 32,
-                                    &quot;variant_size_id&quot;: 32,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 44,
-                                    &quot;reserved&quot;: 4,
-                                    &quot;available&quot;: 40,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 33,
-                                &quot;product_variant_id&quot;: 3,
-                                &quot;size_option_id&quot;: 11,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 11,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;16 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;16-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-16YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 33,
-                                    &quot;variant_size_id&quot;: 33,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 21,
-                                    &quot;reserved&quot;: 1,
-                                    &quot;available&quot;: 20,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        &quot;id&quot;: 4,
-                        &quot;product_id&quot;: 2,
-                        &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV&quot;,
-                        &quot;slug&quot;: &quot;kiz-jean-koyu-mavi&quot;,
-                        &quot;color_name&quot;: &quot;Koyu Mavi&quot;,
-                        &quot;color_code&quot;: &quot;#003366&quot;,
-                        &quot;price_cents&quot;: 27900,
-                        &quot;is_popular&quot;: false,
-                        &quot;is_active&quot;: true,
-                        &quot;images&quot;: [
-                            {
-                                &quot;id&quot;: 7,
-                                &quot;product_variant_id&quot;: 4,
-                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/jean-koyu-mavi.png&quot;,
-                                &quot;is_primary&quot;: true,
-                                &quot;sort_order&quot;: 1
-                            }
-                        ],
-                        &quot;sizes&quot;: [
-                            {
-                                &quot;id&quot;: 34,
-                                &quot;product_variant_id&quot;: 4,
-                                &quot;size_option_id&quot;: 1,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 1,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;6 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;6-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-6YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 34,
-                                    &quot;variant_size_id&quot;: 34,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 8,
-                                    &quot;reserved&quot;: 4,
-                                    &quot;available&quot;: 4,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 35,
-                                &quot;product_variant_id&quot;: 4,
-                                &quot;size_option_id&quot;: 2,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 2,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;7 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;7-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-7YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 35,
-                                    &quot;variant_size_id&quot;: 35,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 14,
-                                    &quot;reserved&quot;: 4,
-                                    &quot;available&quot;: 10,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 36,
-                                &quot;product_variant_id&quot;: 4,
-                                &quot;size_option_id&quot;: 3,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 3,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;8 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;8-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-8YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 36,
-                                    &quot;variant_size_id&quot;: 36,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 11,
-                                    &quot;reserved&quot;: 1,
-                                    &quot;available&quot;: 10,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 37,
-                                &quot;product_variant_id&quot;: 4,
-                                &quot;size_option_id&quot;: 4,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 4,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;9 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;9-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-9YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 37,
-                                    &quot;variant_size_id&quot;: 37,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 19,
-                                    &quot;reserved&quot;: 2,
-                                    &quot;available&quot;: 17,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 38,
-                                &quot;product_variant_id&quot;: 4,
-                                &quot;size_option_id&quot;: 5,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 5,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;10 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;10-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-10YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 38,
-                                    &quot;variant_size_id&quot;: 38,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 26,
-                                    &quot;reserved&quot;: 0,
-                                    &quot;available&quot;: 26,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 39,
-                                &quot;product_variant_id&quot;: 4,
-                                &quot;size_option_id&quot;: 6,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 6,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;11 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;11-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-11YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 39,
-                                    &quot;variant_size_id&quot;: 39,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 30,
-                                    &quot;reserved&quot;: 3,
-                                    &quot;available&quot;: 27,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 40,
-                                &quot;product_variant_id&quot;: 4,
-                                &quot;size_option_id&quot;: 7,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 7,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;12 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;12-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-12YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 40,
-                                    &quot;variant_size_id&quot;: 40,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 18,
-                                    &quot;reserved&quot;: 1,
-                                    &quot;available&quot;: 17,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 41,
-                                &quot;product_variant_id&quot;: 4,
-                                &quot;size_option_id&quot;: 8,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 8,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;13 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;13-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-13YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 41,
-                                    &quot;variant_size_id&quot;: 41,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 15,
-                                    &quot;reserved&quot;: 3,
-                                    &quot;available&quot;: 12,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 42,
-                                &quot;product_variant_id&quot;: 4,
-                                &quot;size_option_id&quot;: 9,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 9,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;14 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;14-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-14YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 42,
-                                    &quot;variant_size_id&quot;: 42,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 20,
-                                    &quot;reserved&quot;: 4,
-                                    &quot;available&quot;: 16,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 43,
-                                &quot;product_variant_id&quot;: 4,
-                                &quot;size_option_id&quot;: 10,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 10,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;15 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;15-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-15YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 43,
-                                    &quot;variant_size_id&quot;: 43,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 31,
-                                    &quot;reserved&quot;: 0,
-                                    &quot;available&quot;: 31,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            },
-                            {
-                                &quot;id&quot;: 44,
-                                &quot;product_variant_id&quot;: 4,
-                                &quot;size_option_id&quot;: 11,
-                                &quot;size_option&quot;: {
-                                    &quot;id&quot;: 11,
-                                    &quot;attribute_id&quot;: 1,
-                                    &quot;value&quot;: &quot;16 Yaş&quot;,
-                                    &quot;slug&quot;: &quot;16-yas&quot;
-                                },
-                                &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-16YAS&quot;,
-                                &quot;price_cents&quot;: 27900,
-                                &quot;is_active&quot;: true,
-                                &quot;inventory&quot;: {
-                                    &quot;id&quot;: 44,
-                                    &quot;variant_size_id&quot;: 44,
-                                    &quot;warehouse_id&quot;: 1,
-                                    &quot;on_hand&quot;: 10,
-                                    &quot;reserved&quot;: 5,
-                                    &quot;available&quot;: 5,
-                                    &quot;min_stock_level&quot;: 5
-                                }
-                            }
-                        ]
-                    },
                     {
                         &quot;id&quot;: 5,
                         &quot;product_id&quot;: 2,
@@ -2614,10 +2132,322 @@ vary: Origin
                                 }
                             }
                         ]
+                    },
+                    {
+                        &quot;id&quot;: 3,
+                        &quot;product_id&quot;: 2,
+                        &quot;sku&quot;: &quot;KI-2-ACIK0MAVI-3&quot;,
+                        &quot;slug&quot;: &quot;kiz-cocuk-jean-pantolon-acik0mavi-3&quot;,
+                        &quot;color_name&quot;: &quot;A&ccedil;ık Mavi&quot;,
+                        &quot;color_code&quot;: &quot;#87CEEB&quot;,
+                        &quot;price_cents&quot;: 47900,
+                        &quot;is_popular&quot;: false,
+                        &quot;is_active&quot;: true,
+                        &quot;images&quot;: [
+                            {
+                                &quot;id&quot;: 6,
+                                &quot;product_variant_id&quot;: 3,
+                                &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/jean-acik-mavi.png&quot;,
+                                &quot;is_primary&quot;: true,
+                                &quot;sort_order&quot;: 1
+                            }
+                        ],
+                        &quot;sizes&quot;: [
+                            {
+                                &quot;id&quot;: 23,
+                                &quot;product_variant_id&quot;: 3,
+                                &quot;size_option_id&quot;: 1,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 1,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;6 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;6-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-6YAS&quot;,
+                                &quot;price_cents&quot;: 27900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 23,
+                                    &quot;variant_size_id&quot;: 23,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 19,
+                                    &quot;reserved&quot;: 3,
+                                    &quot;available&quot;: 16,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 24,
+                                &quot;product_variant_id&quot;: 3,
+                                &quot;size_option_id&quot;: 2,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 2,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;7 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;7-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-7YAS&quot;,
+                                &quot;price_cents&quot;: 27900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 24,
+                                    &quot;variant_size_id&quot;: 24,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 41,
+                                    &quot;reserved&quot;: 2,
+                                    &quot;available&quot;: 39,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 25,
+                                &quot;product_variant_id&quot;: 3,
+                                &quot;size_option_id&quot;: 3,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 3,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;8 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;8-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-8YAS&quot;,
+                                &quot;price_cents&quot;: 27900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 25,
+                                    &quot;variant_size_id&quot;: 25,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 36,
+                                    &quot;reserved&quot;: 1,
+                                    &quot;available&quot;: 35,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 26,
+                                &quot;product_variant_id&quot;: 3,
+                                &quot;size_option_id&quot;: 4,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 4,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;9 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;9-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-9YAS&quot;,
+                                &quot;price_cents&quot;: 27900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 26,
+                                    &quot;variant_size_id&quot;: 26,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 44,
+                                    &quot;reserved&quot;: 1,
+                                    &quot;available&quot;: 43,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 27,
+                                &quot;product_variant_id&quot;: 3,
+                                &quot;size_option_id&quot;: 5,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 5,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;10 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;10-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-10YAS&quot;,
+                                &quot;price_cents&quot;: 27900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 27,
+                                    &quot;variant_size_id&quot;: 27,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 49,
+                                    &quot;reserved&quot;: 0,
+                                    &quot;available&quot;: 49,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 28,
+                                &quot;product_variant_id&quot;: 3,
+                                &quot;size_option_id&quot;: 6,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 6,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;11 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;11-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-11YAS&quot;,
+                                &quot;price_cents&quot;: 27900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 28,
+                                    &quot;variant_size_id&quot;: 28,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 31,
+                                    &quot;reserved&quot;: 3,
+                                    &quot;available&quot;: 28,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 29,
+                                &quot;product_variant_id&quot;: 3,
+                                &quot;size_option_id&quot;: 7,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 7,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;12 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;12-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-12YAS&quot;,
+                                &quot;price_cents&quot;: 27900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 29,
+                                    &quot;variant_size_id&quot;: 29,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 12,
+                                    &quot;reserved&quot;: 3,
+                                    &quot;available&quot;: 9,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 30,
+                                &quot;product_variant_id&quot;: 3,
+                                &quot;size_option_id&quot;: 8,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 8,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;13 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;13-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-13YAS&quot;,
+                                &quot;price_cents&quot;: 27900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 30,
+                                    &quot;variant_size_id&quot;: 30,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 10,
+                                    &quot;reserved&quot;: 2,
+                                    &quot;available&quot;: 8,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 31,
+                                &quot;product_variant_id&quot;: 3,
+                                &quot;size_option_id&quot;: 9,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 9,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;14 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;14-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-14YAS&quot;,
+                                &quot;price_cents&quot;: 27900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 31,
+                                    &quot;variant_size_id&quot;: 31,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 23,
+                                    &quot;reserved&quot;: 1,
+                                    &quot;available&quot;: 22,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 32,
+                                &quot;product_variant_id&quot;: 3,
+                                &quot;size_option_id&quot;: 10,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 10,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;15 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;15-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-15YAS&quot;,
+                                &quot;price_cents&quot;: 27900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 32,
+                                    &quot;variant_size_id&quot;: 32,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 44,
+                                    &quot;reserved&quot;: 4,
+                                    &quot;available&quot;: 40,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            },
+                            {
+                                &quot;id&quot;: 33,
+                                &quot;product_variant_id&quot;: 3,
+                                &quot;size_option_id&quot;: 11,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 11,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;16 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;16-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-16YAS&quot;,
+                                &quot;price_cents&quot;: 27900,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 33,
+                                    &quot;variant_size_id&quot;: 33,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 21,
+                                    &quot;reserved&quot;: 1,
+                                    &quot;available&quot;: 20,
+                                    &quot;min_stock_level&quot;: 5
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        &quot;id&quot;: 6,
+                        &quot;product_id&quot;: 2,
+                        &quot;sku&quot;: &quot;KI-2-SIYAH-6&quot;,
+                        &quot;slug&quot;: &quot;kiz-cocuk-jean-pantolon-siyah-6&quot;,
+                        &quot;color_name&quot;: &quot;Siyah&quot;,
+                        &quot;color_code&quot;: &quot;#111111&quot;,
+                        &quot;price_cents&quot;: 1111,
+                        &quot;is_popular&quot;: true,
+                        &quot;is_active&quot;: true,
+                        &quot;images&quot;: [],
+                        &quot;sizes&quot;: [
+                            {
+                                &quot;id&quot;: 56,
+                                &quot;product_variant_id&quot;: 6,
+                                &quot;size_option_id&quot;: 4,
+                                &quot;size_option&quot;: {
+                                    &quot;id&quot;: 4,
+                                    &quot;attribute_id&quot;: 1,
+                                    &quot;value&quot;: &quot;9 Yaş&quot;,
+                                    &quot;slug&quot;: &quot;9-yas&quot;
+                                },
+                                &quot;sku&quot;: &quot;KI-2-SIYAH-6-9-yas&quot;,
+                                &quot;price_cents&quot;: 1111,
+                                &quot;is_active&quot;: true,
+                                &quot;inventory&quot;: {
+                                    &quot;id&quot;: 56,
+                                    &quot;variant_size_id&quot;: 56,
+                                    &quot;warehouse_id&quot;: 1,
+                                    &quot;on_hand&quot;: 11,
+                                    &quot;reserved&quot;: 1,
+                                    &quot;available&quot;: 10,
+                                    &quot;min_stock_level&quot;: 10
+                                }
+                            }
+                        ]
                     }
                 ],
                 &quot;created_at&quot;: &quot;2026-05-15T19:37:44.000000Z&quot;,
-                &quot;updated_at&quot;: &quot;2026-05-23T19:07:54.000000Z&quot;
+                &quot;updated_at&quot;: &quot;2026-05-25T14:05:48.000000Z&quot;
             }
         ],
         &quot;categories&quot;: [
@@ -2835,7 +2665,7 @@ vary: Origin
         &quot;campaigns&quot;: [
             {
                 &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;Kışa &Ouml;zel %20&quot;,
+                &quot;name&quot;: &quot;Kışa &Ouml;zel %25&quot;,
                 &quot;description&quot;: &quot;Se&ccedil;ili &Uuml;r&uuml;nlerde Kışa &Ouml;zel %20&quot;,
                 &quot;is_active&quot;: true
             },
@@ -3297,554 +3127,6 @@ vary: Origin
             &quot;is_published&quot;: true,
             &quot;variants&quot;: [
                 {
-                    &quot;id&quot;: 3,
-                    &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV&quot;,
-                    &quot;slug&quot;: &quot;kiz-jean-acik-mavi&quot;,
-                    &quot;price_cents&quot;: 27900,
-                    &quot;color_name&quot;: &quot;A&ccedil;ık Mavi&quot;,
-                    &quot;color_code&quot;: &quot;#87CEEB&quot;,
-                    &quot;is_popular&quot;: false,
-                    &quot;is_active&quot;: true,
-                    &quot;images&quot;: [
-                        {
-                            &quot;id&quot;: 6,
-                            &quot;product_variant_id&quot;: 3,
-                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/jean-acik-mavi.png&quot;,
-                            &quot;is_primary&quot;: true,
-                            &quot;sort_order&quot;: 1
-                        }
-                    ],
-                    &quot;sizes&quot;: [
-                        {
-                            &quot;id&quot;: 23,
-                            &quot;product_variant_id&quot;: 3,
-                            &quot;size_option_id&quot;: 1,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 1,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;6 Yaş&quot;,
-                                &quot;slug&quot;: &quot;6-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-6YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 23,
-                                &quot;variant_size_id&quot;: 23,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 19,
-                                &quot;reserved&quot;: 3,
-                                &quot;available&quot;: 16,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 24,
-                            &quot;product_variant_id&quot;: 3,
-                            &quot;size_option_id&quot;: 2,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 2,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;7 Yaş&quot;,
-                                &quot;slug&quot;: &quot;7-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-7YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 24,
-                                &quot;variant_size_id&quot;: 24,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 41,
-                                &quot;reserved&quot;: 2,
-                                &quot;available&quot;: 39,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 25,
-                            &quot;product_variant_id&quot;: 3,
-                            &quot;size_option_id&quot;: 3,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 3,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;8 Yaş&quot;,
-                                &quot;slug&quot;: &quot;8-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-8YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 25,
-                                &quot;variant_size_id&quot;: 25,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 36,
-                                &quot;reserved&quot;: 1,
-                                &quot;available&quot;: 35,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 26,
-                            &quot;product_variant_id&quot;: 3,
-                            &quot;size_option_id&quot;: 4,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 4,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;9 Yaş&quot;,
-                                &quot;slug&quot;: &quot;9-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-9YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 26,
-                                &quot;variant_size_id&quot;: 26,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 44,
-                                &quot;reserved&quot;: 1,
-                                &quot;available&quot;: 43,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 27,
-                            &quot;product_variant_id&quot;: 3,
-                            &quot;size_option_id&quot;: 5,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 5,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;10 Yaş&quot;,
-                                &quot;slug&quot;: &quot;10-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-10YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 27,
-                                &quot;variant_size_id&quot;: 27,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 49,
-                                &quot;reserved&quot;: 0,
-                                &quot;available&quot;: 49,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 28,
-                            &quot;product_variant_id&quot;: 3,
-                            &quot;size_option_id&quot;: 6,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 6,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;11 Yaş&quot;,
-                                &quot;slug&quot;: &quot;11-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-11YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 28,
-                                &quot;variant_size_id&quot;: 28,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 31,
-                                &quot;reserved&quot;: 3,
-                                &quot;available&quot;: 28,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 29,
-                            &quot;product_variant_id&quot;: 3,
-                            &quot;size_option_id&quot;: 7,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 7,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;12 Yaş&quot;,
-                                &quot;slug&quot;: &quot;12-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-12YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 29,
-                                &quot;variant_size_id&quot;: 29,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 13,
-                                &quot;reserved&quot;: 3,
-                                &quot;available&quot;: 10,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 30,
-                            &quot;product_variant_id&quot;: 3,
-                            &quot;size_option_id&quot;: 8,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 8,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;13 Yaş&quot;,
-                                &quot;slug&quot;: &quot;13-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-13YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 30,
-                                &quot;variant_size_id&quot;: 30,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 10,
-                                &quot;reserved&quot;: 2,
-                                &quot;available&quot;: 8,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 31,
-                            &quot;product_variant_id&quot;: 3,
-                            &quot;size_option_id&quot;: 9,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 9,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;14 Yaş&quot;,
-                                &quot;slug&quot;: &quot;14-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-14YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 31,
-                                &quot;variant_size_id&quot;: 31,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 23,
-                                &quot;reserved&quot;: 1,
-                                &quot;available&quot;: 22,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 32,
-                            &quot;product_variant_id&quot;: 3,
-                            &quot;size_option_id&quot;: 10,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 10,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;15 Yaş&quot;,
-                                &quot;slug&quot;: &quot;15-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-15YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 32,
-                                &quot;variant_size_id&quot;: 32,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 44,
-                                &quot;reserved&quot;: 4,
-                                &quot;available&quot;: 40,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 33,
-                            &quot;product_variant_id&quot;: 3,
-                            &quot;size_option_id&quot;: 11,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 11,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;16 Yaş&quot;,
-                                &quot;slug&quot;: &quot;16-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-16YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 33,
-                                &quot;variant_size_id&quot;: 33,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 21,
-                                &quot;reserved&quot;: 1,
-                                &quot;available&quot;: 20,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        }
-                    ]
-                },
-                {
-                    &quot;id&quot;: 4,
-                    &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV&quot;,
-                    &quot;slug&quot;: &quot;kiz-jean-koyu-mavi&quot;,
-                    &quot;price_cents&quot;: 27900,
-                    &quot;color_name&quot;: &quot;Koyu Mavi&quot;,
-                    &quot;color_code&quot;: &quot;#003366&quot;,
-                    &quot;is_popular&quot;: false,
-                    &quot;is_active&quot;: true,
-                    &quot;images&quot;: [
-                        {
-                            &quot;id&quot;: 7,
-                            &quot;product_variant_id&quot;: 4,
-                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/jean-koyu-mavi.png&quot;,
-                            &quot;is_primary&quot;: true,
-                            &quot;sort_order&quot;: 1
-                        }
-                    ],
-                    &quot;sizes&quot;: [
-                        {
-                            &quot;id&quot;: 34,
-                            &quot;product_variant_id&quot;: 4,
-                            &quot;size_option_id&quot;: 1,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 1,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;6 Yaş&quot;,
-                                &quot;slug&quot;: &quot;6-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-6YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 34,
-                                &quot;variant_size_id&quot;: 34,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 10,
-                                &quot;reserved&quot;: 4,
-                                &quot;available&quot;: 6,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 35,
-                            &quot;product_variant_id&quot;: 4,
-                            &quot;size_option_id&quot;: 2,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 2,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;7 Yaş&quot;,
-                                &quot;slug&quot;: &quot;7-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-7YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 35,
-                                &quot;variant_size_id&quot;: 35,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 14,
-                                &quot;reserved&quot;: 4,
-                                &quot;available&quot;: 10,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 36,
-                            &quot;product_variant_id&quot;: 4,
-                            &quot;size_option_id&quot;: 3,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 3,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;8 Yaş&quot;,
-                                &quot;slug&quot;: &quot;8-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-8YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 36,
-                                &quot;variant_size_id&quot;: 36,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 11,
-                                &quot;reserved&quot;: 1,
-                                &quot;available&quot;: 10,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 37,
-                            &quot;product_variant_id&quot;: 4,
-                            &quot;size_option_id&quot;: 4,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 4,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;9 Yaş&quot;,
-                                &quot;slug&quot;: &quot;9-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-9YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 37,
-                                &quot;variant_size_id&quot;: 37,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 19,
-                                &quot;reserved&quot;: 2,
-                                &quot;available&quot;: 17,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 38,
-                            &quot;product_variant_id&quot;: 4,
-                            &quot;size_option_id&quot;: 5,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 5,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;10 Yaş&quot;,
-                                &quot;slug&quot;: &quot;10-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-10YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 38,
-                                &quot;variant_size_id&quot;: 38,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 26,
-                                &quot;reserved&quot;: 0,
-                                &quot;available&quot;: 26,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 39,
-                            &quot;product_variant_id&quot;: 4,
-                            &quot;size_option_id&quot;: 6,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 6,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;11 Yaş&quot;,
-                                &quot;slug&quot;: &quot;11-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-11YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 39,
-                                &quot;variant_size_id&quot;: 39,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 30,
-                                &quot;reserved&quot;: 3,
-                                &quot;available&quot;: 27,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 40,
-                            &quot;product_variant_id&quot;: 4,
-                            &quot;size_option_id&quot;: 7,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 7,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;12 Yaş&quot;,
-                                &quot;slug&quot;: &quot;12-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-12YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 40,
-                                &quot;variant_size_id&quot;: 40,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 19,
-                                &quot;reserved&quot;: 1,
-                                &quot;available&quot;: 18,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 41,
-                            &quot;product_variant_id&quot;: 4,
-                            &quot;size_option_id&quot;: 8,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 8,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;13 Yaş&quot;,
-                                &quot;slug&quot;: &quot;13-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-13YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 41,
-                                &quot;variant_size_id&quot;: 41,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 15,
-                                &quot;reserved&quot;: 3,
-                                &quot;available&quot;: 12,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 42,
-                            &quot;product_variant_id&quot;: 4,
-                            &quot;size_option_id&quot;: 9,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 9,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;14 Yaş&quot;,
-                                &quot;slug&quot;: &quot;14-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-14YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 42,
-                                &quot;variant_size_id&quot;: 42,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 20,
-                                &quot;reserved&quot;: 4,
-                                &quot;available&quot;: 16,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 43,
-                            &quot;product_variant_id&quot;: 4,
-                            &quot;size_option_id&quot;: 10,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 10,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;15 Yaş&quot;,
-                                &quot;slug&quot;: &quot;15-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-15YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 43,
-                                &quot;variant_size_id&quot;: 43,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 31,
-                                &quot;reserved&quot;: 0,
-                                &quot;available&quot;: 31,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        },
-                        {
-                            &quot;id&quot;: 44,
-                            &quot;product_variant_id&quot;: 4,
-                            &quot;size_option_id&quot;: 11,
-                            &quot;size_option&quot;: {
-                                &quot;id&quot;: 11,
-                                &quot;attribute_id&quot;: 1,
-                                &quot;value&quot;: &quot;16 Yaş&quot;,
-                                &quot;slug&quot;: &quot;16-yas&quot;
-                            },
-                            &quot;sku&quot;: &quot;JEAN-KIZ-001-KMAV-16YAS&quot;,
-                            &quot;price_cents&quot;: 27900,
-                            &quot;is_active&quot;: true,
-                            &quot;inventory&quot;: {
-                                &quot;id&quot;: 44,
-                                &quot;variant_size_id&quot;: 44,
-                                &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 10,
-                                &quot;reserved&quot;: 5,
-                                &quot;available&quot;: 5,
-                                &quot;min_stock_level&quot;: 5
-                            }
-                        }
-                    ]
-                },
-                {
                     &quot;id&quot;: 5,
                     &quot;sku&quot;: &quot;JEAN-KIZ-001-SYH&quot;,
                     &quot;slug&quot;: &quot;kiz-jean-siyah&quot;,
@@ -4117,10 +3399,320 @@ vary: Origin
                             }
                         }
                     ]
+                },
+                {
+                    &quot;id&quot;: 3,
+                    &quot;sku&quot;: &quot;KI-2-ACIK0MAVI-3&quot;,
+                    &quot;slug&quot;: &quot;kiz-cocuk-jean-pantolon-acik0mavi-3&quot;,
+                    &quot;price_cents&quot;: 47900,
+                    &quot;color_name&quot;: &quot;A&ccedil;ık Mavi&quot;,
+                    &quot;color_code&quot;: &quot;#87CEEB&quot;,
+                    &quot;is_popular&quot;: false,
+                    &quot;is_active&quot;: true,
+                    &quot;images&quot;: [
+                        {
+                            &quot;id&quot;: 6,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;image&quot;: &quot;http://localhost:8000/storage/productImages/jean-acik-mavi.png&quot;,
+                            &quot;is_primary&quot;: true,
+                            &quot;sort_order&quot;: 1
+                        }
+                    ],
+                    &quot;sizes&quot;: [
+                        {
+                            &quot;id&quot;: 23,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 1,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 1,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;6 Yaş&quot;,
+                                &quot;slug&quot;: &quot;6-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-6YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 23,
+                                &quot;variant_size_id&quot;: 23,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 19,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 16,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 24,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 2,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 2,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;7 Yaş&quot;,
+                                &quot;slug&quot;: &quot;7-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-7YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 24,
+                                &quot;variant_size_id&quot;: 24,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 41,
+                                &quot;reserved&quot;: 2,
+                                &quot;available&quot;: 39,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 25,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 3,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 3,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;8 Yaş&quot;,
+                                &quot;slug&quot;: &quot;8-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-8YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 25,
+                                &quot;variant_size_id&quot;: 25,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 36,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 35,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 26,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 4,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 4,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;9 Yaş&quot;,
+                                &quot;slug&quot;: &quot;9-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-9YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 26,
+                                &quot;variant_size_id&quot;: 26,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 44,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 43,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 27,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 5,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 5,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;10 Yaş&quot;,
+                                &quot;slug&quot;: &quot;10-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-10YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 27,
+                                &quot;variant_size_id&quot;: 27,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 49,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 49,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 28,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 6,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 6,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;11 Yaş&quot;,
+                                &quot;slug&quot;: &quot;11-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-11YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 28,
+                                &quot;variant_size_id&quot;: 28,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 31,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 28,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 29,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 7,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 7,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;12 Yaş&quot;,
+                                &quot;slug&quot;: &quot;12-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-12YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 29,
+                                &quot;variant_size_id&quot;: 29,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 13,
+                                &quot;reserved&quot;: 3,
+                                &quot;available&quot;: 10,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 30,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 8,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 8,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;13 Yaş&quot;,
+                                &quot;slug&quot;: &quot;13-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-13YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 30,
+                                &quot;variant_size_id&quot;: 30,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 10,
+                                &quot;reserved&quot;: 2,
+                                &quot;available&quot;: 8,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 31,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 9,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 9,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;14 Yaş&quot;,
+                                &quot;slug&quot;: &quot;14-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-14YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 31,
+                                &quot;variant_size_id&quot;: 31,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 23,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 22,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 32,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 10,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 10,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;15 Yaş&quot;,
+                                &quot;slug&quot;: &quot;15-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-15YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 32,
+                                &quot;variant_size_id&quot;: 32,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 44,
+                                &quot;reserved&quot;: 4,
+                                &quot;available&quot;: 40,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        },
+                        {
+                            &quot;id&quot;: 33,
+                            &quot;product_variant_id&quot;: 3,
+                            &quot;size_option_id&quot;: 11,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 11,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;16 Yaş&quot;,
+                                &quot;slug&quot;: &quot;16-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;JEAN-KIZ-001-AMAV-16YAS&quot;,
+                            &quot;price_cents&quot;: 27900,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 33,
+                                &quot;variant_size_id&quot;: 33,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 21,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 20,
+                                &quot;min_stock_level&quot;: 5
+                            }
+                        }
+                    ]
+                },
+                {
+                    &quot;id&quot;: 6,
+                    &quot;sku&quot;: &quot;KI-2-SIYAH-6&quot;,
+                    &quot;slug&quot;: &quot;kiz-cocuk-jean-pantolon-siyah-6&quot;,
+                    &quot;price_cents&quot;: 1111,
+                    &quot;color_name&quot;: &quot;Siyah&quot;,
+                    &quot;color_code&quot;: &quot;#111111&quot;,
+                    &quot;is_popular&quot;: true,
+                    &quot;is_active&quot;: true,
+                    &quot;images&quot;: [],
+                    &quot;sizes&quot;: [
+                        {
+                            &quot;id&quot;: 56,
+                            &quot;product_variant_id&quot;: 6,
+                            &quot;size_option_id&quot;: 4,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 4,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;9 Yaş&quot;,
+                                &quot;slug&quot;: &quot;9-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;KI-2-SIYAH-6-9-yas&quot;,
+                            &quot;price_cents&quot;: 1111,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 56,
+                                &quot;variant_size_id&quot;: 56,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 11,
+                                &quot;reserved&quot;: 1,
+                                &quot;available&quot;: 10,
+                                &quot;min_stock_level&quot;: 10
+                            }
+                        }
+                    ]
                 }
             ],
             &quot;created_at&quot;: &quot;2026-05-15T19:37:44+00:00&quot;,
-            &quot;updated_at&quot;: &quot;2026-05-15T19:37:44+00:00&quot;,
+            &quot;updated_at&quot;: &quot;2026-05-23T19:07:54+00:00&quot;,
             &quot;category_title&quot;: &quot;Jean&quot;,
             &quot;gender&quot;: &quot;Erkek &Ccedil;ocuk&quot;
         },
@@ -4268,9 +3860,9 @@ vary: Origin
                                 &quot;id&quot;: 14,
                                 &quot;variant_size_id&quot;: 14,
                                 &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 39,
+                                &quot;on_hand&quot;: 38,
                                 &quot;reserved&quot;: 1,
-                                &quot;available&quot;: 38,
+                                &quot;available&quot;: 37,
                                 &quot;min_stock_level&quot;: 5
                             }
                         },
@@ -4503,9 +4095,9 @@ vary: Origin
                                 &quot;id&quot;: 1,
                                 &quot;variant_size_id&quot;: 1,
                                 &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 28,
+                                &quot;on_hand&quot;: 22,
                                 &quot;reserved&quot;: 1,
-                                &quot;available&quot;: 27,
+                                &quot;available&quot;: 21,
                                 &quot;min_stock_level&quot;: 5
                             }
                         },
@@ -4526,9 +4118,9 @@ vary: Origin
                                 &quot;id&quot;: 2,
                                 &quot;variant_size_id&quot;: 2,
                                 &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 19,
+                                &quot;on_hand&quot;: 17,
                                 &quot;reserved&quot;: 2,
-                                &quot;available&quot;: 17,
+                                &quot;available&quot;: 15,
                                 &quot;min_stock_level&quot;: 5
                             }
                         },
@@ -4618,9 +4210,9 @@ vary: Origin
                                 &quot;id&quot;: 6,
                                 &quot;variant_size_id&quot;: 6,
                                 &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 31,
+                                &quot;on_hand&quot;: 27,
                                 &quot;reserved&quot;: 3,
-                                &quot;available&quot;: 28,
+                                &quot;available&quot;: 24,
                                 &quot;min_stock_level&quot;: 5
                             }
                         },
@@ -4641,9 +4233,9 @@ vary: Origin
                                 &quot;id&quot;: 7,
                                 &quot;variant_size_id&quot;: 7,
                                 &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 32,
+                                &quot;on_hand&quot;: 29,
                                 &quot;reserved&quot;: 2,
-                                &quot;available&quot;: 30,
+                                &quot;available&quot;: 27,
                                 &quot;min_stock_level&quot;: 5
                             }
                         },
@@ -4664,9 +4256,9 @@ vary: Origin
                                 &quot;id&quot;: 8,
                                 &quot;variant_size_id&quot;: 8,
                                 &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 23,
+                                &quot;on_hand&quot;: 22,
                                 &quot;reserved&quot;: 4,
-                                &quot;available&quot;: 19,
+                                &quot;available&quot;: 18,
                                 &quot;min_stock_level&quot;: 5
                             }
                         },
@@ -4687,9 +4279,9 @@ vary: Origin
                                 &quot;id&quot;: 9,
                                 &quot;variant_size_id&quot;: 9,
                                 &quot;warehouse_id&quot;: 1,
-                                &quot;on_hand&quot;: 28,
+                                &quot;on_hand&quot;: 27,
                                 &quot;reserved&quot;: 2,
-                                &quot;available&quot;: 26,
+                                &quot;available&quot;: 25,
                                 &quot;min_stock_level&quot;: 5
                             }
                         },
@@ -4740,10 +4332,82 @@ vary: Origin
                             }
                         }
                     ]
+                },
+                {
+                    &quot;id&quot;: 7,
+                    &quot;sku&quot;: &quot;ERK-1-MAVI-7&quot;,
+                    &quot;slug&quot;: &quot;erkek-cocuk-esofman-takimi-mavi-7&quot;,
+                    &quot;price_cents&quot;: 11111,
+                    &quot;color_name&quot;: &quot;Mavi&quot;,
+                    &quot;color_code&quot;: &quot;#000000&quot;,
+                    &quot;is_popular&quot;: false,
+                    &quot;is_active&quot;: true,
+                    &quot;images&quot;: [],
+                    &quot;sizes&quot;: [
+                        {
+                            &quot;id&quot;: 57,
+                            &quot;product_variant_id&quot;: 7,
+                            &quot;size_option_id&quot;: 5,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 5,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;10 Yaş&quot;,
+                                &quot;slug&quot;: &quot;10-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ERK-1-MAVI-7-10-yas&quot;,
+                            &quot;price_cents&quot;: 11111,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 57,
+                                &quot;variant_size_id&quot;: 57,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 11,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 11,
+                                &quot;min_stock_level&quot;: 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    &quot;id&quot;: 8,
+                    &quot;sku&quot;: &quot;ERK-1-YESIL-8&quot;,
+                    &quot;slug&quot;: &quot;erkek-cocuk-esofman-takimi-yesil-8&quot;,
+                    &quot;price_cents&quot;: 1111,
+                    &quot;color_name&quot;: &quot;Yeşil&quot;,
+                    &quot;color_code&quot;: &quot;#000000&quot;,
+                    &quot;is_popular&quot;: false,
+                    &quot;is_active&quot;: true,
+                    &quot;images&quot;: [],
+                    &quot;sizes&quot;: [
+                        {
+                            &quot;id&quot;: 58,
+                            &quot;product_variant_id&quot;: 8,
+                            &quot;size_option_id&quot;: 4,
+                            &quot;size_option&quot;: {
+                                &quot;id&quot;: 4,
+                                &quot;attribute_id&quot;: 1,
+                                &quot;value&quot;: &quot;9 Yaş&quot;,
+                                &quot;slug&quot;: &quot;9-yas&quot;
+                            },
+                            &quot;sku&quot;: &quot;ERK-1-YESIL-8-9-yas&quot;,
+                            &quot;price_cents&quot;: 1111,
+                            &quot;is_active&quot;: true,
+                            &quot;inventory&quot;: {
+                                &quot;id&quot;: 58,
+                                &quot;variant_size_id&quot;: 58,
+                                &quot;warehouse_id&quot;: 1,
+                                &quot;on_hand&quot;: 11,
+                                &quot;reserved&quot;: 0,
+                                &quot;available&quot;: 11,
+                                &quot;min_stock_level&quot;: 0
+                            }
+                        }
+                    ]
                 }
             ],
             &quot;created_at&quot;: &quot;2026-05-15T19:37:44+00:00&quot;,
-            &quot;updated_at&quot;: &quot;2026-05-20T21:57:05+00:00&quot;,
+            &quot;updated_at&quot;: &quot;2026-05-24T15:21:59+00:00&quot;,
             &quot;category_title&quot;: &quot;Eşofman Takım&quot;,
             &quot;gender&quot;: &quot;Unisex&quot;
         }
@@ -4951,6 +4615,228 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Accept"                data-endpoint="GETapi-filter"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-POSTapi-iyzico-callback">POST api/iyzico-callback</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-iyzico-callback">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/iyzico-callback" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/iyzico-callback"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-iyzico-callback">
+</span>
+<span id="execution-results-POSTapi-iyzico-callback" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-iyzico-callback"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-iyzico-callback"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-iyzico-callback" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-iyzico-callback">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-iyzico-callback" data-method="POST"
+      data-path="api/iyzico-callback"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-iyzico-callback', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-iyzico-callback"
+                    onclick="tryItOut('POSTapi-iyzico-callback');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-iyzico-callback"
+                    onclick="cancelTryOut('POSTapi-iyzico-callback');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-iyzico-callback"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/iyzico-callback</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-iyzico-callback"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-iyzico-callback"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-POSTapi-checkout-confirm">POST api/checkout/confirm</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-checkout-confirm">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/checkout/confirm" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/checkout/confirm"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-checkout-confirm">
+</span>
+<span id="execution-results-POSTapi-checkout-confirm" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-checkout-confirm"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-checkout-confirm"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-checkout-confirm" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-checkout-confirm">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-checkout-confirm" data-method="POST"
+      data-path="api/checkout/confirm"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-checkout-confirm', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-checkout-confirm"
+                    onclick="tryItOut('POSTapi-checkout-confirm');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-checkout-confirm"
+                    onclick="cancelTryOut('POSTapi-checkout-confirm');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-checkout-confirm"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/checkout/confirm</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-checkout-confirm"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-checkout-confirm"
                value="application/json"
                data-component="header">
     <br>
@@ -6321,7 +6207,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"session_id\": \"66529e01-d113-3473-8d6f-9e11e09332ea\",
-    \"payment_method\": \"new_card\",
+    \"payment_method\": \"saved_card\",
     \"payment_method_id\": 17,
     \"provider\": \"iyzico\",
     \"card_alias\": \"mqeopfuudtdsufvyvddqa\",
@@ -6330,7 +6216,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"expire_month\": \"81\",
     \"expire_year\": \"8107\",
     \"cvv\": \"4976\",
-    \"save_card\": true,
+    \"save_card\": false,
     \"installment\": 8,
     \"requires_3ds\": true
 }"
@@ -6349,7 +6235,7 @@ const headers = {
 
 let body = {
     "session_id": "66529e01-d113-3473-8d6f-9e11e09332ea",
-    "payment_method": "new_card",
+    "payment_method": "saved_card",
     "payment_method_id": 17,
     "provider": "iyzico",
     "card_alias": "mqeopfuudtdsufvyvddqa",
@@ -6358,7 +6244,7 @@ let body = {
     "expire_month": "81",
     "expire_year": "8107",
     "cvv": "4976",
-    "save_card": true,
+    "save_card": false,
     "installment": 8,
     "requires_3ds": true
 };
@@ -6464,10 +6350,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="payment_method"                data-endpoint="POSTapi-checkout-payment-intent"
-               value="new_card"
+               value="saved_card"
                data-component="body">
     <br>
-<p>Example: <code>new_card</code></p>
+<p>Example: <code>saved_card</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>saved_card</code></li> <li><code>new_card</code></li> <li><code>cash_on_delivery</code></li></ul>
         </div>
@@ -6589,7 +6475,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>This field is required when <code>payment_method</code> is <code>new_card</code>. Example: <code>true</code></p>
+<p>This field is required when <code>payment_method</code> is <code>new_card</code>. Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>installment</code></b>&nbsp;&nbsp;
@@ -6894,7 +6780,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-me">Mevcut kullanıcı bilgilerini getir</h2>
+                    <h2 id="endpoints-GETapi-me">GET api/me</h2>
 
 <p>
 </p>
@@ -7176,7 +7062,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"postal_code\": \"sedyghenqcopwvownkbam\",
     \"country\": \"lnfngefbeilfzsyuxoezb\",
     \"is_default\": true,
-    \"is_active\": false,
+    \"is_active\": true,
     \"notes\": \"dtabptcyyerevrljcbwkt\"
 }"
 </code></pre></div>
@@ -7204,7 +7090,7 @@ let body = {
     "postal_code": "sedyghenqcopwvownkbam",
     "country": "lnfngefbeilfzsyuxoezb",
     "is_default": true,
-    "is_active": false,
+    "is_active": true,
     "notes": "dtabptcyyerevrljcbwkt"
 };
 
@@ -7452,7 +7338,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -7635,8 +7521,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"city\": \"atbxspzmrazsroyjpxmqe\",
     \"postal_code\": \"sedyghenqcopwvownkbam\",
     \"country\": \"lnfngefbeilfzsyuxoezb\",
-    \"is_default\": true,
-    \"is_active\": false,
+    \"is_default\": false,
+    \"is_active\": true,
     \"notes\": \"dtabptcyyerevrljcbwkt\"
 }"
 </code></pre></div>
@@ -7663,8 +7549,8 @@ let body = {
     "city": "atbxspzmrazsroyjpxmqe",
     "postal_code": "sedyghenqcopwvownkbam",
     "country": "lnfngefbeilfzsyuxoezb",
-    "is_default": true,
-    "is_active": false,
+    "is_default": false,
+    "is_active": true,
     "notes": "dtabptcyyerevrljcbwkt"
 };
 
@@ -7907,7 +7793,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -7929,7 +7815,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -8069,134 +7955,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-account-profile">Kullanıcı profil bilgilerini getir</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-account-profile">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/account/profile" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/account/profile"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-account-profile">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-account-profile" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-account-profile"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-account-profile"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-account-profile" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-account-profile">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-account-profile" data-method="GET"
-      data-path="api/account/profile"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-account-profile', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-account-profile"
-                    onclick="tryItOut('GETapi-account-profile');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-account-profile"
-                    onclick="cancelTryOut('GETapi-account-profile');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-account-profile"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/account/profile</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-account-profile"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-account-profile"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="endpoints-PUTapi-account-profile">Kullanıcı profil bilgilerini güncelle</h2>
+                    <h2 id="endpoints-PUTapi-account-profile">PUT api/account/profile</h2>
 
 <p>
 </p>
@@ -8321,7 +8080,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>first_name</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
- &nbsp;
+<i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
                               name="first_name"                data-endpoint="PUTapi-account-profile"
@@ -8333,7 +8092,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
- &nbsp;
+<i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
                               name="last_name"                data-endpoint="PUTapi-account-profile"
@@ -8705,133 +8464,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-seller-product-search">GET api/seller/product/search</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-seller-product-search">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/seller/product/search" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/seller/product/search"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-seller-product-search">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-vary: Origin
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Kimlik doğrulaması yapılmamış.&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-seller-product-search" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-seller-product-search"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-seller-product-search"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-seller-product-search" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-seller-product-search">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-seller-product-search" data-method="GET"
-      data-path="api/seller/product/search"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-seller-product-search', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-seller-product-search"
-                    onclick="tryItOut('GETapi-seller-product-search');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-seller-product-search"
-                    onclick="cancelTryOut('GETapi-seller-product-search');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-seller-product-search"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/seller/product/search</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-seller-product-search"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-seller-product-search"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
                     <h2 id="endpoints-GETapi-seller-campaign">GET api/seller/campaign</h2>
 
 <p>
@@ -8979,16 +8611,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"vmqeopfuudtdsufvyvddq\",
     \"code\": \"amniihfqcoynlazghdtqt\",
     \"description\": \"Dolores dolorum amet iste laborum eius est dolor.\",
-    \"type\": \"fixed\",
+    \"type\": \"x_buy_y_pay\",
     \"discount_value\": 12,
     \"buy_quantity\": 66,
     \"pay_quantity\": 13,
     \"min_subtotal\": 65,
     \"usage_limit\": 72,
     \"per_user_limit\": 19,
-    \"is_active\": false,
-    \"starts_at\": \"2107-06-22\",
-    \"ends_at\": \"2107-06-22\",
+    \"is_active\": true,
+    \"starts_at\": \"2107-06-24\",
+    \"ends_at\": \"2107-06-24\",
     \"product_ids\": [
         17
     ],
@@ -9013,16 +8645,16 @@ let body = {
     "name": "vmqeopfuudtdsufvyvddq",
     "code": "amniihfqcoynlazghdtqt",
     "description": "Dolores dolorum amet iste laborum eius est dolor.",
-    "type": "fixed",
+    "type": "x_buy_y_pay",
     "discount_value": 12,
     "buy_quantity": 66,
     "pay_quantity": 13,
     "min_subtotal": 65,
     "usage_limit": 72,
     "per_user_limit": 19,
-    "is_active": false,
-    "starts_at": "2107-06-22",
-    "ends_at": "2107-06-22",
+    "is_active": true,
+    "starts_at": "2107-06-24",
+    "ends_at": "2107-06-24",
     "product_ids": [
         17
     ],
@@ -9156,10 +8788,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-seller-campaign"
-               value="fixed"
+               value="x_buy_y_pay"
                data-component="body">
     <br>
-<p>Example: <code>fixed</code></p>
+<p>Example: <code>x_buy_y_pay</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>percentage</code></li> <li><code>fixed</code></li> <li><code>x_buy_y_pay</code></li></ul>
         </div>
@@ -9255,7 +8887,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>starts_at</code></b>&nbsp;&nbsp;
@@ -9264,10 +8896,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="starts_at"                data-endpoint="POSTapi-seller-campaign"
-               value="2107-06-22"
+               value="2107-06-24"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date after or equal to <code>today</code>. Example: <code>2107-06-22</code></p>
+<p>Must be a valid date. Must be a date after or equal to <code>today</code>. Example: <code>2107-06-24</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ends_at</code></b>&nbsp;&nbsp;
@@ -9276,10 +8908,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="ends_at"                data-endpoint="POSTapi-seller-campaign"
-               value="2107-06-22"
+               value="2107-06-24"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date after <code>starts_at</code>. Example: <code>2107-06-22</code></p>
+<p>Must be a valid date. Must be a date after <code>starts_at</code>. Example: <code>2107-06-24</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>product_ids</code></b>&nbsp;&nbsp;
@@ -9471,7 +9103,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name\": \"vmqeopfuudtdsufvyvddq\",
     \"code\": \"amniihfqcoynlazghdtqt\",
     \"description\": \"Dolores dolorum amet iste laborum eius est dolor.\",
-    \"type\": \"percentage\",
+    \"type\": \"x_buy_y_pay\",
     \"discount_value\": 4,
     \"buy_quantity\": 66,
     \"pay_quantity\": 13,
@@ -9479,8 +9111,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"usage_limit\": 72,
     \"per_user_limit\": 19,
     \"is_active\": true,
-    \"starts_at\": \"2026-05-23T19:22:02\",
-    \"ends_at\": \"2107-06-22\",
+    \"starts_at\": \"2026-05-25T21:38:28\",
+    \"ends_at\": \"2107-06-24\",
     \"product_ids\": [
         17
     ],
@@ -9505,7 +9137,7 @@ let body = {
     "name": "vmqeopfuudtdsufvyvddq",
     "code": "amniihfqcoynlazghdtqt",
     "description": "Dolores dolorum amet iste laborum eius est dolor.",
-    "type": "percentage",
+    "type": "x_buy_y_pay",
     "discount_value": 4,
     "buy_quantity": 66,
     "pay_quantity": 13,
@@ -9513,8 +9145,8 @@ let body = {
     "usage_limit": 72,
     "per_user_limit": 19,
     "is_active": true,
-    "starts_at": "2026-05-23T19:22:02",
-    "ends_at": "2107-06-22",
+    "starts_at": "2026-05-25T21:38:28",
+    "ends_at": "2107-06-24",
     "product_ids": [
         17
     ],
@@ -9665,10 +9297,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="PUTapi-seller-campaign--id-"
-               value="percentage"
+               value="x_buy_y_pay"
                data-component="body">
     <br>
-<p>Example: <code>percentage</code></p>
+<p>Example: <code>x_buy_y_pay</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>percentage</code></li> <li><code>fixed</code></li> <li><code>x_buy_y_pay</code></li></ul>
         </div>
@@ -9773,10 +9405,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="starts_at"                data-endpoint="PUTapi-seller-campaign--id-"
-               value="2026-05-23T19:22:02"
+               value="2026-05-25T21:38:28"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-05-23T19:22:02</code></p>
+<p>Must be a valid date. Example: <code>2026-05-25T21:38:28</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ends_at</code></b>&nbsp;&nbsp;
@@ -9785,10 +9417,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="ends_at"                data-endpoint="PUTapi-seller-campaign--id-"
-               value="2107-06-22"
+               value="2107-06-24"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date after <code>starts_at</code>. Example: <code>2107-06-22</code></p>
+<p>Must be a valid date. Must be a date after <code>starts_at</code>. Example: <code>2107-06-24</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>product_ids</code></b>&nbsp;&nbsp;
@@ -10094,14 +9726,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "variants[][color_name]=vmqeopfuudtdsufvyvddq"\
     --form "variants[][color_code]=amniihf"\
     --form "variants[][price_cents]=57"\
-    --form "variants[][is_popular]="\
+    --form "variants[][is_popular]=1"\
     --form "variants[][sizes][][size_option_id]=73"\
     --form "variants[][sizes][][price_cents]=45"\
     --form "variants[][sizes][][inventory][on_hand]=56"\
     --form "variants[][sizes][][inventory][reserved]=16"\
     --form "variants[][sizes][][inventory][warehouse_id]=50"\
     --form "variants[][sizes][][inventory][min_stock_level]=55"\
-    --form "variants[][images][]=@/tmp/phpXdYHTV" </code></pre></div>
+    --form "variants[][images][]=@/tmp/phpeJkDCS" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -10122,7 +9754,7 @@ body.append('meta_title', 'oynlazghdtqtqxbajwbpi');
 body.append('variants[][color_name]', 'vmqeopfuudtdsufvyvddq');
 body.append('variants[][color_code]', 'amniihf');
 body.append('variants[][price_cents]', '57');
-body.append('variants[][is_popular]', '');
+body.append('variants[][is_popular]', '1');
 body.append('variants[][sizes][][size_option_id]', '73');
 body.append('variants[][sizes][][price_cents]', '45');
 body.append('variants[][sizes][][inventory][on_hand]', '56');
@@ -10339,7 +9971,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>images</code></b>&nbsp;&nbsp;
@@ -11082,7 +10714,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"color_name\": \"vmqeopfuudtdsufvyvddq\",
     \"color_code\": \"#01E45C\",
     \"price_cents\": 66,
-    \"is_popular\": false,
+    \"is_popular\": true,
     \"is_active\": true,
     \"sizes\": [
         {
@@ -11115,7 +10747,7 @@ let body = {
     "color_name": "vmqeopfuudtdsufvyvddq",
     "color_code": "#01E45C",
     "price_cents": 66,
-    "is_popular": false,
+    "is_popular": true,
     "is_active": true,
     "sizes": [
         {
@@ -11283,7 +10915,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -12200,7 +11832,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"size_option_id\": 17,
     \"price_cents\": 45,
-    \"is_active\": true,
+    \"is_active\": false,
     \"inventory\": {
         \"on_hand\": 56,
         \"reserved\": 16,
@@ -12224,7 +11856,7 @@ const headers = {
 let body = {
     "size_option_id": 17,
     "price_cents": 45,
-    "is_active": true,
+    "is_active": false,
     "inventory": {
         "on_hand": 56,
         "reserved": 16,
@@ -12396,7 +12028,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
         <details>
@@ -12624,7 +12256,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost:8000/api/seller/product/1/variants/consequatur/images" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "image=@/tmp/phpcPX9oB" </code></pre></div>
+    --form "image=@/tmp/phpBprweg" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -12757,7 +12389,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be an image. Must not be greater than 2048 kilobytes. Example: <code>/tmp/phpcPX9oB</code></p>
+<p>Must be an image. Must not be greater than 2048 kilobytes. Example: <code>/tmp/phpBprweg</code></p>
         </div>
         </form>
 
@@ -13787,319 +13419,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>Must be at least 1. Example: <code>2</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-POSTapi-proxy-iyzico-callback">POST api/proxy/iyzico-callback</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-proxy-iyzico-callback">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/proxy/iyzico-callback" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/proxy/iyzico-callback"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-proxy-iyzico-callback">
-</span>
-<span id="execution-results-POSTapi-proxy-iyzico-callback" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-proxy-iyzico-callback"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-proxy-iyzico-callback"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-proxy-iyzico-callback" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-proxy-iyzico-callback">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-proxy-iyzico-callback" data-method="POST"
-      data-path="api/proxy/iyzico-callback"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-proxy-iyzico-callback', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-proxy-iyzico-callback"
-                    onclick="tryItOut('POSTapi-proxy-iyzico-callback');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-proxy-iyzico-callback"
-                    onclick="cancelTryOut('POSTapi-proxy-iyzico-callback');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-proxy-iyzico-callback"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/proxy/iyzico-callback</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-proxy-iyzico-callback"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-proxy-iyzico-callback"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="endpoints-POSTapi-checkout-confirm">POST api/checkout/confirm</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-checkout-confirm">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/checkout/confirm" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"status\": \"consequatur\",
-    \"paymentId\": \"consequatur\",
-    \"conversationId\": \"consequatur\",
-    \"conversationData\": \"consequatur\",
-    \"mdStatus\": \"consequatur\",
-    \"signature\": \"consequatur\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/checkout/confirm"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "status": "consequatur",
-    "paymentId": "consequatur",
-    "conversationId": "consequatur",
-    "conversationData": "consequatur",
-    "mdStatus": "consequatur",
-    "signature": "consequatur"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-checkout-confirm">
-</span>
-<span id="execution-results-POSTapi-checkout-confirm" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-checkout-confirm"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-checkout-confirm"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-checkout-confirm" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-checkout-confirm">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-checkout-confirm" data-method="POST"
-      data-path="api/checkout/confirm"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-checkout-confirm', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-checkout-confirm"
-                    onclick="tryItOut('POSTapi-checkout-confirm');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-checkout-confirm"
-                    onclick="cancelTryOut('POSTapi-checkout-confirm');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-checkout-confirm"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/checkout/confirm</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-checkout-confirm"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-checkout-confirm"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="status"                data-endpoint="POSTapi-checkout-confirm"
-               value="consequatur"
-               data-component="body">
-    <br>
-<p>Example: <code>consequatur</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>paymentId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="paymentId"                data-endpoint="POSTapi-checkout-confirm"
-               value="consequatur"
-               data-component="body">
-    <br>
-<p>Example: <code>consequatur</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>conversationId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="conversationId"                data-endpoint="POSTapi-checkout-confirm"
-               value="consequatur"
-               data-component="body">
-    <br>
-<p>Example: <code>consequatur</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>conversationData</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="conversationData"                data-endpoint="POSTapi-checkout-confirm"
-               value="consequatur"
-               data-component="body">
-    <br>
-<p>Example: <code>consequatur</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>mdStatus</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="mdStatus"                data-endpoint="POSTapi-checkout-confirm"
-               value="consequatur"
-               data-component="body">
-    <br>
-<p>Example: <code>consequatur</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>signature</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="signature"                data-endpoint="POSTapi-checkout-confirm"
-               value="consequatur"
-               data-component="body">
-    <br>
-<p>Example: <code>consequatur</code></p>
         </div>
         </form>
 
