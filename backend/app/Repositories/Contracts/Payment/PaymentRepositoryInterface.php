@@ -3,9 +3,7 @@
 namespace App\Repositories\Contracts\Payment;
 
 use App\Models\Payment;
-use App\Repositories\Contracts\BaseRepositoryInterface;
-
-interface PaymentRepositoryInterface extends BaseRepositoryInterface
+interface PaymentRepositoryInterface
 {
     public function create(array $attributes): Payment;
 

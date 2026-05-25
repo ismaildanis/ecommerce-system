@@ -6,7 +6,6 @@ use App\Providers\CheckoutServiceProvider;
 use App\Providers\EventServiceProvider;
 use App\Providers\OrderServiceProvider;
 use App\Providers\RouteServiceProvider;
-use App\Providers\ShippingServiceProvider;
 use App\Services\Payments\PaymentServiceProvider;
 use Illuminate\Auth\AuthServiceProvider;
 use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
@@ -198,7 +197,6 @@ return [
         BagServiceProvider::class,
         CheckoutServiceProvider::class,
         PaymentServiceProvider::class,
-        ShippingServiceProvider::class,
         /*
         |--------------------------------------------------------------------------
         | Third-Party Service Providers

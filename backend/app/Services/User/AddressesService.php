@@ -2,24 +2,16 @@
 
 namespace App\Services\User;
 
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
+use App\Models\User;
 use App\Repositories\Contracts\User\AddressesRepositoryInterface;
-use App\Traits\GetUser;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AddressesService
 {
-    protected $addressesRepository;
-
-    protected $authenticationRepository;
-
-    use GetUser;
-
-    public function __construct(AddressesRepositoryInterface $addressesRepository, AuthenticationRepositoryInterface $authenticationRepository)
-    {
-        $this->addressesRepository = $addressesRepository;
-        $this->authenticationRepository = $authenticationRepository;
-    }
+    public function __construct(
+       private readonly AddressesRepositoryInterface $addressesRepository, 
+    ) {}
 
     public function indexAddresses()
     {
@@ -67,5 +59,10 @@ class AddressesService
         }
 
         return true;
+    }
+
+    private function getUser(): User
+    {
+        return auth('user')->user() ?? throw new AuthenticationException('Kullanıcı bulunamadı.');
     }
 }

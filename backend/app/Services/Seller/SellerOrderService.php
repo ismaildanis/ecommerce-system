@@ -11,14 +11,12 @@ use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 use App\Repositories\Contracts\OrderItem\OrderItemRepositoryInterface;
 use App\Repositories\Contracts\Store\StoreRepositoryInterface;
 use App\Services\Payments\Contracts\PaymentGatewayInterface;
-use App\Services\Shipping\Contracts\ShippingServiceInterface;
 
 class SellerOrderService
 {
     public function __construct(
         private readonly OrderItemRepositoryInterface $orderItemRepository,
         private readonly StoreRepositoryInterface $storeRepository,
-        private readonly ShippingServiceInterface $shippingService,
         private readonly AuthenticationRepositoryInterface $authenticationRepository,
     ) {}
 

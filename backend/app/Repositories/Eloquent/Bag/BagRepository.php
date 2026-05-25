@@ -4,10 +4,10 @@ namespace App\Repositories\Eloquent\Bag;
 
 use App\Models\Bag;
 use App\Repositories\Contracts\Bag\BagRepositoryInterface;
-use App\Repositories\Eloquent\BaseRepository;
-
-class BagRepository extends BaseRepository implements BagRepositoryInterface
+class BagRepository implements BagRepositoryInterface
 {
+    protected Bag $model;
+
     public function __construct(Bag $model)
     {
         $this->model = $model;

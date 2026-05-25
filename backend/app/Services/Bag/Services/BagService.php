@@ -2,24 +2,21 @@
 
 namespace App\Services\Bag\Services;
 
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
+use App\Models\User;
 use App\Repositories\Contracts\Bag\BagRepositoryInterface;
 use App\Repositories\Contracts\Campaign\CampaignRepositoryInterface;
 use App\Services\Bag\Contracts\BagInterface;
 use App\Services\Campaigns\CampaignManager;
-use App\Traits\GetUser;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class BagService implements BagInterface
 {
-    use GetUser;
-
     public function __construct(
         private readonly StockService $stockService,
         private readonly BagCalculationService $bagCalculationService,
-        private readonly AuthenticationRepositoryInterface $authenticationRepository,
         private readonly BagRepositoryInterface $bagRepository,
         private readonly CampaignRepositoryInterface $campaignRepository,
         private readonly CampaignManager $campaignManager,
@@ -28,6 +25,7 @@ class BagService implements BagInterface
     public function getBag()
     {
         $user = $this->getUser();
+
         $bag = $this->bagRepository->getBag($user);
 
         if (! $bag) {
@@ -111,15 +109,10 @@ class BagService implements BagInterface
     public function addToBag(int $variantSizeId, int $quantity = 1)
     {
         $user = $this->getUser();
-
-        if (! $user) {
-            abort(401, 'Kullanıcı bulunamadı!');
-        }
-
         $bag = $this->bagRepository->createBag($user);
 
         if (! $bag) {
-            abort(404, 'Sepet bulunamadı!');
+            throw new \RuntimeException('Sepet bulunamadı!');
         }
 
         $productItem = $this->stockService->checkStockAvailability(
@@ -140,10 +133,6 @@ class BagService implements BagInterface
     public function selectCampaign(int $campaignId): array
     {
         $user = $this->getUser();
-        if (! $user) {
-            throw new \RuntimeException('Kullanıcı bulunamadı!');
-        }
-
         $bag = $this->bagRepository->getBag($user);
         if (! $bag) {
             throw new \RuntimeException('Sepet bulunamadı!');
@@ -333,5 +322,10 @@ class BagService implements BagInterface
             'campaign_discount_cents' => 0,
         ]);
         $bag->unsetRelation('campaign');
+    }
+
+    private function getUser(): User
+    {
+        return auth('user')->user() ?? throw new AuthenticationException('Kullanıcı bulunamadı.');
     }
 }

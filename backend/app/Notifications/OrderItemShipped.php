@@ -24,7 +24,7 @@ class OrderItemShipped extends Notification
 
     public function via(object $notifiable): array
     {
-        return ['mail', 'database', 'sms'];
+        return ['mail', 'database'];
     }
 
     public function toMail(object $notifiable): MailMessage
@@ -46,11 +46,6 @@ class OrderItemShipped extends Notification
                 'actionUrl' => $actionUrl,
                 'image' => $image,
             ]);
-    }
-
-    public function toSms(object $notifiable): string
-    {
-        return "{$this->orderItem->id} numaralı siparişiniz kargoya teslim edilmiştir.";
     }
 
     public function toArray(object $notifiable): array

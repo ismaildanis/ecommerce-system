@@ -2,9 +2,7 @@
 
 namespace App\Repositories\Contracts\Product;
 
-use App\Repositories\Contracts\BaseRepositoryInterface;
-
-interface ProductRepositoryInterface extends BaseRepositoryInterface
+interface ProductRepositoryInterface
 {
     // Ürün + kategori ilişkileri
     public function getProductsWithCategory($perPage = 100);

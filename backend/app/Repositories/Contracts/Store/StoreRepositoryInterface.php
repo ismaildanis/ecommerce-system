@@ -2,9 +2,7 @@
 
 namespace App\Repositories\Contracts\Store;
 
-use App\Repositories\Contracts\BaseRepositoryInterface;
-
-interface StoreRepositoryInterface extends BaseRepositoryInterface
+interface StoreRepositoryInterface
 {
     public function getStoreBySellerId($sellerId);
 

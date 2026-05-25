@@ -2,9 +2,7 @@
 
 namespace App\Repositories\Contracts\Category;
 
-use App\Repositories\Contracts\BaseRepositoryInterface;
-
-interface CategoryRepositoryInterface extends BaseRepositoryInterface
+interface CategoryRepositoryInterface
 {
     public function getAllCategories();
 

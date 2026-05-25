@@ -3,9 +3,7 @@
 namespace App\Repositories\Contracts\Payment;
 
 use App\Models\PaymentMethod;
-use App\Repositories\Contracts\BaseRepositoryInterface;
-
-interface PaymentMethodRepositoryInterface extends BaseRepositoryInterface
+interface PaymentMethodRepositoryInterface
 {
     public function getPaymentMethodForUser($userId, $paymentMethodId): ?PaymentMethod;
 

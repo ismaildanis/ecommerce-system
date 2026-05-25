@@ -2,9 +2,7 @@
 
 namespace App\Repositories\Contracts\Product;
 
-use App\Repositories\Contracts\BaseRepositoryInterface;
-
-interface ProductVariantRepositoryInterface extends BaseRepositoryInterface
+interface ProductVariantRepositoryInterface
 {
     public function getProductVariants($productId);
 

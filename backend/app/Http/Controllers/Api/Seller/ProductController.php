@@ -12,13 +12,9 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    protected $productService;
-
     public function __construct(
-        ProductService $productService,
-    ) {
-        $this->productService = $productService;
-    }
+        private readonly ProductService $productService
+    ) {}
 
     public function index()
     {

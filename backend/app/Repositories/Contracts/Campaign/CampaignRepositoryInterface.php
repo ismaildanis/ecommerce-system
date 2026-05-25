@@ -2,9 +2,7 @@
 
 namespace App\Repositories\Contracts\Campaign;
 
-use App\Repositories\Contracts\BaseRepositoryInterface;
-
-interface CampaignRepositoryInterface extends BaseRepositoryInterface
+interface CampaignRepositoryInterface
 {
     public function getActiveCampaigns();
 

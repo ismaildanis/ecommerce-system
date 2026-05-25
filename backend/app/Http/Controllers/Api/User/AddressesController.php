@@ -10,12 +10,9 @@ use App\Services\User\AddressesService;
 
 class AddressesController extends Controller
 {
-    protected $addressesService;
-
-    public function __construct(AddressesService $addressesService)
-    {
-        $this->addressesService = $addressesService;
-    }
+    public function __construct(
+       private readonly AddressesService $addressesService
+    ) {}
 
     public function index()
     {

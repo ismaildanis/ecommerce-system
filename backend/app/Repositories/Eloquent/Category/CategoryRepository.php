@@ -4,11 +4,12 @@ namespace App\Repositories\Eloquent\Category;
 
 use App\Models\Category;
 use App\Repositories\Contracts\Category\CategoryRepositoryInterface;
-use App\Repositories\Eloquent\BaseRepository;
 use Illuminate\Support\Facades\Cache;
 
-class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
+class CategoryRepository implements CategoryRepositoryInterface
 {
+    protected Category $model;
+
     public function __construct(Category $model)
     {
         $this->model = $model;

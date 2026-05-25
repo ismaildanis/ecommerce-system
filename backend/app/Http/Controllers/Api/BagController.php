@@ -13,12 +13,9 @@ use Illuminate\Support\Facades\Cache;
 
 class BagController extends Controller
 {
-    protected $bagService;
-
-    public function __construct(BagInterface $bagService)
-    {
-        $this->bagService = $bagService;
-    }
+    public function __construct(
+        private readonly BagInterface $bagService
+    ) {}
 
     public function index()
     {

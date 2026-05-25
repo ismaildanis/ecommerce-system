@@ -3,9 +3,7 @@
 namespace App\Repositories\Contracts\Order;
 
 use App\Models\Order;
-use App\Repositories\Contracts\BaseRepositoryInterface;
-
-interface OrderRepositoryInterface extends BaseRepositoryInterface
+interface OrderRepositoryInterface
 {
     public function getOrdersBySeller($sellerId);
 

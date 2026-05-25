@@ -2,9 +2,7 @@
 
 namespace App\Repositories\Contracts\Inventory;
 
-use App\Repositories\Contracts\BaseRepositoryInterface;
-
-interface InventoryRepositoryInterface extends BaseRepositoryInterface
+interface InventoryRepositoryInterface
 {
     public function lockForUpdate(int|string $id);
 

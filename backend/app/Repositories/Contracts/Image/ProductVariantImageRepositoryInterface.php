@@ -2,9 +2,7 @@
 
 namespace App\Repositories\Contracts\Image;
 
-use App\Repositories\Contracts\BaseRepositoryInterface;
-
-interface ProductVariantImageRepositoryInterface extends BaseRepositoryInterface
+interface ProductVariantImageRepositoryInterface
 {
     public function store(array $data, $productVariantId);
 

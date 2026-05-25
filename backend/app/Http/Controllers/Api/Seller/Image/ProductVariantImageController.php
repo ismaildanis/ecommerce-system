@@ -13,14 +13,11 @@ use App\Services\Seller\Image\ProductVariantImageService;
 
 class ProductVariantImageController extends Controller
 {
-    protected $productVariantImageService;
+    public function __construct(
+        private readonly ProductVariantImageService $productVariantImageService
+    ) {}
 
-    public function __construct(ProductVariantImageService $productVariantImageService)
-    {
-        $this->productVariantImageService = $productVariantImageService;
-    }
-
-    public function store(Product $product, ProductVariantImageStoreRequest $request, $id)
+    public function store(Product $product, ProductVariantImageStoreRequest $request, int $id)
     {
         try {
             $image = $this->productVariantImageService->store($request->validated(), $product->id, $id);

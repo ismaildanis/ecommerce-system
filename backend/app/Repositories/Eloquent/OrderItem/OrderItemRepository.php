@@ -4,11 +4,12 @@ namespace App\Repositories\Eloquent\OrderItem;
 
 use App\Models\OrderItem;
 use App\Repositories\Contracts\OrderItem\OrderItemRepositoryInterface;
-use App\Repositories\Eloquent\BaseRepository;
 use Illuminate\Support\Collection;
 
-class OrderItemRepository extends BaseRepository implements OrderItemRepositoryInterface
+class OrderItemRepository implements OrderItemRepositoryInterface
 {
+    protected OrderItem $model;
+
     public function __construct(OrderItem $model)
     {
         $this->model = $model;

@@ -4,11 +4,12 @@ namespace App\Repositories\Eloquent\Image;
 
 use App\Models\ProductVariantImage;
 use App\Repositories\Contracts\Image\ProductVariantImageRepositoryInterface;
-use App\Repositories\Eloquent\BaseRepository;
 use Illuminate\Support\Facades\DB;
 
-class ProductVariantImageRepository extends BaseRepository implements ProductVariantImageRepositoryInterface
+class ProductVariantImageRepository implements ProductVariantImageRepositoryInterface
 {
+    protected ProductVariantImage $model;
+
     public function __construct(ProductVariantImage $model)
     {
         $this->model = $model;
@@ -18,7 +19,7 @@ class ProductVariantImageRepository extends BaseRepository implements ProductVar
     {
         $data['product_variant_id'] = $productVariantId;
 
-        return $this->create($data);
+        return $this->model->create($data);
     }
 
     public function getImageByProductVariantIdAndId($productVariantId, $id)

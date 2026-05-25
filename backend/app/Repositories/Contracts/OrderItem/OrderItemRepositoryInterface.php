@@ -3,10 +3,9 @@
 namespace App\Repositories\Contracts\OrderItem;
 
 use App\Models\OrderItem;
-use App\Repositories\Contracts\BaseRepositoryInterface;
 use Illuminate\Support\Collection;
 
-interface OrderItemRepositoryInterface extends BaseRepositoryInterface
+interface OrderItemRepositoryInterface
 {
     public function getOrderItemsBySeller($storeId);
 

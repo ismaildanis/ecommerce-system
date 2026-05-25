@@ -4,12 +4,13 @@ namespace App\Repositories\Eloquent\Product;
 
 use App\Models\Product;
 use App\Repositories\Contracts\Product\ProductRepositoryInterface;
-use App\Repositories\Eloquent\BaseRepository;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
-class ProductRepository extends BaseRepository implements ProductRepositoryInterface
+class ProductRepository implements ProductRepositoryInterface
 {
+    protected Product $model;
+
     public function __construct(Product $model)
     {
         $this->model = $model;
@@ -84,7 +85,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
      */
     public function createProduct(array $productData)
     {
-        return $this->create($productData);
+        return $this->model->create($productData);
     }
 
     /**
@@ -111,7 +112,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $created = [];
 
         foreach ($productsData as $productData) {
-            $product = $this->create($productData);
+            $product = $this->model->create($productData);
             $created[] = $product;
         }
 

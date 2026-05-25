@@ -4,10 +4,10 @@ namespace App\Repositories\Eloquent\Product;
 
 use App\Models\ProductVariant;
 use App\Repositories\Contracts\Product\ProductVariantRepositoryInterface;
-use App\Repositories\Eloquent\BaseRepository;
-
-class ProductVariantRepository extends BaseRepository implements ProductVariantRepositoryInterface
+class ProductVariantRepository implements ProductVariantRepositoryInterface
 {
+    protected $model;
+
     public function __construct(ProductVariant $model)
     {
         $this->model = $model;

@@ -14,7 +14,6 @@ class ResetPasswordController extends Controller
         private readonly PasswordResetService $passwordResetService
     ) {}
 
-    /** @unauthenticated */
     public function forgotPassword(ForgotPasswordRequest $request)
     {
         $this->passwordResetService->sendResetLink($request->validated()['email']);
@@ -24,7 +23,6 @@ class ResetPasswordController extends Controller
         ]);
     }
 
-    /** @unauthenticated */
     public function resetPassword(ResetPasswordRequest $request)
     {
         $this->passwordResetService->reset($request->validated());

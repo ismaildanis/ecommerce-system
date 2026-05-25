@@ -4,10 +4,10 @@ namespace App\Repositories\Eloquent\Campaign;
 
 use App\Models\Campaign;
 use App\Repositories\Contracts\Campaign\CampaignRepositoryInterface;
-use App\Repositories\Eloquent\BaseRepository;
-
-class CampaignRepository extends BaseRepository implements CampaignRepositoryInterface
+class CampaignRepository implements CampaignRepositoryInterface
 {
+    protected $model;
+
     public function __construct(Campaign $model)
     {
         $this->model = $model;

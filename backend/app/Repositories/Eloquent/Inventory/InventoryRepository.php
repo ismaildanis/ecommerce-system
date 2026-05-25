@@ -4,10 +4,10 @@ namespace App\Repositories\Eloquent\Inventory;
 
 use App\Models\Inventory;
 use App\Repositories\Contracts\Inventory\InventoryRepositoryInterface;
-use App\Repositories\Eloquent\BaseRepository;
-
-class InventoryRepository extends BaseRepository implements InventoryRepositoryInterface
+class InventoryRepository implements InventoryRepositoryInterface
 {
+    protected $model;
+
     public function __construct(Inventory $model)
     {
         $this->model = $model;

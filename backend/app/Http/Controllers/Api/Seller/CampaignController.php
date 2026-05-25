@@ -6,14 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Campaign\CampaignStoreRequest;
 use App\Http\Requests\Seller\Campaign\CampaignUpdateRequest;
 use App\Http\Resources\Campaign\CampaignResource;
-use App\Repositories\Contracts\Store\StoreRepositoryInterface;
 use App\Services\Seller\CampaignService;
 
 class CampaignController extends Controller
 {
     public function __construct(
         private readonly CampaignService $campaignService,
-        private readonly StoreRepositoryInterface $storeRepository,
     ) {}
 
     public function index()

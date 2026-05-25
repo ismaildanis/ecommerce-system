@@ -4,10 +4,10 @@ namespace App\Repositories\Eloquent\Store;
 
 use App\Models\Store;
 use App\Repositories\Contracts\Store\StoreRepositoryInterface;
-use App\Repositories\Eloquent\BaseRepository;
-
-class StoreRepository extends BaseRepository implements StoreRepositoryInterface
+class StoreRepository implements StoreRepositoryInterface
 {
+    protected $model;
+
     public function __construct(Store $model)
     {
         $this->model = $model;

@@ -2,9 +2,7 @@
 
 namespace App\Repositories\Contracts\User;
 
-use App\Repositories\Contracts\BaseRepositoryInterface;
-
-interface AddressesRepositoryInterface extends BaseRepositoryInterface
+interface AddressesRepositoryInterface
 {
     public function getAddressesByUserId($userId);
 

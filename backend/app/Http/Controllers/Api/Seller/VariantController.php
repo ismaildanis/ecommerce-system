@@ -11,12 +11,9 @@ use Illuminate\Support\Facades\Response;
 
 class VariantController extends Controller
 {
-    protected $variantService;
-
-    public function __construct(ProductVariantService $variantService)
-    {
-        $this->variantService = $variantService;
-    }
+    public function __construct(
+        private readonly ProductVariantService $variantService
+    ) {}
 
     public function index($productId)
     {

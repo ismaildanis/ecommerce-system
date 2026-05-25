@@ -4,10 +4,10 @@ namespace App\Repositories\Eloquent\User;
 
 use App\Models\UserAddress;
 use App\Repositories\Contracts\User\AddressesRepositoryInterface;
-use App\Repositories\Eloquent\BaseRepository;
-
-class AddressesRepository extends BaseRepository implements AddressesRepositoryInterface
+class AddressesRepository implements AddressesRepositoryInterface
 {
+    protected UserAddress $model;
+
     public function __construct(UserAddress $model)
     {
         $this->model = $model;
@@ -15,7 +15,7 @@ class AddressesRepository extends BaseRepository implements AddressesRepositoryI
 
     public function getAddressesByUserId($userId)
     {
-        return $this->findBy(['user_id' => $userId]);
+        return $this->model->where('user_id', $userId)->get();
     }
 
     public function getAddressById($id, $userId)
@@ -29,7 +29,7 @@ class AddressesRepository extends BaseRepository implements AddressesRepositoryI
     {
         $data['user_id'] = $userId;
 
-        return $this->create($data);
+        return $this->model->create($data);
     }
 
     public function updateAddress(array $data, $id, $userId)

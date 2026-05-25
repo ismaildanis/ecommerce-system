@@ -4,10 +4,10 @@ namespace App\Repositories\Eloquent\Payment;
 
 use App\Models\PaymentProvider;
 use App\Repositories\Contracts\Payment\PaymentProviderRepositoryInterface;
-use App\Repositories\Eloquent\BaseRepository;
-
-class PaymentProviderRepository extends BaseRepository implements PaymentProviderRepositoryInterface
+class PaymentProviderRepository implements PaymentProviderRepositoryInterface
 {
+    protected $model;
+
     public function __construct(PaymentProvider $model)
     {
         $this->model = $model;

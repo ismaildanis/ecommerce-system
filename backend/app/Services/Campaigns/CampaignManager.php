@@ -2,29 +2,23 @@
 
 namespace App\Services\Campaigns;
 
+use App\Models\User;
 use App\Models\Campaign;
 use App\Services\Campaigns\Handlers\FixedCampaign;
 use App\Services\Campaigns\Handlers\PercentageCampaign;
 use App\Services\Campaigns\Handlers\XBuyYPayCampaign;
-use App\Traits\GetUser;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use App\Repositories\Contracts\AuthenticationRepositoryInterface;
 
 class CampaignManager
 {
-    use GetUser;
-
-    public function __construct(
-        private readonly AuthenticationRepositoryInterface $authenticationRepository
-    ) {}
-
     public function resolveHandler(Campaign $campaign): ?CampaignInterface
     {
         if (! $campaign->is_active) {
             return null;
         }
-        $user = $this->getUser();
+        $user = auth('user')->user() ?? throw new AuthenticationException('Kullanıcı bulunamadı.');
 
         return match ($campaign->type) {
             'percentage' => new PercentageCampaign($campaign, $user),
