@@ -20,17 +20,16 @@ class SellerOrderController extends Controller
         $orderItems = $this->sellerOrderService->getSellerOrders();
 
         return Response::json(OrderItemResource::collection($orderItems));
-
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $orderItem = $this->sellerOrderService->getSellerOneOrder($id);
 
         return Response::json(OrderItemResource::make($orderItem));
     }
 
-    public function confirmOrderItem($id)
+    public function confirmOrderItem(int $id)
     {
         $orderItem = $this->sellerOrderService->confirmItem($id);
 
@@ -41,7 +40,7 @@ class SellerOrderController extends Controller
         return ResponseHelper::success('Sipariş Kargoya Teslim Edildi');
     }
 
-    public function refundOrderItem(SellerRefundItemRequest $request, $id)
+    public function refundOrderItem(SellerRefundItemRequest $request, int $id)
     {
         $result = $this->sellerOrderService->refundSelectedItems($id, $request->validated());
 

@@ -242,9 +242,8 @@ class CheckoutSessionService
 
     private function generateOrderNumber(): int
     {
-        return Order::max('order_number') + 1;
+        return (int) CheckoutSession::max('order_number') + 1;
     }
-
 
     private function prepareBagSnapshot(array $bagData): array
     {

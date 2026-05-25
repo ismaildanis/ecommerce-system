@@ -52,6 +52,26 @@ return Application::configure(basePath: dirname(__DIR__))
             return null;
         });
 
+        $exceptions->render(function (\Illuminate\Database\Eloquent\ModelNotFoundException $e, $request) {
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json([
+                    'message' => 'Kayıt bulunamadı.',
+                ], 404);
+            }
+
+            return null;
+        });
+
+        $exceptions->render(function (\RuntimeException $e, $request) {
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json([
+                    'message' => $e->getMessage(),
+                ], 422);
+            }
+
+            return null;
+        });
+
         $exceptions->render(function (Throwable $e, $request) {
             if ($request->expectsJson() || $request->is('api/*')) {
                 return response()->json([

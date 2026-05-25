@@ -2,18 +2,18 @@
 
 namespace App\Exceptions;
 
-class AppException extends \Exception
+class AppException extends \RuntimeException
 {
-    protected $errorCode;
-
-    public function __construct($message = '', $errorCode = null, $code = 0, ?\Throwable $previous = null)
-    {
-        parent::__construct($message, $code, $previous);
-        $this->errorCode = $errorCode;
+    public function __construct(
+        string $message = '',
+        private readonly int $statusCode = 422,
+        ?\Throwable $previous = null
+    ) {
+        parent::__construct($message, $statusCode, $previous);
     }
 
-    public function getErrorCode()
+    public function getStatusCode(): int
     {
-        return $this->errorCode;
+        return $this->statusCode;
     }
 }

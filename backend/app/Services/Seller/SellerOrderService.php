@@ -26,7 +26,7 @@ class SellerOrderService
 
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
         if (! $store) {
-            throw new \Exception('Mağaza bulunamadı');
+            throw new \RuntimeException('Mağaza bulunamadı');
         }
 
         return $this->orderItemRepository->getOrderItemsBySeller($store->id);
@@ -38,7 +38,7 @@ class SellerOrderService
 
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
         if (! $store) {
-            throw new \Exception('Mağaza bulunamadı');
+            throw new \RuntimeException('Mağaza bulunamadı');
         }
 
         return $this->orderItemRepository->getOrderItemBySeller($store->id, $id);
@@ -50,17 +50,18 @@ class SellerOrderService
 
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
         if (! $store) {
-            throw new \Exception('Mağaza bulunamadı');
+            throw new \RuntimeException('Mağaza bulunamadı');
         }
+
         $orderItem = $this->orderItemRepository->getOrderItemById($store->id, $id);
         if (! $orderItem) {
-            throw new \Exception('Sipariş bulunamadı');
+            throw new \RuntimeException('Sipariş bulunamadı');
         }
         if ($orderItem->status === 'refunded') {
-            throw new \Exception('Sipariş iade edildi');
+            throw new \RuntimeException('Bu sipariş zaten iade edilmiş');
         }
         if ($orderItem->shippingItem) {
-            throw new \Exception('Bu ürün için zaten kargo oluşturulmuş.');
+            throw new \RuntimeException('Bu ürün için zaten kargo oluşturulmuş.');
         }
 
         $order = $orderItem->order;
@@ -80,12 +81,14 @@ class SellerOrderService
 
         $store = $this->storeRepository->getStoreBySellerId($seller->id);
         if (! $store) {
-            throw new \Exception('Mağaza bulunamadı');
+            throw new \RuntimeException('Mağaza bulunamadı');
         }
+
         $orderItem = $this->orderItemRepository->getOrderItemById($store->id, $id);
         if (! $orderItem) {
-            throw new \Exception('Sipariş bulunamadı');
+            throw new \RuntimeException('Sipariş bulunamadı');
         }
+
         $blockedStatuses = ['refunded', 'canceled'];
         $allowedStatuses = ['confirmed', 'partial_refunded'];
 
@@ -93,11 +96,10 @@ class SellerOrderService
             in_array($orderItem->status, $blockedStatuses, true)
             || ! in_array($orderItem->status, $allowedStatuses, true)
         ) {
-            throw new \Exception('Bu ürün iade edilemez veya iade edilmiş.');
+            throw new \RuntimeException('Bu ürün iade edilemez veya iade edilmiş.');
         }
-        $result = $this->processRefund($orderItem, $payload);
 
-        return $result;
+        return $this->processRefund($orderItem, $payload);
     }
 
     private function processRefund($orderItem, array $payload)
@@ -114,6 +116,7 @@ class SellerOrderService
             $refundAmount,
             $payload
         );
+
         $newRefundedQuantity = ($orderItem->refunded_quantity ?? 0) + (int) $payload['quantity'];
         $newRefundedPrice = ($orderItem->refunded_price_cents ?? 0) + $refundAmount;
 
@@ -136,8 +139,7 @@ class SellerOrderService
         $perItemPrice = $orderItem->paid_price_cents / $orderItem->quantity;
         $remainingCents = max(0, $orderItem->paid_price_cents - $orderItem->refunded_price_cents);
         $availableQuantity = $orderItem->quantity - ($orderItem->refunded_quantity ?? 0);
-        $refundPrice = $perItemPrice * $payload['quantity'];
-        $refundPrice = round($refundPrice);
+        $refundPrice = round($perItemPrice * $payload['quantity']);
 
         if ($availableQuantity == 1) {
             $refundPrice = $remainingCents;

@@ -4,10 +4,15 @@ namespace App\Services\Seller;
 
 use App\Models\OrderRefund;
 use App\Models\OrderRefundItem;
+use App\Repositories\Contracts\Product\ProductRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 class SellerOrderPlacement
 {
+    public function __construct(
+        private readonly ProductRepositoryInterface $productRepository,
+    ) {}
+
     public function placeSellerOrder($orderItem, $payload, $refundAmount): void
     {
         DB::transaction(function () use ($orderItem, $payload, $refundAmount) {
@@ -33,8 +38,7 @@ class SellerOrderPlacement
                 'inspection_note' => null,
             ]);
 
-            $orderItem->product->decrementTotalSoldQuantity($orderItem->product_id, $quantity);
-
+            $this->productRepository->decrementTotalSoldQuantity($orderItem->product_id, $quantity);
         });
     }
 }
