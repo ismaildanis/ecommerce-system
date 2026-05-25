@@ -8,7 +8,6 @@ use App\Models\CheckoutSession;
 use App\Models\User;
 use App\Services\Checkout\CheckoutSessionService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
@@ -19,17 +18,12 @@ class IyzicoCallbackController extends Controller
         $payload = $request->all();
 
         if (empty($payload['conversationId'])) {
-            Log::warning('Iyzico callback: Missing conversationId', $payload);
-
             return response()->json(['error' => 'conversationId missing'], 400);
         }
 
         $sessionId = $this->extractSessionId($payload['conversationId'] ?? null);
 
-        Log::info('Iyzico callback', ['payload' => $payload]);
-
         if (($payload['mdStatus'] ?? '') === '0' || ($payload['status'] ?? '') === 'failure') {
-            Log::info('Iyzico callback: Payment failed', ['payload' => $payload]);
 
             if ($this->isBrowser($request->header('User-Agent'))) {
                 return Redirect::away($this->buildFailedFrontendUrl($sessionId));
@@ -42,7 +36,6 @@ class IyzicoCallbackController extends Controller
 
         try {
             $session = $checkoutSessions->confirmPaymentIntent($payload);
-            Log::info('Session', ['payload' => $payload, 'session' => $session]);
 
             if (($payload['mdStatus'] ?? '') === '1') {
                 $user = $session['user'] ?? User::find($session['user_id']);
@@ -62,11 +55,6 @@ class IyzicoCallbackController extends Controller
                 ?? $payload['message']
                 ?? $e->getMessage();
 
-            Log::error('Iyzico callback error', [
-                'message' => $gatewayMessage,
-                'payload' => $payload,
-            ]);
-
             if ($session instanceof CheckoutSession) {
                 $session->update(['status' => 'pending_3ds']);
             }
@@ -74,7 +62,7 @@ class IyzicoCallbackController extends Controller
             if ($this->isBrowser($request->header('User-Agent'))) {
                 $redirect = $this->buildFailedFrontendUrl($sessionId);
 
-                return Redirect::away($redirect.(str_contains($redirect, '?') ? '&' : '?').'error='.urlencode($gatewayMessage));
+                return Redirect::away($redirect . (str_contains($redirect, '?') ? '&' : '?') . 'error=' . urlencode($gatewayMessage));
             }
 
             return response()->json([
@@ -98,7 +86,7 @@ class IyzicoCallbackController extends Controller
     private function buildFrontendUrl(?string $sessionId): string
     {
         $base = rtrim(config('services.frontend_url'), '/') ?: 'http://localhost:3000';
-        $url = $base.'/checkout/success';
+        $url = $base . '/checkout/success';
 
         return $sessionId ? "{$url}?session={$sessionId}" : $url;
     }
@@ -106,7 +94,7 @@ class IyzicoCallbackController extends Controller
     private function buildFailedFrontendUrl(?string $sessionId): string
     {
         $base = rtrim(config('services.frontend_url'), '/') ?: 'http://localhost:3000';
-        $url = $base.'/checkout/payment';
+        $url = $base . '/checkout/payment';
 
         return $sessionId ? "{$url}?session={$sessionId}" : $url;
     }

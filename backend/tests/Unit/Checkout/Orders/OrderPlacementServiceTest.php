@@ -100,7 +100,7 @@ class OrderPlacementServiceTest extends TestCase
             ->once()
             ->with(44, $user->id, 777, 1200);
 
-        $bagRepository->shouldReceive('getBag')->once()->with($user)->andReturn($bag);
+        $bagRepository->shouldReceive('getBag')->once()->with($user->id)->andReturn($bag);
         $bagRepository->shouldReceive('clearBagItems')->once()->with($bag);
 
         $service = new OrderPlacementService(
