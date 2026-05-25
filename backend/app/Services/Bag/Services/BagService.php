@@ -26,7 +26,7 @@ class BagService implements BagInterface
     {
         $user = $this->getUser();
 
-        $bag = $this->bagRepository->getBag($user);
+        $bag = $this->bagRepository->getBag($user->id);
 
         if (! $bag) {
             throw new \RuntimeException('Sepet bulunamadı!');
@@ -103,13 +103,12 @@ class BagService implements BagInterface
             'per_item_cargo_price_cents' => $perItemCargoPrice,
             'item_final_price_cents' => $itemFinalPrice,
         ];
-
     }
 
     public function addToBag(int $variantSizeId, int $quantity = 1)
     {
         $user = $this->getUser();
-        $bag = $this->bagRepository->createBag($user);
+        $bag = $this->bagRepository->createBag($user->id);
 
         if (! $bag) {
             throw new \RuntimeException('Sepet bulunamadı!');
@@ -133,7 +132,7 @@ class BagService implements BagInterface
     public function selectCampaign(int $campaignId): array
     {
         $user = $this->getUser();
-        $bag = $this->bagRepository->getBag($user);
+        $bag = $this->bagRepository->getBag($user->id);
         if (! $bag) {
             throw new \RuntimeException('Sepet bulunamadı!');
         }
@@ -171,8 +170,8 @@ class BagService implements BagInterface
 
         $total = $this->bagCalculationService->calculateTotal($bagItems);
         $perItemCargoPrice = $this->bagCalculationService->calculateItemCargoPrice($bagItems);
-        $perItemPrice = $bagItems->mapWithKeys(fn ($item) => [$item->id => $item->unit_price_cents * $item->quantity]);
-        $discountItems = collect($result['items'] ?? [])->mapWithKeys(fn ($item) => [$item['bag_item_id'] => $item]);
+        $perItemPrice = $bagItems->mapWithKeys(fn($item) => [$item->id => $item->unit_price_cents * $item->quantity]);
+        $discountItems = collect($result['items'] ?? [])->mapWithKeys(fn($item) => [$item['bag_item_id'] => $item]);
 
         $final = max($total + $perItemCargoPrice->sum() - $discount, 0);
         $itemFinalPrice = $this->bagCalculationService->itemFinalPrice(
@@ -203,7 +202,7 @@ class BagService implements BagInterface
     public function unSelectCampaign(): array
     {
         $user = $this->getUser();
-        $bag = $this->bagRepository->getBag($user);
+        $bag = $this->bagRepository->getBag($user->id);
 
         if (! $bag || ! $bag->campaign_id) {
             throw new \RuntimeException('Sepetinizde kaldırılacak kampanya yok.');
@@ -219,7 +218,7 @@ class BagService implements BagInterface
 
         $total = $this->bagCalculationService->calculateTotal($bagItems);
         $perItemCargoPrice = $this->bagCalculationService->calculateItemCargoPrice($bagItems);
-        $perItemPrice = $bagItems->mapWithKeys(fn ($item) => [$item->id => $item->unit_price_cents * $item->quantity]);
+        $perItemPrice = $bagItems->mapWithKeys(fn($item) => [$item->id => $item->unit_price_cents * $item->quantity]);
 
         $final = max($total + $perItemCargoPrice->sum(), 0);
         $itemFinalPrice = $this->bagCalculationService->itemFinalPrice(
@@ -254,7 +253,7 @@ class BagService implements BagInterface
     public function showBagItem($bagItemId)
     {
         $user = $this->getUser();
-        $bag = $this->bagRepository->getBag($user);
+        $bag = $this->bagRepository->getBag($user->id);
         if (! $bag) {
             return null;
         }

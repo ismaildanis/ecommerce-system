@@ -7,12 +7,9 @@ use App\Repositories\Contracts\Inventory\InventoryRepositoryInterface;
 
 class InventoryRepository implements InventoryRepositoryInterface
 {
-    protected $model;
-
-    public function __construct(Inventory $model)
-    {
-        $this->model = $model;
-    }
+    public function __construct(
+        private readonly Inventory $model
+    ) {}
 
     public function lockForUpdate(int|string $id)
     {

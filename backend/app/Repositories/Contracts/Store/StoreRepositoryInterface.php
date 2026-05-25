@@ -4,7 +4,7 @@ namespace App\Repositories\Contracts\Store;
 
 interface StoreRepositoryInterface
 {
-    public function getStoreBySellerId($sellerId);
+    public function getStoreBySellerId(int $sellerId);
 
-    public function getStoreWithSeller($sellerId);
+    public function getStoreWithSeller(int $sellerId);
 }

@@ -31,14 +31,14 @@ interface PaymentGatewayInterface
     /**
      * İade işlemi
      */
-    public function refundPayment($transactionId, $amountCents, $payload): array;
+    public function refundPayment(string $transactionId, int $amountCents, array $payload): array;
 
     /**
      * Kart kaydetme senaryosu
      */
     public function storePaymentMethod(
         User $user,
-        $method,
+        PaymentMethod $method,
         array $payload,
         array $data
     ): PaymentMethod;

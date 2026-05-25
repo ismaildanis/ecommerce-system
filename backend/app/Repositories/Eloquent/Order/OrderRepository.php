@@ -7,14 +7,11 @@ use App\Repositories\Contracts\Order\OrderRepositoryInterface;
 
 class OrderRepository implements OrderRepositoryInterface
 {
-    protected $model;
+    public function __construct(
+        private readonly Order $model
+    ) {}
 
-    public function __construct(Order $model)
-    {
-        $this->model = $model;
-    }
-
-    public function getOrdersBySeller($sellerId)
+    public function getOrdersBySeller(int $sellerId)
     {
         return $this->model->where('seller_id', $sellerId)->get();
     }
@@ -24,17 +21,17 @@ class OrderRepository implements OrderRepositoryInterface
         return $this->model->create($attributes);
     }
 
-    public function getOrdersforUser($userId)
+    public function getOrdersforUser(int $userId)
     {
         return $this->model->where('user_id', $userId)->orderByDesc('id')->get();
     }
 
-    public function getOrderforUser($orderId, $userId)
+    public function getOrderforUser(int $orderId, int $userId)
     {
         return $this->model->where('user_id', $userId)->where('id', $orderId)->first();
     }
 
-    public function getOrderDetailforUser($userId, $id)
+    public function getOrderDetailforUser(int $userId, int $id)
     {
         return $this->model->with('orderItems.product.variants.variantImages.variantSizes.sizeOption', 'orderItems.product.variants.variantImages.variants.variantSizes.inventory')
             ->where('user_id', $userId)

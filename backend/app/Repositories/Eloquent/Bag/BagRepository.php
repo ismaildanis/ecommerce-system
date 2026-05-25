@@ -4,28 +4,35 @@ namespace App\Repositories\Eloquent\Bag;
 
 use App\Models\Bag;
 use App\Repositories\Contracts\Bag\BagRepositoryInterface;
+use Illuminate\Support\Facades\Cache;
 
 class BagRepository implements BagRepositoryInterface
 {
-    protected Bag $model;
+    public function __construct(
+        private readonly Bag $model
+    ) {}
 
-    public function __construct(Bag $model)
+    public function getBag(int $userId)
     {
-        $this->model = $model;
+        return Cache::tags(["bag_user_{$userId}"])
+            ->remember(
+                "user_{$userId}_bag",
+                3600,
+                function () use ($userId) {
+                    return $this->model->where('bag_user_id', $userId)->first();
+                }
+            );
     }
 
-    public function getBag($user)
+    public function createBag(int $userId)
     {
-        return $this->model->where('bag_user_id', $user->id)->first();
+        Cache::tags(["bag_user_{$userId}"])->flush();
+        return $this->model->firstOrCreate(['bag_user_id' => $userId]);
     }
 
-    public function createBag($user)
+    public function clearBagItems(Bag $bag)
     {
-        return $this->model->firstOrCreate(['bag_user_id' => $user->id]);
-    }
-
-    public function clearBagItems($bag)
-    {
+        Cache::tags(["bag_user_{$bag->bag_user_id}"])->flush();
         return $bag->bagItems()->delete();
     }
 }

@@ -8,34 +8,33 @@ use Illuminate\Support\Facades\Cache;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
-    protected Category $model;
-
-    public function __construct(Category $model)
-    {
-        $this->model = $model;
-    }
+    public function __construct(
+        private readonly Category $model
+    ) {}
 
     public function getAllCategories()
     {
-        return Cache::remember('categories.all', 3600, function () {
+        return Cache::tags(['categories'])->remember('categories.all', 3600, function () {
             return $this->model->with('children')->get();
         });
     }
 
-    public function getCategoryBySlug($category_slug)
+    public function getCategoryBySlug(string $category_slug)
     {
-        $category = $this->model->where('slug', $category_slug)->first();
+        return Cache::tags(['categories'])->remember("category.slug.{$category_slug}", 3600, function () use ($category_slug) {
+            $category = $this->model->where('slug', $category_slug)->first();
 
-        if (! $category) {
-            return collect();
-        }
+            if (! $category) {
+                return collect();
+            }
 
-        if ($category->parent_id === null) {
-            $childCategories = $this->model->where('parent_id', $category->id)->get();
+            if ($category->parent_id === null) {
+                $childCategories = $this->model->where('parent_id', $category->id)->get();
 
-            return collect([$category])->merge($childCategories);
-        }
+                return collect([$category])->merge($childCategories);
+            }
 
-        return collect([$category]);
+            return collect([$category]);
+        });
     }
 }

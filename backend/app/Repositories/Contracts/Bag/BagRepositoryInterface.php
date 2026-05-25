@@ -2,11 +2,13 @@
 
 namespace App\Repositories\Contracts\Bag;
 
+use App\Models\Bag;
+
 interface BagRepositoryInterface
 {
-    public function getBag($user);
+    public function getBag(int $userId);
 
-    public function createBag($user);
+    public function createBag(int $userId);
 
-    public function clearBagItems($bag);
+    public function clearBagItems(Bag $bag);
 }

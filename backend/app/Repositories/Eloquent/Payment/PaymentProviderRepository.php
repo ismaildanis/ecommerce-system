@@ -7,12 +7,9 @@ use App\Repositories\Contracts\Payment\PaymentProviderRepositoryInterface;
 
 class PaymentProviderRepository implements PaymentProviderRepositoryInterface
 {
-    protected $model;
-
-    public function __construct(PaymentProvider $model)
-    {
-        $this->model = $model;
-    }
+    public function __construct(
+        private readonly PaymentProvider $model
+    ) {}
 
     public function findActiveByCode(string $code): ?PaymentProvider
     {

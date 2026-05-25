@@ -10,6 +10,7 @@ use App\Repositories\Contracts\Inventory\InventoryRepositoryInterface;
 use App\Repositories\Contracts\Payment\PaymentMethodRepositoryInterface;
 use App\Repositories\Contracts\User\AddressesRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class CheckoutSessionService
@@ -101,57 +102,66 @@ class CheckoutSessionService
 
     public function createPaymentIntent(User $user, array $data): CheckoutSession
     {
-        $session = $this->findSessionForUser($data['session_id'], $user->id);
+        $lock = Cache::lock("checkout_payment_{$user->id}", 10);
 
-        if ($session->status === 'confirmed') {
-            throw new \RuntimeException('Checkout oturumu zaten onaylandı.');
+        if (!$lock->get()) {
+            throw new \RuntimeException('Ödeme işleminiz devam ediyor, lütfen bekleyin...');
         }
+        try {
+            $session = $this->findSessionForUser($data['session_id'], $user->id);
 
-        if ($data['payment_method'] === 'saved_card') {
-            $paymentMethod = $this->paymentMethods->getPaymentMethodForUser($user->id, $data['payment_method_id']);
-
-            if (! $paymentMethod) {
-                throw new ModelNotFoundException('Geçerli bir ödeme yöntemi bulunamadı.');
+            if ($session->status === 'confirmed') {
+                throw new \RuntimeException('Checkout oturumu zaten onaylandı.');
             }
-        } elseif ($data['payment_method'] === 'new_card') {
-            $paymentMethod = $this->checkoutPaymentService->buildTemporaryMethodFromData($user, $data);
-        } else {
-            throw new \InvalidArgumentException('Desteklenmeyen ödeme yöntemi.');
+
+            if ($data['payment_method'] === 'saved_card') {
+                $paymentMethod = $this->paymentMethods->getPaymentMethodForUser($user->id, $data['payment_method_id']);
+
+                if (! $paymentMethod) {
+                    throw new ModelNotFoundException('Geçerli bir ödeme yöntemi bulunamadı.');
+                }
+            } elseif ($data['payment_method'] === 'new_card') {
+                $paymentMethod = $this->checkoutPaymentService->buildTemporaryMethodFromData($user, $data);
+            } else {
+                throw new \InvalidArgumentException('Desteklenmeyen ödeme yöntemi.');
+            }
+
+            $intent = $this->checkoutPaymentService->createPaymentIntent(
+                $user,
+                $session,
+                $paymentMethod,
+                $data
+            );
+
+            $paymentData = $session->payment_data ?? [];
+            $paymentData['provider'] = $intent['provider'];
+            $paymentData['method'] = $data['payment_method'];
+            $paymentData['payment_method_id'] = $paymentMethod->id ?? null;
+            $paymentData['installment'] = $data['installment'] ?? 1;
+            $paymentData['intent'] = $intent;
+            $paymentData['status'] = $intent['status'] ?? 'payment_pending';
+            $paymentData['save_card'] = (bool) ($data['save_card'] ?? false);
+            $paymentData['new_card_payload'] = ($paymentData['save_card'] && ! $paymentMethod->exists)
+                ? [
+                    'card_alias' => $data['card_alias'] ?? 'Kredi Kartım',
+                    'last4' => substr($data['card_number'] ?? '', -4),
+                ]
+                : null;
+
+            $session->payment_data = $paymentData;
+            if (! empty($intent['requires_3ds'])) {
+                $session->status = 'pending_3ds';
+                $session->save();
+            } else {
+                $session->status = 'confirmed';
+                $session->order_number = $this->generateOrderNumber();
+                OrderPlacementJob::dispatch($user, $session, $data)->onQueue('orders');
+                $session->save();
+            }
+            return $session->fresh();
+        } finally {
+            $lock->release();
         }
-
-        $intent = $this->checkoutPaymentService->createPaymentIntent(
-            $user,
-            $session,
-            $paymentMethod,
-            $data
-        );
-
-        $paymentData = $session->payment_data ?? [];
-        $paymentData['provider'] = $intent['provider'];
-        $paymentData['method'] = $data['payment_method'];
-        $paymentData['payment_method_id'] = $paymentMethod->id ?? null;
-        $paymentData['installment'] = $data['installment'] ?? 1;
-        $paymentData['intent'] = $intent;
-        $paymentData['status'] = $intent['status'] ?? 'payment_pending';
-        $paymentData['save_card'] = (bool) ($data['save_card'] ?? false);
-        $paymentData['new_card_payload'] = ($paymentData['save_card'] && ! $paymentMethod->exists)
-            ? [
-                'card_alias' => $data['card_alias'] ?? 'Kredi Kartım',
-                'last4' => substr($data['card_number'] ?? '', -4),
-            ]
-            : null;
-
-        $session->payment_data = $paymentData;
-        if (! empty($intent['requires_3ds'])) {
-            $session->status = 'pending_3ds';
-            $session->save();
-        } else {
-            $session->status = 'confirmed';
-            $session->order_number = $this->generateOrderNumber();
-            OrderPlacementJob::dispatch($user, $session, $data)->onQueue('orders');
-            $session->save();
-        }
-        return $session->fresh();
     }
 
     public function confirmPaymentIntent(array $data): CheckoutSession
@@ -188,37 +198,51 @@ class CheckoutSessionService
             throw new \RuntimeException('Checkout oturumu bulunamadı.');
         }
 
-        $session->loadMissing('user');
-
-        if (! $session->user && $session->user_id) {
-            $session->setRelation('user', User::find($session->user_id));
+        if ($session->status === 'confirmed') {
+            return $session;
         }
 
-        if (! $session->user) {
-            throw new \RuntimeException('Kullanıcı bulunamadı.');
+        $lock = Cache::lock("checkout_confirm_{$session->id}", 10);
+
+        if (! $lock->get()) {
+            throw new \RuntimeException('İşlem devam ediyor, lütfen bekleyin...');
         }
 
-        $result = $this->checkoutPaymentService->confirmPaymentIntent($session, $data);
+        try {
+            $session->loadMissing('user');
 
-        $paymentData = $session->payment_data ?? [];
-        $paymentData['intent_result'] = $result;
-        $paymentData['status'] = $result['status'];
+            if (! $session->user && $session->user_id) {
+                $session->setRelation('user', User::find($session->user_id));
+            }
 
-        if (! empty($result['payment_transaction_id'])) {
-            $paymentData['intent']['payment_transaction_id'] = $result['payment_transaction_id'];
+            if (! $session->user) {
+                throw new \RuntimeException('Kullanıcı bulunamadı.');
+            }
+
+            $result = $this->checkoutPaymentService->confirmPaymentIntent($session, $data);
+
+            $paymentData = $session->payment_data ?? [];
+            $paymentData['intent_result'] = $result;
+            $paymentData['status'] = $result['status'];
+
+            if (! empty($result['payment_transaction_id'])) {
+                $paymentData['intent']['payment_transaction_id'] = $result['payment_transaction_id'];
+            }
+            if (($paymentData['save_card'] ?? false) && ($paymentData['new_card_payload'] ?? null)) {
+                $payload = $paymentData['new_card_payload'];
+                $payload['result'] = $result;
+                $paymentData['new_card_payload'] = $payload;
+            }
+
+            $session->payment_data = $paymentData;
+            $session->status = 'confirmed';
+            $session->order_number = $this->generateOrderNumber();
+            $session->save();
+
+            return $session->fresh();
+        } finally {
+            $lock->release();
         }
-        if (($paymentData['save_card'] ?? false) && ($paymentData['new_card_payload'] ?? null)) {
-            $payload = $paymentData['new_card_payload'];
-            $payload['result'] = $result;
-            $paymentData['new_card_payload'] = $payload;
-        }
-
-        $session->payment_data = $paymentData;
-        $session->status = 'confirmed';
-        $session->order_number = $this->generateOrderNumber();
-        $session->save();
-
-        return $session->fresh();
     }
 
     private function findSessionForUser($sessionId, $user)
@@ -242,7 +266,15 @@ class CheckoutSessionService
 
     private function generateOrderNumber(): int
     {
-        return (int) CheckoutSession::max('order_number') + 1;
+        $lock = Cache::lock('order_number_generator', 10);
+
+        $lock->block(5);
+
+        try {
+            return (int) CheckoutSession::max('order_number') + 1;
+        } finally {
+            $lock->release();
+        }
     }
 
     private function prepareBagSnapshot(array $bagData): array

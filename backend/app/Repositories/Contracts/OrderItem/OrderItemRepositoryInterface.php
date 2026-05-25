@@ -7,13 +7,13 @@ use Illuminate\Support\Collection;
 
 interface OrderItemRepositoryInterface
 {
-    public function getOrderItemsBySeller($storeId);
+    public function getOrderItemsBySeller(int $storeId);
 
-    public function getOrderItemBySeller($storeId, $id);
+    public function getOrderItemBySeller(int $storeId, int $id);
 
-    public function getOrderItemById($storeId, $id);
+    public function getOrderItemById(int $storeId, int $id);
 
-    public function getOrderDetailforUser($userId, $orderId);
+    public function getOrderDetailforUser(int $userId, int $orderId);
 
     public function create(array $attributes): OrderItem;
 

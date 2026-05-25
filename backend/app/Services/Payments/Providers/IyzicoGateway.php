@@ -278,7 +278,7 @@ class IyzicoGateway implements PaymentGatewayInterface
         ];
     }
 
-    public function storePaymentMethod(User $user, $method, $payload, array $data): PaymentMethod
+    public function storePaymentMethod(User $user, PaymentMethod $method, array $payload, array $data): PaymentMethod
     {
         $request = new CreateCardRequest;
         $request->setLocale(Locale::TR);

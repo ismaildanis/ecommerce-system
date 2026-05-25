@@ -60,7 +60,6 @@ class BagController extends Controller
         if (! $bagItem) {
             return ResponseHelper::error('Ürün bulunamadı!', 404);
         }
-        Cache::flush();
 
         return ResponseHelper::success('Ürün', $bagItem);
     }
@@ -79,8 +78,6 @@ class BagController extends Controller
             return ResponseHelper::error($bagItem['error'], 400);
         }
 
-        Cache::flush();
-
         return ResponseHelper::success('Ürün adedi güncellendi.', $bagItem);
     }
 
@@ -91,8 +88,6 @@ class BagController extends Controller
         if (isset($result['error'])) {
             return ResponseHelper::error($result['error'], 400);
         }
-
-        Cache::flush();
 
         return ResponseHelper::success($result['message'] ?? 'Ürün sepetten silindi.');
     }

@@ -7,29 +7,29 @@ interface ProductRepositoryInterface
     // Ürün + kategori ilişkileri
     public function getProductsWithCategory($perPage = 100);
 
-    public function getProductWithCategory($id);
+    public function getProductWithCategory(int $id);
 
-    public function getProductsByStore($storeId);
+    public function getProductsByStore(int $storeId);
 
-    public function getProductByStore($storeId, $id);
+    public function getProductByStore(int $storeId, int $id);
 
-    public function getProductBySlug($storeId, $slug);
+    public function getProductBySlug(int $storeId, string $slug);
 
     // CRUD
     public function createProduct(array $productData);
 
-    public function updateProduct(array $productData, $storeId, $id);
+    public function updateProduct(array $productData, int $storeId, int $id);
 
-    public function deleteProduct($storeId, $id);
+    public function deleteProduct(int $storeId, int $id);
 
     public function bulkCreateProducts(array $productsData);
 
     // Stok ve satış işlemleri
-    public function incrementStockQuantity($productId, $quantity);
+    public function incrementStockQuantity(int $productId, int $quantity);
 
-    public function decrementStockQuantity($productId, $quantity);
+    public function decrementStockQuantity(int $productId, int $quantity);
 
-    public function incrementTotalSoldQuantity($productId, $quantity);
+    public function incrementTotalSoldQuantity(int $productId, int $quantity);
 
-    public function decrementTotalSoldQuantity($productId, $quantity);
+    public function decrementTotalSoldQuantity(int $productId, int $quantity);
 }

@@ -5,26 +5,28 @@ namespace App\Repositories\Eloquent\Image;
 use App\Models\ProductVariantImage;
 use App\Repositories\Contracts\Image\ProductVariantImageRepositoryInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class ProductVariantImageRepository implements ProductVariantImageRepositoryInterface
 {
-    protected ProductVariantImage $model;
+    public function __construct(
+        private readonly ProductVariantImage $model
+    ) {}
 
-    public function __construct(ProductVariantImage $model)
-    {
-        $this->model = $model;
-    }
-
-    public function store(array $data, $productVariantId)
+    public function store(array $data, int $productVariantId)
     {
         $data['product_variant_id'] = $productVariantId;
+        $image = $this->model->create($data);
 
-        return $this->model->create($data);
+        Cache::tags(['products'])->flush();
+        return $image;
     }
 
-    public function getImageByProductVariantIdAndId($productVariantId, $id)
+    public function getImageByProductVariantIdAndId(int $productVariantId, int $id)
     {
-        return $this->model->where('product_variant_id', $productVariantId)->where('id', $id)->first();
+        return Cache::tags(['products'])->remember("variant.{$productVariantId}.image.{$id}", 3600, function () use ($productVariantId, $id) {
+            return $this->model->where('product_variant_id', $productVariantId)->where('id', $id)->first();
+        });
     }
 
     public function updateImageOrders(int $productVariantId, array $data)
@@ -41,10 +43,12 @@ class ProductVariantImageRepository implements ProductVariantImageRepositoryInte
             }
         });
 
-        return $this->model
+        $images = $this->model
             ->where('product_variant_id', $productVariantId)
             ->orderBy('sort_order')
             ->get();
 
+        Cache::tags(['products'])->flush();
+        return $images;
     }
 }

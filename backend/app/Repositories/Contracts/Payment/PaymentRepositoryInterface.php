@@ -8,5 +8,5 @@ interface PaymentRepositoryInterface
 {
     public function create(array $attributes): Payment;
 
-    public function getPaymentForOrder($orderId): Payment;
+    public function getPaymentForOrder(int $orderId): Payment;
 }

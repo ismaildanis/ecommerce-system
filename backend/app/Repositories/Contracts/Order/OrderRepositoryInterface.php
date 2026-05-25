@@ -6,15 +6,15 @@ use App\Models\Order;
 
 interface OrderRepositoryInterface
 {
-    public function getOrdersBySeller($sellerId);
+    public function getOrdersBySeller(int $sellerId);
 
     public function create(array $attributes): Order;
 
-    public function getOrdersForUser($userId);
+    public function getOrdersForUser(int $userId);
 
-    public function getOrderForUser($orderId, $userId);
+    public function getOrderForUser(int $orderId, int $userId);
 
-    public function getOrderDetailforUser($userId, $id);
+    public function getOrderDetailforUser(int $userId, int $id);
 
     public function latest(): ?Order;
 }

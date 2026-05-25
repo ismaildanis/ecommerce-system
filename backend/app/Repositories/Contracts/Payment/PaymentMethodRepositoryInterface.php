@@ -6,11 +6,11 @@ use App\Models\PaymentMethod;
 
 interface PaymentMethodRepositoryInterface
 {
-    public function getPaymentMethodForUser($userId, $paymentMethodId): ?PaymentMethod;
+    public function getPaymentMethodForUser(int $userId, int $paymentMethodId): ?PaymentMethod;
 
     public function createPaymentMethod(array $stored);
 
-    public function findByProviderToken($provider, $token);
+    public function findByProviderToken(string $provider, string $token);
 
-    public function saveFromGateway($attributes);
+    public function saveFromGateway(PaymentMethod $method);
 }

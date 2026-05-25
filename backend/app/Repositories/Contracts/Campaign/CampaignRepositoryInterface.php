@@ -6,15 +6,15 @@ interface CampaignRepositoryInterface
 {
     public function getActiveCampaigns();
 
-    public function getActiveCampaign($campaignId);
+    public function getActiveCampaign(int $campaignId);
 
-    public function getCampaignsByStoreId($storeId);
+    public function getCampaignsByStoreId(int $storeId);
 
-    public function getCampaignByStoreId($storeId, $id);
+    public function getCampaignByStoreId(int $storeId, int $id);
 
     public function createCampaign(array $campaignData);
 
-    public function updateCampaign(array $campaignData, $id);
+    public function updateCampaign(array $campaignData, int $id);
 
-    public function deleteCampaign($id);
+    public function deleteCampaign(int $id);
 }

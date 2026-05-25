@@ -12,6 +12,7 @@ use App\Services\Campaigns\CampaignManager;
 use App\Services\Inventory\InventoryService;
 use App\Services\Payments\PaymentMethodRecorder;
 use App\Services\Payments\PaymentRecorder;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class OrderPlacementService
@@ -28,59 +29,70 @@ class OrderPlacementService
 
     public function placeFromSession(User $user, CheckoutSession $session, array $data): Order
     {
-        return DB::transaction(function () use ($user, $session, $data) {
-            $session = CheckoutSession::whereKey($session->id)
-                ->lockForUpdate()
-                ->firstOrFail();
+        $lock = Cache::lock("order_placement_{$session->id}", 10);
 
+        if (! $lock->get()) {
+            throw new \RuntimeException('Siparişiniz şu anda işleniyor, lütfen bekleyin.');
+        }
+
+        try {
+            $session->refresh();
             if ($orderId = data_get($session->meta, 'order_id')) {
                 return Order::findOrFail($orderId);
             }
 
-            $order = $this->orderFactory->create($user, $session);
-            $items = $this->orderItemFactory->createMany($order, $session);
+            return DB::transaction(function () use ($user, $session, $data) {
+                $session = CheckoutSession::whereKey($session->id)
+                    ->lockForUpdate()
+                    ->firstOrFail();
 
-            $this->inventoryService->decrementForOrderItems($items);
-            $this->paymentRecorder->record($order, $session->payment_data);
-            $this->paymentMethodRecorder->store($user, $session->payment_data, $data);
+                $order = $this->orderFactory->create($user, $session);
+                $items = $this->orderItemFactory->createMany($order, $session);
 
-            $bagPayload = $session->bag_snapshot;
-            $campaignId = data_get($bagPayload, 'applied_campaign.id');
-            $discountCents = (int) data_get($bagPayload, 'totals.discount_cents', 0);
+                $this->inventoryService->decrementForOrderItems($items);
+                $this->paymentRecorder->record($order, $session->payment_data);
+                $this->paymentMethodRecorder->store($user, $session->payment_data, $data);
 
-            if ($campaignId) {
-                $this->campaign->logUsage(
-                    $campaignId,
-                    $user->id,
-                    $order->id,
-                    $discountCents
-                );
-            }
+                $bagPayload = $session->bag_snapshot;
+                $campaignId = data_get($bagPayload, 'applied_campaign.id');
+                $discountCents = (int) data_get($bagPayload, 'totals.discount_cents', 0);
 
-            $bag = $this->bagRepository->getBag($user);
-            $this->bagRepository->clearBagItems($bag);
+                if ($campaignId) {
+                    $this->campaign->logUsage(
+                        $campaignId,
+                        $user->id,
+                        $order->id,
+                        $discountCents
+                    );
+                }
 
-            $meta = $session->meta ?? [];
-            $meta['order_id'] = $order->id;
+                $bag = $this->bagRepository->getBag($user->id);
+                $this->bagRepository->clearBagItems($bag);
 
-            $session->forceFill([
-                'status' => 'confirmed',
-                'meta' => $meta,
-            ])->save();
+                $meta = $session->meta ?? [];
+                $meta['order_id'] = $order->id;
 
-            foreach ($items as $item) {
-                $seller = $item->product->store->seller;
+                $session->forceFill([
+                    'status' => 'confirmed',
+                    'meta' => $meta,
+                ])->save();
 
-                SellerOrderNotification::dispatch($order, $seller)
+                foreach ($items as $item) {
+                    $seller = $item->product->store->seller;
+
+                    SellerOrderNotification::dispatch($order, $seller)
+                        ->afterCommit()
+                        ->onQueue('notifications');
+                }
+
+                SendOrderNotification::dispatch($order, $user)
                     ->afterCommit()
                     ->onQueue('notifications');
-            }
 
-            SendOrderNotification::dispatch($order, $user)
-                ->afterCommit()
-                ->onQueue('notifications');
-
-            return $order;
-        });
+                return $order;
+            });
+        } finally {
+            $lock->release();
+        }
     }
 }

@@ -15,7 +15,7 @@ class CheckoutPaymentService
         private readonly PaymentProviderRepositoryInterface $paymentProviders,
     ) {}
 
-    public function buildTemporaryMethodFromData($user, array $data): PaymentMethod
+    public function buildTemporaryMethodFromData(User $user, array $data): PaymentMethod
     {
         $provider = $this->resolveProvider($data['provider'] ?? null);
 
@@ -23,7 +23,7 @@ class CheckoutPaymentService
             ->buildTemporaryMethod($user, $data);
     }
 
-    public function createPaymentIntent(User $user, $session, $paymentMethod, array $data): array
+    public function createPaymentIntent(User $user, CheckoutSession $session, PaymentMethod $paymentMethod, array $data): array
     {
         $provider = $this->resolveProvider($paymentMethod->provider);
 

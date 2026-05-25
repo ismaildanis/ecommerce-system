@@ -8,14 +8,11 @@ use Illuminate\Support\Collection;
 
 class OrderItemRepository implements OrderItemRepositoryInterface
 {
-    protected OrderItem $model;
+    public function __construct(
+        private readonly OrderItem $model
+    ) {}
 
-    public function __construct(OrderItem $model)
-    {
-        $this->model = $model;
-    }
-
-    public function getOrderItemsBySeller($storeId)
+    public function getOrderItemsBySeller(int $storeId)
     {
         return $this->model->with([
             'product',
@@ -24,7 +21,7 @@ class OrderItemRepository implements OrderItemRepositoryInterface
         ])->where('store_id', $storeId)->orderBy('created_at', 'desc')->get();
     }
 
-    public function getOrderItemBySeller($storeId, $id)
+    public function getOrderItemBySeller(int $storeId, int $id)
     {
         return $this->model->with([
             'product',
@@ -33,7 +30,7 @@ class OrderItemRepository implements OrderItemRepositoryInterface
         ])->where('store_id', $storeId)->where('id', $id)->first();
     }
 
-    public function getOrderItemById($storeId, $id)
+    public function getOrderItemById(int $storeId, int $id)
     {
         return $this->model->with([
             'product',
@@ -42,7 +39,7 @@ class OrderItemRepository implements OrderItemRepositoryInterface
         ])->where('store_id', $storeId)->where('id', $id)->first();
     }
 
-    public function getOrderDetailforUser($userId, $orderId)
+    public function getOrderDetailforUser(int $userId, int $orderId)
     {
         return $this->model
             ->with([

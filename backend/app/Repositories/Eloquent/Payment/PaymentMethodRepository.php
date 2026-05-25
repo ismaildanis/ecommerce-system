@@ -7,14 +7,11 @@ use App\Repositories\Contracts\Payment\PaymentMethodRepositoryInterface;
 
 class PaymentMethodRepository implements PaymentMethodRepositoryInterface
 {
-    protected $model;
+    public function __construct(
+        private readonly PaymentMethod $model
+    ) {}
 
-    public function __construct(PaymentMethod $model)
-    {
-        $this->model = $model;
-    }
-
-    public function getPaymentMethodForUser($userId, $paymentMethodId): ?PaymentMethod
+    public function getPaymentMethodForUser(int $userId, int $paymentMethodId): ?PaymentMethod
     {
         return $this->model
             ->where('id', $paymentMethodId)
@@ -28,7 +25,7 @@ class PaymentMethodRepository implements PaymentMethodRepositoryInterface
         return $this->model->create($stored);
     }
 
-    public function findByProviderToken($provider, $token)
+    public function findByProviderToken(string $provider, string $token)
     {
         return $this->model
             ->where('provider', $provider)
@@ -36,19 +33,19 @@ class PaymentMethodRepository implements PaymentMethodRepositoryInterface
             ->first();
     }
 
-    public function saveFromGateway($attributes)
+    public function saveFromGateway(PaymentMethod $method)
     {
-        if ($attributes instanceof PaymentMethod) {
-            return $attributes;
+        if ($method instanceof PaymentMethod) {
+            return $method;
         }
 
         return tap(
             $this->model->updateOrCreate(
                 [
-                    'provider' => $attributes['provider'],
-                    'provider_payment_method_id' => $attributes['provider_payment_method_id'],
+                    'provider' => $method['provider'],
+                    'provider_payment_method_id' => $method['provider_payment_method_id'],
                 ],
-                $attributes
+                $method
             )
         );
     }

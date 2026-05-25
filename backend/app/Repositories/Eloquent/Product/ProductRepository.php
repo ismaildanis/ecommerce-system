@@ -9,12 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductRepository implements ProductRepositoryInterface
 {
-    protected Product $model;
-
-    public function __construct(Product $model)
-    {
-        $this->model = $model;
-    }
+    public function __construct(
+        private readonly Product $model
+    ) {}
 
     /**
      * Kategori ve varyantlarıyla birlikte ürünleri getirir.
@@ -23,7 +20,7 @@ class ProductRepository implements ProductRepositoryInterface
     {
         $page = request('page', 1);
 
-        return Cache::remember("products.page.$page", 60, function () use ($perpage) {
+        return Cache::tags(['products'])->remember("products.page.$page", 3600, function () use ($perpage) {
             return $this->model
                 ->with([
                     'category.parent',
@@ -41,43 +38,49 @@ class ProductRepository implements ProductRepositoryInterface
     /**
      * Tek ürünü kategori ve varyantlarıyla getirir.
      */
-    public function getProductWithCategory($id)
+    public function getProductWithCategory(int $id)
     {
-        return $this->model
-            ->with([
-                'category.parent',
-                'category.children',
-                'category.gender',
-                'variants.variantImages',
-                'variants.variantSizes.sizeOption',
-                'variants.variantSizes.inventory',
-            ])
-            ->find($id);
+        return Cache::tags(['products'])->remember("product.{$id}", 3600, function () use ($id) {
+            return $this->model
+                ->with([
+                    'category.parent',
+                    'category.children',
+                    'category.gender',
+                    'variants.variantImages',
+                    'variants.variantSizes.sizeOption',
+                    'variants.variantSizes.inventory',
+                ])
+                ->find($id);
+        });
     }
 
     /**
      * Mağazaya ait ürünleri kategori ve varyantlarıyla getirir.
      */
-    public function getProductsByStore($storeId)
+    public function getProductsByStore(int $storeId)
     {
-        return $this->model
-            ->with([
-                'category',
-                'category.parent',
-                'category.children',
-                'category.gender',
-                'variants.variantAttributes.attribute',
-                'variants.variantImages',
-                'variants.variantAttributes.option',
-            ])
-            ->where('store_id', $storeId)
-            ->orderBy('id')
-            ->get();
+        return Cache::tags(['products', "store_{$storeId}_products"])->remember("store.{$storeId}.products", 3600, function () use ($storeId) {
+            return $this->model
+                ->with([
+                    'category',
+                    'category.parent',
+                    'category.children',
+                    'category.gender',
+                    'variants.variantAttributes.attribute',
+                    'variants.variantImages',
+                    'variants.variantAttributes.option',
+                ])
+                ->where('store_id', $storeId)
+                ->orderBy('id')
+                ->get();
+        });
     }
 
-    public function getProductBySlugAndStore($storeId, $slug)
+    public function getProductBySlugAndStore(int $storeId, string $slug)
     {
-        return $this->model->with('store')->where('store_id', $storeId)->where('slug', $slug)->first();
+        return Cache::tags(['products', "store_{$storeId}_products"])->remember("store.{$storeId}.product_slug.{$slug}", 3600, function () use ($storeId, $slug) {
+            return $this->model->with('store')->where('store_id', $storeId)->where('slug', $slug)->first();
+        });
     }
 
     /**
@@ -85,13 +88,15 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function createProduct(array $productData)
     {
-        return $this->model->create($productData);
+        $product = $this->model->create($productData);
+        Cache::tags(['products'])->flush();
+        return $product;
     }
 
     /**
      * Ürün güncelle.
      */
-    public function updateProduct(array $productData, $storeId, $id)
+    public function updateProduct(array $productData, int $storeId, int $id)
     {
         $product = $this->model->where('store_id', $storeId)->where('id', $id)->first();
 
@@ -100,6 +105,7 @@ class ProductRepository implements ProductRepositoryInterface
         }
 
         $product->update($productData);
+        Cache::tags(['products', "store_{$storeId}_products"])->flush();
 
         return $product->fresh();
     }
@@ -116,13 +122,14 @@ class ProductRepository implements ProductRepositoryInterface
             $created[] = $product;
         }
 
+        Cache::tags(['products'])->flush();
         return $created;
     }
 
     /**
      * Ürünü sil + varyant resimlerini de temizle.
      */
-    public function deleteProduct($storeId, $id)
+    public function deleteProduct(int $storeId, int $id)
     {
         $product = $this->model->with('variants')->where('store_id', $storeId)->where('id', $id)->first();
 
@@ -134,58 +141,72 @@ class ProductRepository implements ProductRepositoryInterface
             foreach ($product->variants as $variant) {
                 if (is_array($variant->variantImages)) {
                     foreach ($variant->variantImages as $img) {
-                        Storage::disk('public')->delete('productImages/'.$img);
+                        Storage::disk('public')->delete('productImages/' . $img);
                     }
                 } else {
-                    Storage::disk('public')->delete('productImages/'.$variant->variantImages);
+                    Storage::disk('public')->delete('productImages/' . $variant->variantImages);
                 }
             }
         }
 
-        return $product->delete();
+        $result = $product->delete();
+        Cache::tags(['products', "store_{$storeId}_products"])->flush();
+        return $result;
     }
 
     /**
      * Mağazaya ait tek ürünü getir.
      */
-    public function getProductByStore($storeId, $id)
+    public function getProductByStore(int $storeId, int $id)
     {
-        return $this->model
-            ->with([
-                'category',
-                'category.parent',
-                'category.children',
-                'category.gender',
-                'variants.variantImages',
-                'variants.variantAttributes.attribute',
-                'variants.variantAttributes.option',
-            ])
-            ->where('store_id', $storeId)
-            ->find($id);
+        return Cache::tags(['products', "store_{$storeId}_products"])->remember("store.{$storeId}.product_id.{$id}", 3600, function () use ($storeId, $id) {
+            return $this->model
+                ->with([
+                    'category',
+                    'category.parent',
+                    'category.children',
+                    'category.gender',
+                    'variants.variantImages',
+                    'variants.variantAttributes.attribute',
+                    'variants.variantAttributes.option',
+                ])
+                ->where('store_id', $storeId)
+                ->find($id);
+        });
     }
 
-    public function incrementStockQuantity($productId, $quantity)
+    public function incrementStockQuantity(int $productId, int $quantity)
     {
-        return $this->model->whereKey($productId)->increment('stock_quantity', $quantity);
+        $result = $this->model->whereKey($productId)->increment('stock_quantity', $quantity);
+        Cache::tags(['products'])->flush();
+        return $result;
     }
 
-    public function decrementStockQuantity($productId, $quantity)
+    public function decrementStockQuantity(int $productId, int $quantity)
     {
-        return $this->model->whereKey($productId)->decrement('stock_quantity', $quantity);
+        $result = $this->model->whereKey($productId)->decrement('stock_quantity', $quantity);
+        Cache::tags(['products'])->flush();
+        return $result;
     }
 
-    public function incrementTotalSoldQuantity($productId, $quantity)
+    public function incrementTotalSoldQuantity(int $productId, int $quantity)
     {
-        return $this->model->whereKey($productId)->increment('total_sold_quantity', $quantity);
+        $result = $this->model->whereKey($productId)->increment('total_sold_quantity', $quantity);
+        Cache::tags(['products'])->flush();
+        return $result;
     }
 
-    public function decrementTotalSoldQuantity($productId, $quantity)
+    public function decrementTotalSoldQuantity(int $productId, int $quantity)
     {
-        return $this->model->whereKey($productId)->decrement('total_sold_quantity', $quantity);
+        $result = $this->model->whereKey($productId)->decrement('total_sold_quantity', $quantity);
+        Cache::tags(['products'])->flush();
+        return $result;
     }
 
-    public function getProductBySlug($storeId, $slug)
+    public function getProductBySlug(int $storeId, string $slug)
     {
-        return $this->model->where('store_id', $storeId)->where('slug', $slug)->first();
+        return Cache::tags(['products', "store_{$storeId}_products"])->remember("store.{$storeId}.product.{$slug}", 3600, function () use ($storeId, $slug) {
+            return $this->model->where('store_id', $storeId)->where('slug', $slug)->first();
+        });
     }
 }
