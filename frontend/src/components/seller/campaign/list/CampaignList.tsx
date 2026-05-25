@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Campaign } from '@/types/seller/campaign';
 import { useCampaignDestroy } from '@/hooks/seller/useCampaignQuery';
 import { FiEdit2, FiTrash2, FiClock, FiTag, FiPercent, FiShoppingCart, FiCalendar, FiCheckCircle, FiXCircle, FiUser } from 'react-icons/fi';
@@ -14,7 +14,7 @@ interface Countdown {
 }
 
 function useCountdown(target?: string | null): Countdown {
-  const [label, setLabel] = useState<string>('â€”');
+  const [label, setLabel] = useState<string>('—');
   const [expired, setExpired] = useState<boolean>(false);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function useCountdown(target?: string | null): Countdown {
 
     const targetTime = new Date(target).getTime();
     if (Number.isNaN(targetTime)) {
-      setLabel('GeÃ§ersiz tarih');
+      setLabel('Geçersiz tarih');
       setExpired(false);
       return;
     }
@@ -36,7 +36,7 @@ function useCountdown(target?: string | null): Countdown {
       const diff = targetTime - now;
 
       if (diff <= 0) {
-        setLabel('SÃ¼re Doldu');
+        setLabel('Süre Doldu');
         setExpired(true);
         return;
       }
@@ -100,11 +100,11 @@ function CampaignCard({
   const getCampaignTypeLabel = () => {
     switch (campaign.type) {
       case 'percentage':
-        return 'YÃ¼zde Ä°ndirim';
+        return 'Yüzde İndirim';
       case 'fixed':
-        return 'Sabit Ä°ndirim';
+        return 'Sabit İndirim';
       case 'x_buy_y_pay':
-        return `${campaign.buy_quantity} Al ${campaign.pay_quantity} Ã–de`;
+        return `${campaign.buy_quantity} Al ${campaign.pay_quantity} Öde`;
       default:
         return campaign.type;
     }
@@ -114,13 +114,13 @@ function CampaignCard({
     if (campaign.type === 'x_buy_y_pay') {
       return (
         <span className="text-lg font-bold text-primary">
-          {campaign.buy_quantity} Al {campaign.pay_quantity} Ã–de
+          {campaign.buy_quantity} Al {campaign.pay_quantity} Öde
         </span>
       );
     }
     return (
       <span className="text-lg font-bold text-primary">
-        {campaign.type === 'percentage' ? '%' : 'â‚º'}{campaign.discount_value}
+        {campaign.type === 'percentage' ? '%' : '₺'}{campaign.discount_value}
       </span>
     );
   };
@@ -254,7 +254,7 @@ export default function CampaignList({ campaigns, onEdit }: CampaignListProps) {
 
   const handleDelete = async (id: number) => {
     const confirmed = window.confirm(
-      'Kampanyayı silmek istediÄŸinize emin misiniz?\nBu işlem geri alınamaz.'
+      'Kampanyayı silmek istediğinize emin misiniz?\nBu işlem geri alınamaz.'
     );
     if (!confirmed) return;
     await mutateAsync(id);
